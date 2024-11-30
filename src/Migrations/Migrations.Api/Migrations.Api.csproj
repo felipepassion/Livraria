@@ -25,14 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ServerIoCFactory.generated.cs">
-      <DependentUpon>ServerIoCFactory.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Migrations.generated.bat">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -54,6 +46,14 @@
 
   <ItemGroup>
     <Folder Include="DataSeeders\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ServerIoCFactory.generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ServerIoCFactory.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

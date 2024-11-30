@@ -43,7 +43,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Profiles
 	{
 		public LivrariaAggSettingsCsvMap()
 		{
-			Map(x=>x.UserId).Name("UserId");
+			
 		}
 	}
 }

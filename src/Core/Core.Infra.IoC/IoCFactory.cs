@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Niu.Nutri.Core.Application.DTO.Seedwork;
+using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Events.Handles;
 using Niu.Nutri.CrossCutting.Infra.Log.Contexts;
 using Niu.Nutri.CrossCutting.Infra.Log.Providers;
+using System.Reflection;
 
 namespace Niu.Nutri.Core.Infra.IoC
 {

@@ -1,6 +1,5 @@
 ﻿using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Repositories;
 using Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities;
-using Niu.Nutri.Livraria.Domain.Aggregates.UsersAgg.Entities;
 
 namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Repositories 
 {
@@ -21,11 +20,5 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Repositories
 
 	public partial interface ILivrariaAggSettingsRepository : IRepository<LivrariaAggSettings> { }
 	public partial interface ILivrariaAggSettingsMongoRepository : IMongoRepository<LivrariaAggSettings> { }
-
-}
-namespace Niu.Nutri.Livraria.Domain.Aggregates.UsersAgg.Repositories 
-{
-	public partial interface IUserRepository : IRepository<User> { }
-	public partial interface IUserMongoRepository : IMongoRepository<User> { }
 
 }

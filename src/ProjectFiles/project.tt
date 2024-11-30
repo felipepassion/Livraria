@@ -23,7 +23,7 @@
         
         IServiceProvider serviceProvider = (IServiceProvider)this.Host;
         EnvDTE.DTE dte = (EnvDTE.DTE) serviceProvider.GetCOMService(typeof(EnvDTE.DTE));
-        var src = dte.Solution.Projects.Item(2);
+        var src = dte.Solution.Projects.Item(1);
         var projects = GetProjects(src).ToArray();    
 		
         if(!name.Contains('.') && !ignorePrefix){
@@ -43,7 +43,7 @@
         
         IServiceProvider serviceProvider = (IServiceProvider)this.Host;
         EnvDTE.DTE dte = (EnvDTE.DTE) serviceProvider.GetCOMService(typeof(EnvDTE.DTE));
-        var src = dte.Solution.Projects.Item(2);
+        var src = dte.Solution.Projects.Item(1);
         var projects = GetProjects(src).ToArray();    
 		var result = new List<Project>();
 
@@ -86,7 +86,7 @@
 		
         var provider = (IServiceProvider)this.Host;
         var dte = provider.GetService(typeof(DTE)) as DTE;  
-        var src = dte.Solution.Projects.Item(2);
+        var src = dte.Solution.Projects.Item(1);
         var projects = GetProjects(src);
         var response = new List<Project>();
 

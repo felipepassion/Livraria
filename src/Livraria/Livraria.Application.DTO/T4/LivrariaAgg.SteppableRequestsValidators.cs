@@ -69,7 +69,7 @@ namespace Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Validators
         public LivrariaAggSettingsStep1Validator(HttpClient db)
                     : base(db)
         {
-            RuleFor(Q => Q.UserId).NotEmpty();
+            
             ConfigureAdditionalValidations();
         }
         partial void ConfigureAdditionalValidations();

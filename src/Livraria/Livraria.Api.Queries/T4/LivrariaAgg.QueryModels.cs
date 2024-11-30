@@ -309,16 +309,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Queries.Models
 		public bool? IsDeletedEqual { get; set; }
 	}
 	public partial class LivrariaAggSettingsQueryModel : BaseQueryModel {
-		public int? UserIdEqual { get; set; }
-		public int? UserIdNotEqual { get; set; }
-		public int[]? UserIdContains { get; set; }
-		public int[]? UserIdNotContains { get; set; }
-		public int? UserIdSince { get; set; }
-		public int? UserIdUntil { get; set; }
-		public int? UserIdLessThan { get; set; }
-		public int? UserIdGreaterThan { get; set; }
-		public int? UserIdLessThanOrEqual { get; set; }
-		public int? UserIdGreaterThanOrEqual { get; set; }
 		public bool? AutoSaveSettingsEnabledEqual { get; set; }
 		public string? ExternalIdEqual { get; set; }
 		public string? ExternalIdNotEqual { get; set; }

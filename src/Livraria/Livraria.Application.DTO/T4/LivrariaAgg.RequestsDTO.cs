@@ -42,14 +42,5 @@ public partial class AutorDTO : EntityDTO
 	}
 public partial class LivrariaAggSettingsDTO : BaseAggregateSettingsDTO
 	{
-	    public  int UserId { get; set; }
-	}
-}
-namespace Niu.Nutri.Livraria.Application.DTO.Aggregates.UsersAgg.Requests 
-{
-public partial class UserDTO : EntityDTO
-	{
-		///<summary>Nome completo do usuário.</summary>
-	    public  string Name { get; set; }
 	}
 }

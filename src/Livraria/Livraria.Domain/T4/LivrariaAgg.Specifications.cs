@@ -944,32 +944,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
 		
 	   }
    public partial class LivrariaAggSettingsSpecifications {
-				public static Specification<LivrariaAggSettings> UserIdContains(params int[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.UserId));
-        }
-		public static Specification<LivrariaAggSettings> UserIdNotContains(params int[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => !values.Contains(p.UserId));
-        }
-		public static Specification<LivrariaAggSettings> UserIdEqual(params int[] values) {
-			return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.UserId));
-        }
-        public static Specification<LivrariaAggSettings> UserIdGreaterThanOrEqual(int value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.UserId >= value);
-        }
-        public static Specification<LivrariaAggSettings> UserIdLessThanOrEqual(int value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.UserId <= value);
-        }
-        public static Specification<LivrariaAggSettings> UserIdNotEqual(int value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.UserId != value);
-        }
-        public static Specification<LivrariaAggSettings> UserIdGreaterThan(int value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.UserId > value);
-        }
-        public static Specification<LivrariaAggSettings> UserIdLessThan(int value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.UserId < value);
-        }
-		
-					public static Specification<LivrariaAggSettings> AutoSaveSettingsEnabledEqual(bool value) {
+				public static Specification<LivrariaAggSettings> AutoSaveSettingsEnabledEqual(bool value) {
 			return new DirectSpecification<LivrariaAggSettings>(p => p.AutoSaveSettingsEnabled == value);
 		}
 		

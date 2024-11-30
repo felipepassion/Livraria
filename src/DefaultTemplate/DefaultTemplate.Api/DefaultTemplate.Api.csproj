@@ -50,9 +50,9 @@
       <DependentUpon>MiniControllers.tt</DependentUpon>
     </Compile>
     <Compile Update="ServerIoCFactory.generated.cs">
-      <DependentUpon>ServerIoCFactory.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DependentUpon>ServerIoCFactory.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 
