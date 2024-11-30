@@ -1142,7 +1142,7 @@
             if(attrs.ContainsKey("Unique") && attrs["Unique"].FirstOrDefault().Value is not null) attrUniqueMessage = $"{attrs["Unique"].First().Value ?? ""}";
 
             var newStr = result;
-            newStr += !attrs.ContainsKey("Unique") ? "" : @$"RuleFor(x=>x).MustAsync((x, y) => BeUnique<{mainEntity}DTO>(x.ExternalId, {'"'+property.Key+'"'}, x.{property.Key.Replace("/",".")}, CancellationToken.None)).WithMessage({attrUniqueMessage}).WithName({'"'+property.Key+'"'});";            
+            newStr += !attrs.ContainsKey("Unique") ? "" : @$"RuleFor(x=>x).MustAsync((x, y) => BeUnique<{mainEntity}DTO>(x.IdExterno, {'"'+property.Key+'"'}, x.{property.Key.Replace("/",".")}, CancellationToken.None)).WithMessage({attrUniqueMessage}).WithName({'"'+property.Key+'"'});";            
             newStr += @$"RuleFor(Q => Q.{property.Key.Replace("/",".")})";
             newStr += @$"{((attrs.ContainsKey("Required") || attrs.ContainsKey("RequiredT4")) ? (isComplex? ".NotNull()" : ".NotEmpty()") : "")}{attrRequiredMessage}";
             newStr += @";";

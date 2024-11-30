@@ -13,7 +13,7 @@ namespace Niu.Nutri.Users.Identity
     {
         public ApplicationUser()
         {
-            this.ExternalId = Guid.NewGuid().ToString();
+            this.IdExterno = Guid.NewGuid().ToString();
             this.CriadoEm = DateTime.UtcNow;
         }
 
@@ -31,7 +31,7 @@ namespace Niu.Nutri.Users.Identity
         [DisplayName("Deletado em")]
         public DateTime? DeletadoEm { get; set; }
         
-        public string ExternalId { get; set; }
+        public string IdExterno { get; set; }
 
         [IgnorePropertyT4OnRequest]
         public bool Deletado { get; set; }

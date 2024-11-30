@@ -25,13 +25,13 @@ namespace Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Validators
             _http = db;
         }
 
-        protected async Task<bool> BeUnique<K>(string? externalId, string name, string value, CancellationToken cancellationToken, string? query = null)
+        protected async Task<bool> BeUnique<K>(string? idExterno, string name, string value, CancellationToken cancellationToken, string? query = null)
             where K : EntityDTO, new()
         {
             if (string.IsNullOrWhiteSpace(value)) return true;
             
             var str = $"{typeof(K).Name.Replace("DTO", "")}?{name}Equal={value}";
-            var result = await _http.CountAsync<K>($"ExternalIdNotEqual={externalId}&{name.ToUpper()}Equal={value}&{query}");
+            var result = await _http.CountAsync<K>($"IdExternoNotEqual={idExterno}&{name.ToUpper()}Equal={value}&{query}");
             
             return result.Success;
         }

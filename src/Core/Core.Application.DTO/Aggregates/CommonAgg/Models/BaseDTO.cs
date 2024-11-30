@@ -16,7 +16,7 @@ namespace Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models
         public string? DisplayNameTitle { get; }
         public string? DisplayNameSubTitle { get; }
         public int? Id { get; set; }
-        public string? ExternalId { get; set; }
+        public string? IdExterno { get; set; }
         public string[] FieldsToValidate { get; set; }
         public DateTime? CriadoEm { get; set; }
         public string? H2AndSubTitle { get; }
@@ -44,7 +44,7 @@ namespace Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models
         public int? Id { get; set; }
 
         [NullableProperty]
-        public string? ExternalId { get; set; } = Guid.NewGuid().ToString();
+        public string? IdExterno { get; set; } = Guid.NewGuid().ToString();
 
 
         public string[] FieldsToValidate { get; set; } = new string[0];
@@ -118,7 +118,7 @@ namespace Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models
             if (route.StartsWith("Base"))
                 route = route.Substring("Base".Length);
             return $"{route}";
-            //return $"{route}?id={ExternalId}";
+            //return $"{route}?id={IdExterno}";
         }
 
         public string GetFieldPlaceholder(string col)

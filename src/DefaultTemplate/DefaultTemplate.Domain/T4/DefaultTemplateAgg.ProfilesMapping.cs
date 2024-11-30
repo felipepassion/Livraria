@@ -13,10 +13,10 @@ namespace Niu.Nutri.DefaultTemplate.Domain.Aggregates.DefaultTemplateAgg.Profile
 		public DefaultTemplateAggProfile()
 		{
 			CreateMap<DefaultEntityDTO, DefaultEntity>()
-				.ForMember(x=>x.ExternalId, opt => opt.MapFrom(x=>x.ExternalId ?? Guid.NewGuid().ToString()));
+				.ForMember(x=>x.IdExterno, opt => opt.MapFrom(x=>x.IdExterno ?? Guid.NewGuid().ToString()));
 			CreateMap<DefaultEntity, DefaultEntityDTO>();
 			CreateMap<DefaultTemplateAggSettingsDTO, DefaultTemplateAggSettings>()
-				.ForMember(x=>x.ExternalId, opt => opt.MapFrom(x=>x.ExternalId ?? Guid.NewGuid().ToString()));
+				.ForMember(x=>x.IdExterno, opt => opt.MapFrom(x=>x.IdExterno ?? Guid.NewGuid().ToString()));
 			CreateMap<DefaultTemplateAggSettings, DefaultTemplateAggSettingsDTO>();
 			ConfigureAdditionalProfiles();
 		}
@@ -33,7 +33,7 @@ namespace Niu.Nutri.DefaultTemplate.Domain.Aggregates.UsersAgg.Profiles
 		public UsersAggProfile()
 		{
 			CreateMap<UserDTO, User>()
-				.ForMember(x=>x.ExternalId, opt => opt.MapFrom(x=>x.ExternalId ?? Guid.NewGuid().ToString()));
+				.ForMember(x=>x.IdExterno, opt => opt.MapFrom(x=>x.IdExterno ?? Guid.NewGuid().ToString()));
 			CreateMap<User, UserDTO>();
 			ConfigureAdditionalProfiles();
 		}

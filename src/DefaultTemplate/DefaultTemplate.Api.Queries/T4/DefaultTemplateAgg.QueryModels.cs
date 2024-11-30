@@ -4,11 +4,11 @@ namespace Niu.Nutri.DefaultTemplate.Domain.Aggregates.DefaultTemplateAgg.Queries
     using Core.Api.Queries;
 	using Enumerations;
 	public partial class DefaultEntityQueryModel : BaseQueryModel {
-		public string? ExternalIdEqual { get; set; }
-		public string? ExternalIdNotEqual { get; set; }
-		public string? ExternalIdContains { get; set; }
-		public string? ExternalIdNotContains { get; set; }
-		public string? ExternalIdStartsWith { get; set; }
+		public string? IdExternoEqual { get; set; }
+		public string? IdExternoNotEqual { get; set; }
+		public string? IdExternoContains { get; set; }
+		public string? IdExternoNotContains { get; set; }
+		public string? IdExternoStartsWith { get; set; }
 		public System.DateTime? CriadoEmEqual { get; set; }
 		public System.DateTime? CriadoEmNotEqual { get; set; }
 		public System.DateTime[]? CriadoEmContains { get; set; }
@@ -57,11 +57,11 @@ namespace Niu.Nutri.DefaultTemplate.Domain.Aggregates.DefaultTemplateAgg.Queries
 		public int? UserIdLessThanOrEqual { get; set; }
 		public int? UserIdGreaterThanOrEqual { get; set; }
 		public bool? AutoSaveSettingsEnabledEqual { get; set; }
-		public string? ExternalIdEqual { get; set; }
-		public string? ExternalIdNotEqual { get; set; }
-		public string? ExternalIdContains { get; set; }
-		public string? ExternalIdNotContains { get; set; }
-		public string? ExternalIdStartsWith { get; set; }
+		public string? IdExternoEqual { get; set; }
+		public string? IdExternoNotEqual { get; set; }
+		public string? IdExternoContains { get; set; }
+		public string? IdExternoNotContains { get; set; }
+		public string? IdExternoStartsWith { get; set; }
 		public System.DateTime? CriadoEmEqual { get; set; }
 		public System.DateTime? CriadoEmNotEqual { get; set; }
 		public System.DateTime[]? CriadoEmContains { get; set; }

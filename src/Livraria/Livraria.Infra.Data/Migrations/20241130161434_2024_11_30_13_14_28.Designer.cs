@@ -66,7 +66,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("ExternalId")
+                    b.Property<string>("IdExterno")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -96,7 +96,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     b.Property<DateTime?>("DeletadoEm")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("ExternalId")
+                    b.Property<string>("IdExterno")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -132,7 +132,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     b.Property<DateTime?>("DeletadoEm")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("ExternalId")
+                    b.Property<string>("IdExterno")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -173,7 +173,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("ExternalId")
+                    b.Property<string>("IdExterno")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -209,7 +209,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     b.Property<DateTime?>("DeletadoEm")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("ExternalId")
+                    b.Property<string>("IdExterno")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -249,7 +249,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     b.Property<DateTime?>("DeletadoEm")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("ExternalId")
+                    b.Property<string>("IdExterno")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -286,7 +286,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     b.Property<DateTime?>("DeletadoEm")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("ExternalId")
+                    b.Property<string>("IdExterno")
                         .IsRequired()
                         .HasColumnType("text");
 

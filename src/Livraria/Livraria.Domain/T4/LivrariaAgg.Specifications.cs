@@ -55,27 +55,27 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
 		
 				
 				
-					public static Specification<Livro_Autor> ExternalIdContains(string value) {
-			return new DirectSpecification<Livro_Autor>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+					public static Specification<Livro_Autor> IdExternoContains(string value) {
+			return new DirectSpecification<Livro_Autor>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Livro_Autor> ExternalIdNotContains(string value) {
-			return new DirectSpecification<Livro_Autor>(p => !EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+		public static Specification<Livro_Autor> IdExternoNotContains(string value) {
+			return new DirectSpecification<Livro_Autor>(p => !EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Livro_Autor> ExternalIdStartsWith(string value) {
-			return new DirectSpecification<Livro_Autor>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"{value.ToLower()}%"));
+		public static Specification<Livro_Autor> IdExternoStartsWith(string value) {
+			return new DirectSpecification<Livro_Autor>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"{value.ToLower()}%"));
 		}
 	
-		public static Specification<Livro_Autor> ExternalIdEqual(string value) {
-			return new DirectSpecification<Livro_Autor>(p => value.ToLower() == (p.ExternalId.ToLower()));
+		public static Specification<Livro_Autor> IdExternoEqual(string value) {
+			return new DirectSpecification<Livro_Autor>(p => value.ToLower() == (p.IdExterno.ToLower()));
 		}
-		public static Specification<Livro_Autor> ExternalIdNotEqual(string value) {
-			return new DirectSpecification<Livro_Autor>(p => p.ExternalId != value);
+		public static Specification<Livro_Autor> IdExternoNotEqual(string value) {
+			return new DirectSpecification<Livro_Autor>(p => p.IdExterno != value);
 		}
-		public static Specification<Livro_Autor> ExternalIdIsNull() {
-            return new DirectSpecification<Livro_Autor>(p => p.ExternalId == null);
+		public static Specification<Livro_Autor> IdExternoIsNull() {
+            return new DirectSpecification<Livro_Autor>(p => p.IdExterno == null);
         }
-		public static Specification<Livro_Autor> ExternalIdIsNotNull() {
-            return new DirectSpecification<Livro_Autor>(p => p.ExternalId != null);
+		public static Specification<Livro_Autor> IdExternoIsNotNull() {
+            return new DirectSpecification<Livro_Autor>(p => p.IdExterno != null);
         }
 		
 					public static Specification<Livro_Autor> CriadoEmContains(params System.DateTime[] values) {
@@ -280,27 +280,27 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
 		
 				
 				
-					public static Specification<Livro> ExternalIdContains(string value) {
-			return new DirectSpecification<Livro>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+					public static Specification<Livro> IdExternoContains(string value) {
+			return new DirectSpecification<Livro>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Livro> ExternalIdNotContains(string value) {
-			return new DirectSpecification<Livro>(p => !EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+		public static Specification<Livro> IdExternoNotContains(string value) {
+			return new DirectSpecification<Livro>(p => !EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Livro> ExternalIdStartsWith(string value) {
-			return new DirectSpecification<Livro>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"{value.ToLower()}%"));
+		public static Specification<Livro> IdExternoStartsWith(string value) {
+			return new DirectSpecification<Livro>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"{value.ToLower()}%"));
 		}
 	
-		public static Specification<Livro> ExternalIdEqual(string value) {
-			return new DirectSpecification<Livro>(p => value.ToLower() == (p.ExternalId.ToLower()));
+		public static Specification<Livro> IdExternoEqual(string value) {
+			return new DirectSpecification<Livro>(p => value.ToLower() == (p.IdExterno.ToLower()));
 		}
-		public static Specification<Livro> ExternalIdNotEqual(string value) {
-			return new DirectSpecification<Livro>(p => p.ExternalId != value);
+		public static Specification<Livro> IdExternoNotEqual(string value) {
+			return new DirectSpecification<Livro>(p => p.IdExterno != value);
 		}
-		public static Specification<Livro> ExternalIdIsNull() {
-            return new DirectSpecification<Livro>(p => p.ExternalId == null);
+		public static Specification<Livro> IdExternoIsNull() {
+            return new DirectSpecification<Livro>(p => p.IdExterno == null);
         }
-		public static Specification<Livro> ExternalIdIsNotNull() {
-            return new DirectSpecification<Livro>(p => p.ExternalId != null);
+		public static Specification<Livro> IdExternoIsNotNull() {
+            return new DirectSpecification<Livro>(p => p.IdExterno != null);
         }
 		
 					public static Specification<Livro> CriadoEmContains(params System.DateTime[] values) {
@@ -432,27 +432,27 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Assunto>(p => p.Descricao != null);
         }
 		
-					public static Specification<Assunto> ExternalIdContains(string value) {
-			return new DirectSpecification<Assunto>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+					public static Specification<Assunto> IdExternoContains(string value) {
+			return new DirectSpecification<Assunto>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Assunto> ExternalIdNotContains(string value) {
-			return new DirectSpecification<Assunto>(p => !EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+		public static Specification<Assunto> IdExternoNotContains(string value) {
+			return new DirectSpecification<Assunto>(p => !EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Assunto> ExternalIdStartsWith(string value) {
-			return new DirectSpecification<Assunto>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"{value.ToLower()}%"));
+		public static Specification<Assunto> IdExternoStartsWith(string value) {
+			return new DirectSpecification<Assunto>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"{value.ToLower()}%"));
 		}
 	
-		public static Specification<Assunto> ExternalIdEqual(string value) {
-			return new DirectSpecification<Assunto>(p => value.ToLower() == (p.ExternalId.ToLower()));
+		public static Specification<Assunto> IdExternoEqual(string value) {
+			return new DirectSpecification<Assunto>(p => value.ToLower() == (p.IdExterno.ToLower()));
 		}
-		public static Specification<Assunto> ExternalIdNotEqual(string value) {
-			return new DirectSpecification<Assunto>(p => p.ExternalId != value);
+		public static Specification<Assunto> IdExternoNotEqual(string value) {
+			return new DirectSpecification<Assunto>(p => p.IdExterno != value);
 		}
-		public static Specification<Assunto> ExternalIdIsNull() {
-            return new DirectSpecification<Assunto>(p => p.ExternalId == null);
+		public static Specification<Assunto> IdExternoIsNull() {
+            return new DirectSpecification<Assunto>(p => p.IdExterno == null);
         }
-		public static Specification<Assunto> ExternalIdIsNotNull() {
-            return new DirectSpecification<Assunto>(p => p.ExternalId != null);
+		public static Specification<Assunto> IdExternoIsNotNull() {
+            return new DirectSpecification<Assunto>(p => p.IdExterno != null);
         }
 		
 					public static Specification<Assunto> CriadoEmContains(params System.DateTime[] values) {
@@ -613,27 +613,27 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
 		
 				
 				
-					public static Specification<Livro_Assunto> ExternalIdContains(string value) {
-			return new DirectSpecification<Livro_Assunto>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+					public static Specification<Livro_Assunto> IdExternoContains(string value) {
+			return new DirectSpecification<Livro_Assunto>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Livro_Assunto> ExternalIdNotContains(string value) {
-			return new DirectSpecification<Livro_Assunto>(p => !EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+		public static Specification<Livro_Assunto> IdExternoNotContains(string value) {
+			return new DirectSpecification<Livro_Assunto>(p => !EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Livro_Assunto> ExternalIdStartsWith(string value) {
-			return new DirectSpecification<Livro_Assunto>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"{value.ToLower()}%"));
+		public static Specification<Livro_Assunto> IdExternoStartsWith(string value) {
+			return new DirectSpecification<Livro_Assunto>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"{value.ToLower()}%"));
 		}
 	
-		public static Specification<Livro_Assunto> ExternalIdEqual(string value) {
-			return new DirectSpecification<Livro_Assunto>(p => value.ToLower() == (p.ExternalId.ToLower()));
+		public static Specification<Livro_Assunto> IdExternoEqual(string value) {
+			return new DirectSpecification<Livro_Assunto>(p => value.ToLower() == (p.IdExterno.ToLower()));
 		}
-		public static Specification<Livro_Assunto> ExternalIdNotEqual(string value) {
-			return new DirectSpecification<Livro_Assunto>(p => p.ExternalId != value);
+		public static Specification<Livro_Assunto> IdExternoNotEqual(string value) {
+			return new DirectSpecification<Livro_Assunto>(p => p.IdExterno != value);
 		}
-		public static Specification<Livro_Assunto> ExternalIdIsNull() {
-            return new DirectSpecification<Livro_Assunto>(p => p.ExternalId == null);
+		public static Specification<Livro_Assunto> IdExternoIsNull() {
+            return new DirectSpecification<Livro_Assunto>(p => p.IdExterno == null);
         }
-		public static Specification<Livro_Assunto> ExternalIdIsNotNull() {
-            return new DirectSpecification<Livro_Assunto>(p => p.ExternalId != null);
+		public static Specification<Livro_Assunto> IdExternoIsNotNull() {
+            return new DirectSpecification<Livro_Assunto>(p => p.IdExterno != null);
         }
 		
 					public static Specification<Livro_Assunto> CriadoEmContains(params System.DateTime[] values) {
@@ -765,27 +765,27 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Autor>(p => p.Nome != null);
         }
 		
-					public static Specification<Autor> ExternalIdContains(string value) {
-			return new DirectSpecification<Autor>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+					public static Specification<Autor> IdExternoContains(string value) {
+			return new DirectSpecification<Autor>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Autor> ExternalIdNotContains(string value) {
-			return new DirectSpecification<Autor>(p => !EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+		public static Specification<Autor> IdExternoNotContains(string value) {
+			return new DirectSpecification<Autor>(p => !EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Autor> ExternalIdStartsWith(string value) {
-			return new DirectSpecification<Autor>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"{value.ToLower()}%"));
+		public static Specification<Autor> IdExternoStartsWith(string value) {
+			return new DirectSpecification<Autor>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"{value.ToLower()}%"));
 		}
 	
-		public static Specification<Autor> ExternalIdEqual(string value) {
-			return new DirectSpecification<Autor>(p => value.ToLower() == (p.ExternalId.ToLower()));
+		public static Specification<Autor> IdExternoEqual(string value) {
+			return new DirectSpecification<Autor>(p => value.ToLower() == (p.IdExterno.ToLower()));
 		}
-		public static Specification<Autor> ExternalIdNotEqual(string value) {
-			return new DirectSpecification<Autor>(p => p.ExternalId != value);
+		public static Specification<Autor> IdExternoNotEqual(string value) {
+			return new DirectSpecification<Autor>(p => p.IdExterno != value);
 		}
-		public static Specification<Autor> ExternalIdIsNull() {
-            return new DirectSpecification<Autor>(p => p.ExternalId == null);
+		public static Specification<Autor> IdExternoIsNull() {
+            return new DirectSpecification<Autor>(p => p.IdExterno == null);
         }
-		public static Specification<Autor> ExternalIdIsNotNull() {
-            return new DirectSpecification<Autor>(p => p.ExternalId != null);
+		public static Specification<Autor> IdExternoIsNotNull() {
+            return new DirectSpecification<Autor>(p => p.IdExterno != null);
         }
 		
 					public static Specification<Autor> CriadoEmContains(params System.DateTime[] values) {
@@ -898,27 +898,27 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
 			return new DirectSpecification<LivrariaAggSettings>(p => p.AutoSaveSettingsEnabled == value);
 		}
 		
-					public static Specification<LivrariaAggSettings> ExternalIdContains(string value) {
-			return new DirectSpecification<LivrariaAggSettings>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+					public static Specification<LivrariaAggSettings> IdExternoContains(string value) {
+			return new DirectSpecification<LivrariaAggSettings>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<LivrariaAggSettings> ExternalIdNotContains(string value) {
-			return new DirectSpecification<LivrariaAggSettings>(p => !EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+		public static Specification<LivrariaAggSettings> IdExternoNotContains(string value) {
+			return new DirectSpecification<LivrariaAggSettings>(p => !EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<LivrariaAggSettings> ExternalIdStartsWith(string value) {
-			return new DirectSpecification<LivrariaAggSettings>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"{value.ToLower()}%"));
+		public static Specification<LivrariaAggSettings> IdExternoStartsWith(string value) {
+			return new DirectSpecification<LivrariaAggSettings>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"{value.ToLower()}%"));
 		}
 	
-		public static Specification<LivrariaAggSettings> ExternalIdEqual(string value) {
-			return new DirectSpecification<LivrariaAggSettings>(p => value.ToLower() == (p.ExternalId.ToLower()));
+		public static Specification<LivrariaAggSettings> IdExternoEqual(string value) {
+			return new DirectSpecification<LivrariaAggSettings>(p => value.ToLower() == (p.IdExterno.ToLower()));
 		}
-		public static Specification<LivrariaAggSettings> ExternalIdNotEqual(string value) {
-			return new DirectSpecification<LivrariaAggSettings>(p => p.ExternalId != value);
+		public static Specification<LivrariaAggSettings> IdExternoNotEqual(string value) {
+			return new DirectSpecification<LivrariaAggSettings>(p => p.IdExterno != value);
 		}
-		public static Specification<LivrariaAggSettings> ExternalIdIsNull() {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.ExternalId == null);
+		public static Specification<LivrariaAggSettings> IdExternoIsNull() {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.IdExterno == null);
         }
-		public static Specification<LivrariaAggSettings> ExternalIdIsNotNull() {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.ExternalId != null);
+		public static Specification<LivrariaAggSettings> IdExternoIsNotNull() {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.IdExterno != null);
         }
 		
 					public static Specification<LivrariaAggSettings> CriadoEmContains(params System.DateTime[] values) {

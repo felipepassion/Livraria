@@ -18,40 +18,40 @@ namespace Niu.Nutri.DefaultTemplate.Domain.Aggregates.DefaultTemplateAgg.Filters
 			Specification<DefaultEntity> filter = new DirectSpecification<DefaultEntity>(p => request.IsEmpty() || !isOrSpecification);
 			if(request is not null)
 			{
-				if (!string.IsNullOrWhiteSpace(request.ExternalIdEqual)) 
+				if (!string.IsNullOrWhiteSpace(request.IdExternoEqual)) 
 				{
 					if (isOrSpecification)
-						filter |= DefaultEntitySpecifications.ExternalIdEqual(request.ExternalIdEqual);
+						filter |= DefaultEntitySpecifications.IdExternoEqual(request.IdExternoEqual);
 					else
-						filter &= DefaultEntitySpecifications.ExternalIdEqual(request.ExternalIdEqual);
+						filter &= DefaultEntitySpecifications.IdExternoEqual(request.IdExternoEqual);
 				}
-				if (!string.IsNullOrWhiteSpace(request.ExternalIdNotEqual)) 
+				if (!string.IsNullOrWhiteSpace(request.IdExternoNotEqual)) 
 				{
 					if (isOrSpecification)
-						filter |= DefaultEntitySpecifications.ExternalIdNotEqual(request.ExternalIdNotEqual);
+						filter |= DefaultEntitySpecifications.IdExternoNotEqual(request.IdExternoNotEqual);
 					else
-						filter &= DefaultEntitySpecifications.ExternalIdNotEqual(request.ExternalIdNotEqual);
+						filter &= DefaultEntitySpecifications.IdExternoNotEqual(request.IdExternoNotEqual);
 				}
-				if (!string.IsNullOrWhiteSpace(request.ExternalIdNotEqual)) 
+				if (!string.IsNullOrWhiteSpace(request.IdExternoNotEqual)) 
 				{
 					if (isOrSpecification)
-						filter |= DefaultEntitySpecifications.ExternalIdNotEqual(request.ExternalIdNotEqual);
+						filter |= DefaultEntitySpecifications.IdExternoNotEqual(request.IdExternoNotEqual);
 					else
-						filter &= DefaultEntitySpecifications.ExternalIdNotEqual(request.ExternalIdNotEqual);
+						filter &= DefaultEntitySpecifications.IdExternoNotEqual(request.IdExternoNotEqual);
 				}
-				if (!string.IsNullOrWhiteSpace(request.ExternalIdContains)) 
+				if (!string.IsNullOrWhiteSpace(request.IdExternoContains)) 
 				{
 					if (isOrSpecification)
-						filter |= DefaultEntitySpecifications.ExternalIdContains(request.ExternalIdContains);
+						filter |= DefaultEntitySpecifications.IdExternoContains(request.IdExternoContains);
 					else
-						filter &= DefaultEntitySpecifications.ExternalIdContains(request.ExternalIdContains);
+						filter &= DefaultEntitySpecifications.IdExternoContains(request.IdExternoContains);
 				}
-				if (!string.IsNullOrWhiteSpace(request.ExternalIdStartsWith)) 
+				if (!string.IsNullOrWhiteSpace(request.IdExternoStartsWith)) 
 				{
 					if (isOrSpecification)
-						filter |= DefaultEntitySpecifications.ExternalIdStartsWith(request.ExternalIdStartsWith);
+						filter |= DefaultEntitySpecifications.IdExternoStartsWith(request.IdExternoStartsWith);
 					else
-						filter &= DefaultEntitySpecifications.ExternalIdStartsWith(request.ExternalIdStartsWith);
+						filter &= DefaultEntitySpecifications.IdExternoStartsWith(request.IdExternoStartsWith);
 				}
 				if (request.CriadoEmEqual.HasValue)
 				{
@@ -418,40 +418,40 @@ namespace Niu.Nutri.DefaultTemplate.Domain.Aggregates.DefaultTemplateAgg.Filters
 					else
 						filter &= DefaultTemplateAggSettingsSpecifications.AutoSaveSettingsEnabledEqual(request.AutoSaveSettingsEnabledEqual.Value);
 				}
-				if (!string.IsNullOrWhiteSpace(request.ExternalIdEqual)) 
+				if (!string.IsNullOrWhiteSpace(request.IdExternoEqual)) 
 				{
 					if (isOrSpecification)
-						filter |= DefaultTemplateAggSettingsSpecifications.ExternalIdEqual(request.ExternalIdEqual);
+						filter |= DefaultTemplateAggSettingsSpecifications.IdExternoEqual(request.IdExternoEqual);
 					else
-						filter &= DefaultTemplateAggSettingsSpecifications.ExternalIdEqual(request.ExternalIdEqual);
+						filter &= DefaultTemplateAggSettingsSpecifications.IdExternoEqual(request.IdExternoEqual);
 				}
-				if (!string.IsNullOrWhiteSpace(request.ExternalIdNotEqual)) 
+				if (!string.IsNullOrWhiteSpace(request.IdExternoNotEqual)) 
 				{
 					if (isOrSpecification)
-						filter |= DefaultTemplateAggSettingsSpecifications.ExternalIdNotEqual(request.ExternalIdNotEqual);
+						filter |= DefaultTemplateAggSettingsSpecifications.IdExternoNotEqual(request.IdExternoNotEqual);
 					else
-						filter &= DefaultTemplateAggSettingsSpecifications.ExternalIdNotEqual(request.ExternalIdNotEqual);
+						filter &= DefaultTemplateAggSettingsSpecifications.IdExternoNotEqual(request.IdExternoNotEqual);
 				}
-				if (!string.IsNullOrWhiteSpace(request.ExternalIdNotEqual)) 
+				if (!string.IsNullOrWhiteSpace(request.IdExternoNotEqual)) 
 				{
 					if (isOrSpecification)
-						filter |= DefaultTemplateAggSettingsSpecifications.ExternalIdNotEqual(request.ExternalIdNotEqual);
+						filter |= DefaultTemplateAggSettingsSpecifications.IdExternoNotEqual(request.IdExternoNotEqual);
 					else
-						filter &= DefaultTemplateAggSettingsSpecifications.ExternalIdNotEqual(request.ExternalIdNotEqual);
+						filter &= DefaultTemplateAggSettingsSpecifications.IdExternoNotEqual(request.IdExternoNotEqual);
 				}
-				if (!string.IsNullOrWhiteSpace(request.ExternalIdContains)) 
+				if (!string.IsNullOrWhiteSpace(request.IdExternoContains)) 
 				{
 					if (isOrSpecification)
-						filter |= DefaultTemplateAggSettingsSpecifications.ExternalIdContains(request.ExternalIdContains);
+						filter |= DefaultTemplateAggSettingsSpecifications.IdExternoContains(request.IdExternoContains);
 					else
-						filter &= DefaultTemplateAggSettingsSpecifications.ExternalIdContains(request.ExternalIdContains);
+						filter &= DefaultTemplateAggSettingsSpecifications.IdExternoContains(request.IdExternoContains);
 				}
-				if (!string.IsNullOrWhiteSpace(request.ExternalIdStartsWith)) 
+				if (!string.IsNullOrWhiteSpace(request.IdExternoStartsWith)) 
 				{
 					if (isOrSpecification)
-						filter |= DefaultTemplateAggSettingsSpecifications.ExternalIdStartsWith(request.ExternalIdStartsWith);
+						filter |= DefaultTemplateAggSettingsSpecifications.IdExternoStartsWith(request.IdExternoStartsWith);
 					else
-						filter &= DefaultTemplateAggSettingsSpecifications.ExternalIdStartsWith(request.ExternalIdStartsWith);
+						filter &= DefaultTemplateAggSettingsSpecifications.IdExternoStartsWith(request.IdExternoStartsWith);
 				}
 				if (request.CriadoEmEqual.HasValue)
 				{

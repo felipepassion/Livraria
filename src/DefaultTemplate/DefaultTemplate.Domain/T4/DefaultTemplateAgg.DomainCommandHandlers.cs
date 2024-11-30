@@ -35,16 +35,16 @@ namespace Niu.Nutri.DefaultTemplate.Domain.Aggregates.DefaultTemplateAgg.Command
         public async Task<DomainResponse> Handle(CreateDefaultEntityCommand command,CancellationToken cancellationToken) {
 
             DefaultEntity entity;
-            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.ExternalId))
+            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.IdExterno))
             {
-                var filter = DefaultEntityFilters.GetFilters(command.Query ?? new DefaultEntityQueryModel { ExternalIdEqual = command.Request.ExternalId });
+                var filter = DefaultEntityFilters.GetFilters(command.Query ?? new DefaultEntityQueryModel { IdExternoEqual = command.Request.IdExterno });
                 entity = await _defaultEntityRepository.FindAsync(filter, includeAll: false);
                 if (entity != null)
                 {
                     if (command.UpdateIfExists)
                         return await Handle(new UpdateDefaultEntityCommand(
                             command.Context,
-                            new Queries.Models.DefaultEntityQueryModel { ExternalIdEqual = command.Request.ExternalId },
+                            new Queries.Models.DefaultEntityQueryModel { IdExternoEqual = command.Request.IdExterno },
                             command.Request),
                         cancellationToken);
                 }
@@ -156,16 +156,16 @@ namespace Niu.Nutri.DefaultTemplate.Domain.Aggregates.DefaultTemplateAgg.Command
         public async Task<DomainResponse> Handle(CreateDefaultTemplateAggSettingsCommand command,CancellationToken cancellationToken) {
 
             DefaultTemplateAggSettings entity;
-            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.ExternalId))
+            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.IdExterno))
             {
-                var filter = DefaultTemplateAggSettingsFilters.GetFilters(command.Query ?? new DefaultTemplateAggSettingsQueryModel { ExternalIdEqual = command.Request.ExternalId });
+                var filter = DefaultTemplateAggSettingsFilters.GetFilters(command.Query ?? new DefaultTemplateAggSettingsQueryModel { IdExternoEqual = command.Request.IdExterno });
                 entity = await _defaultTemplateAggSettingsRepository.FindAsync(filter, includeAll: false);
                 if (entity != null)
                 {
                     if (command.UpdateIfExists)
                         return await Handle(new UpdateDefaultTemplateAggSettingsCommand(
                             command.Context,
-                            new Queries.Models.DefaultTemplateAggSettingsQueryModel { ExternalIdEqual = command.Request.ExternalId },
+                            new Queries.Models.DefaultTemplateAggSettingsQueryModel { IdExternoEqual = command.Request.IdExterno },
                             command.Request),
                         cancellationToken);
                 }

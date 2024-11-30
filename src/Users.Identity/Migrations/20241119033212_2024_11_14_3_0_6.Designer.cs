@@ -204,7 +204,7 @@ namespace Niu.Nutri.Users.Identity.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("ExternalId")
+                    b.Property<string>("IdExterno")
                         .IsRequired()
                         .HasColumnType("text");
 

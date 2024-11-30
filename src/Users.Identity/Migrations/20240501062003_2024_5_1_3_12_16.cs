@@ -37,7 +37,7 @@ namespace Niu.Nutri.Users.Identity.Migrations
                     CriadoEm = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     AtualizadoEm = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     DeletadoEm = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    ExternalId = table.Column<string>(type: "text", nullable: false),
+                    IdExterno = table.Column<string>(type: "text", nullable: false),
                     Deletado = table.Column<bool>(type: "boolean", nullable: false),
                     RecoverPasswordCode = table.Column<int>(type: "integer", nullable: true),
                     RecoverPasswordCodeDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),

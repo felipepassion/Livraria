@@ -41,16 +41,16 @@ namespace <#= namespaces.Key.Replace(".Entities",".CommandHandlers") #>
         public async Task<DomainResponse> Handle(Create<#= entity.Name #>Command command,CancellationToken cancellationToken) {
 
             <#= entity.Name #> entity;
-            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.ExternalId))
+            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.IdExterno))
             {
-                var filter = <#= entity.Name #>Filters.GetFilters(command.Query ?? new <#= entity.Name #>QueryModel { ExternalIdEqual = command.Request.ExternalId });
+                var filter = <#= entity.Name #>Filters.GetFilters(command.Query ?? new <#= entity.Name #>QueryModel { IdExternoEqual = command.Request.IdExterno });
                 entity = await <#= repoVarName #>.FindAsync(filter, includeAll: false);
                 if (entity != null)
                 {
                     if (command.UpdateIfExists)
                         return await Handle(new Update<#= entity.Name #>Command(
                             command.Context,
-                            new Queries.Models.<#= entity.Name #>QueryModel { ExternalIdEqual = command.Request.ExternalId },
+                            new Queries.Models.<#= entity.Name #>QueryModel { IdExternoEqual = command.Request.IdExterno },
                             command.Request),
                         cancellationToken);
                 }

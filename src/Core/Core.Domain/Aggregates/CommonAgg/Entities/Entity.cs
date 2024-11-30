@@ -41,7 +41,7 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
     public interface IEntity
     {
         public int Id { get; set; }
-        public string ExternalId { get; set; }
+        public string IdExterno { get; set; }
         string GetTitle();
         string GetTitlePropName();
         DateTime? CriadoEm { get; set; }
@@ -56,22 +56,22 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
         public Entity()
         {
             CriadoEm ??= DateTime.UtcNow;
-            _externalId ??= Guid.NewGuid().ToString();
+            _idExterno ??= Guid.NewGuid().ToString();
         }
 
-        string _externalId;
-        public string ExternalId
+        string _idExterno;
+        public string IdExterno
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(_externalId))
+                if (string.IsNullOrWhiteSpace(_idExterno))
                 {
                     CriadoEm ??= DateTime.UtcNow;
-                    _externalId = Guid.NewGuid().ToString();
+                    _idExterno = Guid.NewGuid().ToString();
                 }
-                return _externalId;
+                return _idExterno;
             }
-            set { this._externalId = value; }
+            set { this._idExterno = value; }
         }
 
         [IgnorePropertyT4OnRequest]

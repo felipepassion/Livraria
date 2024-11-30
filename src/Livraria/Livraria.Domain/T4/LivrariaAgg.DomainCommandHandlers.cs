@@ -35,16 +35,16 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandHandlers
         public async Task<DomainResponse> Handle(CreateLivro_AutorCommand command,CancellationToken cancellationToken) {
 
             Livro_Autor entity;
-            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.ExternalId))
+            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.IdExterno))
             {
-                var filter = Livro_AutorFilters.GetFilters(command.Query ?? new Livro_AutorQueryModel { ExternalIdEqual = command.Request.ExternalId });
+                var filter = Livro_AutorFilters.GetFilters(command.Query ?? new Livro_AutorQueryModel { IdExternoEqual = command.Request.IdExterno });
                 entity = await _livro_AutorRepository.FindAsync(filter, includeAll: false);
                 if (entity != null)
                 {
                     if (command.UpdateIfExists)
                         return await Handle(new UpdateLivro_AutorCommand(
                             command.Context,
-                            new Queries.Models.Livro_AutorQueryModel { ExternalIdEqual = command.Request.ExternalId },
+                            new Queries.Models.Livro_AutorQueryModel { IdExternoEqual = command.Request.IdExterno },
                             command.Request),
                         cancellationToken);
                 }
@@ -156,16 +156,16 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandHandlers
         public async Task<DomainResponse> Handle(CreateLivroCommand command,CancellationToken cancellationToken) {
 
             Livro entity;
-            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.ExternalId))
+            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.IdExterno))
             {
-                var filter = LivroFilters.GetFilters(command.Query ?? new LivroQueryModel { ExternalIdEqual = command.Request.ExternalId });
+                var filter = LivroFilters.GetFilters(command.Query ?? new LivroQueryModel { IdExternoEqual = command.Request.IdExterno });
                 entity = await _livroRepository.FindAsync(filter, includeAll: false);
                 if (entity != null)
                 {
                     if (command.UpdateIfExists)
                         return await Handle(new UpdateLivroCommand(
                             command.Context,
-                            new Queries.Models.LivroQueryModel { ExternalIdEqual = command.Request.ExternalId },
+                            new Queries.Models.LivroQueryModel { IdExternoEqual = command.Request.IdExterno },
                             command.Request),
                         cancellationToken);
                 }
@@ -277,16 +277,16 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandHandlers
         public async Task<DomainResponse> Handle(CreateAssuntoCommand command,CancellationToken cancellationToken) {
 
             Assunto entity;
-            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.ExternalId))
+            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.IdExterno))
             {
-                var filter = AssuntoFilters.GetFilters(command.Query ?? new AssuntoQueryModel { ExternalIdEqual = command.Request.ExternalId });
+                var filter = AssuntoFilters.GetFilters(command.Query ?? new AssuntoQueryModel { IdExternoEqual = command.Request.IdExterno });
                 entity = await _assuntoRepository.FindAsync(filter, includeAll: false);
                 if (entity != null)
                 {
                     if (command.UpdateIfExists)
                         return await Handle(new UpdateAssuntoCommand(
                             command.Context,
-                            new Queries.Models.AssuntoQueryModel { ExternalIdEqual = command.Request.ExternalId },
+                            new Queries.Models.AssuntoQueryModel { IdExternoEqual = command.Request.IdExterno },
                             command.Request),
                         cancellationToken);
                 }
@@ -398,16 +398,16 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandHandlers
         public async Task<DomainResponse> Handle(CreateLivro_AssuntoCommand command,CancellationToken cancellationToken) {
 
             Livro_Assunto entity;
-            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.ExternalId))
+            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.IdExterno))
             {
-                var filter = Livro_AssuntoFilters.GetFilters(command.Query ?? new Livro_AssuntoQueryModel { ExternalIdEqual = command.Request.ExternalId });
+                var filter = Livro_AssuntoFilters.GetFilters(command.Query ?? new Livro_AssuntoQueryModel { IdExternoEqual = command.Request.IdExterno });
                 entity = await _livro_AssuntoRepository.FindAsync(filter, includeAll: false);
                 if (entity != null)
                 {
                     if (command.UpdateIfExists)
                         return await Handle(new UpdateLivro_AssuntoCommand(
                             command.Context,
-                            new Queries.Models.Livro_AssuntoQueryModel { ExternalIdEqual = command.Request.ExternalId },
+                            new Queries.Models.Livro_AssuntoQueryModel { IdExternoEqual = command.Request.IdExterno },
                             command.Request),
                         cancellationToken);
                 }
@@ -519,16 +519,16 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandHandlers
         public async Task<DomainResponse> Handle(CreateAutorCommand command,CancellationToken cancellationToken) {
 
             Autor entity;
-            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.ExternalId))
+            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.IdExterno))
             {
-                var filter = AutorFilters.GetFilters(command.Query ?? new AutorQueryModel { ExternalIdEqual = command.Request.ExternalId });
+                var filter = AutorFilters.GetFilters(command.Query ?? new AutorQueryModel { IdExternoEqual = command.Request.IdExterno });
                 entity = await _autorRepository.FindAsync(filter, includeAll: false);
                 if (entity != null)
                 {
                     if (command.UpdateIfExists)
                         return await Handle(new UpdateAutorCommand(
                             command.Context,
-                            new Queries.Models.AutorQueryModel { ExternalIdEqual = command.Request.ExternalId },
+                            new Queries.Models.AutorQueryModel { IdExternoEqual = command.Request.IdExterno },
                             command.Request),
                         cancellationToken);
                 }
@@ -640,16 +640,16 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandHandlers
         public async Task<DomainResponse> Handle(CreateLivrariaAggSettingsCommand command,CancellationToken cancellationToken) {
 
             LivrariaAggSettings entity;
-            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.ExternalId))
+            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.IdExterno))
             {
-                var filter = LivrariaAggSettingsFilters.GetFilters(command.Query ?? new LivrariaAggSettingsQueryModel { ExternalIdEqual = command.Request.ExternalId });
+                var filter = LivrariaAggSettingsFilters.GetFilters(command.Query ?? new LivrariaAggSettingsQueryModel { IdExternoEqual = command.Request.IdExterno });
                 entity = await _livrariaAggSettingsRepository.FindAsync(filter, includeAll: false);
                 if (entity != null)
                 {
                     if (command.UpdateIfExists)
                         return await Handle(new UpdateLivrariaAggSettingsCommand(
                             command.Context,
-                            new Queries.Models.LivrariaAggSettingsQueryModel { ExternalIdEqual = command.Request.ExternalId },
+                            new Queries.Models.LivrariaAggSettingsQueryModel { IdExternoEqual = command.Request.IdExterno },
                             command.Request),
                         cancellationToken);
                 }

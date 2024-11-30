@@ -24,11 +24,11 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Queries.Models
 		public int? Autor_CodAutGreaterThan { get; set; }
 		public int? Autor_CodAutLessThanOrEqual { get; set; }
 		public int? Autor_CodAutGreaterThanOrEqual { get; set; }
-		public string? ExternalIdEqual { get; set; }
-		public string? ExternalIdNotEqual { get; set; }
-		public string? ExternalIdContains { get; set; }
-		public string? ExternalIdNotContains { get; set; }
-		public string? ExternalIdStartsWith { get; set; }
+		public string? IdExternoEqual { get; set; }
+		public string? IdExternoNotEqual { get; set; }
+		public string? IdExternoContains { get; set; }
+		public string? IdExternoNotContains { get; set; }
+		public string? IdExternoStartsWith { get; set; }
 		public System.DateTime? CriadoEmEqual { get; set; }
 		public System.DateTime? CriadoEmNotEqual { get; set; }
 		public System.DateTime[]? CriadoEmContains { get; set; }
@@ -91,11 +91,11 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Queries.Models
 		public System.DateTime? AnoPublicacaoGreaterThan { get; set; }
 		public System.DateTime? AnoPublicacaoLessThanOrEqual { get; set; }
 		public System.DateTime? AnoPublicacaoGreaterThanOrEqual { get; set; }
-		public string? ExternalIdEqual { get; set; }
-		public string? ExternalIdNotEqual { get; set; }
-		public string? ExternalIdContains { get; set; }
-		public string? ExternalIdNotContains { get; set; }
-		public string? ExternalIdStartsWith { get; set; }
+		public string? IdExternoEqual { get; set; }
+		public string? IdExternoNotEqual { get; set; }
+		public string? IdExternoContains { get; set; }
+		public string? IdExternoNotContains { get; set; }
+		public string? IdExternoStartsWith { get; set; }
 		public System.DateTime? CriadoEmEqual { get; set; }
 		public System.DateTime? CriadoEmNotEqual { get; set; }
 		public System.DateTime[]? CriadoEmContains { get; set; }
@@ -138,11 +138,11 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Queries.Models
 		public string? DescricaoContains { get; set; }
 		public string? DescricaoNotContains { get; set; }
 		public string? DescricaoStartsWith { get; set; }
-		public string? ExternalIdEqual { get; set; }
-		public string? ExternalIdNotEqual { get; set; }
-		public string? ExternalIdContains { get; set; }
-		public string? ExternalIdNotContains { get; set; }
-		public string? ExternalIdStartsWith { get; set; }
+		public string? IdExternoEqual { get; set; }
+		public string? IdExternoNotEqual { get; set; }
+		public string? IdExternoContains { get; set; }
+		public string? IdExternoNotContains { get; set; }
+		public string? IdExternoStartsWith { get; set; }
 		public System.DateTime? CriadoEmEqual { get; set; }
 		public System.DateTime? CriadoEmNotEqual { get; set; }
 		public System.DateTime[]? CriadoEmContains { get; set; }
@@ -200,11 +200,11 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Queries.Models
 		public int? Assunto_CodAutGreaterThan { get; set; }
 		public int? Assunto_CodAutLessThanOrEqual { get; set; }
 		public int? Assunto_CodAutGreaterThanOrEqual { get; set; }
-		public string? ExternalIdEqual { get; set; }
-		public string? ExternalIdNotEqual { get; set; }
-		public string? ExternalIdContains { get; set; }
-		public string? ExternalIdNotContains { get; set; }
-		public string? ExternalIdStartsWith { get; set; }
+		public string? IdExternoEqual { get; set; }
+		public string? IdExternoNotEqual { get; set; }
+		public string? IdExternoContains { get; set; }
+		public string? IdExternoNotContains { get; set; }
+		public string? IdExternoStartsWith { get; set; }
 		public System.DateTime? CriadoEmEqual { get; set; }
 		public System.DateTime? CriadoEmNotEqual { get; set; }
 		public System.DateTime[]? CriadoEmContains { get; set; }
@@ -247,11 +247,11 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Queries.Models
 		public string? NomeContains { get; set; }
 		public string? NomeNotContains { get; set; }
 		public string? NomeStartsWith { get; set; }
-		public string? ExternalIdEqual { get; set; }
-		public string? ExternalIdNotEqual { get; set; }
-		public string? ExternalIdContains { get; set; }
-		public string? ExternalIdNotContains { get; set; }
-		public string? ExternalIdStartsWith { get; set; }
+		public string? IdExternoEqual { get; set; }
+		public string? IdExternoNotEqual { get; set; }
+		public string? IdExternoContains { get; set; }
+		public string? IdExternoNotContains { get; set; }
+		public string? IdExternoStartsWith { get; set; }
 		public System.DateTime? CriadoEmEqual { get; set; }
 		public System.DateTime? CriadoEmNotEqual { get; set; }
 		public System.DateTime[]? CriadoEmContains { get; set; }
@@ -290,11 +290,11 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Queries.Models
 	}
 	public partial class LivrariaAggSettingsQueryModel : BaseQueryModel {
 		public bool? AutoSaveSettingsEnabledEqual { get; set; }
-		public string? ExternalIdEqual { get; set; }
-		public string? ExternalIdNotEqual { get; set; }
-		public string? ExternalIdContains { get; set; }
-		public string? ExternalIdNotContains { get; set; }
-		public string? ExternalIdStartsWith { get; set; }
+		public string? IdExternoEqual { get; set; }
+		public string? IdExternoNotEqual { get; set; }
+		public string? IdExternoContains { get; set; }
+		public string? IdExternoNotContains { get; set; }
+		public string? IdExternoStartsWith { get; set; }
 		public System.DateTime? CriadoEmEqual { get; set; }
 		public System.DateTime? CriadoEmNotEqual { get; set; }
 		public System.DateTime[]? CriadoEmContains { get; set; }

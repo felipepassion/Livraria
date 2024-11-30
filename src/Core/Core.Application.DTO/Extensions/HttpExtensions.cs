@@ -17,7 +17,7 @@ namespace Niu.Nutri.Core.Application.DTO.Extensions
             {
                 try
                 {
-                    return (await Http.GetFromJsonAsync<GetHttpResponseDTO<T>>($"{new T().GetRoute()}?ExternalIdEqual={id}"))?.Data;
+                    return (await Http.GetFromJsonAsync<GetHttpResponseDTO<T>>($"{new T().GetRoute()}?IdExternoEqual={id}"))?.Data;
                 }
                 catch (Exception ex)
                 {

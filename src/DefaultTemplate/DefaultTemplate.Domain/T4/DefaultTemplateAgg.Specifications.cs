@@ -3,27 +3,27 @@ using Microsoft.EntityFrameworkCore;
 namespace Niu.Nutri.DefaultTemplate.Domain.Aggregates.DefaultTemplateAgg.Specifications {
 	using Entities;
    public partial class DefaultEntitySpecifications {
-				public static Specification<DefaultEntity> ExternalIdContains(string value) {
-			return new DirectSpecification<DefaultEntity>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+				public static Specification<DefaultEntity> IdExternoContains(string value) {
+			return new DirectSpecification<DefaultEntity>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<DefaultEntity> ExternalIdNotContains(string value) {
-			return new DirectSpecification<DefaultEntity>(p => !EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+		public static Specification<DefaultEntity> IdExternoNotContains(string value) {
+			return new DirectSpecification<DefaultEntity>(p => !EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<DefaultEntity> ExternalIdStartsWith(string value) {
-			return new DirectSpecification<DefaultEntity>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"{value.ToLower()}%"));
+		public static Specification<DefaultEntity> IdExternoStartsWith(string value) {
+			return new DirectSpecification<DefaultEntity>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"{value.ToLower()}%"));
 		}
 	
-		public static Specification<DefaultEntity> ExternalIdEqual(string value) {
-			return new DirectSpecification<DefaultEntity>(p => value.ToLower() == (p.ExternalId.ToLower()));
+		public static Specification<DefaultEntity> IdExternoEqual(string value) {
+			return new DirectSpecification<DefaultEntity>(p => value.ToLower() == (p.IdExterno.ToLower()));
 		}
-		public static Specification<DefaultEntity> ExternalIdNotEqual(string value) {
-			return new DirectSpecification<DefaultEntity>(p => p.ExternalId != value);
+		public static Specification<DefaultEntity> IdExternoNotEqual(string value) {
+			return new DirectSpecification<DefaultEntity>(p => p.IdExterno != value);
 		}
-		public static Specification<DefaultEntity> ExternalIdIsNull() {
-            return new DirectSpecification<DefaultEntity>(p => p.ExternalId == null);
+		public static Specification<DefaultEntity> IdExternoIsNull() {
+            return new DirectSpecification<DefaultEntity>(p => p.IdExterno == null);
         }
-		public static Specification<DefaultEntity> ExternalIdIsNotNull() {
-            return new DirectSpecification<DefaultEntity>(p => p.ExternalId != null);
+		public static Specification<DefaultEntity> IdExternoIsNotNull() {
+            return new DirectSpecification<DefaultEntity>(p => p.IdExterno != null);
         }
 		
 					public static Specification<DefaultEntity> CriadoEmContains(params System.DateTime[] values) {
@@ -161,27 +161,27 @@ namespace Niu.Nutri.DefaultTemplate.Domain.Aggregates.DefaultTemplateAgg.Specifi
 			return new DirectSpecification<DefaultTemplateAggSettings>(p => p.AutoSaveSettingsEnabled == value);
 		}
 		
-					public static Specification<DefaultTemplateAggSettings> ExternalIdContains(string value) {
-			return new DirectSpecification<DefaultTemplateAggSettings>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+					public static Specification<DefaultTemplateAggSettings> IdExternoContains(string value) {
+			return new DirectSpecification<DefaultTemplateAggSettings>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<DefaultTemplateAggSettings> ExternalIdNotContains(string value) {
-			return new DirectSpecification<DefaultTemplateAggSettings>(p => !EF.Functions.Like(p.ExternalId.ToLower(), $"%{value.ToLower()}%"));
+		public static Specification<DefaultTemplateAggSettings> IdExternoNotContains(string value) {
+			return new DirectSpecification<DefaultTemplateAggSettings>(p => !EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<DefaultTemplateAggSettings> ExternalIdStartsWith(string value) {
-			return new DirectSpecification<DefaultTemplateAggSettings>(p => EF.Functions.Like(p.ExternalId.ToLower(), $"{value.ToLower()}%"));
+		public static Specification<DefaultTemplateAggSettings> IdExternoStartsWith(string value) {
+			return new DirectSpecification<DefaultTemplateAggSettings>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"{value.ToLower()}%"));
 		}
 	
-		public static Specification<DefaultTemplateAggSettings> ExternalIdEqual(string value) {
-			return new DirectSpecification<DefaultTemplateAggSettings>(p => value.ToLower() == (p.ExternalId.ToLower()));
+		public static Specification<DefaultTemplateAggSettings> IdExternoEqual(string value) {
+			return new DirectSpecification<DefaultTemplateAggSettings>(p => value.ToLower() == (p.IdExterno.ToLower()));
 		}
-		public static Specification<DefaultTemplateAggSettings> ExternalIdNotEqual(string value) {
-			return new DirectSpecification<DefaultTemplateAggSettings>(p => p.ExternalId != value);
+		public static Specification<DefaultTemplateAggSettings> IdExternoNotEqual(string value) {
+			return new DirectSpecification<DefaultTemplateAggSettings>(p => p.IdExterno != value);
 		}
-		public static Specification<DefaultTemplateAggSettings> ExternalIdIsNull() {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.ExternalId == null);
+		public static Specification<DefaultTemplateAggSettings> IdExternoIsNull() {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.IdExterno == null);
         }
-		public static Specification<DefaultTemplateAggSettings> ExternalIdIsNotNull() {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.ExternalId != null);
+		public static Specification<DefaultTemplateAggSettings> IdExternoIsNotNull() {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.IdExterno != null);
         }
 		
 					public static Specification<DefaultTemplateAggSettings> CriadoEmContains(params System.DateTime[] values) {
