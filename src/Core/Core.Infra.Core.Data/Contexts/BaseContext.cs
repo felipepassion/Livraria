@@ -34,9 +34,9 @@ namespace Niu.Nutri.Core.Infra.Data.Contexts
             base.OnModelCreating(modelBuilder);
         }
 
-        public bool Commit(object? data = null)
+        public async Task<bool> Commit(object? data = null)
         {
-            return CommitAsync(data).Result?.Success == true;
+            return (await CommitAsync(data))?.Success == true;
         }
 
         public async Task<DomainResponse> CommitAsync(object? data)
