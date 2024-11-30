@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35424.110
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4AggregatesManager", "T4AggregatesManager.csproj", "{932EDB03-05BE-420C-B56B-82FC8DFE2FDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Domain", "..\..\..\Core\Core.Domain\Core.Domain.csproj", "{41FD7BED-0852-4D8D-8AEB-E2A9B277F697}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{932EDB03-05BE-420C-B56B-82FC8DFE2FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{932EDB03-05BE-420C-B56B-82FC8DFE2FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{932EDB03-05BE-420C-B56B-82FC8DFE2FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{932EDB03-05BE-420C-B56B-82FC8DFE2FDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41FD7BED-0852-4D8D-8AEB-E2A9B277F697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41FD7BED-0852-4D8D-8AEB-E2A9B277F697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41FD7BED-0852-4D8D-8AEB-E2A9B277F697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41FD7BED-0852-4D8D-8AEB-E2A9B277F697}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

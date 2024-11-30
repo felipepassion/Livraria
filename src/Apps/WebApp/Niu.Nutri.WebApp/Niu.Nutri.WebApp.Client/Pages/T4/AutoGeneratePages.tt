@@ -1,0 +1,2 @@
+<#@ include file="..\..\..\..\..\..\ProjectFiles\Apps\MiniClientPagesGenerator.tt" #>
+// no code

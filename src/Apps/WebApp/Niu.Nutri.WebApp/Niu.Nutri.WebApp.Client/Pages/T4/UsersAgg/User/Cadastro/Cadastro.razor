@@ -1,0 +1,22 @@
+﻿				@page "/User/cadastro"
+@page "/User/cadastro/{id}"
+
+@using Niu.Nutri.Shared.Blazor.Components.Layout
+@using Niu.Nutri.Users.Application.DTO.Aggregates.UsersAgg.Requests
+@using Niu.Nutri.Users.Application.DTO.Aggregates.UsersAgg.Validators
+
+@layout MainLayout
+@inherits BaseStepsFormComponent<UserDTO, UsersAggSettingsDTO, BaseUsersAggValidator<UserDTO>>
+
+<CascadingValue Value="this.Context">
+    <CascadingValue Value="layout">
+        <BaseMainStepsLayout @ref="layout" ModelType="UserDTO" AutoSaveSettings="AutoSaveSettings"
+                             CurrentFragment="this.CurrentFragment"
+                             EnableRightContainer="false"
+                             Context="Context"
+                             EditContext="this.EditContext"
+                             OnSubmitForm="this.OnSubmitForm"
+                             OnSubmitFormInvalid="this.OnSubmitFormInvalid"
+                             TValidator="this.TValidator" />
+    </CascadingValue>
+</CascadingValue>

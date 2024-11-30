@@ -1,0 +1,42 @@
+﻿	
+@using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests;
+@inherits BaseCadastro<LivrariaHealthNoteDTO>
+
+<div class="container-informations screen">
+    <div class="box-inputs">
+    <div class="input-secondary">
+    
+    </div>
+ 
+    <div class="input-secondary"> 
+        <div class="input-secondary-item">
+			<TextInput Placeholder="Name"
+					   @bind-Value:after="OnFormUpdated"
+                       @bind-Value="Model.Name" />
+            </div>
+            <div class="este-campo-obrigatrio-1 valign-text-middle inter-normal-sonic-silver-10px">
+                <ValidationMessage For="@(() => Model.Name)"></ValidationMessage>
+        </div>
+        <div class="input-secondary-item">
+			<TextInput Placeholder="Description"
+					   @bind-Value:after="OnFormUpdated"
+                       @bind-Value="Model.Description" />
+            </div>
+            <div class="este-campo-obrigatrio-1 valign-text-middle inter-normal-sonic-silver-10px">
+                <ValidationMessage For="@(() => Model.Description)"></ValidationMessage>
+        </div>
+    </div> 
+    </div>
+</div>
+
+@code {
+    [CascadingParameter] BaseMainStepsLayout<LivrariaHealthNoteDTO> layout { get; set; }
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            this.StateHasChanged();
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
+}

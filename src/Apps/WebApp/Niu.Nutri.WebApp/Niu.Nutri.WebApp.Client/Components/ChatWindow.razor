@@ -1,0 +1,307 @@
+﻿@page "/Conversas"
+
+@using System.Collections.ObjectModel
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@using Microsoft.AspNetCore.SignalR.Client
+@using Companies.Adm.Panel.Client.Shared.Chat
+@using Niu.Nutri.Core.Application.DTO.Extensions
+@using Niu.Nutri.Chat.Application.DTO.Aggregates.ChatAgg.Requests
+@using Niu.Nutri.Shared.Blazor.Authentication.Client.Components
+@using Niu.Nutri.Users.Application.DTO.Aggregates.UsersAgg.Requests
+
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+
+@if (_isLoading)
+{
+    <Loading />
+}
+else
+{
+    <div class="chat--container">
+        <!-- Cabeçalho do Chat -->
+        <div class="chat--content-header">
+            <img src="./icons/chat/left-arrow.svg" alt="" @onclick="@((x) => this.Navigation.NavigateTo("/"))" />
+            <div class="chat--nutri-info">
+                <img src="./icons/chat/picture-example.svg" alt="" />
+                <h1>Dra. Catarina Goldani</h1>
+            </div>
+            <span class="day-message">Hoje</span>
+        </div>
+
+        <!-- Mensagens do Chat -->
+        <div id="chat" class="chat--content">
+            <ul class="chat--messages-container">
+                @foreach (var currentData in DataSource)
+                {
+                    <MessageItem Message="currentData" MyId="MyId" ToUser="ToUser" />
+                }
+            </ul>
+        </div>
+
+        <!-- Input de Mensagem e Botão Enviar -->
+        <EditForm FormName="chatForm" Model="Model2" OnValidSubmit="Send">
+            <div id="chat-input" class="flex">
+                <div>
+                    <input class="input-message" type="text" @bind-value="Model2.Message" placeholder="Digite sua mensagem" />
+                </div>
+                <div>
+                    <button class="send-button" type="submit">
+                        <img src="./icons/chat/chat-send.svg" alt="" />
+                    </button>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+}
+
+<style>
+    .footer-nav {
+    display: none;
+    }
+</style>
+
+@code {
+    private class ChatMessageModel { public string Message { get; set; } = string.Empty; }
+    private bool _isLoading = true;
+
+    [Inject] ChatContext ChatContext { get; set; } = default!;
+    [Inject] HttpClient _http { get; set; } = default!;
+    [Inject] UserCurrentAccessSelectedDTO LoggedUserInfo { get; set; } = default!;
+
+    [CascadingParameter] private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
+
+    private ChatMessageModel Model2 = new ChatMessageModel();
+
+    private HubConnection? hubConnection;
+    private bool _isHubInitialized = false;
+    private UserDTO? ToUser { get; set; }
+    private bool _needSendReadEvent = false;
+
+    private List<ConversationMessageDTO> DataSource => this.ChatConversation?.Messages ?? new();
+
+    ConversationDTO? ChatConversation { get; set; } = null!;
+
+    private string _headerTitle => $"Chat com {ToUser?.Name}";
+    private int? MyId;
+    private string? ToUserId => ToUser?.Id?.ToString();
+    bool _initialized = false;
+
+    protected async override Task OnInitializedAsync()
+    {
+        var authState = await authenticationStateTask;
+        var user = authState.User;
+
+        if (MyId.HasValue || user == null) return;
+
+        this.MyId = int.Parse(user.GetUserId());
+
+        this.ToUser = (await _http.FindOneAsync<UserDTO>("NameContains=admroot")).Data;
+
+        await InvokeAsync(this.StateHasChanged);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task Send()
+    {
+        var authState = await authenticationStateTask;
+        var user = authState.User;
+        var test = user.GetUserId();
+
+        if (ToUser is null) return;
+
+        if (hubConnection != null && hubConnection.State == HubConnectionState.Connected && !string.IsNullOrWhiteSpace(Model2.Message))
+        {
+            var newMessage = new ConversationMessageDTO
+                {
+                    Text = Model2.Message,
+                    ConversationId = this.ChatConversation?.Id!.Value,
+                    FromId = MyId!.Value
+                };
+
+            DataSource.Add(newMessage);
+            Model2.Message = string.Empty;
+            this.StateHasChanged();
+            await JS.InvokeVoidAsync("scrollToBottom", "chat");
+
+            var createNewMesgResult = await _http.CreateAsync<ConversationMessageDTO>(newMessage);
+            if (createNewMesgResult.Success)
+            {
+                await Task.Run(async () => await OnMessageSent(newMessage));
+                await hubConnection.SendAsync("SendMessageToUser", newMessage); await JS.InvokeVoidAsync("scrollToBottom", "chat");
+            }
+            else
+            {
+                // log error
+            }
+        }
+    }
+
+    [Inject] IConfiguration _config { get; set; } = default!;
+
+    [Inject] IWebAssemblyHostEnvironment environment { get; set; } = default!;
+
+    async Task StartHub()
+    {
+        _isHubInitialized = true;
+
+        var url = environment.IsDevelopment() ? "https://localhost:5001" : "http://chatapi:8080";
+
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(Navigation.ToAbsoluteUri($"{url}/chathub/{ChatConversation!.ExternalId}"))
+            .Build();
+
+        hubConnection.On<ConversationMessageDTO>("ReceiveIndividualMessage", OnMessageReceived);
+        hubConnection.On<ConversationMessageDTO>("OnMessageReceivedByOther", OnMessageReceivedByOther);
+        hubConnection.On<int>("OnMessagesRead", OnMessagesRead);
+
+        await hubConnection.StartAsync();
+    }
+
+    async Task OnMessageReceived(ConversationMessageDTO message)
+    {
+
+        if (!DataSource.Any(x => x.ExternalId == message.ExternalId))
+        {
+            DataSource.Add(message);
+            await _http.PostAsync<ConversationDTO>(uri: $"set-my-messages-read/{this.ChatConversation.Id}", model: null);
+            if (message.FromId != this.MyId)
+            {
+                message.Status = Chat.Enumerations.MessageStatus.Read;
+                await InvokeAsync(this.StateHasChanged);
+                await JS.InvokeVoidAsync("scrollToBottom", "chat");
+                await hubConnection!.SendAsync("OnMessageReceivedByOther", message);
+            }
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.DisposeAsync();
+        }
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        var authState = await authenticationStateTask;
+        var user = authState.User;
+        var test2 = user.GetUserId();
+
+        if (!_initialized && this.MyId.HasValue)
+        {
+            _initialized = true;
+            var getConversationResult = await _http.FindOneAsync<ConversationDTO>($"FromIdEqual={5}&ToIdEqual={ToUserId}");
+
+            if (getConversationResult?.Data != null)
+            {
+                ChatConversation = getConversationResult.Data;
+                var result = await _http.PostAsync<ConversationDTO>(uri: $"set-my-messages-read/{this.ChatConversation.Id}", model: null);
+                await this.InvokeAsync(this.StateHasChanged);
+                if (result.Success)
+                {
+                    var notReadMessages = ChatConversation.Messages.Where(
+                        x => x.Status != Chat.Enumerations.MessageStatus.Read &&
+                             x.Status != Chat.Enumerations.MessageStatus.Deleted &&
+                             x.FromId == MyId).ToList();
+                    notReadMessages.ForEach(x => x.Status = Chat.Enumerations.MessageStatus.Read);
+                    // avisar pra quem ta no hub que eu li as mensagens
+                    _needSendReadEvent = true;
+                }
+            }
+
+            else
+            {
+                var creationResult = await _http.CreateAsync<ConversationDTO>(new ConversationDTO
+                    {
+                        FromId = MyId!.Value,
+                        ToId = int.Parse(ToUserId!)
+                    });
+
+                if (creationResult.Success)
+                {
+                    ChatConversation = creationResult.Data?.Data as ConversationDTO;
+                }
+                else
+                {
+                    await Task.Run(async () =>
+                    {
+                        Thread.Sleep(5000);
+                        _initialized = false;
+                        await InvokeAsync(this.StateHasChanged);
+                    });
+                    // log error
+                }
+            }
+            if (ChatConversation != null)
+            {
+                _isLoading = false;
+                await InvokeAsync(this.StateHasChanged);
+                await JS.InvokeVoidAsync("scrollToBottom", "chat");
+            }
+
+            if (ChatConversation != null)
+            {
+                await StartHub();
+
+            }
+            if (_needSendReadEvent == true && this.hubConnection != null)
+            {
+                _needSendReadEvent = false;
+                await this.hubConnection.SendAsync("OnAllMessagesRead", this.MyId);
+            }
+            this.ChatContext.OpenChatWithUser = this.OpenChatWithUser;
+            this.ChatContext.CloseChat = this.CloseChat;
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    async Task OpenChatWithUser(UserDTO otherUser)
+    {
+        return;
+        this.ToUser = otherUser;
+        this.ChatContext.IsOpen = true;
+        this.StateHasChanged();
+    }
+
+    async Task CloseChat()
+    {
+        this.ChatContext.IsOpen = true;
+        await InvokeAsync(this.StateHasChanged);
+    }
+
+    async Task OnMessageReceivedByOther(ConversationMessageDTO m)
+    {
+        var message = DataSource.FirstOrDefault(x => x.ExternalId == m.ExternalId);
+        if (message == null) return;
+
+        message.Status = Chat.Enumerations.MessageStatus.Read;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    async Task OnMessageSent(ConversationMessageDTO message)
+    {
+        message.Id = message.Id;
+        message.Status = Chat.Enumerations.MessageStatus.Sent;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    async Task OnMessagesRead(int fromUserId)
+    {
+        var messagesFromOtherUser = this.DataSource.Where(x => x.FromId != fromUserId).ToList();
+        messagesFromOtherUser.ForEach(x => x.Status = Chat.Enumerations.MessageStatus.Read);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    protected async override Task OnParametersSetAsync()
+    {
+        if (this.Navigation.Uri.Contains("/Conversas") == false)
+        {
+            await this.hubConnection.StopAsync();
+        }
+        await base.OnParametersSetAsync();
+    }
+}

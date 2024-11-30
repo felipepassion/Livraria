@@ -1,0 +1,217 @@
+﻿/* screen - tela-login-esqueci-minha-senha */
+
+.tela-login-esqueci-minha-senha {
+    align-items: flex-start;
+    background-color: var(--white);
+    border: 1px none;
+    display: flex;
+    gap: 4270px;
+    height: 768px;
+    overflow: hidden;
+    width: 100%;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+    .tela-login-esqueci-minha-senha .sombra {
+        height: 606px;
+        margin-left: -3912px;
+        margin-top: 1658.5px;
+        width: 166px;
+    }
+
+    .tela-login-esqueci-minha-senha .esqueci-minha-senha-modal-card {
+        align-items: center;
+        background-color: var(--white);
+        border: 1px none;
+        border-radius: 20px;
+        box-shadow: 0px 8px 32px #00000033;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 235px;
+        padding: 16px 20px 32px;
+        width: 389px;
+    }
+
+    .tela-login-esqueci-minha-senha .main-title-assinatura-digital {
+        align-items: center;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-color: var(--black-haze);
+        display: flex;
+        gap: 92px;
+        justify-content: center;
+        padding: 4px 0px;
+        width: 341px;
+    }
+
+    .tela-login-esqueci-minha-senha .eparrow-right-bold {
+        height: 24px;
+        min-width: 24px;
+    }
+
+    .tela-login-esqueci-minha-senha .container-title-cada {
+        align-items: center;
+        border: 1px none;
+        display: flex;
+        gap: 8px;
+        width: fit-content;
+    }
+
+    .tela-login-esqueci-minha-senha .container-title {
+        align-items: center;
+        border: 1px none;
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        width: fit-content;
+    }
+
+    .tela-login-esqueci-minha-senha .verificar-por-e-mail {
+        letter-spacing: 0;
+        line-height: normal;
+        margin-top: -1.00px;
+        width: fit-content;
+    }
+
+    .tela-login-esqueci-minha-senha .bix-lg {
+        height: 20px;
+        min-width: 20px;
+    }
+
+    .tela-login-esqueci-minha-senha .container-text-encontre-cpf {
+        align-items: center;
+        border: 1px none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 290px;
+    }
+
+    .tela-login-esqueci-minha-senha .title-encontre-cpf {
+        align-items: center;
+        align-self: stretch;
+        border: 1px none;
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .tela-login-esqueci-minha-senha .verifique-o-seu-e-mail {
+        letter-spacing: 0;
+        line-height: normal;
+        margin-top: -1.00px;
+        text-align: center;
+        width: 290px;
+    }
+
+    .tela-login-esqueci-minha-senha .insira-o-cdigo-de-s {
+        letter-spacing: 0;
+        line-height: normal;
+        margin-top: -1.00px;
+        text-align: center;
+        width: 290px;
+    }
+
+    .tela-login-esqueci-minha-senha .container-codigo {
+        align-items: flex-start;
+        border: 1px none;
+        display: flex;
+        gap: 12px;
+        width: fit-content;
+    }
+
+    .tela-login-esqueci-minha-senha .container-number-codigo {
+        align-items: center;
+        background-color: var(--white);
+        border: 1.5px solid;
+        border-color: var(--fog);
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        height: 36px;
+        justify-content: center;
+        padding: 8px;
+        width: 36px;
+    }
+
+    .tela-login-esqueci-minha-senha .number {
+        letter-spacing: 0;
+        line-height: normal;
+        width: fit-content;
+    }
+
+    .tela-login-esqueci-minha-senha .continuar {
+        align-items: center;
+        background-color: var(--chetwode-blue);
+        border: 1px none;
+        border-radius: 4px;
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        padding: 12px;
+        width: 290px;
+    }
+
+    .tela-login-esqueci-minha-senha .continuar-1 {
+        letter-spacing: 0;
+        line-height: normal;
+        margin-top: -1.00px;
+        width: fit-content;
+    }
+
+:root {
+    --black: #000000;
+    --black-haze: #f6f6f6;
+    --chetwode-blue: #FFC107;
+    --fog: #e4ccff;
+    --oslo-gray: #888990;
+    --white: #ffffff;
+    --font-size-m2: 12px;
+    --font-size-xl2: 14px;
+    --font-size-xxl: 23px;
+    --font-family-inter: "Inter", Helvetica;
+}
+
+.inter-medium-chetwode-blue-14px {
+    color: var(--chetwode-blue);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-xl2);
+    font-style: normal;
+    font-weight: 500;
+}
+
+.inter-medium-chetwode-blue-12px {
+    color: var(--chetwode-blue);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-m2);
+    font-style: normal;
+    font-weight: 500;
+}
+
+.inter-semi-bold-black-23px {
+    color: var(--black);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-xxl);
+    font-style: normal;
+    font-weight: 600;
+}
+
+.inter-normal-oslo-gray-12px {
+    color: var(--oslo-gray);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-m2);
+    font-style: normal;
+    font-weight: 400;
+}
+
+.inter-semi-bold-white-14px {
+    color: var(--white);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-xl2);
+    font-style: normal;
+    font-weight: 600;
+}

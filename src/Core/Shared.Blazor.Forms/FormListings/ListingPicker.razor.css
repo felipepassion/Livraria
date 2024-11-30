@@ -1,0 +1,221 @@
+﻿/* screen - 1_139 */
+
+.container-informations {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.container-title-category {
+    align-items: center;
+    border-bottom-style: solid;
+    border-bottom-width: 1.5px;
+    border-color: transparent;
+    border-image: linear-gradient(to bottom, rgb(229, 229, 229), rgba(229, 229, 229, 0) 60.42%) 1;
+    display: flex;
+    padding: 8px 0px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.container-section-one {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    width: 308px;
+}
+
+.divider {
+    height: 29px;
+    min-width: 1px;
+}
+
+.container-title-section {
+    align-items: flex-start;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.title {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    gap: 8px;
+}
+
+.agenda {
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1.00px;
+    width: fit-content;
+}
+
+.convnios {
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1.00px;
+    width: fit-content;
+}
+
+.container-features {
+    height: 40px;
+    min-width: 57px;
+}
+
+.frame-691 {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container-results {
+    align-items: flex-start;
+    background-color: var(--cultured-pearl);
+    border-radius: 20px 20px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 1vw;
+    width: 100%;
+    box-shadow: 0.0vw 0.28vw 0.28vw #0000001a;
+}
+
+.container-secondary {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    padding:1vw;
+    border-radius:8px;
+}
+
+    .container-secondary:hover {
+        cursor:pointer;
+        background-color: var(--chetwode-blue-soft);
+    }
+
+.listining-icon {
+    align-self: stretch;
+    height: 36px;
+    min-width: 20px;
+}
+
+/*.container-input {
+    align-items: center;
+    border-radius: 4px;
+    display: flex;
+    gap: 4px;
+    height: 36px;
+    overflow: hidden;
+    padding: 0px 8px;
+    width: 100px;
+}*/
+
+.container-titles {
+    align-items: flex-start;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container-input-1 {
+    align-items: center;
+    border-radius: 4px;
+    display: flex;
+    gap: 4px;
+    height: fit-content;
+    overflow: hidden;
+    padding: 0px 8px;
+    width: 196px;
+}
+
+.container-radio-2,
+.container-radio-3 {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    padding: 8px 0px;
+    width: fit-content;
+}
+
+.akar-iconscircle-check-fill {
+    border: 1.5px solid;
+    border-color: var(--chetwode-blue);
+    border-radius: 100px;
+    height: 20px;
+    min-width: 20px;
+}
+
+.frame-690 {
+    height: 1px;
+    min-width: 592px;
+}
+
+.convnio {
+    align-self: stretch;
+    height: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1.00px;
+}
+
+.divider-list {
+    height: 1px;
+    min-width: 592px;
+}
+
+.id {
+    align-self: stretch;
+    height: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1.00px;
+}
+
+.niteri {
+    align-self: stretch;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.phone {
+    align-self: stretch;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.place {
+    align-self: stretch;
+    height: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1.00px;
+}
+
+.surname {
+    align-self: stretch;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.unidade {
+    align-self: stretch;
+    height: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1.00px;
+}
+
+.unimed {
+    align-self: stretch;
+    letter-spacing: 0;
+    line-height: normal;
+}

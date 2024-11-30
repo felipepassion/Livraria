@@ -1,0 +1,91 @@
+@using FluentValidation
+
+@typeparam T where T : class, new()
+@typeparam K where K : IValidator<T>, new()
+
+@code {
+    [Inject] protected HttpClient _http { get; set; } = default!;
+
+    protected bool _isSubmiting = false;
+    protected bool _isEmailSent = false;
+
+    protected private bool isChecked = false;
+    protected private IEnumerable<string> ErrorsList { get; set; } = [];
+    protected private IEnumerable<string> SuccessMessagesList { get; set; } = [];
+
+    protected K Validator { get; set; } = new K();
+
+    protected EditContext EditContext { get; set; } = default!;
+    protected FormFluentValidator FluentValidator { get; set; } = default!;
+
+    protected T Model = new T();
+
+    protected PageContainer PageContainer { get; set; } = default!;
+
+    protected FormFluentValidator? _validatorComponent { get; set; } = default!;
+
+    protected override Task OnInitializedAsync()
+    {
+        this.EditContext = this.EditContext ?? new EditContext(this.Model);
+        this.Validator = new K();
+        return base.OnInitializedAsync();
+    }
+
+    protected async Task OnSubmit(EditContext editContext)
+    {
+        if (!_isSubmiting)
+        {
+            _isSubmiting = true;
+            ErrorsList = [];
+            _isEmailSent = false;
+            this.StateHasChanged();
+
+            try
+            {
+                await this.OnSubmitForm(editContext);
+            }
+            catch (Exception ex)
+            {
+                ErrorsList = [ex.Message];
+            }
+            _isSubmiting = false;
+            this.StateHasChanged();
+        }
+    }
+
+    protected async Task OnSubmitFormInvalid(EditContext editContext)
+    {
+        await SetErrors(ErrorsList);
+    }
+
+    protected async Task SetErrors(IEnumerable<string> errors)
+    {
+        this.ErrorsList = errors;
+        this.PageContainer.ErrorsList = this.ErrorsList;
+        this.PageContainer.RefreshMe();
+        await InvokeAsync(this.StateHasChanged);
+    }
+
+    protected async Task SetSuccessMessages(IEnumerable<string> successMessages)
+    {
+        this.SuccessMessagesList = successMessages;
+        this.PageContainer.SuccessList = this.SuccessMessagesList;
+        this.PageContainer.RefreshMe();
+        await InvokeAsync(this.StateHasChanged);
+    }
+
+    protected async Task OnPropertyChanged(string propName)
+    {
+        if (_validatorComponent != null)
+        {
+            await ClearErrors();
+            await this._validatorComponent.ValidateAsync(parameterToValidate: propName);
+        }
+    }
+
+    async Task ClearErrors() => await this.SetErrors(new string[0]);
+
+    protected abstract Task OnSubmitForm(EditContext editContext);
+    protected virtual void ManipulateProperties() { }
+
+}

@@ -1,0 +1,192 @@
+﻿@using System.Text.RegularExpressions
+@using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
+@using Niu.Nutri.Shared.Blazor.Components.Layout.DesignSystem.Inputs.Buttons.Enums
+@using System.Diagnostics.CodeAnalysis
+
+@typeparam T
+
+@inherits InputBase<T>
+    
+<div class="text">
+
+    @if (!String.IsNullOrEmpty(this.Label))
+    {
+        <label>@this.Label</label>
+    }
+
+    <input type="@this.Type"
+           class="@this.Class"
+           min="@this.MinRange"
+           max="@this.MaxRange"
+           placeholder="@this.Placeholder"
+           value="@this.Value"
+           maxlength="@this.InputMaxLenght"
+           @onchange="@this.AfterValueChanged"
+           minlength="@this.InputMinLenght"
+           disabled="@this.Disabled"
+           @oninput="OnValueChanged"
+           @onkeydown=OnKeyDown
+           @onkeydown:preventDefault=@PreventDefault />
+</div>
+
+@code {
+    [Parameter] public Func<Task> AfterValueChanged { get; set; } = (async () => { await Task.CompletedTask; });
+    [Parameter] public ButtonSizes? Size { get; set; }
+    [Parameter] public IEnumerable<Masks> Masks { get; set; } = [];
+    [Parameter] public Func<Task>? OnInput { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? InputMinLenght { get; set; }
+    [Parameter] public string? InputMaxLenght { get; set; }
+    [Parameter] public string? Placeholder { get; set; }
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public int? MinRange { get; set; }
+    [Parameter] public int? MaxRange { get; set; }
+    [Parameter] public required string Type { get; set; }
+    [Parameter] public bool Disabled { get; set; }
+
+    private bool PreventDefault = false;
+
+    protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out T result, [NotNullWhen(false)] out string validationErrorMessage)
+    {
+        try
+        {
+            // Inicializar as saídas
+            result = default!;
+            validationErrorMessage = null!;
+
+            // Implementar a lógica de conversão aqui
+            if (typeof(T) == typeof(string))
+            {
+                // Se T for string, simplesmente atribuímos o valor
+                result = (T)(object)value;
+                return result is null ? false : true;
+            }
+            else if (typeof(T) == typeof(int) || typeof(T) == typeof(int?))
+            {
+                // Tentativa de converter para int
+                if (int.TryParse(value, out int intValue))
+                {
+                    result = (T)(object)intValue;
+                    return true;
+                }
+            }
+            else if (typeof(T) == typeof(double) || typeof(T) == typeof(double?))
+            {
+                // Tentativa de converter para double
+                if (double.TryParse(value, out double doubleValue))
+                {
+                    result = (T)(object)doubleValue;
+                    return true;
+                }
+            }
+            else if (typeof(T) == typeof(char) || typeof(T) == typeof(char?))
+            {
+                // Tentativa de converter para char
+                if (char.TryParse(value, out char charValue))
+                {
+                    result = (T)(object)charValue;
+                    return true;
+                }
+            }
+            else
+            {
+                // Lidar com outros tipos conforme necessário
+                // Exemplo: DateTime, bool, etc.
+                // Implemente as conversões para outros tipos aqui
+            }
+
+            // Se nenhum dos tipos correspondentes for encontrado, retornar false
+            validationErrorMessage = $"Failed to parse {typeof(T).Name} from '{value}'.";
+            return false;
+        }
+        catch (Exception ex)
+        {
+            // Se ocorrer uma exceção durante a conversão, capturar e retornar a mensagem de erro
+            result = default!;
+            validationErrorMessage = ex.Message;
+            return false;
+        }
+    }
+
+    private void OnKeyDown(KeyboardEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(e?.Key)) return;
+
+        if (!Masks.Any())
+        {
+            PreventDefault = false;
+            return;
+        }
+
+        if (e.Key.Length > 1)
+        {
+            PreventDefault = false;
+        }
+        else
+        {
+            PreventDefault = !this.Masks.Any(x => x.IsValidByMask(e.Key));
+        }
+    }
+
+    bool FormatPhone => this.Masks.Contains(Inputs.Masks.Phone);
+    bool FormatEmail => this.Masks.Contains(Inputs.Masks.Email);
+    bool FormatCPF => this.Masks.Contains(Inputs.Masks.CPF);
+
+    private bool IsAllValidMask(string value)
+    {
+        // -> refatorar a funcao da linha 40, o IsAllValidMask, para permitir o delete com o backspace
+        // -> se o e.Key == backspace o PreventDefault deve ser false;
+
+        return this.Masks.Any(x => x.IsValidByMask(value));
+    }
+
+    private async Task OnValueChanged(ChangeEventArgs e)
+    {
+        var inputValue = e.Value?.ToString() ?? string.Empty;
+
+        if (typeof(T) == typeof(string))
+        {
+            // Se T for string, atribuir diretamente o valor input
+            this.Value = (T)(object)inputValue;
+        }
+        else if (typeof(T) == typeof(int) || typeof(T) == typeof(int?))
+        {
+            // Tentativa de converter para int
+            if (int.TryParse(inputValue, out int intValue))
+            {
+                this.Value = (T)(object)intValue;
+            }
+        }
+        else if (typeof(T) == typeof(double) || typeof(T) == typeof(double?))
+        {
+            // Tentativa de converter para double
+            if (double.TryParse(inputValue, out double doubleValue))
+            {
+                this.Value = (T)(object)doubleValue;
+            }
+        }
+        else if (typeof(T) == typeof(char) || typeof(T) == typeof(char?))
+        {
+            // Tentativa de converter para char
+            if (char.TryParse(inputValue, out char charValue))
+            {
+                this.Value = (T)(object)charValue;
+            }
+        }
+        else
+        {
+            // Lidar com outros tipos conforme necessário
+            // Exemplo: DateTime, bool, etc.
+            // Implemente as conversões para outros tipos aqui
+        }
+
+        await ValueChanged.InvokeAsync(this.Value);
+
+        this.StateHasChanged();
+
+        if (OnInput != null)
+            await OnInput();
+    }
+
+}

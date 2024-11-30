@@ -1,0 +1,205 @@
+﻿@using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models;
+@using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.ValueObjects;
+@using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses
+@using Niu.Nutri.CrossCuting.Infra.Utils.Extensions
+@using Niu.Nutri.Shared.Blazor.Components.Layout.DefaultDesign
+@using System.Reflection;
+@using System.ComponentModel;
+@using System.Net.Http.Json
+
+@typeparam T where T : EntityDTO, new()
+
+@typeparam TListining where TListining: EntityDTO, new()
+
+@if (_searchModel == null || Context == null)
+{
+    <h3>Carregando...</h3>
+}
+else
+{
+    if (!_searchModel.Any())
+    {
+        <h3>Não há elementos no banco de dados.</h3>
+    }
+    else
+    {
+        @* <SfGrid @ref="DefaultGrid" AllowFiltering="true" AllowSelection=true
+        Toolbar="@(new List<string>() { "Search" })"
+        DataSource="@this._searchModel"
+        AllowPaging="true">
+            <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
+            <GridPageSettings PageSize=5 PageCount="5"></GridPageSettings>
+
+            <GridSelectionSettings CheckboxOnly="true" PersistSelection=true></GridSelectionSettings>
+            <GridColumns>
+                <GridColumn HeaderText="test123" Width="20" Type="ColumnType.CheckBox">
+                    <Template>
+                        <img @onclick="async (e)=>{ await OnClicked(context as TListining); }"
+                             class="container-radio-1"
+                             src="/imgs/components/mini-listining/container-radio@2x@(Model.Any(x=>x.Id==(context as TListining).Id)? "-checked" : "").svg"
+                             alt="container-radio" />
+                    </Template>
+                </GridColumn>
+
+                <GridColumn Visible=false Field="Id" HeaderText="Id" TextAlign="TextAlign.Left" IsPrimaryKey=true></GridColumn>
+                @foreach (var item in Context.Properties)
+                {
+                    if (item.info.PropertyType.Name == "ImageFileInfoDTO")
+                    {
+                        <GridColumn TextAlign="TextAlign.Left"
+                    Field="@item.info.Name"
+                    HeaderText="@(item.info.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? item.info.Name)"
+                    Width="150">
+                            <Template>
+                                <img class="listining-icon" src="@((context.GetType().GetProperty(item.info.Name)?.GetValue(context) as ImageFileInfoDTO)?.Src ?? "/imgs/components/autosave-btn/autosave.svg")">
+                            </Template>
+                        </GridColumn>
+                    }
+                    else
+                    {
+                        <GridColumn Field="@item.info.Name" HeaderText="@(item.info.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? item.info.Name)" TextAlign="TextAlign.Left" Width="150"></GridColumn>
+                    }
+                }
+            </GridColumns>
+            <GridEvents RowSelected="CellSelectedHandler" RowDeselected=CellDeselectedHandler TValue="TListining" OnRecordClick="async (e)=>{  }" />
+        </SfGrid> *@
+        @*
+        foreach (var item in _searchModel)
+        {
+            <div @onmouseover="(x)=>OnHover(x,item)"
+                @onmouseout="(x)=>OnHoverOut(x,item)"
+                @onclick="(x)=>OnClicked(x,item)"
+                class="container-secondary">
+
+                <img class="container-radio-1" src="/imgs/components/mini-listining/container-radio@2x@(Model.Any(x=>x.Id==item.Id)? "-checked" : "").svg" alt="container-radio" />
+                <div class="container-input">
+                    <div class="container-titles">
+                        <div class="id valign-text-middle inter-medium-storm-dust-10px">ID</div>
+                        <div class="phone inter-normal-silver-chalice-14px">@item.Id</div>
+                    </div>
+                </div>
+                @foreach (var prop in Context.Properties)
+                {
+                    <div class="container-input-1">
+                        <div class="container-titles">
+                            <div class="convnio valign-text-middle inter-medium-storm-dust-10px">@prop.info.GetName()</div>
+                            <div class="unimed inter-normal-silver-chalice-14px">@prop.info.GetValue(item)</div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <img class="divider-list" src="/imgs/components/mini-listining/divider-list@1x.svg" alt="divider-list" />
+        }*@
+    }
+}
+
+@code {
+    // public async Task CellSelectedHandler(RowSelectEventArgs<TListining> args)
+    // {
+    //     if (args?.Datas?.Any() == true)
+    //     {
+    //         this.Model.AddRange(args.Datas.Where(x => !this.Model.Any(p => p.Id == x.Id)).Select(x => new T() { Id = x.Id }.Update(x)));
+    //         await ModelChanged.InvokeAsync(Model);
+    //     }
+    //     // Here you can customize your code
+    // }
+    // public async Task CellDeselectedHandler(RowDeselectEventArgs<TListining> args)
+    // {
+    //     if (args?.Datas != null)
+    //     {
+    //         if (args.Datas.Any())
+    //         {
+    //             this.Model.RemoveAll(x => args.Datas.Any(p => p.Id == x.Id));
+    //         }
+    //         else
+    //         {
+    //             this.Model.RemoveAll(x => true);
+    //         }
+    //         await ModelChanged.InvokeAsync(Model);
+    //     }
+    //     // Here you can customize your code
+    // }
+
+    //private SfGrid<TListining> DefaultGrid;
+    [Inject] HttpClient _http { get; set; }
+    [Parameter] public List<T> Model { get; set; }
+    [Parameter] public EventCallback<List<T>> ModelChanged { get; set; }
+    [CascadingParameter] IListiningContext Context { get; set; }
+
+    bool _initialized = false;
+    List<TListining> _searchModel { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
+
+    void OnHover(MouseEventArgs args, TListining item)
+    {
+        this.StateHasChanged();
+    }
+
+    void OnHoverOut(MouseEventArgs args, TListining item)
+    {
+        this.StateHasChanged();
+    }
+    async Task OnClicked(TListining item)
+    {
+        //await OnObjectClicked(item);
+        this.StateHasChanged();
+    }
+
+    // async Task OnObjectClicked(TListining item)
+    // {
+    //     var existingItem = Model.FirstOrDefault(x => x.Id == item.Id);
+    //     int idx = (int)await this.DefaultGrid.GetRowIndexByPrimaryKeyAsync(item.Id);
+
+    //     if (existingItem is not null)
+    //     {
+    //         Model.Remove(existingItem);
+    //     }
+    //     else
+    //     {
+    //         var newModel = new T() { Id = item.Id }.Update(item);
+    //         Model.Add(newModel);
+    //     }
+    //     await ModelChanged.InvokeAsync(Model);
+    // }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (Context != null && !_initialized)
+        {
+            try
+            {
+                _initialized = true;
+
+                this._searchModel = (await _http.GetFromJsonAsync<GetHttpResponseDTO<List<TListining>>>(
+                   $"{new T().GetRoute()}/summary?Page={Context.Page}&Size={Context.Size}&OrderBy={Context.OrderBy}&OrderByDesc={Context.OrderByDesc}&{Context.QueryString}"))?.Data as List<TListining> ?? new List<TListining>();
+            }
+            catch (Exception ex)
+            {
+                //_initialized = false;
+            }
+            this.StateHasChanged();
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    public async Task RefreshListining()
+    {
+        //this._initialized = false;
+        this.StateHasChanged();
+    }
+
+    void OnItemClicked(bool val)
+    {
+
+    }
+
+    public void UpdateListining()
+    {
+        _initialized = false;
+        this.StateHasChanged();
+    }
+}

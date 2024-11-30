@@ -1,0 +1,5 @@
+<#@ output extension=".generated.bat" #>
+<# 
+var now = DateTime.Now;
+#>
+dotnet ef migrations add <#= $"{now.Year}_{now.Month}_{now.Day}_{now.Hour}_{now.Minute}_{now.Second}" #> -c ApplicationDbContext -p ..\..\Users.Identity

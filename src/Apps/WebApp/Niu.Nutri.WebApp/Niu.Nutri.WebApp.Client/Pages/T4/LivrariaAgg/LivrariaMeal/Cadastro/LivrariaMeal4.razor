@@ -1,0 +1,45 @@
+﻿@using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests;
+@using Niu.Nutri.Livraria.Enumerations
+
+@inherits BaseCadastro<LivrariaMealDTO>
+
+<div class="container-informations screen">
+    <div class="box-inputs">
+        <div class="input-secondary">
+            <div class="active-grupo">
+                <label>Tipo de refeição</label>
+                <SelectInput Class="mealInputType"
+                             readonly @bind-Value=Model.Title
+                             Placeholder="Selecione a refeição" 
+                             ToStringText="DyaryMealExtensions.GetName"
+                             DataSet="Enum.GetValues<LivrariaMealType>().Select(x=>(LivrariaMealType?)x)" />
+
+            </div>
+        </div>
+
+        <div class="input-secondary">
+            <div class="active-grupo">
+                <label>Descrição</label>
+                <textarea class="mealInputDescription"
+                           @bind:after="OnFormUpdated"
+                           @bind="Model.Description"
+                           placeholder="Adicionei um tempero ou item diferente..." />
+                @* <TextInput InputSize="mealInputDescription" *@
+                @*            Placeholder="Adicionei um tempero ou item diferente..." *@
+                @*            @bind-Value:after="OnFormUpdated" *@
+                @*            @bind-Value="Model.Description" /> *@
+            </div>
+            <div class="este-campo-obrigatrio-1 valign-text-middle inter-normal-sonic-silver-10px">
+                <ValidationMessage For="@(() => Model.Description)"></ValidationMessage>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    protected override Task OnInitializedAsync()
+    {
+        this.CadastroModalContext.ModalTitle = "Detalhe da Refeição";
+        return base.OnInitializedAsync();
+    }
+}

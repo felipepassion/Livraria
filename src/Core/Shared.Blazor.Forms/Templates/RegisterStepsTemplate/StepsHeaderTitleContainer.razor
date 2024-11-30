@@ -1,0 +1,104 @@
+﻿@using Core.Application.DTO.Aggregates.CommonAgg.ValueObjects;
+@using Core.Application.DTO.Aggregates.CommonAgg.Models;
+@using Core.Application.DTO.Attributes;
+
+@inherits ComponentBase
+
+@using System.ComponentModel;
+@using System.Reflection;
+@using Niu.Nutri.Core.Application.DTO.Seedwork.ValueObjects
+@using Niu.Nutri.Shared.Blazor.Forms.Templates.RegisterStepsTemplate.Contexts
+
+<div class="container-cabecalho-formulario p-tb-10">
+    <div class="container-tips p-tb-10">
+        <div class="container-main-modal">
+            <div class="container-sections-main">
+                <div class="section">
+                    @{
+                        int maxSteps = this.Context?.StepsContext?.MaxSteps ?? 0;
+                    }
+                    @if (maxSteps > 1)
+                    {
+                        @for (int i = 0; i < maxSteps; i++)
+                        {
+                            <div class="section">
+                                <div class="bi1-circle-fill @(i<=this.Context?.StepsContext?.CurrentStep ? "active" : "")">
+                                    <p>@(i + 1)</p>
+                                </div>
+                                @if (i < maxSteps - 1)
+                                {
+                                    <div class="divider-section @(i<=this.Context?.StepsContext?.CurrentStep ? "active" : "")"></div>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-titulos-autosave-acesso-formulario p-tb-10">
+        <div class="container-titulo-subtitulo-formulario">
+            <div class="titulo-formulario">@Context?.Model?.H2AndSubTitle</div>
+            @if (Context?.Model?.GetType().GetCustomAttribute<HideTitleOnHeader>() is not null)
+            {
+                <div class="subtitulo-formulario">@(Context?.Model?.H1)</div>
+            }
+            else
+            {
+                <div class="subtitulo-formulario">@(Context?.Model?.TitleProperty)</div>
+            }
+        </div>
+
+        <div class="container-titulo-subtitulo-formulario">
+            <div class="titulo-formulario">@Context?.Model?.H1</div>
+            @if (Context?.Model?.GetType().GetCustomAttribute<HideTitleOnHeader>() is not null)
+            {
+                <div class="subtitulo-formulario">@(Context?.Model?.CustomTitleOrH2)</div>
+            }
+            else
+            {
+                <div class="subtitulo-formulario">@(Context?.Model?.TitleProperty)</div>
+            }
+        </div>
+
+        <AutoSaveActionButtons AutoSaveSettings="AutoSaveSettings" />
+
+        @if (Context?.Model is IActivableEntityDTO mymodel)
+        {
+             <div class="container-ativar-inativa-cadastro">
+                <Syncfusion.Blazor.Buttons.SfSwitch @bind-Checked:after="OnEnabledChanged" @bind-Checked="mymodel.Active" OnLabel="Active" OffLabel="Inactive"></Syncfusion.Blazor.Buttons.SfSwitch>
+            </div> 
+        }
+
+    </div>
+</div>
+
+@code {
+    [Parameter] public bool HideNavigationButtons { get; set; }
+
+    async Task OnEnabledChanged()
+    {
+        await this.AutoSaveSettings.TriggerAutoSave();
+    }
+
+    [Parameter] public ModalContext Context { get; set; }
+
+    public void RefreshMe(AutoSaveSettingsDTO autosave = null) { this.AutoSaveSettings = autosave ?? this.AutoSaveSettings; Task.Run(this.StateHasChanged); }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (Context != null && Context.RefreshHeaderLayoutContent == null)
+        {
+            Context.RefreshHeaderLayoutContent = RefreshMe;
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+    async Task RefreshMe()
+    {
+        await InvokeAsync(this.StateHasChanged);
+    }
+
+    [Inject] public AutoSaveSettingsDTO AutoSaveSettings { get; set; }
+}

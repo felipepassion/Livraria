@@ -1,0 +1,59 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Preparando Ambiente') {
+            steps {
+                script {
+                    sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
+                        sh '''
+                        ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
+                        sudo rm -rf ~/niu-nutri || true
+                        git clone git@github.com:Niu-Technology/niu-nutri.git 
+                        if [ $? -ne 0 ]; then
+                            echo "Failed to clone repository"
+                            exit 1
+                        fi
+                        sudo chown -R niu-user:niu-user ~/niu-nutri
+                        sudo chmod -R 755 ~/niu-nutri
+                        cd ~/niu-nutri
+                        git pull origin main --force
+                        
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Construindo Ambiente') {
+            steps {
+                script {
+                    sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
+                        sh '''
+                        ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
+                        cd ~/niu-nutri/src/Apps/WebApp/Niu.Nutri.WebApp/Niu.Nutri.WebApp
+                        sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /niunutri/volumes/WebApp
+                        
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Deploy via Portainer') {
+            steps {
+                script {
+                    sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
+                        sh '''
+                        ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
+                        sudo docker stop niu-nutri-webapp || true
+                        sudo docker start niu-nutri-webapp 
+                        
+                        '''
+                    }
+                }
+            }
+        }
+    }
+}
+

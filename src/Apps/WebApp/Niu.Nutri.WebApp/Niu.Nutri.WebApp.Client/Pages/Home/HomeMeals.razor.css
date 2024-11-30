@@ -1,0 +1,115 @@
+/* HomeMeals.razor.css */
+
+/* Estilos espec�ficos para o componente HomeMeals */
+.meals--section {
+    background-color: #FFEBD7;
+    border-radius: 26px;
+    padding: 15px;
+    margin: .75rem 1.25rem;
+}
+
+.meals--container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meals--container-title {
+    display: flex;
+    align-items: center;
+}
+
+    .meals--container-title img {
+        width: 1rem;
+        margin-right: .75rem;
+    }
+
+    .meals--container-title h1 {
+        font-family: Poppins;
+        font-size: 1rem;
+        color: #5B350C;
+        font-weight: 400;
+        line-height: 22px;
+    }
+
+.meals--container-time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .meals--container-time span {
+        font-family: Poppins;
+        font-size: .75rem;
+        font-weight: 400;
+        color: #D7A46D;
+    }
+
+    .meals--container-time img {
+        width: .5rem;
+        margin-left: .5rem;
+    }
+
+.meal--container-item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+    .meal--container-item:first-child {
+        margin-top: 1rem;
+    }
+
+    .meal--container-item span {
+        font-size: 1.375rem;
+        font-weight: 500;
+        line-height: 2rem;
+        text-align: left;
+        color: #5B350C;
+    }
+
+.calories {
+    margin-top: .25rem;
+}
+
+.meal--container-details {
+    display: block;
+}
+
+.meal--details-time {
+    display: flex;
+    max-width: 3.75rem;
+    justify-content: space-between;
+}
+
+    .meal--details-time img {
+        width: .875rem;
+    }
+
+    .meal--details-time span {
+        font-size: .875rem;
+        font-weight: 500;
+        line-height: 18px;
+        color: #D7A46D;
+    }
+
+.meal--details-item {
+    display: block;
+    max-width: 20rem;
+}
+
+    .meal--details-item h1 {
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: 1.68rem;
+        color: #5B350C;
+        margin-top: .25rem;
+    }
+
+    .meal--details-item p {
+        font-size: .75rem;
+        font-weight: 400;
+        line-height: 1rem;
+        color: #D7A46D;
+        margin-top: .25rem;
+    }

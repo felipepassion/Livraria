@@ -1,0 +1,83 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>aspnet-Adm.Dashboard-fe1aad7c-fb10-4bd1-b6f9-d7df88a3fc2c</UserSecretsId>
+		<RootNamespace>Niu.Living.Adm.Dashboard</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Addresses\Addresses.Application.DTO\Addresses.Application.DTO.csproj" />
+		<ProjectReference Include="..\..\..\Chat\Chat.Application.DTO\Chat.Application.DTO.csproj" />
+		<ProjectReference Include="..\..\..\Core\Core.WebApi\Core.Api.csproj" />
+		<ProjectReference Include="..\..\..\Core\Shared.Blazor.Authentication\Shared.Blazor.Authentication.csproj" />
+		<ProjectReference Include="..\..\..\DefaultTemplate\DefaultTemplate.Application.DTO\DefaultTemplate.Application.DTO.csproj" />
+		<ProjectReference Include="..\..\..\Nests\Nests.Application.DTO\Nests.Application.DTO.csproj" />
+		<ProjectReference Include="..\..\..\SystemSettings\SystemSettings.Application.DTO\SystemSettings.Application.DTO.csproj" />
+		<ProjectReference Include="..\..\..\Users.Identity\Users.Identity.csproj" />
+		<ProjectReference Include="..\..\..\Users\Users.Application.DTO\Users.Application.DTO.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="ClientIoCFactory.generated.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ClientIoCFactory.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Components\Pages\T4\AutoGeneratePages.generated.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>AutoGeneratePages.tt</DependentUpon>
+		</Compile>
+		<Compile Update="Controllers\Controllers.generated.cs">
+			<DependentUpon>Controllers.tt</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="ClientIoCFactory.tt">
+		  <LastGenOutput>ClientIoCFactory.generated.cs</LastGenOutput>
+		  <Generator>TextTemplatingFileGenerator</Generator>
+		</None>
+		<None Update="Components\Pages\T4\AutoGeneratePages.tt">
+			<LastGenOutput>AutoGeneratePages.generated.cs</LastGenOutput>
+			<Generator>TextTemplatingFileGenerator</Generator>
+		</None>
+		<None Update="Controllers\Controllers.tt">
+			<LastGenOutput>Controllers.generated.cs</LastGenOutput>
+			<Generator>TextTemplatingFileGenerator</Generator>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="appsettings.Development.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Update="appsettings.Production.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Components\Account\Pages\" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,26 @@
+﻿.container {
+	display: block;
+	margin-top: 4rem;
+}
+
+	::deep .group-of-buttons{
+		gap: 3rem !important;
+	} 
+
+	::deep .liquidBtn {
+		background:none !important;
+		max-width: 8rem;
+	}
+
+		::deep .liquidBtn:first-child {
+			color: #45ABF5 !important;
+		}
+
+		::deep .liquidBtn:last-child {
+			color: #E0A075 !important;
+		}
+
+	::deep button{
+		display:flex;
+		flex-direction:column;
+	}

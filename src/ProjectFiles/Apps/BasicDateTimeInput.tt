@@ -1,0 +1,10 @@
+﻿        <div class="input-secondary-item">
+			<# if (myTypeName == "TimeOnly" || myTypeName == "TimeOnly?") { #>
+			    <TimeOnlyInput @bind-Value="this.Model.<#=myName#>" />
+            <#} else {#>
+			    <BirthDateInputs @bind-Value="this.Model.<#=myName#>" />
+            <# } #>
+            <div class="este-campo-obrigatrio-1 valign-text-middle inter-normal-sonic-silver-10px">
+                <ValidationMessage For="@(() => Model.<#=myName#>)"></ValidationMessage>
+            </div>
+        </div>

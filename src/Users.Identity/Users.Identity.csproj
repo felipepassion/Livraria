@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>Niu.Nutri.Users.Identity</RootNamespace>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Remove="appsettings.Development.json" />
+		<None Remove="appsettings.json" />
+		<None Remove="appsettings.Production.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Core\Core.Infra.Core.Data\Core.Infra.Data.csproj" />
+		<ProjectReference Include="..\Core\Core.Infra.IoC\Core.Infra.IoC.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="IdentityMigrations.tt">
+	    <Generator>TextTemplatingFileGenerator</Generator>
+	    <LastGenOutput>IdentityMigrations.generated.bat</LastGenOutput>
+	  </None>
+	</ItemGroup>
+
+</Project>

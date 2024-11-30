@@ -1,0 +1,108 @@
+﻿@using Microsoft.AspNetCore.Authorization;
+
+@inject NavigationManager navigationManager
+
+@attribute [AllowAnonymous]
+
+@layout AuthLayout
+
+@inject IJSRuntime JSRuntime
+@inject IAuthorizeApi authorizeApi
+
+@inherits BaseLoginPage<ForgotPasswordParametersDTO, ForgotPasswordParametersValidator>
+
+<PageContainer>
+    <ChildContent>
+        <EditForm class="container-verificationCode" Model="Model">
+
+            <FormFluentValidator @ref=FluentValidator
+                                 Validator="this.Validator"
+                                 OnValidSubmit="OnSubmit" OnInvalidSubmit="OnSubmitFormInvalid" />
+
+            <div class="container-header-verificationCode">
+                <img src="/imgs/logo/one-music.svg" @onclick="goHome" />
+
+                <div class="container-title-verificationCode">
+                    <h1 class="title-verificationCode">Verificação de Conta</h1>
+                    <p class="wellcome-verificationCode">
+                        Escolha a forma de verificação de conta para alterar a senha
+                    </p>
+                </div>
+
+                <ValidationMessage For="@(() => Model.EmailOrPhone)" />
+
+            </div>
+
+            @if (Success)
+            {
+                <h1>Sucesso! Cheque seu e-mail e verifique o link enviado para criar sua nova senha.</h1>
+            }
+            else
+            {
+                <div class="container-options-verificationCode">
+                    <div class="container-btn-verificationCode">
+                        <button class="btn-verificationCode" type="submit"><i class="fa-solid fa-envelope"></i> E-mail</button>
+                    </div>
+
+                    <div class="container-btn-verificationCode">
+                        <button class="btn-verificationCode" type="submit"><i class="fa-solid fa-message"></i> SMS</button>
+                    </div>
+                </div>
+
+                <hr class="break-section" />
+                <div class="container-backTo-resetPassword">
+                    <a class="backTo-resetPassword" href="@("/login/esqueci-minha-senha")"><i class="fa-solid fa-angle-left"></i> Voltar</a>
+                </div>
+            }
+
+            <input type="hidden" @bind-value="Model.EmailOrPhone" />
+
+        </EditForm>
+
+    </ChildContent>
+</PageContainer>
+
+@code {
+    bool Success = false;
+
+    [Parameter] public required string UserId { get; set; }
+
+    void goHome()
+    {
+        navigationManager.NavigateTo("/");
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        if (Model == null)
+        {
+            Model = new ForgotPasswordParametersDTO { EmailOrPhone = this.UserId };
+        }
+
+        return base.OnInitializedAsync();
+    }
+
+    protected override async Task OnSubmitForm(EditContext editContext)
+    {
+        try
+        {
+            var result = await authorizeApi.ForgotPassword(Model);
+            if (result.Success)
+            {
+                this.Success = true;
+                this.StateHasChanged();
+                navigationManager.NavigateTo($"/login/codigo-verificacao/token");
+            }
+            else
+            {
+                ErrorsList = [result.Errors?.FirstOrDefault() ?? "Erro ao enviar o e-mail de recuperação."];
+            }
+            this.StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            ErrorsList = [ex.Message];
+        }
+    }
+}
+

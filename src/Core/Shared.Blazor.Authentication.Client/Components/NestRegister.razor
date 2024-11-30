@@ -1,0 +1,58 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.Extensions.Logging
+@using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models.Auth
+@using Niu.Nutri.Shared.Blazor.Authentication.Client.Layout
+@using Niu.Nutri.Shared.Blazor.Authentication.Client.Providers
+@using Niu.Nutri.WebApp.Client.Services.Auth
+
+@rendermode RenderMode.InteractiveWebAssembly
+
+@inject IAuthorizeApi authorizeApi
+@inject ILogger<Login> Logger
+@inject NavigationManager navigationManager
+@inject AuthenticationStateProvider authStateProvider
+
+@inherits BaseLoginPage<LoginParametersDTO, LoginValidator>
+
+@layout AuthLayout
+
+<PageContainer @ref=base.PageContainer>
+    <ChildContent>
+       <h1>Hello world</h1>
+    </ChildContent>
+</PageContainer>
+
+@code {
+    async Task OnEmailOrPhoneChanged() => await base.OnPropertyChanged(propName: nameof(LoginParametersDTO.EmailOrPhone));
+    async Task OnPasswordChanged() => await base.OnPropertyChanged(propName: nameof(LoginParametersDTO.Password));
+
+    [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
+
+     protected async override Task OnInitializedAsync()
+    {
+        var authState = await authStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity != null && user.Identity.IsAuthenticated)
+        {
+            navigationManager.NavigateTo("/", true);
+        }
+    }
+
+    protected async override Task OnSubmitForm(EditContext editContext)
+    {
+        var customAuthProvider = (CookieAuthenticationStateProvider)authStateProvider;
+        var result = await customAuthProvider.LoginAndGetAuthenticationState(this.Model.EmailOrPhone,
+                                                                             this.Model.Password,
+                                                                             true);
+
+        if (!result.Success)
+        {
+            await base.SetErrors(result.Errors.ToList());
+            return;
+        }
+        navigationManager.NavigateTo($"/{ReturnUrl}", true);
+    }
+}

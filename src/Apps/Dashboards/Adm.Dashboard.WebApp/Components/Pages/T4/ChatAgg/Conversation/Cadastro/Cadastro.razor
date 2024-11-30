@@ -1,0 +1,21 @@
+﻿@page "/Conversation/cadastro"
+@page "/Conversation/cadastro/{id}"
+
+@using Niu.Nutri.Shared.Blazor.Components.Layout
+@using Niu.Nutri.Chat.Application.DTO.Aggregates.ChatAgg.Requests
+@using Niu.Nutri.Chat.Application.DTO.Aggregates.ChatAgg.Validators
+
+@layout MainLayout
+@inherits BaseStepsFormComponent<ConversationDTO, ChatAggSettingsDTO, BaseChatAggValidator<ConversationDTO>>
+
+<CascadingValue Value="this.Context">
+    <CascadingValue Value="layout">
+        <BaseMainStepsLayout @ref="layout" ModelType="ConversationDTO" AutoSaveSettings="AutoSaveSettings"
+                             CurrentFragment="this.CurrentFragment"
+                             EnableRightContainer="false"
+                             EditContext="this.EditContext"
+                             OnSubmitForm="this.OnSubmitForm"
+                             OnSubmitFormInvalid="this.OnSubmitFormInvalid"
+                             TValidator="this.TValidator" />
+    </CascadingValue>
+</CascadingValue>

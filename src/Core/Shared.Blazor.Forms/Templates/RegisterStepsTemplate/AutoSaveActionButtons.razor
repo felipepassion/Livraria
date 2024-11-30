@@ -1,0 +1,26 @@
+﻿@using Core.Application.DTO.Aggregates.CommonAgg.ValueObjects
+@using Niu.Nutri.Core.Application.DTO.Seedwork.ValueObjects
+
+<div class="icons">
+
+    <ButtonHoverInfoContainer AutoSaveSettings="AutoSaveSettings" IsClickable=true Type="ButtonHoverInfoContainer.ButtonHoverTypes.AutoSave">
+        <ChildComponenet>
+        </ChildComponenet>
+
+        <DesactivatedChildComponenet>
+        </DesactivatedChildComponenet>
+    </ButtonHoverInfoContainer>
+@* 
+    <ButtonHoverInfoContainer Type="ButtonHoverInfoContainer.ButtonHoverTypes.Restrictions">
+
+        <ChildComponenet>
+            <ButtonHoverRestrictions />
+        </ChildComponenet>
+
+    </ButtonHoverInfoContainer>
+ *@
+</div>
+
+@code {
+    [Parameter] public AutoSaveSettingsDTO AutoSaveSettings { get; set; }
+}

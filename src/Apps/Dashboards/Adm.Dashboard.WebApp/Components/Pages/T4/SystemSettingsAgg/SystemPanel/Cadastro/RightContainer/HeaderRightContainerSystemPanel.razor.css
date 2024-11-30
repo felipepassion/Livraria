@@ -1,0 +1,33 @@
+﻿
+.rightcontainer-header-accordeon-menu-system {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+}
+
+.rightcontainer-etapas-cadastro-btn-add-remover-menu-system {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 5px;
+    width: 100%;
+}
+
+.rightcontainer-etapa-cadastro-menu-system {
+    margin-left: auto;
+}
+
+::deep span.bi.bi-check-circle-fill.cadastro-completo-menu-system {
+    font-size: 20px;
+    color: #C22133;
+}
+
+::deep span.bi.bi-plus-circle-fill {
+    font-size: 20px;
+    color: #C22133;
+}
+
+::deep span.bi.bi-trash-fill {
+    font-size: 20px;
+    color: red;
+}

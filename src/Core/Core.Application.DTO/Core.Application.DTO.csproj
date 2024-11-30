@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Niu.Nutri.Core.Application.DTO</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Aggregates\CommonAgg\Commands\**" />
+    <Compile Remove="Seedwork\Mapping\**" />
+    <EmbeddedResource Remove="Aggregates\CommonAgg\Commands\**" />
+    <EmbeddedResource Remove="Seedwork\Mapping\**" />
+    <None Remove="Aggregates\CommonAgg\Commands\**" />
+    <None Remove="Seedwork\Mapping\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.10.0" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.DataAnnotations.Validation" Version="3.2.0-rc1.20223.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Forms" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions\Http\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CrossCutting\CrossCutting.Utils\CrossCuting.Infra.Utils.csproj" />
+    <ProjectReference Include="..\Core.Application.DTO.Http.Models\Core.Application.DTO.Http.Models.csproj" />
+    <ProjectReference Include="..\Core.Application.Validators\Core.Application.Validators.csproj" />
+    <ProjectReference Include="..\Core.Enumeration\Core.Enumeration.csproj" />
+  </ItemGroup>
+
+</Project>

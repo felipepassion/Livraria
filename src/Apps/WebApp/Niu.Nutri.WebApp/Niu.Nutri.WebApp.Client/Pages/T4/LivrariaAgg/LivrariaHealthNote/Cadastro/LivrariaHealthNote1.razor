@@ -1,0 +1,198 @@
+﻿@inherits BaseCadastro<LivrariaHealthNoteDTO>
+
+@using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests;
+@using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg
+@using Niu.Nutri.Core.Application.DTO.Extensions
+@using Niu.Nutri.Livraria.Enumerations
+@using Niu.Nutri.Shared.Blazor.Components.Modal
+
+<div class="livraria-container">
+    <!-- Header -->
+    <div class="new-note">
+        <button class="back-btn" @onclick="NavigateBack"><img src="./icons/livraria/livrariaHealth/back-icon.svg" alt="" /></button>
+        <span>Nova nota</span>
+    </div>
+    <div class="header">
+        <div class="header-content">
+            <TextInput AfterValueChanged="OnAutoSaveTriggered"
+                       type="text" Class="note-title" placeholder="Título da nota" @bind-Value="Model.Name" />
+
+            <textarea class="note-description" placeholder="Descrição da nota" @bind="Model.Description" @bind:after="this.OnAutoSaveTriggered"></textarea>
+        </div>
+    </div>
+
+    <!-- Meal Section -->
+    <div class="meal-section">
+        <h1>Refeições</h1>
+        <div class="meal--card-container">
+        @* <h3>Refeições do dia @(Model.Date.ToString("dd/MM/yyyy")):</h3> *@
+        @foreach (var element in this._elements.Where(x => !string.IsNullOrWhiteSpace(x.TitleProperty) || (x is LivrariaLiquidDTO liquidDTO && liquidDTO.QuantityType.HasValue)))
+        {
+            <div class="meal-card" @onclick="async () => await OpenMealDetails(element)">
+                <div class="meal-info">
+                    <div class="meal--container-time">
+                        <img src="./icons/livraria/livrariaHealth/clock-icon.svg" alt="" />
+                        <span>
+                            @element.Time?.ToString("HH:mm")
+                        </span>
+                    </div>
+                    <div class="meal--details">
+                        @if (element is LivrariaMealDTO meal)
+                        {
+                            <span class="meal--details-name">@meal.Title.GetName()</span>
+                            <span class="meal--details-description">@meal.Description</span>
+                        }
+                        else if (element is LivrariaLiquidDTO liquid)
+                        {
+                            <span class="meal--details-name">@liquid.Type.GetName()</span>
+                        }
+                    </div>
+                </div>
+                <div class="meal--calories">
+                    <span>
+                        @if (element is LivrariaMealDTO m)
+                        {
+                            <p>@(m.Foods?.Sum(x => x.Calories))<span>kcal</span></p>
+
+                        }
+                        else if (element is LivrariaLiquidDTO l)
+                        {
+                            <p>@(l.Quantity)<span>@l.QuantityType?.ToString()</span></p>
+                        }
+                    </span>
+                </div>
+            </div>
+        }
+        </div>
+    </div>
+
+    <!-- Additional Items -->
+    <div class="additional--items-container">
+        <h1>Itens adicionais</h1>
+        <div class="additional--items-content">
+            <div class="additional--items-item" @onclick="AddMeal">
+                <img src="./icons/livraria/livrariaHealth/plus-icon.svg" alt="" />
+                <span>Refeição</span>
+                <img src="./icons/livraria/livrariaHealth/restaurant-icon.svg" alt="" />
+            </div>
+            <div class="additional--items-item" @onclick="AddSelfCare">
+                <img src="./icons/livraria/livrariaHealth/plus-icon.svg" alt="" />
+                <span>Autocuidado</span>
+                <img src="./icons/livraria/livrariaHealth/hand-heart-icon.svg" alt="" />
+            </div>
+            <div class="additional--items-item" @onclick="AddLiquid">
+                <img src="./icons/livraria/livrariaHealth/plus-icon.svg" alt="" />
+                <span>Líquidos</span>
+                <img src="./icons/livraria/livrariaHealth/cup-icon.svg" alt="" />
+            </div>
+            <div class="additional--items-item" @onclick="AddSymptom">
+                <img src="./icons/livraria/livrariaHealth/plus-icon.svg" alt="" />
+                <span>Sintomas</span>
+                <img src="./icons/livraria/livrariaHealth/face-icon.svg" alt="" />
+            </div>
+            <div class="additional--items-item" @onclick="AddExam">
+                <img src="./icons/livraria/livrariaHealth/plus-icon.svg" alt="" />
+                <span>Exames</span>
+                <img src="./icons/livraria/livrariaHealth/notes-icon.svg" alt="" />
+            </div>
+            <div class="additional--items-item" @onclick="AddExam">
+                <img src="./icons/livraria/livrariaHealth/plus-icon.svg" alt="" />
+                <span>Idas ao banheiro</span>
+                <img src="./icons/livraria/livrariaHealth/roll-icon.svg" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<CadastroModal HideHeader="true" @ref=this.modal>
+    <ChildFragment>
+        <ul class="note-details-ul">
+            @foreach (var item in _selected?.Foods ?? new())
+            {
+                <li class="note-details-li">
+                    <p>
+                        @item.Name
+                    </p>
+                    <p>
+                        @item.Quantity gramas
+                    </p>
+                </li>
+            }
+        </ul>
+    </ChildFragment>
+</CadastroModal>
+
+<style>
+    .note-details-ul {
+        list-style-type: none;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .note-details-li {
+        flex-direction: row;
+        justify-content: space-between;
+        display: flex;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+</style>
+@code {
+    LivrariaMealDTO? _selected { get; set; }
+
+    List<LivrariaMealDTO> Meals => Model?.Meals ?? new();
+    List<LivrariaLiquidDTO> Liquids => Model?.Liquids ?? new();
+
+    List<BaseLivrariaElementDTO> _elements => Meals.Select(x => (BaseLivrariaElementDTO)x).Concat(Liquids.Select(x => (BaseLivrariaElementDTO)x))
+        .OrderBy(x => x.DateTime).ToList();
+
+
+    CadastroModal modal { get; set; }
+    [Parameter] public required string Id { get; set; }
+    [Inject] HttpClient _http { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await this.InvokeAsync(this.StateHasChanged);
+    }
+
+    private async Task OpenMealDetails(BaseLivrariaElementDTO element)
+    {
+        if (element is LivrariaMealDTO meal)
+        {
+            _selected = await _http.OnInitializedAsync<LivrariaMealDTO>(element.ExternalId!);
+            await modal.Open();
+        }
+    }
+
+    private void NavigateBack()
+    {
+        // Função para voltar para a página anterior
+    }
+
+    private void AddSelfCare()
+    {
+        // Lógica para adicionar autocuidado
+    }
+
+    private void AddLiquid()
+    {
+        // Lógica para adicionar líquidos
+    }
+
+    private void AddSymptom()
+    {
+        // Lógica para adicionar sintomas
+    }
+
+    private void AddExam()
+    {
+        // Lógica para adicionar exames
+    }
+
+    private void AddMeal()
+    {
+        // Lógica para adicionar refeição
+    }
+}

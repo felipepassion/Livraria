@@ -1,0 +1,22 @@
+﻿				@page "/LivrariaMealFood/cadastro"
+@page "/LivrariaMealFood/cadastro/{id}"
+
+@using Niu.Nutri.Shared.Blazor.Components.Layout
+@using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests
+@using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Validators
+
+@layout MainLayout
+@inherits BaseStepsFormComponent<LivrariaMealFoodDTO, LivrariaAggSettingsDTO, BaseLivrariaAggValidator<LivrariaMealFoodDTO>>
+
+<CascadingValue Value="this.Context">
+    <CascadingValue Value="layout">
+        <BaseMainStepsLayout @ref="layout" ModelType="LivrariaMealFoodDTO" AutoSaveSettings="AutoSaveSettings"
+                             CurrentFragment="this.CurrentFragment"
+                             EnableRightContainer="false"
+                             EditContext="this.EditContext"
+                             Context="this.Context"
+                             OnSubmitForm="this.OnSubmitForm"
+                             OnSubmitFormInvalid="this.OnSubmitFormInvalid"
+                             TValidator="this.TValidator" />
+    </CascadingValue>
+</CascadingValue>

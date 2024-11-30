@@ -1,0 +1,130 @@
+@using Niu.Nutri.Shared.Blazor.Components.Models
+@using System.Reflection;
+@using Syncfusion.Blazor.Grids
+
+<div class="input-secondary">
+    <SfGrid AllowFiltering="true" AllowSelection="true"
+            Toolbar="@(new List<string>() { "Search" })"
+            DataSource="@this._dataSource"
+            AllowPaging="true"
+            @ref=gridInstance>
+        <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
+        <GridPageSettings PageSize="5" PageCount="5"></GridPageSettings>
+        <GridSelectionSettings CellSelectionMode=CellSelectionMode.BoxWithBorder Type="Syncfusion.Blazor.Grids.SelectionType.Single" CheckboxMode="CheckboxSelectionType.ResetOnRowClick"></GridSelectionSettings>
+        <GridColumns>
+            <GridColumn Type="ColumnType.CheckBox" TextAlign="TextAlign.Center" Width="50">
+                <HeaderTemplate>
+                </HeaderTemplate>
+            </GridColumn>
+            <GridColumn Field="PageName" HeaderText="Page" TextAlign="TextAlign.Left"></GridColumn>
+            <GridColumn Field="Path" HeaderText="Path" TextAlign="TextAlign.Left" IsPrimaryKey="true"></GridColumn>
+            <GridColumn Field="GroupName" HeaderText="Group" TextAlign="TextAlign.Left"></GridColumn>
+        </GridColumns>
+        <GridEvents DataBound=GridDataBound TValue=AggregatePageModel RowSelecting=gridInstance.ClearRowSelectionAsync RowSelected="GridRecordClick2"></GridEvents>
+    </SfGrid>
+</div>
+
+@code {
+    SfGrid<AggregatePageModel> gridInstance;
+    List<AggregatePageModel> _dataSource = new List<AggregatePageModel>();
+    
+    double selectedRows => (double)_dataSource.IndexOf(_dataSource.FirstOrDefault(x => x.Path == Value));
+
+    [Parameter] public string ExternalId{ get; set; }
+    [Parameter] public bool IsActionButton { get; set; }
+    [Parameter] public bool IsAssemblyTool { get; set; }
+
+    [Parameter] required public string Value { get; set; }
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+
+    [Parameter] required public string Description { get; set; }
+    [Parameter] public EventCallback<string> DescriptionChanged { get; set; }
+
+    [Parameter] public Func<RowSelectEventArgs<AggregatePageModel>, Task> OnGridRecordClickCallback { get; set; }
+
+    [Parameter] public bool AllowAnyRoute{ get; set; } = false;
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if(AllowAnyRoute)
+            {
+                _dataSource = Assembly.GetEntryAssembly()!
+                   .GetTypes()
+                   .Where(t => t.GetCustomAttributes<RouteAttribute>(inherit: true).Any())
+                   .Select(x => new AggregatePageModel(x))
+                   .ToList();
+            }
+            else if (IsActionButton)
+            {
+                _dataSource = Assembly.GetEntryAssembly()!
+                    .GetTypes()
+                    .Where(t => t.FullName.Contains(".ActionButtons."))
+                    .Select(x => new AggregatePageModel(x))
+                    .ToList();
+            }
+            else if (IsAssemblyTool)
+            {
+                _dataSource = Assembly.GetEntryAssembly()!
+                    .GetTypes()
+                    .Where(t => t.FullName.Contains(".Assemblies.") && !t.FullName.Contains("TypeInference") && !t.FullName.EndsWith("Model"))
+                    .Select(x => new AggregatePageModel(x, isAssembly: true))
+                    .Where(x=> !string.IsNullOrWhiteSpace(x.PageName) && !x.Path!.Contains("+"))
+                    .OrderBy(x=>x.PageName)
+                    .ToList();
+            }
+            else
+            {
+                _dataSource = Assembly.GetEntryAssembly()!
+                    .GetTypes()
+                    .Where(t => t.GetCustomAttributes<RouteAttribute>(inherit: true).Any())
+                    .Select(x => new AggregatePageModel(x))
+                    .Where(x => !x.Path.Contains("cadastro"))
+                    .ToList();
+            }
+
+            this.StateHasChanged();
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+    private async Task GridDataBound()
+    {
+        if (Value != null)
+        {
+            var matchingRecord = _dataSource.FirstOrDefault(x => x.Path == Value);
+
+            if (matchingRecord != null)
+            {
+                await Task.Delay(100); // Adicionar um pequeno atraso para garantir que a grid esteja pronta
+                var index = await gridInstance.GetRowIndexByPrimaryKeyAsync(matchingRecord.Path);
+                gridInstance.SelectedRowIndexes.Clear();
+                gridInstance.SelectedRowIndexes.Add(index);
+            }
+        }
+    }
+
+    private async Task GridRecordClick2(RowSelectEventArgs<AggregatePageModel> args)
+    {
+        //gridInstance.selectcell = new List<double> { gridInstance.SelectedRowIndexes.LastOrDefault() };
+        // await gridInstance.ClearCellSelectionAsync();
+        // await gridInstance.ClearRowSelectionAsync();
+        // Verificar se o elemento selecionado não é nulo
+        if (args.Data != null)
+        {
+            // Atualizar a propriedade Model.Url com o valor Path do elemento selecionado
+            this.Value = args.Data.Path!;
+            await this.ValueChanged.InvokeAsync(this.Value);
+
+            if (this.IsAssemblyTool)
+            {
+                this.Description = $"[{string.Join("",args.Data.PageName.Where(x=>char.IsDigit(x)))}] {this.Value!}";
+                await this.DescriptionChanged.InvokeAsync(this.Description);
+            }
+        }
+
+        if (OnGridRecordClickCallback != null)
+            await OnGridRecordClickCallback(args);
+    }
+}

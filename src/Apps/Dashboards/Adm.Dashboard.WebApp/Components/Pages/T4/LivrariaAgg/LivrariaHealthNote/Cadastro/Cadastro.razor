@@ -1,0 +1,21 @@
+﻿	@page "/LivrariaHealthNote/cadastro"
+@page "/LivrariaHealthNote/cadastro/{id}"
+
+@using Niu.Nutri.Shared.Blazor.Components.Layout
+@using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests
+@using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Validators
+
+@layout MainLayout
+@inherits BaseStepsFormComponent<LivrariaHealthNoteDTO, LivrariaAggSettingsDTO, BaseLivrariaAggValidator<LivrariaHealthNoteDTO>>
+
+<CascadingValue Value="this.Context">
+    <CascadingValue Value="layout">
+        <BaseMainStepsLayout @ref="layout" ModelType="LivrariaHealthNoteDTO" AutoSaveSettings="AutoSaveSettings"
+                             CurrentFragment="this.CurrentFragment"
+                             EnableRightContainer="false"
+                             EditContext="this.EditContext"
+                             OnSubmitForm="this.OnSubmitForm"
+                             OnSubmitFormInvalid="this.OnSubmitFormInvalid"
+                             TValidator="this.TValidator" />
+    </CascadingValue>
+</CascadingValue>

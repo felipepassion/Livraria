@@ -1,0 +1,148 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.Extensions.Logging
+@using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models.Auth
+@using Niu.Nutri.Shared.Blazor.Authentication.Client.Layout
+@using Niu.Nutri.Shared.Blazor.Authentication.Client.Providers
+@using Niu.Nutri.WebApp.Client.Services.Auth
+
+@rendermode RenderMode.InteractiveWebAssembly
+
+@inject IAuthorizeApi authorizeApi
+@inject ILogger<Login> Logger
+@inject NavigationManager navigationManager
+@inject AuthenticationStateProvider authStateProvider
+
+@inherits BaseLoginPage<RegisterParametersDTO, RegisterValidator>
+
+@layout AuthLayout
+
+<PageContainer @ref=base.PageContainer>
+    <ChildContent>
+        <GoBackLink href="/login" />
+        <EditForm EditContext="base.EditContext" FormName="register">
+
+            <FormFluentValidator @ref=_validatorComponent
+                                 EditContext="base.EditContext"
+                                 Validator="this.Validator"
+                                 OnValidSubmit="OnSubmit"
+                OnInvalidSubmit="OnSubmitFormInvalid" />
+
+            <section class="form-input-section">
+                <fieldset>
+                    <TextInput Class="max" 
+                               Label="E-mail" 
+                               Placeholder="Niu@niutech.com"
+                               OnInput="OnUserNameChanged"
+                               Masks="[Masks.Email]"
+                               @bind-Value="@this.Model.UserName" />
+
+                    <div class="input-error">
+                        <ValidationMessage For="@(() => Model.UserName)"></ValidationMessage>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <TextInput Class="max"
+                               Label="Nome"
+                               OnInput="OnNameChanged"
+                               Placeholder="Nome Sobrenome"
+                               @bind-Value="@this.Model.Name" />
+
+                    <div class="input-error">
+                        <ValidationMessage For="@(() => Model.Name)"></ValidationMessage>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <TextInput Class="max"
+                               InputMaxLenght="15"
+                               Label="Nº do celular" 
+                               Placeholder="(00) 00000 - 0000"
+                               @bind-Value="@this.Model.PhoneNumber"
+                               Masks="[Masks.Phone]"
+                               OnInput="OnPhoneChanged" />
+
+                    <div class="input-error">
+                        <ValidationMessage For="@(() => Model.PhoneNumber)"></ValidationMessage>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <TextInput Class="max" 
+                               Type=password 
+                               Label="Senha" 
+                               Placeholder="•••••••••••"
+                               OnInput="OnPasswordChanged"
+                               InputMaxLenght="100"
+                               @bind-Value="@this.Model.Password" />
+
+                    <div class="input-error">
+                        <ValidationMessage For="@(() => Model.Password)"></ValidationMessage>
+                    </div>
+                </fieldset>
+            </section>
+
+            <div class="action-row">
+                <div>
+                    <input id="allrights" type="checkbox" @bind-value="isChecked" />
+                    <label for="allrights">Concordo com os termos e condições</label>
+                </div>
+
+                @if (this._isSubmiting)
+                {
+                    <DefaultButton MobileFullWidth="true">
+                        <Niu.Nutri.Shared.Blazor.Components.GenericComponents.Loading />
+                    </DefaultButton />
+                }
+                else
+                {
+                    <DefaultButton MobileFullWidth="true" Text="Registrar" />
+                }
+            </div>
+        </EditForm>
+    </ChildContent>
+</PageContainer>
+
+@code {
+    async Task OnNameChanged() => await base.OnPropertyChanged(propName: nameof(RegisterParametersDTO.Name));
+    async Task OnPhoneChanged() => await base.OnPropertyChanged(propName: nameof(RegisterParametersDTO.PhoneNumber));
+    async Task OnPasswordChanged() => await base.OnPropertyChanged(propName: nameof(RegisterParametersDTO.Password));    
+    async Task OnUserNameChanged() => await base.OnPropertyChanged(propName: nameof(RegisterParametersDTO.UserName));
+
+    [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
+
+    protected async override Task OnSubmitForm(EditContext editContext)
+    {
+        if (isChecked)
+        {
+            var result = await this.authorizeApi.Register(this.Model);
+
+            if (result.Success)
+            {
+                var customAuthProvider = (CookieAuthenticationStateProvider)authStateProvider;
+                 result = await customAuthProvider.LoginAndGetAuthenticationState(this.Model.UserName,
+                                                                                     this.Model.Password,
+                                                                                     true);
+                if (!result.Success)
+                {
+                    await base.SetErrors(result.Errors.ToList());
+                    return;
+                }
+            }
+            else
+            {
+                await base.SetErrors(result.Errors.ToList().Append("Ocorreu um erro interno ao realizar o registro."));
+                return;
+            }
+            
+
+            navigationManager.NavigateTo("/", true); return;
+        }
+
+        await base.SetErrors(["Para continuar, concorde com os termos e condições."]);
+        StateHasChanged();
+    }
+
+}

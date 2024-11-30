@@ -1,0 +1,60 @@
+﻿@using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests;
+
+@inherits BaseCadastro<LivrariaMealFoodDTO>
+
+<div class="container">
+    <div class="input-group">
+        <div class="input-wrapper">
+            <label>Escolha o alimento</label>
+            <SelectInputAuto Class="mealInput" Placeholder="Digite o nome do alimento" AfterValueChanged="OnChanged" QuerySelector="x=>x.Name" T="TacTableFoodDTO" @bind-Value=Model.TacTableFoodId K="int?" />
+            <button class="search-button"><i class="fa fa-search"></i></button>
+            <ValidationMessage For="@(() => Model.TacTableFoodId)"></ValidationMessage>
+        </div>
+
+        <div class="mealInput-wrapper">
+            <label>Adicione a quantidade</label>
+            <TextInput Class="mealInput"
+                       Placeholder="0"
+                       @bind-Value:after="OnChanged2"
+                       @bind-Value="Model.Quantity" />
+            <span class="mealInput-text">gramas</span>
+        </div>
+
+        <div class="mealInput-wrapper">
+            <label>Total do cálculo</label>
+            <TextInput Class="mealInput"
+                       Placeholder="0"
+                       Disabled="true"
+                       @bind-Value="Model.Calories" />
+            <span class="mealInput-text">calorias</span>
+        </div>
+    </div>
+</div>
+
+@code {
+    protected override Task OnInitializedAsync()
+    {
+        this.CadastroModalContext.ModalTitle = "Adicionar item a lista";
+        return base.OnInitializedAsync();
+    }
+
+    TacTableFoodDTO? currentSelectedFood { get; set; }
+    async Task OnChanged(TacTableFoodDTO model)
+    {
+        currentSelectedFood = model;
+        var valueInGrams = Model.Quantity;
+        Model.Calories = (model.Kcal / 100) * valueInGrams;
+        Model.Name = model.Name;
+        this.Model.Update(model, "Id");
+        this.StateHasChanged();
+    }
+
+    async Task OnChanged2()
+    {
+        if (currentSelectedFood == null) return;
+
+        var valueInGrams = Model.Quantity;
+        Model.Calories = (currentSelectedFood.Kcal / 100) * valueInGrams;
+        this.StateHasChanged();
+    }
+}

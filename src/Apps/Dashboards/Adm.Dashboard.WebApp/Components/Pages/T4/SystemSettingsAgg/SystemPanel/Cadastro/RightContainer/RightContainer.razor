@@ -1,0 +1,70 @@
+﻿@inherits BaseRightContainer
+
+@using Microsoft.AspNetCore.SignalR.Client
+@using Niu.Nutri.Shared.Blazor.Components.GenericComponents
+@using Niu.Nutri.Shared.Blazor.Forms.Contexts
+@using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models;
+@using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.ValueObjects;
+@using Niu.Nutri.Shared.Blazor.Forms.RightContainer
+@using Niu.Nutri.Shared.Blazor.Sidebar.Contexts
+@using Niu.Nutri.Users.Application.DTO.Aggregates.SystemSettingsAgg.Requests;
+
+<aside class="aside-rightContainer-paineis-system">
+    <div class="grupo-rightcontainers">
+        <div class="titulos-rightcontainer">
+            <div class="titulo-rightcontainer">System Menu</div>
+        </div>
+        <div class="rightcontainer-conteudo">
+            <div class="conteudo-colunas">
+                @if (RightContext != null)
+                {
+                    <RightContainerMenus RightContext="RightContext" @ref="group" />
+                }
+                else
+                {
+                    <Loading/>
+                }
+            </div>
+        </div>
+    </div>
+</aside>
+
+@code {
+    RightContainerMenus group;
+    HubConnection hubConnection;
+    [Inject] NavigationManager NavigationManager { get; set; }
+
+    public async override Task RefreshMe()
+    {
+        await group?.OnFragmentUpdated();
+        this.StateHasChanged();
+        if (RightContext?.GroupRefreshActions?.Any() == true)
+        {
+            foreach (var item in RightContext.GroupRefreshActions)
+            {
+                item.Value();
+            }
+        }
+    }
+
+    [Inject] HttpClient _client { get; set; }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (this.ModalContext?.Model is not null)
+        {
+            if (RightContext == null)
+            {
+                RightContext = new GenericRightContainerContext(RefreshMe, null, Modal);
+              
+                this.StateHasChanged();
+            }
+            //else if (RightContext?.Model?.Id != Model?.Id)
+            //{
+            //   // RightContext.Model = Model;
+            //    this.StateHasChanged();
+            //}
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}

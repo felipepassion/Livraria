@@ -1,0 +1,7 @@
+﻿@page "/login/codigo-verificacao/token/{UserName}"
+
+<Niu.Nutri.Shared.Blazor.Authentication.Client.Components.TokenChangePassword UserName="@this.UserName" />
+
+@code {
+    [Parameter] public required string UserName { get; set; }
+}

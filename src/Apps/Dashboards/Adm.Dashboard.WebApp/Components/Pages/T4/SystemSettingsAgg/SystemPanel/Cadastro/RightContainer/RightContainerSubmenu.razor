@@ -1,0 +1,285 @@
+﻿@using Microsoft.AspNetCore.SignalR.Client
+@using Niu.Nutri.Core.Application.DTO.Extensions
+@using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses
+@using Niu.Nutri.CrossCuting.Infra.Utils.Extensions
+@using Niu.Nutri.Shared.Blazor.Components.GenericComponents
+@using Niu.Nutri.Shared.Blazor.Forms.RightContainer
+@using Niu.Nutri.Shared.Blazor.Forms.Templates.RegisterStepsTemplate.Contexts
+@using Niu.Nutri.Shared.Blazor.Sidebar.Contexts
+@using Niu.Nutri.SystemSettings.Application.DTO.Aggregates.SystemSettingsAgg.Requests;
+@using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models;
+@using Syncfusion.Blazor.Navigations;
+
+<div class="rightcontainer-submenu-panel">
+    @if (SubPaineis == null || !IsReady)
+    {
+        <Loading />
+    }
+    else
+    {
+        @if (SubPaineis?.Count == 0)
+        {
+            <div class="rightcontainer-nenhum-item">
+                <p class="right-container-alerta">Nenhum submenu foi cadastrado</p>
+                <p class="right-container-alerta">
+                    Caso deseje cadastrar um submenu, clique no botão
+                    <span class="enfase">+</span> localizado no menu
+                </p>
+            </div>
+        }
+        else
+        {
+            <SfAccordion ExpandMode="ExpandMode.Single"
+                         @ref=MySfAccordion>
+                <AccordionItems>
+                    @foreach (var item in this.SubPaineis)
+                    {
+                        <AccordionEvents Collapsed="OnCollapsed"
+                                         Collapsing="OnCollapsing"
+                                         Expanded="async (x) => await OnclickHandler(x)"> </AccordionEvents>
+
+                        <AccordionItem Id="@SubPaineis.IndexOf(item).ToString()"
+                                       CssClass="container-menu"
+                                       Expanded="IsMeSelected(item)">
+                            <HeaderTemplate>
+                                <HeaderRightContainerSystemPanel Model="item"
+                                                                 T="SystemPanelSubItemDTO"
+                                                                 ShowActionButtons="IsMeSelected(item)"
+                                                                 DisableAddButton="item.LinkDireto"
+                                                                 RightContext="this.RightContext"
+                                                                 OnDeletePanelClicked="this.OnDeleteSubPanelClicked"
+                                                                 OnCreatePanelClicked="this.OnCreateSubPanelClicked"
+                                                                 @bind-Description="item.Description">
+                                </HeaderRightContainerSystemPanel>
+                            </HeaderTemplate>
+                            <ContentTemplate>
+                                @if (Model == null)
+                                {
+                                    <Loading />
+                                }
+                                else
+                                {
+                                    @if (IsMeSelected(item))
+                                    {
+                                        if (item.LinkDireto)
+                                        {
+                                            <p>Direct link: /@item.Url</p>
+                                        }
+                                        else
+                                        {
+                                            <RightContainerSubmenuItems Parent="item" @ref=myPage
+                                                                        Sidebar="this.Sidebar"
+                                                                        RightContext="RightContext"
+                                                                        Grupo="grupo" />
+                                        }
+                                    }
+                                }
+                            </ContentTemplate>
+                        </AccordionItem>
+                    }
+                </AccordionItems>
+            </SfAccordion>
+        }
+    }
+</div>
+
+@code {
+    /// <summary>
+    /// Atributos
+    /// </summary>
+    #region
+    bool IsReady = false;
+    bool initialized = false;
+    int? myParentId { get; set; }
+    public bool _isFilial { get; set; }
+
+    public IActivableEntityDTO Model => ModalContext?.Model as IActivableEntityDTO;
+
+    //NavMenu Sidebar => this.sidebarContext.Sidebar;
+    [Parameter] public required SidebarContext Sidebar { get; set; }
+
+    public List<SystemPanelSubItemDTO> SubPaineis { get; set; }
+
+    [Inject] HttpClient _http { get; set; }
+    [Inject] NavigationManager _navigation { get; set; }
+    //[Inject] SidebarContext sidebarContext { get; set; }
+
+    SfAccordion MySfAccordion { get; set; }
+    HashSet<RightContainerSubmenuItems> Filiais = new HashSet<RightContainerSubmenuItems>();
+
+    [CascadingParameter] ModalContext ModalContext { get; set; }
+
+    [Parameter] public string? Id { get; set; }
+    [Parameter] public int? ElementsCount { get; set; }
+    [Parameter] public SystemPanelDTO grupo { get; set; }
+    [Parameter] public EventCallback<int> ElementsCountChanged { get; set; }
+    [Parameter] public GenericRightContainerContext RightContext { get; set; }
+    #endregion
+
+    [Inject] IJSRuntime meuPortalJavascript { get; set; }
+    HubConnection hubConnection;
+    [Inject] NavigationManager NavigationManager { get; set; }
+
+    /// <summary>
+    /// Eventos padrões do Blazor
+    /// </summary>₢
+    #region Eventos
+
+    bool IsMeSelected(SystemPanelSubItemDTO item)
+        => grupo?.Id.HasValue == true && Model?.Active == true && Model?.ExternalId?.Equals(item.ExternalId) == true || (Model as SystemPanelSubItemDTO)?.SystemPanelSubItemId == item.Id;
+
+    async Task OnItemClicked(AccordionClickArgs args)
+    {
+        if (int.TryParse(args?.Item?.Id, out var index))
+        {
+            var me = this.SubPaineis?.ElementAtOrDefault(index);
+            if (me == null) return;
+
+            if (this.RightContext.IsMouseHoverPlusBtn)
+                if (this.RightContext.IsMouseHoverTrashBtn)
+                    await OnDeleteSubPanelClicked(me);
+        }
+    }
+
+    public async Task OnCreateSubPanelClicked()
+    {
+        if (myPage is not null) await myPage.OnCreateSubElementClicked();
+        await this.Sidebar.Sidebar.RefreshElements();
+        //await hubConnection.SendAsync("UpdateMenuItems", this.grupo);
+    }
+
+    public async Task OnDeleteSubPanelClicked(SystemPanelSubItemDTO item)
+    {
+        var result = await _http.DeleteEntityAsync<SystemPanelSubItemDTO>(x => x.ExternalId == item.ExternalId);
+        if (result.Success)
+        {
+            this.IsReady = false;
+
+            await this.RightContext.OnSubItemClicked<SystemPanelDTO>(grupo);
+
+            //await this.Sidebar.RefreshElements();
+            this.initialized = false;
+            this.SubPaineis = null;
+            this.RightContext.IsMouseHoverTrashBtn = false;
+            await this.Sidebar?.Sidebar?.RefreshElements();
+
+            await InvokeAsync(this.StateHasChanged);
+        }
+    }
+
+    public async Task OnclickHandler(ExpandedEventArgs args)
+    {
+        var panel = this.SubPaineis.ElementAt(args.Index);
+        await this.RightContext.OnSubItemClicked<SystemPanelSubItemDTO>(panel);
+        //await hubConnection.SendAsync("OpenSidebarSubMenu", panel);
+
+        //this.sidebarContext.Sidebar.Open(panel);
+    }
+
+    public async Task OnCollapsed(CollapsedEventArgs args)
+    {
+        // if (args.Index >= this.SubPaineis.Count || (this.RightContext.IsHoverAnyButton)) return;
+
+        // var me = this.SubPaineis[args.Index];
+
+        // if (me.ExternalId != RightContext.SubItemClickedId)
+        // {
+        //     await this.RightContext.OnSubItemClicked<SystemPanelSubItemDTO>
+        //         (this.SubPaineis.ElementAt(args.Index));
+        // }
+    }
+
+    public void OnCollapsing(CollapseEventArgs args)
+    {
+        args.Cancel = this.RightContext.IsHoverAnyButton;
+    }
+    #endregion
+
+    public void CloseAll()
+    {
+        //SubPaineis = null;
+        //initialized = false;
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!initialized && grupo?.Active == true && grupo.Id.HasValue)
+        {
+            initialized = true;
+            if (SubPaineis == null)
+            {
+                var query = $@"{new SystemPanelSubItemDTO().GetRoute()}/search?{nameof(SystemPanelSubItemDTO.IsSubItem)}Equal=false&{nameof(SystemPanelSubItemDTO.SystemPanelId)}Equal={grupo?.Id}&OrderBy=CreatedAt&size=100";
+
+                SubPaineis = (await _http.GetFromJsonAsync<GetHttpResponseDTO<List<SystemPanelSubItemDTO>>>(query))?.Data;
+                ElementsCount = SubPaineis.Count;
+
+                this.IsReady = true;
+                await InvokeAsync(this.StateHasChanged);
+
+            }
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    async Task RefreshCount()
+    {
+        //ElementsCount = int.TryParse((await _http.GetFromJsonAsync<GetHttpResponseDTO>(
+        //        $"{new SystemPanelSubItemDTO().GetRoute()}/count?{nameof(SystemPanelSubItemDTO.SystemPanelId)}Equal={grupo?.Id}"))?.Data.ToString(), out var val) ? val : ElementsCount;
+        //await this.ElementsCountChanged.InvokeAsync(this.ElementsCount);
+        //await Task.Run(StateHasChanged);
+    }
+
+    public async Task RefreshLayout()
+    {
+        if (Model is SystemPanelSubItemDTO model)
+        {
+            SubPaineis.FirstOrDefault(x => x.IsCreated && x.Id == model.Id)?.Update(model);
+            await Sidebar.Sidebar.UpdateSubModel(model);
+            await myPage?.RefreshMe();
+        }
+        await InvokeAsync(StateHasChanged);
+    }
+
+    RightContainerSubmenuItems myPage = null;
+
+    public async Task OnDeleteSubPanelClicked()
+    {
+        var result = await _http.DeleteEntityAsync<SystemPanelSubItemDTO>(x => x.ExternalId == this.grupo.ExternalId);
+    }
+
+    public async Task OnCreatePanelClicked()
+    {
+        int.TryParse((await _http.GetFromJsonAsync<GetHttpResponseDTO>(
+            $"{new SystemPanelSubItemDTO().GetRoute()}/count?{nameof(SystemPanelSubItemDTO.IsSubItem)}Equal=false&{nameof(SystemPanelSubItemDTO.SystemPanelId)}Equal={grupo?.Id}"))?.Data.ToString(), out var total);
+
+        total++;
+
+        var newCompany = new SystemPanelSubItemDTO
+            {
+                Description = $"sub-{grupo.Description}-{total}",
+                SystemPanelId = grupo.Id.Value,
+                ExternalId = Guid.NewGuid().ToString(),
+                IsSubItem = false,
+                Active = true,
+                Position = (total - 1)
+            };
+
+        var result = await _http.PostAsJsonAsync<SystemPanelSubItemDTO>(new SystemPanelSubItemDTO().GetRoute(), newCompany);
+        if (result.StatusCode == System.Net.HttpStatusCode.OK)
+        {
+            this.SubPaineis.Insert(0, newCompany);
+            this.RightContext.IsGroupClicked = false;
+            this.RightContext.SubItemId = newCompany.ExternalId;
+
+            //await SubItemsContainer.RefreshMe();
+            //this.Model = newCompany;
+            //this.Context.ChangeStep(this.Context.CurrentStep);
+            //_navigation.NavigateTo($"/{new SystemPanelSubItemDTO().GetMyTypeName()}/cadastro/{newCompany.ExternalId}");
+            this.initialized = false;
+            this.SubPaineis = null;
+            await RightContext.OnSubItemClicked<SystemPanelSubItemDTO>(newCompany, forceNavigation: true);
+            await InvokeAsync(this.StateHasChanged);
+        }
+    }
+}

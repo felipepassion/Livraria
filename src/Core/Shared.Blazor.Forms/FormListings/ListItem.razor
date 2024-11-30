@@ -1,0 +1,35 @@
+﻿@using Niu.Nutri.CrossCuting.Infra.Utils.Extensions
+
+<table class="table">
+    <thead>
+        <tr>
+            @{
+                var props = Obj.First().ExtractProperties().Select(x=>x.Name);
+            }
+            @foreach (var item in props)
+            {
+                <th>@item</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Obj)
+        {
+            extractedValues = item.ExtractValues();
+            <tr>
+                @foreach (var item2 in extractedValues)
+                {
+                    <td>@item2.Value</td>
+                }
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public IEnumerable<object> Obj { get; set; }
+    
+    IEnumerable<KeyValuePair<string, object>> extractedValues;
+}

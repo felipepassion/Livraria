@@ -1,0 +1,178 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization;
+@using Newtonsoft.Json;
+@using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models;
+@using Niu.Nutri.Core.Application.DTO.Extensions
+@using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+@using Niu.Nutri.Users.Application.DTO.Aggregates.UsersAgg.Requests;
+
+@inject NavigationManager navigationManager
+
+@rendermode RenderMode.InteractiveServer
+
+<div class="profilesWrapper">
+    @if (this.CachedUserSession?.AllMyAccesses == null)
+    {
+        <Loading />
+    }
+    else
+    {
+        <h1>Select an account</h1>
+        @if (SelectedAccess != null)
+        {
+            <div class="profilesContainer">
+                <!-- Your dynamic elements -->
+                @foreach (var profile in SelectedAccess.UserProfiles)
+                {
+                    <input type="radio" class="profile_radio" name="profile" id="@profile.Description" @onchange="() => OnProfileSelected(profile)">
+                    <label for="@profile.Description" class="profile">@profile.Description</label>
+                }
+            </div>
+            <button class="buttonPrimary" @onclick="async ()=> await selectedProfileAccess(CurrentSelectedProfile)">Select</button>
+        }
+    }
+</div>
+
+@code {
+    [Inject] UserCurrentAccessSelectedDTO userCurrentAccess { get; set; } = default!;
+    [Inject] UserCurrentAccessSelectedDTO CachedUserSession { get; set; } = default!;
+    [Inject] HttpClient _http { get; set; } = default!;
+
+    UserProfileListDTO SelectedAccess => this.CachedUserSession?.AllMyAccesses?.FirstOrDefault();
+
+    private bool activeSelection = false;
+
+    [Parameter] public required Func<Task> OnFinishCallback { get; set; }
+
+    string? myId;
+
+    public class Identificacao
+    {
+        public bool ShowGrupoEmpresa { get; set; } = false;
+        public bool GrupoEmpresa { get; set; } = false;
+        public int CountGrupoEmpresa { get; set; }
+        public bool ShowEmpresa { get; set; } = false;
+        public bool Empresa { get; set; } = false;
+        public int CountEmpresa { get; set; }
+        public bool ShowFilial { get; set; } = false;
+        public bool Filial { get; set; } = false;
+        public int CountFilial { get; set; }
+        public bool ShowProfiles { get; set; } = false;
+    }
+
+    public Identificacao identificacao { get; set; }
+
+    private void loadingLoginAccess()
+    {
+        identificacao = new Identificacao();
+
+        Processa();
+    }
+
+    public void Processa()
+    {
+        switch (identificacao)
+        {
+            case Identificacao { GrupoEmpresa: true, Empresa: false, Filial: false }:
+                identificacao.ShowGrupoEmpresa = false;
+                identificacao.ShowProfiles = true;
+                break;
+            case Identificacao { GrupoEmpresa: false, Empresa: true, Filial: false }:
+                identificacao.ShowEmpresa = false;
+                identificacao.ShowProfiles = true;
+                break;
+            case Identificacao { GrupoEmpresa: false, Empresa: false, Filial: true }:
+                identificacao.ShowFilial = false;
+                identificacao.ShowProfiles = true;
+                break;
+            case Identificacao { GrupoEmpresa: true, Empresa: true, Filial: false }:
+                identificacao.ShowGrupoEmpresa = true;
+                identificacao.ShowEmpresa = true;
+                identificacao.ShowProfiles = false;
+                break;
+            case Identificacao { GrupoEmpresa: true, Empresa: false, Filial: true }:
+                identificacao.ShowGrupoEmpresa = true;
+                identificacao.ShowFilial = true;
+                identificacao.ShowProfiles = false;
+                break;
+            case Identificacao { GrupoEmpresa: false, Empresa: true, Filial: true }:
+                identificacao.ShowEmpresa = true;
+                identificacao.ShowFilial = true;
+                identificacao.ShowProfiles = false;
+                break;
+            case Identificacao { GrupoEmpresa: true, Empresa: true, Filial: true }:
+                identificacao.ShowGrupoEmpresa = true;
+                identificacao.ShowEmpresa = true;
+                identificacao.ShowFilial = true;
+                identificacao.ShowProfiles = false;
+                break;
+            default:
+                // lógica padrão
+                break;
+        }
+    }
+
+    async Task OnInstituicaoSelected(ChangeEventArgs e)
+    {
+        var selectedId = e.Value.ToString();
+        await InvokeAsync(this.StateHasChanged);
+    }
+
+    public async Task selectedProfileAccess(UserProfileDTO profile)
+    {
+        if (profile == null) return;
+
+        var authState = await authenticationStateTask;
+        var user = authState.User;
+        var me = (await _http.GetFromJsonAsync<GetHttpResponseDTO<UserDTO>>($"api/user?IdEqual={user.GetUserId()}"))?.Data;
+
+        this.userCurrentAccess = me.SelectedAccess;
+
+        if (this.userCurrentAccess.ExternalId == null)
+            this.userCurrentAccess.ExternalId = Guid.NewGuid().ToString();
+
+        this.userCurrentAccess.Id = me.Id;
+        this.userCurrentAccess.UserProfileId = profile.Id.Value;
+
+        var result = await _http.CreateAsync<UserCurrentAccessSelectedDTO>(this.userCurrentAccess);
+
+        if (result.StatusCode == System.Net.HttpStatusCode.OK)
+        {
+            CachedUserSession.UserProfile = profile;
+            CachedUserSession.User = me;
+
+            await InvokeAsync(this.StateHasChanged);
+            this.navigationManager.Refresh(forceReload: true);
+
+            //await this.OnFinishCallback();
+            // usuário com acesso salvo com sucesso...
+        }
+    }
+
+    async Task UpdateInstituicoesList()
+    {
+        await InvokeAsync(this.StateHasChanged);
+    }
+
+    private UserProfileDTO CurrentSelectedProfile;
+
+    private void OnProfileSelected(UserProfileDTO profile)
+    {
+        CurrentSelectedProfile = profile;
+    }
+
+
+
+    [CascadingParameter] private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        var authState = await authenticationStateTask;
+        var user = authState.User;
+        this.myId = user.GetUserId();
+
+        this.CachedUserSession.AllMyAccesses = (await _http.SearchAsync<UserProfileListDTO>(route: $"get-my-companies/{myId}")).Data;
+        loadingLoginAccess();
+        await InvokeAsync(this.StateHasChanged);
+        await base.OnInitializedAsync();
+    }
+}

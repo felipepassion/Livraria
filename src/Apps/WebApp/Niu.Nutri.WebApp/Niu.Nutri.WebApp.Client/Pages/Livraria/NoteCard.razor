@@ -1,0 +1,26 @@
+﻿@using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests
+
+<div class="note-card" @onclick="@(()=>_navigationManager.NavigateTo($"Diario/{Note.ExternalId}/Detalhes"))">
+    <span class="note-date">@Note.CreatedAt?.ToString("dd/MM")</span>
+    <span class="note-description">@Note.Description</span>
+    <div class="note--details">
+        <div class="note--details-item">
+            <span>Idas ao banheiro </span>
+            <span>@Note.BathroomTrips</span>
+        </div>
+        <div class="note--details-item">
+            <span>Calorias</span>
+            <span>@Note.Calories kcal</span>
+        </div>
+        <div class="note--details-item">
+            <span>Água</span>
+            <span>@Note.TotalWaterInTakeInL Litros</span>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject] NavigationManager _navigationManager { get; set; } = default!;
+
+    [Parameter] public LivrariaHealthNoteDTO Note { get; set; } = default!;
+}

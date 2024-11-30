@@ -1,0 +1,264 @@
+﻿@inherits BaseRightContainerChild<SystemPanelDTO>
+
+@using Niu.Nutri.Core.Application.DTO.Extensions
+@using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses
+@using Niu.Nutri.CrossCuting.Infra.Utils.Extensions
+@using Niu.Nutri.Shared.Blazor.Components.GenericComponents
+@using Niu.Nutri.Shared.Blazor.Forms.RightContainer
+@using Niu.Nutri.Shared.Blazor.Forms.Templates.RegisterStepsTemplate.Contexts
+@using Niu.Nutri.Shared.Blazor.Sidebar.Contexts
+@using Niu.Nutri.SystemSettings.Application.DTO.Aggregates.SystemSettingsAgg.Requests;
+@using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models;
+@using Microsoft.AspNetCore.SignalR.Client;
+@using Syncfusion.Blazor.Navigations;
+@using Syncfusion.Blazor.Lists;
+
+<div class="rightcontainer-menu-panel">
+    @if (MyGroup == null)
+    {
+        if (Model is SystemPanelDTO && initialized)
+        {
+            <p>Not Binded +</p>
+        }
+    }
+    else if (!IsReady)
+    {
+        <Loading />
+    }
+    else
+    {
+        <div class="rightcontainer-accordeon-menu-panel">
+            <SfAccordion ExpandMode="ExpandMode.Single">
+                <AccordionItems>
+                    @foreach (var panel in new SystemPanelDTO[] { MyGroup })
+                    {
+                        <AccordionEvents Expanding="OnExpanding"
+                                         Collapsing="OnCollapsing"
+                                         Collapsed="async (x) => await OnclickHandler(x,panel)"> </AccordionEvents>
+
+                        <AccordionItem CssClass="container-menu"
+                                       Expanded="_isExpanded">
+                            <HeaderTemplate>
+                                @if (_grupo != null)
+                                {
+                                    <HeaderRightContainerSystemPanel RightContext="RightContext"
+                                                                     ShowActionButtons=true
+                                                                     OnDeletePanelClicked="this.OnDeletePanelClicked"
+                                                                     OnCreatePanelClicked="this.OnCreatePanelClicked"
+                                                                     T="SystemPanelDTO"
+                                                                     Model="_grupo"
+                                                                     @bind-Description="@_grupo.Description" />
+                                }
+                            </HeaderTemplate>
+                            <ContentTemplate>
+                                @if (MyGroup != null)
+                                {
+                                    if (MyGroup?.Active.HasValue == true && MyGroup?.Id.HasValue == true)
+                                    {
+                                        <RightContainerSubmenu grupo="MyGroup"
+                                                               Sidebar="this.Sidebar"
+                                                               RightContext="RightContext"
+                                                               @ref="SubItemsContainer" />
+                                    }
+                                    else
+                                    {
+                                        <p>Finish the PANEL registration before add new bindings</p>
+                                    }
+                                }
+                                else
+                                {
+                                    <Loading />
+                                }
+                            </ContentTemplate>
+                        </AccordionItem>
+                    }
+                </AccordionItems>
+            </SfAccordion>
+        </div>
+    }
+</div>
+
+@code
+{
+    bool IsReady;
+    [Inject] public required SidebarContext Sidebar { get; set; }
+    //NavMenu Sidebar => this.sidebarContext.Sidebar;
+    [Inject] NavigationManager NavigationManager { get; set; }
+
+    bool _isExpanded = true;
+    bool ISExpanded
+    {
+        get { return _isExpanded; }
+        set { _isExpanded = value; }
+    }
+
+    bool initialized;
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!initialized && Model != null && RightContext != null && _grupo == null)
+        {
+            initialized = true;
+            var uri = _navigation.ToAbsoluteUri(_navigation.Uri);
+            string myId = "";
+            if (Model is SystemPanelDTO model)
+            {
+                RightContext.GroupClickedId = model.ExternalId;
+                _grupo = model;
+            }
+            else
+            {
+                var subItem = Model as SystemPanelSubItemDTO;
+                if (subItem != null)
+                {
+                    RightContext.SubItemId = subItem.ExternalId;
+
+                    _grupo = (await _http.GetFromJsonAsync<GetHttpResponseDTO<SystemPanelDTO>>($"{new SystemPanelDTO().GetRoute()}?IdEqual={subItem.SystemPanelId}&OrderBy=CreatedAt"))?.Data!;
+
+                    if (subItem.IsSubItem == true)
+                    {
+                        RightContext.SubItemClickedId = subItem.ExternalId;
+                        SubItemsContainer?.RefreshLayout();
+                    }
+                }
+                RightContext.IsGroupClicked = true;
+            }
+
+            if (ModalContext.Metadata.ContainsKey("MyGroup"))
+                ModalContext.Metadata["MyGroup"] = MyGroup.Description;
+            else
+                ModalContext.Metadata.Add("MyGroup", MyGroup.Description);
+
+            IsReady = true;
+
+            await InvokeAsync(this.StateHasChanged);
+
+            if (ISExpanded)
+            {
+                //await this.Sidebar.Open(_grupo!);
+            }
+        }
+
+        if (!ISExpanded && (RightContext.IsGroupClicked || RightContext.IsSubItemClicked))
+        {
+            this.ISExpanded = true;
+            this.StateHasChanged();
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    async Task RefreshItems()
+    {
+        foreach (var item in RightContext.GroupRefreshActions)
+        {
+            item.Value.Invoke();
+        }
+    }
+
+    public async override Task OnFragmentUpdated()
+    {
+        try
+        {
+            if (Model is SystemPanelDTO model)
+            {
+                _grupo.Update(model);
+                await this.Sidebar.Sidebar.UpdateModel(model);
+                // await base.OnFragmentUpdated();
+            }
+            foreach (var x in RightContext.GroupRefreshActions)
+            {
+                x.Value?.Invoke();
+            }
+            await SubItemsContainer?.RefreshLayout();
+            await Task.Run(this.StateHasChanged);
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+
+    public async Task OnCollapsing(CollapseEventArgs args)
+    {
+        args.Cancel = this.RightContext.IsHoverAnyButton;
+        if (!args.Cancel)
+        {
+            if (this.RightContext.IsSubItemClicked && !this.RightContext.IsGroupClicked)
+            {
+                args.Item.Expanded = false;
+                args.Cancel = true;
+                if (await this.RightContext.OnGroupClicked<SystemPanelDTO>(this.MyGroup))
+                {
+                }
+            }
+        }
+    }
+
+    public void OnExpanding(ExpandEventArgs args)
+    {
+        //args.Cancel = true;
+    }
+
+    async Task OnItemClicked(AccordionClickArgs args)
+    {
+        //if (this.RightContext.IsMouseHoverPlusBtn)
+        //await SubItemsContainer.OnCreatePanelClicked();
+        //if (this.RightContext.IsMouseHoverTrashBtn)
+        //await OnDeletePanelClicked();
+    }
+
+    public async Task OnCreatePanelClicked()
+    {
+        if (SubItemsContainer is not null) await SubItemsContainer.OnCreatePanelClicked();
+
+        await this.Sidebar?.Sidebar?.RefreshElements();
+    }
+
+    public async Task OnDeletePanelClicked(SystemPanelDTO panel)
+    {
+        if (MyGroup != null)
+        {
+            var result = await _http.DeleteEntityAsync<SystemPanelDTO>(x => x.ExternalId == this.MyGroup.ExternalId);
+            if (result.Success)
+            {
+                await this.ModalContext.RefreshListingContainer?.Invoke()!;
+                this.ModalContext.CloseModal();
+                await this.Sidebar.Sidebar.Close();
+                await this.Sidebar.Sidebar.UpdateSubModel();
+                await this.Sidebar?.Sidebar?.RefreshElements();
+                await InvokeAsync(this.StateHasChanged);
+            }
+        }
+    }
+
+    public async Task OnclickHandler(CollapsedEventArgs args, SystemPanelDTO panel)
+    {
+        //if (await this.RightContext.OnGroupClicked<SystemPanelDTO>(panel))
+        //{
+        //    SubItemsContainer?.CloseAll();
+        //}
+        //
+        //if (!args.Item.Expanded)
+        //{
+        //    args.Item.Expanded = this.RightContext.IsSubItemClicked || this.RightContext.IsGroupClicked;
+        //}
+        //_isExpanded = true;
+        //
+        //await this.Sidebar.Open(panel);
+        //
+        //this.StateHasChanged();
+    }
+
+    SystemPanelDTO _grupo;
+    SystemPanelDTO MyGroup { get { return (ModalContext.Model as SystemPanelDTO ?? _grupo); } }
+
+    [Parameter] public GenericRightContainerContext RightContext { get; set; }
+    RightContainerSubmenu? SubItemsContainer { get; set; }
+    [CascadingParameter] ModalContext ModalContext { get; set; }
+    public IEntityDTO Model => ModalContext?.Model;
+
+    int? ElementsCount { get; set; }
+    [Inject] HttpClient _http { get; set; }
+    [Inject] NavigationManager _navigation { get; set; }
+}

@@ -1,0 +1,68 @@
+﻿
+
+
+.rightcontainer-accordeon-menu-panel ::deep .e-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: none !important;
+}
+
+.rightcontainer-accordeon-menu-panel ::deep .e-acrdn-item .e-acrdn-header:focus,
+.rightcontainer-accordeon-menu-panel ::deep .e-acrdn-item.e-selected > .e-acrdn-header:focus {
+    box-shadow: none !important;
+}
+
+.rightcontainer-accordeon-menu-panel ::deep .e-acrdn-item.e-select.e-expand-state > .e-acrdn-header,
+.rightcontainer-accordeon-menu-panel ::deep .e-acrdn-item.e-selected.e-select > .e-acrdn-header {
+    background: rgb(140, 129, 247, 30%) !important;
+}
+
+.rightcontainer-accordeon-menu-panel ::deep .e-acrdn-header {
+    display: flex;
+    gap: 5px;
+    border-width: 0px !important;
+    border-width: 0 !important;
+    padding: 5px 10px !important;
+    margin: 0px !important;
+    border: 1px solid #d9d9d9 !important;
+}
+
+.rightcontainer-accordeon-menu-panel ::deep .e-acrdn-header:hover {
+    background-color: rgb(140 129 247 / 80%);
+    transition: 0.5s;
+}
+
+.rightcontainer-accordeon-menu-panel ::deep .e-active {
+    border-width: 0px !important;
+    border-color: transparent !important;
+}
+
+.rightcontainer-accordeon-menu-panel ::deep .e-active > .e-acrdn-header {
+    border-width: 0px !important;
+    border-width: 0 !important;
+    padding: 5px 10px !important;
+    margin: 0px !important;
+    background: rgb(140, 129, 247, 30%) !important;
+}
+
+.rightcontainer-accordeon-menu-panel ::deep .e-acrdn-header-content {
+    display: flex;
+    width: 100%;
+}
+
+.rightcontainer-accordeon-menu-panel ::deep .e-acrdn-item.e-selected > .e-acrdn-panel .e-acrdn-content {
+    padding: 5px 0px 5px 20px !important; 
+}
+
+::deep .rightcontainer-accordeon-menu-panel .e-toggle-icon {
+    display: flex !important;
+    height: 100% !important;
+    width: auto !important;
+    place-self: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    align-items: center !important;
+    right: 0px !important;
+}
+

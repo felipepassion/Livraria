@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>Niu.Nutri.Shared.Blazor.Sidebar</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Remove="_Imports.razor" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.8" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.8" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.8" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="8.0.8" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\SystemSettings\SystemSettings.Application.DTO\SystemSettings.Application.DTO.csproj" />
+		<ProjectReference Include="..\..\Users\Users.Application.DTO\Users.Application.DTO.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<UpToDateCheckInput Remove="_Imports.razor" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<_ContentIncludedByDefault Remove="_Imports.razor" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="_Imports.razor" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Controllers\" />
+	</ItemGroup>
+
+</Project>

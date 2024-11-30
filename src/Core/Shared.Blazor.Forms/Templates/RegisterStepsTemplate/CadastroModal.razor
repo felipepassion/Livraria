@@ -1,0 +1,96 @@
+﻿@using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models
+@using Niu.Nutri.Shared.Blazor.Components.Modal
+@using Niu.Nutri.Shared.Blazor.Forms.Templates.RegisterStepsTemplate.Contexts
+
+@inherits BaseFormModal
+
+@if (IsOpen)
+{
+    <div class="modal-popup" id="modal_@MyId" tabindex="0">
+        <div class="container-modal">
+            <div class="corpo-modal">
+                <CascadingValue Value=this>
+                    <CascadingValue Value="this.ModalContext">
+                        @if (ChildFragment == null)
+                        {
+                            <Loading />
+                        }
+                        else
+                        {
+                            <div class="conteudo-modal">
+                                <div class="header-modal">
+                                    <div class="btn-closemodal close-modal_@MyId" @onclick=Close>
+                                        <img src="images/icons/close-icon.png" class="icon-fechar-modal" name="IconName.Close" @attributes="iconBtnFechar"></img>
+                                    </div>
+                                    <StepsHeaderTitleContainer Context="this.ModalContext" @ref=this.HeaderLayoutContent />
+                                    @if (!HideHeaderButtons)
+                                    {
+                                    }
+                                </div>
+
+                                <div class="body-modal">
+                                    @ChildFragment
+                                </div>
+                                <div class="footer-modal">
+                                    <StepsNextAndBackButtons HideNavigationButtons=HideNavigationButtons @ref=this.NextAndBackButtonsContainer />
+                                    <a style="display:none" id="btn_@MyId" href="#modal_@MyId">Abrir Modal</a>
+                                </div>
+                            </div>
+                        }
+                        @if (EnableRightContainer)
+                        {
+                            <div class="container-rightContainer">
+                                <div class="container-conteudo-rightContainer">
+                                    @RightContainer
+                                </div>
+                            </div>
+                        }
+                    </CascadingValue>
+                </CascadingValue>
+            </div>
+        </div>
+    </div>
+
+}
+
+@code {
+    Guid? guid;
+
+    bool needRefreshOtherComponents;
+
+    public Func<Task> PaginationLayoutRefresh;
+
+    public void RefreshChildFragment(RenderFragment body)
+    {
+        //this.ChildFragment = body;
+        //Task.Run(this.StateHasChanged);
+    }
+
+    public override void Close()
+    {
+        //this.ModalContext.Model = null;
+        this.RightContainer = null;
+        this.ChildFragment = null;
+        this.ModalContext.StepsContext = null;
+        this.ModalContext.Model = null;
+        this.HeaderLayoutContent?.RefreshMe();
+        this.NextAndBackButtonsContainer?.RefreshMe();
+        base.Close();
+    }
+
+    public override void InitializeModel(IEntityDTO model, StepsContext stepsContext)
+    {
+        this.ModalContext.RefreshListingContainer = this.PaginationLayoutRefresh;
+        base.InitializeModel(model, stepsContext);
+    }
+
+    public void RenderFormContent(Type fragmentType, Type rightContainerType, IEntityDTO context, Func<Task> paginationLayoutRefresh)
+    {
+        this.PaginationLayoutRefresh = this.ModalContext.RefreshListingContainer = paginationLayoutRefresh;
+        base.RenderFormContent(fragmentType, rightContainerType, context);
+        if (paginationLayoutRefresh != null)
+        {
+            InvokeAsync(paginationLayoutRefresh);
+        }
+    }
+}

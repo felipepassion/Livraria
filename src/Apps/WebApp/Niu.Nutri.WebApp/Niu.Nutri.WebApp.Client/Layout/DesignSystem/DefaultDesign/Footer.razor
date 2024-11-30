@@ -1,0 +1,127 @@
+﻿@using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models
+@using Niu.Nutri.WebApp.Client.Pages.MenuBtnPages
+@using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests
+@using Niu.Nutri.WebApp.Client.Pages.Templates.RegisterStepsTemplate
+
+@inject NavigationManager NavigationManager
+
+@rendermode InteractiveWebAssembly
+
+<!-- Bottom Navigation -->
+<div class="bottom-nav-container footer-nav">
+    <nav class="bottom-nav">
+        <a class="nav-item @GetClass("")" href="/">
+            <img src="./icons/footer/home-icon.svg" alt="home-icon" />
+            <span>Inicio</span>
+        </a>
+        <a class="nav-item @GetClass("Diario")" href="/Diario">
+            <img src="./icons/footer/pencil-icon.svg" alt="pencil-icon" />
+            <span>Diário</span>
+        </a>
+        <div class="nav-item plus-btn-container">
+            <img class="negative-border" src="/imgs/negative-border.svg" alt="negative-border" />
+
+            <div class="plus-menu @GetPlusMenuClass()">
+                <button class="menu-btn" @onclick="() => OpenSection<LivrariaExamDTO>()">
+                    <div class="icon-container">
+                        <img src="./icons/footer/icon-notes.svg" alt="Ícone exame" />
+                        <span>Exame</span>
+                    </div>
+                </button>
+                <button class="menu-btn" @onclick="() => OpenSection<LivrariaMealDTO>()">
+                    <div class="icon-container">
+                        <img src="./icons/footer/icon-restaurant.svg" alt="Ícone refeição" />
+                        <span>Refeição</span>
+                    </div>
+                </button>
+                <button class="menu-btn" @onclick="() => OpenSection<LivrariaSelfCareDTO>()">
+                    <div class="icon-container">
+                        <img src="./icons/footer/icon-hand-heart.svg" alt="Ícone cuidados" />
+                        <span>Cuidados</span>
+                    </div>
+                </button>
+                <button class="menu-btn" @onclick="() => OpenSection<LivrariaLiquidDTO>()">
+                    <div class="icon-container">
+                        <img src="./icons/footer/icon-cup.svg" alt="Ícone líquido" />
+                        <span>Líquido</span>
+                    </div>
+                </button>
+                <button class="menu-btn" @onclick="() => OpenSection<LivrariaSymptomDTO>()">
+                    <div class="icon-container">
+                        <img src="./icons/footer/icon-face.svg" alt="Ícone sintomas" />
+                        <span>Sintomas</span>
+                    </div>
+                </button>
+            </div>
+
+            <button class="menu-btn plus-btn @GetPlusMenuClass()" @onclick="TogglePlusMenu">
+                <div class="icon-container">
+                    <img src="./icons/footer/plus-icon.svg" alt="plus-icon" />
+                </div>
+            </button>
+        </div>
+        <a class="nav-item @GetClass("Consultas")" href="/Consultas">
+            <img src="./icons/footer/list-icon.svg" alt="list-icon" />
+            <span>Consultas</span>
+        </a>
+        <a class="nav-item @GetClass("Conversas")" href="/Conversas">
+            <img src="./icons/footer/chat-icon.svg" alt="chats-icon" />
+            <span>Conversas</span>
+        </a>
+    </nav>
+</div>
+
+@if (_overlapingFragment != null)
+{
+    <div class="overlaping-fragment">
+        @_overlapingFragment
+    </div>
+}
+
+<CadastroModal @ref=modal />
+
+@code {
+    CadastroModal modal { get; set; }
+
+    string? currentPath => NavigationManager?.Uri.Split('/').LastOrDefault() ?? "";
+    bool showPlusMenu = false;
+    RenderFragment? _overlapingFragment;
+
+    string GetClass(string path) => currentPath == path ? "active" : "";
+
+    string GetPlusMenuClass() => showPlusMenu ? "active" : "";
+
+    public async Task RefreshMe() => await InvokeAsync(StateHasChanged);
+
+    async Task OnClick()
+    {
+        await modal.RenderFormContent(new LivrariaMealDTO());
+        await modal.Open();
+        //_overlapingFragment = AddContent(typeof(MealRegistration));
+        await RefreshMe();
+    }
+
+    void TogglePlusMenu()
+    {
+        showPlusMenu = !showPlusMenu;
+    }
+
+    private RenderFragment AddContent(Type type)
+         => builder =>
+         {
+             builder.OpenComponent(0, type);
+             builder.CloseComponent();
+         };
+
+    #region Sections buttons menu footer
+
+    async Task OpenSection<TComponent>() where TComponent :
+        EntityDTO, new()
+    {
+        await modal.RenderFormContent(new TComponent());
+        await modal.Open();
+        await RefreshMe();
+    }
+
+    #endregion
+}

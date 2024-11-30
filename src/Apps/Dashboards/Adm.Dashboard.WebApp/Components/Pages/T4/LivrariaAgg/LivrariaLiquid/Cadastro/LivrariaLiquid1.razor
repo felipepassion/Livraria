@@ -1,0 +1,31 @@
+﻿@using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests;
+
+@inherits BaseCadastro<LivrariaLiquidDTO>
+
+<div class="container-informations screen">
+    <div class="box-inputs">
+        <div class="input-secondary">
+        </div>
+
+        <div class="input-secondary">
+            <div class="input-secondary-item">
+                <BirthDateInputs @bind-Value="this.Model.Date" />
+                <div class="este-campo-obrigatrio-1 valign-text-middle inter-normal-sonic-silver-10px">
+                    <ValidationMessage For="@(() => Model.Date)"></ValidationMessage>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [CascadingParameter] BaseMainStepsLayout<LivrariaLiquidDTO> layout { get; set; }
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            this.StateHasChanged();
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
+}

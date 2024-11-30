@@ -1,0 +1,148 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Web
+@using Niu.Nutri.Core.Application.DTO.Extensions
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.SignalR.Client
+@using Niu.Nutri.Users.Application.DTO.Aggregates.UsersAgg.Requests;
+@using Niu.Nutri.Users.Enumerations
+@using Microsoft.JSInterop
+@using Niu.Nutri.Users.Identity
+
+@rendermode RenderMode.InteractiveServer
+
+@inject NavigationManager navigationManager
+
+<header>
+    <div class="headerContainer">
+        <div class="headerLeft">
+            <a href="/">
+                <img src="/imgs/logo/turbo-drill-logo-white.png" alt="logo" class="logo" height="40">
+            </a>
+        </div>
+
+        <h3>@CachedUserSession?.UserProfile?.Description</h3>
+
+        <div class="headerRight">
+            @if (isProfileMenuOpen)
+            {
+                <button class="profileButtonOutside" @onclick="togleProfileMenu"></button>
+            }
+            <div for="profile_checkbox" class="profileButtonContainer">
+                @if (this.CachedUserSession?.AllMyAccesses?.FirstOrDefault()?.UserProfiles?.Count > 1 == true)
+                {
+                    <div class="btn-user-header-container" @onclick="OnChangeAccessRequested">
+                        <button class="btn-change-user-profile">CHANGE ACCESS</button>
+                    </div>
+                }
+
+                <button tabindex="0" class="profileButton" @onclick="togleProfileMenu">
+                    @if (CachedUserSession?.User?.ProfilePicture is not null)
+                    {
+                        <img src="@CachedUserSession?.User?.ProfilePicture" alt="user avatar" width="36">
+                    }
+                    else
+                    {
+                        <img src="/imgs/navbar/profile/User-avatar.png" alt="user avatar" width="36">
+                    }
+                    <img src="/imgs/navbar/arrow-down.svg" alt="arrow down" width="16">
+                </button>
+
+                @if (isProfileMenuOpen)
+                {
+                    <div class="profileMenu">
+                        <span class="username">@CachedUserSession?.User?.Name?.Split(" ").FirstOrDefault()</span>
+                        <span class="version-name">version @_config["ProductVersion"]</span>
+                        <div class="divider_h"></div>
+                        <form action="/api/Authorize/Logout" method="post">
+                            <AntiforgeryToken />
+                            <input type="hidden" name="ReturnUrl" value="/" />
+                            <button class="profileMenuLogout">
+                                Logout
+                                <img src="/imgs/navbar/logoutIcon.svg" alt="user avatar" width="18">
+                            </button>
+                        </form>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</header>
+
+@code {
+    private bool isProfileMenuOpen = false;
+
+    private void togleProfileMenu()
+    {
+        isProfileMenuOpen = !isProfileMenuOpen;
+    }
+
+    [Inject] IConfiguration _config { get; set; }
+    [Inject] AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+
+    [Inject] public UserCurrentAccessSelectedDTO CachedUserSession { get; set; }
+    HubConnection hubConnection;
+    [Inject] HttpClient httpClient { get; set; }
+
+    private string instituicao = "";
+    bool _isReady;
+    string myId;
+
+    [Inject] SignInManager<ApplicationUser> signInManager { get; set; } = null!;
+
+    private async Task BeginSignOut(MouseEventArgs args)
+    {
+        var provider = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        //await authStateProvider.Logout();
+        //await signInManager.SignOutAsync();
+        navigationManager.NavigateTo("/", true);
+    }
+
+    [CascadingParameter] private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    private int active { get; set; } = 0;
+
+    private void linkActive(int link)
+    {
+        active = link;
+    }
+
+    public void RefreshMe()
+    {
+        this.StateHasChanged();
+    }
+
+    async Task OnChangeAccessRequested()
+    {
+        isProfileMenuOpen = false;
+        if (this.CachedUserSession.User != null)
+            this.CachedUserSession.User.SelectedAccess = null;
+        this.CachedUserSession.UserProfile = null;
+        this.CachedUserSession.UserProfileId = null;
+
+        var post = await httpClient.PostAsync($"{new UserDTO().GetRoute()}/reset-user-current-access", null);
+
+        this.navigationManager.Refresh(true);
+    }
+
+    bool isAuth;
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            CachedUserSession.RefreshHeaderUserInfos = async () => await Task.Run(RefreshMe);
+            var authState = await authenticationStateTask;
+            var user = authState.User;
+            this.myId = user.GetUserId();
+            isAuth = !string.IsNullOrWhiteSpace(myId);
+
+            this.CachedUserSession.AllMyAccesses = 
+                (await httpClient.SearchAsync<UserProfileListDTO>(route: $"get-my-companies"))
+                    .Data;
+
+            this.StateHasChanged();
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}

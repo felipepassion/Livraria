@@ -1,0 +1,59 @@
+﻿@typeparam T where T : EntityDTO, new()
+@typeparam K where K : BaseRightContainerChild<T>, new()
+
+@inherits Niu.Nutri.Shared.Blazor.Forms.Contexts.BaseRightContainer
+
+@using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models;
+
+@if (RightContext != null)
+{
+    <div class="container-rightContainer">
+        <div class="container-conteudo-rightContainer">
+            <CascadingValue Value="RightContext">
+                @if (childFragment != null)
+                {
+                    @childFragment.Body
+                }
+            </CascadingValue>
+        </div>
+    </div>
+}
+
+@code {
+    private RenderFragment CreateFragmentByType<TFrag>(TFrag model, Type type, string? externalEntityId = null)
+            where TFrag : EntityDTO, new()
+            => builder =>
+            {
+                builder.OpenComponent(0, type);
+                builder.CloseComponent();
+            };
+
+    GenericRightContainerContext RightContext { get; set; }
+    public BaseRightContainerChild<T> childFragment;
+
+    [Parameter] public RenderFragment ChildFragmentBody { get; set; }
+
+    [Inject] NavigationManager Navigation { get; set; }
+
+    [CascadingParameter] public IEntityDTO Model { get; set; }
+
+    public async override Task RefreshMe()
+    {
+        await childFragment?.OnFragmentUpdated()!;
+        await Task.Run(this.StateHasChanged);
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        if (this.RightContext == null && Model != null)
+        {
+            this.childFragment = new K();
+            this.childFragment.Body = ChildFragmentBody ?? CreateFragmentByType<T>(new T(), typeof(K));
+            this.RightContext = new GenericRightContainerContext(async () 
+                => { await childFragment?.OnFragmentUpdated(); }, Model, this.Modal);
+            this.StateHasChanged();
+        }
+
+        return base.OnInitializedAsync();
+    }
+}

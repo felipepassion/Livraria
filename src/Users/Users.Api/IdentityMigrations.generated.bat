@@ -1,0 +1,1 @@
+dotnet ef migrations add 2024_11_21_12_59_28 -c ApplicationDbContext -p ..\..\Users.Identity

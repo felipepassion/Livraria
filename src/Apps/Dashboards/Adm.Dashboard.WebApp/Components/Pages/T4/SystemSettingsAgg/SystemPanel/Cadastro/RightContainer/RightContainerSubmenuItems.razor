@@ -1,0 +1,204 @@
+﻿@using System.Text
+@using Newtonsoft.Json
+@using Niu.Nutri.Core.Application.DTO.Extensions
+@using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses
+@using Niu.Nutri.CrossCuting.Infra.Utils.Extensions
+@using Niu.Nutri.Shared.Blazor.Forms.RightContainer
+@using Niu.Nutri.Shared.Blazor.Forms.Templates.RegisterStepsTemplate.Contexts
+@using Niu.Nutri.Shared.Blazor.Sidebar.Contexts
+@using Niu.Nutri.SystemSettings.Application.DTO.Aggregates.SystemSettingsAgg.Requests;
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.DropDowns
+@using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models;
+
+<div class="rightcontainer-item-submenu-system">
+
+    @if (@Items?.Count == 0)
+    {
+        <div class="rightcontainer-nenhum-item">
+            <p class="right-container-alerta">Nenhum item do submenu foi cadastrado</p>
+            <p class="right-container-alerta">
+                Caso deseje cadastrar um item, clique no botão
+                <span class="enfase">+</span> localizado no submenu
+            </p>
+        </div>
+    }
+
+    @if (Items == null || Model == null)
+    {
+    }
+    else
+    {
+        @foreach (var item in Items.OrderBy(x => x.Position))
+        {
+            var id = item.ExternalId;
+            <div class="subitem-container">
+                <div class="arrows-container">
+                    <SfDropDownList DataSource="this.AllPositionsList()"
+                                    @bind-Value="item.Position"
+                                    TValue="int" TItem="int"
+                                    @bind-Value:after="async () => await OnPositionChanged(item.Id, item.Position)" />
+                </div>
+                <div class="rightcontainer-elemento-item-submenu-system @(this.RightContext?.SubItemClickedId?.Equals(item.ExternalId) == true ? "active" : "")"
+                     @onclick="async ()=> await RightContext?.OnSubItemClicked<SystemPanelSubItemDTO>(item)!">
+                    <div class="titulos-rightcontainer-v2">
+                        <div class="quebra-linha-titulos-rightcontainer-v2">
+                            <div class="quebra-linha-titulos">
+                                <div class="circle">
+                                    <img class="icon-btn-permissao-perfil" src="/imgs/menus/1-adm-master/sidebar-closed/0-menu-adm/1-menu-adm-master.svg" />
+                                </div>
+                                <div class="grupo-titulos">
+                                    <div class="titulo-rightcontainer-v2">
+                                        Menu
+                                    </div>
+                                    <div class="subtitulo-rightcontainer-v2" id='@($"{id}-description")'>
+                                        @if (!string.IsNullOrEmpty(@item.TitleProperty))
+                                        {
+                                            @* @(@item.Title.Length > 20 ? @item.Title.Substring(0, 20) + "..." : @item.Title) *@
+                                            @item.TitleProperty
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rightcontainer-remover-empresa" @onclick="async () => await OnDeletePanelClicked(item)">
+                        <img src="/images/icons/trash-icon.png" class="trash-icon" />
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@code {
+    [Inject] HttpClient _http { get; set; }
+
+    public List<SystemPanelSubItemDTO>? Items { get; set; }
+
+    IEnumerable<int> AllPositionsList()
+    {
+        var result = new List<int>();
+        for (int i = 0; i < (this.Items?.Count ?? 0); i++)
+        {
+            result.Add(i);
+        }
+        return result;
+    }
+
+    public async Task OnPositionChanged(int? id, int? newPosition)
+    {
+        if (!id.HasValue || !newPosition.HasValue)
+        {
+            throw new ArgumentException("Id ou posição são nulos.");
+        }
+
+        // Encontrar o item pelo id
+        var itemToMove = Items.FirstOrDefault(item => item.Id == id.Value);
+        if (itemToMove == null)
+        {
+            throw new ArgumentException("Item não encontrado.");
+        }
+
+        // Remove o item da lista temporariamente para reajustar a ordem
+        Items.Remove(itemToMove);
+
+        Items.Insert(newPosition.Value, itemToMove);
+
+        int i = 0;
+        foreach (var item in Items)
+        {
+            item.Position = i++;
+        }
+
+        var array = this.Items.OrderBy(x => x.Position).Select(x => x.ExternalId);
+        await _http.PostAsJsonAsync($"{new SystemPanelDTO().GetRoute()}/update-subitem-positions/{this.Parent.ExternalId}", array);
+
+        await InvokeAsync(this.StateHasChanged);
+
+    }
+
+    [CascadingParameter] ModalContext ModalContext { get; set; }
+    public SystemPanelSubItemDTO Model => ModalContext?.Model as SystemPanelSubItemDTO;
+    [Parameter] public required SidebarContext Sidebar { get; set; }
+
+    [Parameter] public required SystemPanelDTO Grupo { get; set; }
+    [Parameter] public GenericRightContainerContext RightContext { get; set; }
+    [Parameter] public Func<Task> OnClick { get; set; }
+    [Parameter] public required SystemPanelSubItemDTO Parent { get; set; }
+
+    public async Task OnDeletePanelClicked(SystemPanelSubItemDTO item)
+    {
+        this.RightContext.IsMouseHoverTrashBtn = false;
+        var result = await _http.DeleteEntityAsync<SystemPanelSubItemDTO>(x => x.ExternalId == item.ExternalId);
+        if (result.Success)
+        {
+            //await this.sidebarContext.Sidebar.RefreshElements();
+            await this.RightContext.OnSubItemClicked<SystemPanelSubItemDTO>(Parent);
+            await this.Sidebar.Sidebar.RefreshElements();
+            this.initialized = false;
+            this.Items = null;
+            await InvokeAsync(this.StateHasChanged);
+        }
+    }
+
+    public async Task OnCreateSubElementClicked()
+    {
+        int.TryParse((await _http.GetFromJsonAsync<GetHttpResponseDTO>(
+        $"{new SystemPanelSubItemDTO().GetRoute()}/count?{nameof(SystemPanelSubItemDTO.IsSubItem)}Equal=true&{nameof(SystemPanelSubItemDTO.SystemPanelSubItemId)}Equal={Parent?.Id}"))?.Data.ToString(),
+        out var total);
+
+        total++;
+        var newCompany = new SystemPanelSubItemDTO
+            {
+                Description = $"sub-sub-{Parent.Description}-{total}",
+                SystemPanelId = Parent.SystemPanelId,
+                ExternalId = Guid.NewGuid().ToString(),
+                IsSubItem = true,
+                Active = true,
+                SystemPanelSubItemId = Parent.Id
+            };
+
+        var result = await _http.CreateAsync<SystemPanelSubItemDTO>(newCompany);
+        if (result.Success)
+        {
+            this.Items?.Insert(0, newCompany);
+            this.RightContext.IsGroupClicked = false;
+            this.RightContext.SubItemId = newCompany.ExternalId;
+            initialized = false;
+            this.Items = null;
+            await RightContext.OnSubItemClicked<SystemPanelSubItemDTO>(newCompany, forceNavigation: true);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    bool initialized = false;
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!initialized && Items == null && Model != null)
+        {
+            if (Parent.Active == true && Parent.Id.HasValue)
+            {
+                initialized = true;
+                var query = $"{new SystemPanelSubItemDTO().GetRoute()}/search?{nameof(SystemPanelSubItemDTO.IsSubItem)}Equal=true&{nameof(SystemPanelSubItemDTO.SystemPanelSubItemId)}Equal={Parent.Id}&OrderBy=CreatedAt&size=100";
+                Items = (await _http.GetFromJsonAsync<GetHttpResponseDTO<List<SystemPanelSubItemDTO>>>(query))?.Data;
+            }
+
+            await InvokeAsync(StateHasChanged);
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    //[Inject] TollSvc.WebApp.Components.Layout.Contexts.SidebarContext sidebarContext { get; set; }
+
+    public async Task RefreshMe()
+    {
+        if (Model is SystemPanelSubItemDTO model)
+        {
+            this.Items?.FirstOrDefault(x => x.Id == model.Id)?.Update(model);
+            await Sidebar.Sidebar.UpdateSubModel(model);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+}

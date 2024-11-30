@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Detectar Mudanças') {
+            steps {
+                script {
+                    def changes = sh(script: "git diff --name-only HEAD^ HEAD", returnStdout: true).trim()
+                    println("Mudanças detectadas: ${changes}")
+
+                    // Checa se há mudanças nas APIs
+                    if (changes.contains('Users.Api')) {
+                        build job: 'users-api-nutri', parameters: [string(name: 'BRANCH_NAME', value: env.BRANCH_NAME)]
+                    }
+                    
+                    if (changes.contains('Chat.Api')) {
+                        build job: 'chat-api-nutri', parameters: [string(name: 'BRANCH_NAME', value: env.BRANCH_NAME)]
+                    }
+                    
+                    if (changes.contains('Nests.Api')) {
+                        build job: 'diary-api-nutri', parameters: [string(name: 'BRANCH_NAME', value: env.BRANCH_NAME)]
+                    }
+                    
+                    if (changes.contains('Migrations.Api')) {
+                        build job: 'migrations-api-nutri', parameters: [string(name: 'BRANCH_NAME', value: env.BRANCH_NAME)]
+                    }
+
+                    if (changes.contains('SystemSettings.Api')) {
+                        build job: 'systemsettings-api-nutri', parameters: [string(name: 'BRANCH_NAME', value: env.BRANCH_NAME)]
+                    }
+
+                    if (changes.contains('Addresses.Api')) {
+                        build job: 'addresses-nutri', parameters: [string(name: 'BRANCH_NAME', value: env.BRANCH_NAME)]
+                    }
+
+                    if (changes.contains('src/Apps/Dashboards/Adm.Dashboard')) {
+                        build job: 'admdashboard-nutri', parameters: [string(name: 'BRANCH_NAME', value: env.BRANCH_NAME)]
+                    }
+
+                    // Checa se há mudanças na Niu.Living.WebApp
+                    if (changes.contains('src/Apps/WebApp/Niu.Nutri.WebApp/Niu.Nutri.WebApp')) {
+                        build job: 'niu-nutri-webapp', parameters: [string(name: 'BRANCH_NAME', value: env.BRANCH_NAME)]
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+.success-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    color: green;
+    text-align: center;
+    font-family: "Lexend Deca";
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.6875rem; /* 150% */
+    margin-bottom: 2rem;
+}
+
+    .success-messages p {
+        margin: 0 !important;
+    }

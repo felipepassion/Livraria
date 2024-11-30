@@ -1,0 +1,28 @@
+﻿
+    <div class="input-secondary">
+<#if(hasParameterSwitcher) {
+    var field= parameterTypeSwitcher;
+ var myType = field.Value.Type.AsString.Replace("System.Collections.Generic.List<","").Replace(">","");
+    var myName = field.Key.Replace("/",".");#>
+<#@ include file="BasicEnumInput.tt" #>
+<#}#>    
+<# if(title.Key != null) { var field = title; isTitle = true; #>
+<#
+    var myType = field.Value.Type.AsString.Replace("System.Collections.Generic.List<","").Replace(">","");
+    var myName = field.Key.Replace("/",".");
+	var myPropertyName = myName.Split('.').LastOrDefault() + '.';
+    myPropertyName = myPropertyName == myName ? "" : myPropertyName;
+#>
+        <div class="input-secondary-item">
+			<TextInput Placeholder="<#=myName#>"
+			           @bind-Value:after="OnFormUpdated"
+			           @bind-Value="Model.<#=myName#>" />
+			
+            <div class="este-campo-obrigatrio-1 valign-text-middle inter-normal-sonic-silver-10px">
+                <ValidationMessage For="@(() => Model.<#=myName#>)"></ValidationMessage>
+            </div>
+        </div>
+<#}#>
+<#if(!hasParameterSwitcher) {#>
+    </div>
+<#}#>

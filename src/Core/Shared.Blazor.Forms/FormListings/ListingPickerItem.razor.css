@@ -1,0 +1,11 @@
+﻿body {
+}
+.sf-pager.e-control{
+    position:relative;
+}
+
+.container-radio-1 {
+    align-self: stretch;
+    height: 36px;
+    min-width: 20px;
+}

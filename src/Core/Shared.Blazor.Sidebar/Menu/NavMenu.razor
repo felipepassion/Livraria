@@ -1,0 +1,197 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.JSInterop
+@using Niu.Nutri.Core.Application.DTO.Extensions
+@using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses
+@using Niu.Nutri.CrossCuting.Infra.Utils.Extensions
+@using Niu.Nutri.Shared.Blazor.Sidebar.Contexts
+@using Niu.Nutri.SystemSettings.Application.DTO.Aggregates.SystemSettingsAgg.Requests;
+@using Niu.Nutri.Users.Application.DTO.Aggregates.UsersAgg.Requests
+@using System.Net.Http.Json
+
+@inject IJSRuntime JSRuntime
+
+<aside class="sidebar">
+    <div class="sidebar-menu_button @(this.SidebarContext.isSubMenuActive ? "active" : null)">
+        @if (this.NavBarItems == null)
+        {
+            <p>carregando sidebar...</p>
+        }
+        else
+        {
+            @foreach (var item in this.NavBarItems)
+            {
+                <div class="container-menu"
+                     @onclick="(e)=>ToggleSubMenu(e,item)"
+                     @onmouseover="MouseIn"
+                     @onmouseout="MouseOut">
+
+                    <img class="img-menu @(IsClicked(item)? "img-menu-ativo" : "img-menu-desativado")" src="@(item.Icon)" />
+                    @if (IsClicked(item))
+                    {
+                        <img class="blob-image" src="/imgs/menus/navbar/selected-menu-stroke.svg" />
+                    }
+                </div>
+            }
+        }
+    </div>
+
+    <div class="active-option">
+        @if (this.SidebarContext.isSubMenuActive == true && this.SelectedItem != null)
+        {
+            <NavSubMenu OnCloseMenu="this.Close" @ref=this.subMenu ParentId="@this.SelectedItem.Id.Value" />
+        }
+    </div>
+    @if (this.isFastAccessActive)
+    {
+        <TestComponent />
+    }
+</aside>
+
+@code {
+    [Inject] HttpClient _http { get; set; }
+    [Inject] SidebarContext SidebarContext { get; set; }
+    NavSubMenu subMenu;
+
+    [CascadingParameter] private Task<AuthenticationState> AuthenticationStateTask { get; set; }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        var authState = await AuthenticationStateTask;
+        var user = authState.User;
+        var myId = user.GetUserId();// user.GetUserId();
+
+        if (firstRender)
+        {
+            this.SidebarContext.Sidebar = this;
+
+            this.NavBarItems = (await _http.SearchAsync<SystemPanelDTO>(route: $"get-my-menus"))?.Data
+                ?? new List<SystemPanelDTO>();
+            this.StateHasChanged();
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    List<SystemPanelDTO> NavBarItems;
+    SystemPanelDTO SelectedItem => this.NavBarItems?.FirstOrDefault(x => x.ExternalId.Equals(this.clickedId));
+
+    bool IsClicked(SystemPanelDTO panel) => this.SidebarContext.isSubMenuActive && this.clickedId == panel.ExternalId;
+
+    string clickedId;
+    bool isFastAccessActive { get; set; }
+    bool IsInside { get; set; }
+
+    public bool IsOpen() => this.SidebarContext.isSubMenuActive;
+
+    public async Task UpdateModel(SystemPanelDTO panel)
+    {
+        var myPanel = this.NavBarItems.FirstOrDefault(x => x.ExternalId.Equals(panel.ExternalId));
+        if (myPanel == null)
+        {
+            if (panel.IsCreated)
+                this.NavBarItems.Insert(0, panel);
+        }
+        else
+        {
+            myPanel.Update(panel);
+        }
+        await InvokeAsync(this.StateHasChanged);
+    }
+
+    public async Task UpdateSubModel()
+    {
+        if (this.subMenu != null)
+        {
+            //await this.subMenu?.RefreshElements();
+        }
+    }
+
+    public async Task UpdateSubModel(SystemPanelSubItemDTO model)
+    {
+        await this.subMenu?.UpdateSubModel(SelectedItem);
+    }
+
+    public async Task Open(SystemPanelDTO panel)
+    {
+        this.SidebarContext.isSubMenuActive = true;
+        this.clickedId = panel.ExternalId;
+        if (this.subMenu != null)
+        {
+            await this.subMenu.UpdateSubModel(panel);
+        }
+        this.StateHasChanged();
+    }
+
+    public void Open(SystemPanelSubItemDTO panel)
+    {
+        this.SidebarContext.isSubMenuActive = true;
+        this.subMenu.OpenSubMenu(panel);
+        //Task.Run(async () => await ToggleSubMenu(null, this.SelectedItem, panel));
+        this.StateHasChanged();
+    }
+
+    void OnFastAccessClicked()
+    {
+        this.isFastAccessActive = !this.isFastAccessActive;
+    }
+
+    public int subMenuTop = 20;
+    async Task ToggleSubMenu(MouseEventArgs args, SystemPanelDTO selectedItem, SystemPanelSubItemDTO subItem = null)
+    {
+        if (args != null)
+        {
+            this.subMenuTop = (int)args?.ClientY + 20;
+        }
+
+        var wasActive = this.clickedId == selectedItem.ExternalId;
+
+        if (wasActive)
+            this.clickedId = null;
+        else
+            this.clickedId = selectedItem.ExternalId;
+
+        Thread.Sleep(200);
+        this.SidebarContext.isSubMenuActive = this.NavBarItems.Any(x => x.ExternalId == this.clickedId);
+
+        if (this.subMenu != null)
+        {
+            await this.subMenu.UpdateSubModel(selectedItem);
+            if (subItem != null)
+            {
+                await this.subMenu.UpdateSubModel(selectedItem);
+            }
+        }
+
+        if (!this.SidebarContext.isSubMenuActive)
+            await Close();
+        else
+            StateHasChanged();
+    }
+
+    void MouseIn()
+    {
+        IsInside = true;
+    }
+
+    void MouseOut()
+    {
+        IsInside = false;
+    }
+
+    public async Task Close()
+    {
+        this.clickedId = null;
+        this.SidebarContext.isSubMenuActive = false;
+        this.subMenu?.Close();
+        await InvokeAsync(this.StateHasChanged);
+    }
+
+    public async Task RefreshElements()
+    {
+        this.NavBarItems = (await _http.GetFromJsonAsync<GetHttpResponseDTO<List<SystemPanelDTO>>>
+                ($"{new SystemPanelDTO().GetRoute()}/get-my-menus?size=100&OrderBy=CreatedAt&OrderByDesc=true"))?.Data ?? new List<SystemPanelDTO>();
+        if (this.subMenu != null)
+            await this.subMenu.RefreshElements();
+        this.StateHasChanged();
+    }
+}

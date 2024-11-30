@@ -1,0 +1,27 @@
+﻿<div class="add-note-section">
+    <button class="add-note-btn" @onclick="AddNote">
+        <img src="./icons/livraria/plus-icon.svg" alt="" />
+        <span>Nova nota</span>
+    </button>
+    <button class="trash-btn" @onclick="DeleteNote">
+        <img src="./icons/livraria/trash-icon.svg" alt="" />
+    </button>
+</div>
+
+@code {
+    [Parameter] public EventCallback OnAddNote { get; set; }
+    [Parameter] public EventCallback OnDeleteNote { get; set; }
+
+    private void AddNote()
+    {
+        if (OnAddNote.HasDelegate)
+        {
+            OnAddNote.InvokeAsync(null);
+        }
+    }
+
+    private void DeleteNote()
+    {
+        // Lógica para deletar nota
+    }
+}

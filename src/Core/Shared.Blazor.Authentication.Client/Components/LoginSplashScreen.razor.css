@@ -1,0 +1,34 @@
+.container--splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.footer-text {
+    position: absolute;
+    bottom: 5rem;
+    opacity: 0;
+    animation: fadeInText .5s ease-out forwards;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

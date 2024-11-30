@@ -1,0 +1,42 @@
+﻿	
+@using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests;
+@inherits BaseCadastro<LivrariaMealDTO>
+
+<div class="container-informations screen">
+    <div class="box-inputs">
+    <div class="input-secondary">
+    
+    </div>
+ 
+    <div class="input-secondary"> 
+        <div class="input-secondary-item">
+			<TextInput Placeholder="Description"
+					   @bind-Value:after="OnFormUpdated"
+                       @bind-Value="Model.Description" />
+            </div>
+            <div class="este-campo-obrigatrio-1 valign-text-middle inter-normal-sonic-silver-10px">
+                <ValidationMessage For="@(() => Model.Description)"></ValidationMessage>
+        </div>
+        <div class="input-secondary-item">
+			<TextInput Placeholder="Title"
+					   @bind-Value:after="OnFormUpdated"
+                       @bind-Value="Model.Title" />
+            </div>
+            <div class="este-campo-obrigatrio-1 valign-text-middle inter-normal-sonic-silver-10px">
+                <ValidationMessage For="@(() => Model.Title)"></ValidationMessage>
+        </div>
+    </div> 
+    </div>
+</div>
+
+@code {
+    [CascadingParameter] BaseMainStepsLayout<LivrariaMealDTO> layout { get; set; }
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            this.StateHasChanged();
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
+}

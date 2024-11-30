@@ -1,0 +1,31 @@
+﻿@typeparam ModelType where ModelType : EntityDTO, new()
+
+@using Niu.Nutri.Shared.Blazor.Forms.Templates.RegisterStepsTemplate.Contexts
+@using Core.Application.DTO.Aggregates.CommonAgg.Models;
+
+<div class="container">
+    <div class="container-title-category">
+        <div class="container-section-one">
+            @if (Context.MaxSteps > 1)
+            {
+                <div class="bi1-circle-fill active">
+                    <p>@(this.Context?.CurrentStep + 1)</p>
+                </div>
+            }
+            <div class="container-title-section">
+                @if (Context.MaxSteps > 1)
+                {
+                    <div class="title-1"><div class="primeira-seo valign-text-middle">Primeira Seção</div></div>
+                }
+                <div class="title-1">
+                    <div class="identificao valign-text-middle inter-semi-bold-black-16px">Identificação</div>
+                </div>
+            </div>
+        </div>
+        @*<StepsSearchInput />*@
+    </div>
+</div>
+
+@code {
+    [CascadingParameter] public StepsContext Context { get; set; }
+}

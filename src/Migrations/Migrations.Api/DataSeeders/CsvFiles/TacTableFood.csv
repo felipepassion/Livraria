@@ -1,0 +1,290 @@
+Code,Name,Category,Kcal
+1,"Arroz, integral, cozido",Cereais e derivados,124
+2,"Arroz, integral, cru",Cereais e derivados,360
+3,"Arroz, tipo 1, cozido",Cereais e derivados,128
+4,"Arroz, tipo 1, cru",Cereais e derivados,358
+5,"Arroz, tipo 2, cozido",Cereais e derivados,130
+6,"Arroz, tipo 2, cru",Cereais e derivados,358
+7,"Aveia, flocos, crua",Cereais e derivados,394
+8,"Biscoito, doce, maisena",Cereais e derivados,443
+9,"Biscoito, doce, recheado com chocolate",Cereais e derivados,472
+10,"Biscoito, doce, recheado com morango",Cereais e derivados,471
+11,"Biscoito, doce, wafer, recheado de chocolate",Cereais e derivados,502
+12,"Biscoito, doce, wafer, recheado de morango",Cereais e derivados,513
+13,"Biscoito, salgado, cream cracker",Cereais e derivados,432
+14,"Bolo, mistura para",Cereais e derivados,419
+15,"Bolo, pronto, aipim",Cereais e derivados,324
+16,"Bolo, pronto, chocolate",Cereais e derivados,410
+17,"Bolo, pronto, coco",Cereais e derivados,333
+18,"Bolo, pronto, milho",Cereais e derivados,311
+19,"Canjica, branca, crua",Cereais e derivados,358
+20,"Canjica, com leite integral",Cereais e derivados,112
+21,"Cereais, milho, flocos, com sal",Cereais e derivados,370
+22,"Cereais, milho, flocos, sem sal",Cereais e derivados,363
+23,"Cereais, mingau, milho, infantil",Cereais e derivados,394
+24,"Cereais, mistura para vitamina, trigo, cevada e aveia",Cereais e derivados,381
+25,"Cereal matinal, milho",Cereais e derivados,365
+26,"Cereal matinal, milho, açúcar",Cereais e derivados,377
+27,"Creme de arroz, pó",Cereais e derivados,386
+28,"Creme de milho, pó",Cereais e derivados,333
+29,"Curau, milho verde",Cereais e derivados,78
+30,"Curau, milho verde, mistura para",Cereais e derivados,402
+31,"Farinha, de arroz, enriquecida",Cereais e derivados,363
+32,"Farinha, de centeio, integral",Cereais e derivados,333
+33,"Farinha, de milho, amarela",Cereais e derivados,351
+34,"Farinha, de rosca",Cereais e derivados,365
+35,"Farinha, de trigo",Cereais e derivados,333
+36,"Farinha, láctea, de cereais",Cereais e derivados,366
+37,"Lasanha, massa fresca, cozida",Cereais e derivados,133
+38,"Lasanha, massa fresca, crua",Cereais e derivados,274
+41,"Macarrão, trigo, cru, com ovos",Cereais e derivados,371
+43,"Milho, fubá, cru",Cereais e derivados,351
+44,"Milho, verde, cru",Cereais e derivados,86
+45,"Milho, verde, enlatado, drenado",Cereais e derivados,74
+46,"Mingau tradicional, pó",Cereais e derivados,367
+47,"Pamonha, barra para cozimento, pré-cozida",Cereais e derivados,137
+48,"Pão, aveia, forma",Cereais e derivados,267
+49,"Pão, de soja",Cereais e derivados,294
+50,"Pão, glúten, forma",Cereais e derivados,281
+51,"Pão, milho, forma",Cereais e derivados,297
+52,"Pão, trigo, forma, integral",Cereais e derivados,252
+53,"Pão, trigo, francês",Cereais e derivados,300
+54,"Pão, trigo, sovado",Cereais e derivados,295
+55,"Pastel, de carne, cru",Cereais e derivados,277
+56,"Pastel, de carne, frito",Cereais e derivados,548
+57,"Pastel, massa, crua",Cereais e derivados,288
+59,"Pastel, massa, frita",Cereais e derivados,570
+62,"Pipoca, com óleo de soja, sem sal",Cereais e derivados,473
+63,"Torrada, pão de forma",Cereais e derivados,407
+64,"Abóbora, cabotian, cozida","Verduras, hortaliças e derivados",48
+65,"Abóbora, cabotian, crua","Verduras, hortaliças e derivados",39
+68,"Abóbora, moranga, refogada","Verduras, hortaliças e derivados",14
+70,"Abobrinha, italiana, cozida","Verduras, hortaliças e derivados",15
+72,"Abobrinha, italiana, refogada","Verduras, hortaliças e derivados",24
+81,"Alfavaca, crua","Verduras, hortaliças e derivados",23
+85,"Almeirão, refogado","Verduras, hortaliças e derivados",70
+90,"Batata frita, tipo chips, industrializada","Verduras, hortaliças e derivados",547
+93,"Batata, inglesa, frita","Verduras, hortaliças e derivados",312
+94,"Batata, inglesa, sauté","Verduras, hortaliças e derivados",130
+99,"Biscoito, polvilho doce","Verduras, hortaliças e derivados",200
+100,"Brócolis, cozido","Verduras, hortaliças e derivados",35
+101,"Brócolis, cru","Verduras, hortaliças e derivados",28
+104,"Caruru, cru","Verduras, hortaliças e derivados",30
+105,"Catalonha, crua","Verduras, hortaliças e derivados",21
+106,"Catalonha, refogada","Verduras, hortaliças e derivados",60
+109,"Cenoura, cozida","Verduras, hortaliças e derivados",29
+115,"Couve, manteiga, crua","Verduras, hortaliças e derivados",41
+116,"Couve, manteiga, refogada","Verduras, hortaliças e derivados",75
+118,"Couve-flor, cozida","Verduras, hortaliças e derivados",23
+120,"Espinafre, Nova Zelândia, refogado","Verduras, hortaliças e derivados",42
+121,"Farinha, de mandioca, crua","Verduras, hortaliças e derivados",360
+122,"Farinha, de mandioca, torrada","Verduras, hortaliças e derivados",380
+123,"Farinha, de puba","Verduras, hortaliças e derivados",320
+126,"Inhame, cru","Verduras, hortaliças e derivados",58
+127,"Jiló, cru","Verduras, hortaliças e derivados",27
+129,"Mandioca, cozida","Verduras, hortaliças e derivados",125
+130,"Mandioca, crua","Verduras, hortaliças e derivados",149
+131,"Mandioca, farofa, temperada","Verduras, hortaliças e derivados",230
+132,"Mandioca, frita","Verduras, hortaliças e derivados",328
+133,"Manjericão, cru","Verduras, hortaliças e derivados",21
+136,"Nhoque, batata, cozido","Verduras, hortaliças e derivados",190
+138,"Palmito, Juçara, em conserva","Verduras, hortaliças e derivados",34
+141,"Pão, de queijo, cru","Verduras, hortaliças e derivados",340
+151,"Repolho, roxo, refogado","Verduras, hortaliças e derivados",65
+153,"Salsa, crua","Verduras, hortaliças e derivados",22
+154,"Seleta de legumes, enlatada",Frutos e derivados,44
+155,"Serralha, crua",Frutos e derivados,31
+156,"Taioba, crua",Frutos e derivados,28
+159,"Tomate, molho industrializado",Frutos e derivados,30
+163,"Abacate, cru",Frutos e derivados,160
+166,"Abiu, cru",Frutos e derivados,91
+167,"Açaí, polpa, com xarope de guaraná e glucose",Frutos e derivados,110
+168,"Açaí, polpa, congelada",Frutos e derivados,58
+173,"Ameixa, em calda, enlatada, drenada",Frutos e derivados,116
+174,"Atemóia, crua",Frutos e derivados,97
+191,"Ciriguela, crua",Frutos e derivados,76
+192,"Cupuaçu, cru",Frutos e derivados,49
+193,"Cupuaçu, polpa, congelada",Frutos e derivados,36
+196,"Fruta-pão, crua",Frutos e derivados,123
+197,"Goiaba, branca, com casca, crua",Frutos e derivados,68
+200,"Goiaba, vermelha, com casca, crua",Frutos e derivados,54
+201,"Graviola, crua",Frutos e derivados,38
+204,"Jaca, crua",Frutos e derivados,88
+207,"Kiwi, cru",Frutos e derivados,51
+221,"Maçã, Argentina, com casca, crua",Frutos e derivados,56
+223,"Macabú, crua",Frutos e derivados,95
+228,"Manga, Haden, crua",Frutos e derivados,60
+230,"Manga, polpa, congelada",Frutos e derivados,54
+231,"Manga, Tommy Atkins, crua",Frutos e derivados,51
+232,"Maracujá, cru",Frutos e derivados,68
+242,"Pêra, Park, crua",Frutos e derivados,57
+246,"Pinha, crua",Frutos e derivados,100
+250,"Tamarindo, cru",Frutos e derivados,239
+253,"Tucumã, cru",Frutos e derivados,262
+259,"Azeite, de dendê",Gorduras e óleos,884
+260,"Azeite, de oliva, extra virgem",Gorduras e óleos,884
+261,"Manteiga, com sal",Gorduras e óleos,717
+262,"Manteiga, sem sal",Gorduras e óleos,717
+263,"Margarina, com óleo hidrogenado, com sal (65% de lipídeos)",Gorduras e óleos,587
+264,"Margarina, com óleo hidrogenado, sem sal (65% de lipídeos)",Gorduras e óleos,587
+266,"Margarina, com óleo interesterificado, sem sal (65% de lipídeos)",Gorduras e óleos,587
+267,"Óleo, de babaçu",Gorduras e óleos,884
+268,"Óleo, de canola",Gorduras e óleos,884
+269,"Óleo, de girassol",Gorduras e óleos,884
+270,"Óleo, de milho",Gorduras e óleos,884
+271,"Óleo, de pequi",Gorduras e óleos,884
+272,"Óleo, de soja",Gorduras e óleos,884
+273,"Abadejo, filé, congelado, assado",Pescados e frutos do mar,91
+274,"Abadejo, filé, congelado, cozido",Pescados e frutos do mar,85
+275,"Abadejo, filé, congelado, cru",Pescados e frutos do mar,74
+276,"Abadejo, filé, congelado, grelhado",Pescados e frutos do mar,107
+277,"Atum, conserva em óleo",Pescados e frutos do mar,282
+278,"Atum, fresco, cru",Pescados e frutos do mar,144
+279,"Bacalhau, salgado, cru",Pescados e frutos do mar,100
+280,"Bacalhau, salgado, refogado",Pescados e frutos do mar,160
+281,"Cação, posta, com farinha de trigo, frita",Pescados e frutos do mar,177
+282,"Cação, posta, cozida",Pescados e frutos do mar,84
+283,"Cação, posta, crua",Pescados e frutos do mar,78
+284,"Camarão, Rio Grande, grande, cozido",Pescados e frutos do mar,97
+286,"Camarão, Sete Barbas, sem cabeça, com casca, frito",Pescados e frutos do mar,190
+287,"Caranguejo, cozido",Pescados e frutos do mar,83
+288,"Corimba, cru",Pescados e frutos do mar,113
+289,"Corimbatá, assado",Pescados e frutos do mar,168
+290,"Corimbatá, cozido",Pescados e frutos do mar,143
+291,"Corvina de água doce, crua",Pescados e frutos do mar,93
+292,"Corvina do mar, crua",Pescados e frutos do mar,82
+293,"Corvina grande, assada",Pescados e frutos do mar,152
+294,"Corvina grande, cozida",Pescados e frutos do mar,142
+295,"Dourada de água doce, fresca",Pescados e frutos do mar,86
+296,"Lambari, congelado, cru",Pescados e frutos do mar,105
+297,"Lambari, congelado, frito",Pescados e frutos do mar,323
+298,"Lambari, fresco, cru",Pescados e frutos do mar,107
+299,"Manjuba, com farinha de trigo, frita",Pescados e frutos do mar,291
+300,"Manjuba, frita",Pescados e frutos do mar,259
+301,"Merluza, filé, assado",Pescados e frutos do mar,89
+302,"Merluza, filé, cru",Pescados e frutos do mar,66
+303,"Merluza, filé, frito",Pescados e frutos do mar,193
+304,"Pescada, branca, crua",Pescados e frutos do mar,78
+305,"Pescada, branca, frita",Pescados e frutos do mar,206
+306,"Pescada, filé, com farinha de trigo, frita",Pescados e frutos do mar,234
+307,"Pescada, filé, frito",Pescados e frutos do mar,211
+308,"Pescada, filé, molho escabeche",Pescados e frutos do mar,204
+309,"Pescadinha, crua",Pescados e frutos do mar,80
+310,"Pintado, assado",Pescados e frutos do mar,132
+311,"Pintado, cru",Pescados e frutos do mar,102
+312,"Pintado, grelhado",Pescados e frutos do mar,134
+314,"Porquinho, cru",Pescados e frutos do mar,113
+315,"Salmão, filé, com pele, fresco, grelhado",Pescados e frutos do mar,234
+316,"Salmão, filé, sem pele, fresco, cru",Pescados e frutos do mar,208
+317,"Salmão, filé, sem pele, fresco, grelhado",Pescados e frutos do mar,242
+319,"Sardinha, conserva em óleo",Pescados e frutos do mar,265
+320,"Sardinha, frita",Pescados e frutos do mar,283
+321,"Sardinha, inteira, crua",Carnes e derivados,166
+322,"Tucunaré, filé, congelado, cru",Carnes e derivados,92
+323,Apresuntado,Carnes e derivados,253
+324,"Caldo de carne, tablete",Carnes e derivados,263
+325,"Caldo de galinha, tablete",Carnes e derivados,236
+326,"Carne, bovina, acém, moído, cozido",Carnes e derivados,271
+327,"Carne, bovina, acém, moído, cru",Carnes e derivados,214
+328,"Carne, bovina, acém, sem gordura, cozido",Carnes e derivados,237
+329,"Carne, bovina, acém, sem gordura, cru",Carnes e derivados,182
+330,"Carne, bovina, almôndegas, cruas",Carnes e derivados,234
+331,"Carne, bovina, almôndegas, fritas",Carnes e derivados,348
+332,"Carne, bovina, bucho, cozido",Carnes e derivados,92
+333,"Carne, bovina, bucho, cru",Carnes e derivados,85
+334,"Carne, bovina, capa de contra-filé, com gordura, cru",Carnes e derivados,301
+335,"Carne, bovina, capa de contra-filé, com gordura, grelhada",Carnes e derivados,389
+336,"Carne, bovina, capa de contra-filé, sem gordura, cru",Carnes e derivados,157
+337,"Carne, bovina, capa de contra-filé, sem gordura, grelhada",Carnes e derivados,242
+338,"Carne, bovina, charque, cru",Carnes e derivados,177
+339,"Carne, bovina, charque, cozido",Carnes e derivados,313
+340,"Carne, bovina, contra-filé, à milanesa",Carnes e derivados,328
+341,"Carne, bovina, contra-filé de costela, cru",Carnes e derivados,211
+342,"Carne, bovina, contra-filé de costela, grelhado",Carnes e derivados,307
+344,"Carne, bovina, contra-filé, com gordura, cru",Carnes e derivados,263
+345,"Carne, bovina, contra-filé, com gordura, grelhado",Carnes e derivados,352
+346,"Carne, bovina, contra-filé, sem gordura, cru",Carnes e derivados,195
+347,"Carne, bovina, costela, assada",Carnes e derivados,383
+348,"Carne, bovina, costela, crua",Carnes e derivados,211
+349,"Carne, bovina, coxão duro, sem gordura, cozido",Carnes e derivados,206
+350,"Carne, bovina, coxão duro, sem gordura, cru",Carnes e derivados,162
+351,"Carne, bovina, coxão mole, sem gordura, cozido",Carnes e derivados,226
+352,"Carne, bovina, coxão mole, sem gordura, cru",Carnes e derivados,165
+353,"Carne, bovina, cupim, assado",Carnes e derivados,294
+354,"Carne, bovina, cupim, cru",Carnes e derivados,231
+355,"Carne, bovina, fígado, cru",Carnes e derivados,137
+356,"Carne, bovina, fígado, grelhado",Carnes e derivados,191
+357,"Carne, bovina, filé mignon, sem gordura, cru",Carnes e derivados,140
+358,"Carne, bovina, filé mignon, sem gordura, grelhado",Carnes e derivados,219
+359,"Carne, bovina, flanco, sem gordura, cozido",Carnes e derivados,203
+360,"Carne, bovina, flanco, sem gordura, cru",Carnes e derivados,141
+361,"Carne, bovina, fraldinha, com gordura, cozida",Carnes e derivados,308
+362,"Carne, bovina, fraldinha, com gordura, crua",Carnes e derivados,241
+363,"Carne, bovina, lagarto, cozido",Carnes e derivados,221
+364,"Carne, bovina, lagarto, cru",Carnes e derivados,139
+365,"Carne, bovina, língua, cozida",Carnes e derivados,264
+366,"Carne, bovina, língua, crua",Carnes e derivados,211
+367,"Carne, bovina, maminha, grelhada",Carnes e derivados,240
+368,"Carne, bovina, miolo de alcatra, com gordura, cru",Carnes e derivados,203
+369,"Carne, bovina, miolo de alcatra, sem gordura, cru",Carnes e derivados,172
+370,"Carne, bovina, miolo de alcatra, sem gordura, grelhado",Carnes e derivados,246
+371,"Carne, bovina, músculo, sem gordura, cozido",Carnes e derivados,215
+372,"Carne, bovina, músculo, sem gordura, cru",Carnes e derivados,147
+373,"Carne, bovina, paleta, com gordura, crua",Carnes e derivados,194
+374,"Carne, bovina, paleta, sem gordura, cozida",Carnes e derivados,198
+375,"Carne, bovina, paleta, sem gordura, crua",Carnes e derivados,144
+376,"Carne, bovina, patinho, com gordura, cru",Carnes e derivados,185
+377,"Carne, bovina, patinho, sem gordura, grelhado",Carnes e derivados,212
+378,"Carne, bovina, peito, sem gordura, cozido",Carnes e derivados,170
+379,"Carne, bovina, peito, sem gordura, cru",Carnes e derivados,127
+380,"Carne, bovina, picanha, com gordura, crua",Carnes e derivados,326
+381,"Carne, bovina, picanha, com gordura, grelhada",Carnes e derivados,368
+382,"Carne, bovina, picanha, sem gordura, crua",Carnes e derivados,202
+383,"Carne, bovina, picanha, sem gordura, grelhada",Carnes e derivados,291
+384,"Carne, bovina, seca, cozida",Carnes e derivados,293
+385,"Carne, bovina, seca, crua",Carnes e derivados,309
+386,"Coxinha de frango, frita",Frango e derivados,216
+388,"Croquete, de carne, frito",Carnes e derivados,265
+391,"Frango, asa, com pele, crua",Frango e derivados,258
+392,"Frango, caipira, inteiro, com pele, cozido",Frango e derivados,190
+393,"Frango, caipira, inteiro, sem pele, cozido",Frango e derivados,160
+394,"Frango, coração, cru",Frango e derivados,167
+395,"Frango, coração, grelhado",Frango e derivados,192
+396,"Frango, coxa, com pele, assada",Frango e derivados,222
+397,"Frango, coxa, com pele, crua",Frango e derivados,130
+398,"Frango, coxa, sem pele, cozida",Frango e derivados,110
+399,"Frango, coxa, sem pele, crua",Frango e derivados,123
+400,"Frango, fígado, cru",Frango e derivados,109
+401,"Frango, filé, à milanesa",Frango e derivados,213
+402,"Frango, inteiro, com pele, cru",Frango e derivados,195
+403,"Frango, inteiro, com pele, assado",Frango e derivados,246
+404,"Frango, inteiro, sem pele, cozido",Frango e derivados,172
+405,"Frango, inteiro, sem pele, cru",Frango e derivados,147
+383,"Carne, bovina, picanha, sem gordura, grelhada",Carnes e derivados,291
+384,"Carne, bovina, seca, cozida",Carnes e derivados,293
+385,"Carne, bovina, seca, crua",Carnes e derivados,309
+386,"Coxinha de frango, frita",Frango e derivados,216
+388,"Croquete, de carne, frito",Carnes e derivados,265
+391,"Frango, asa, com pele, crua",Frango e derivados,258
+392,"Frango, caipira, inteiro, com pele, cozido",Frango e derivados,190
+393,"Frango, caipira, inteiro, sem pele, cozido",Frango e derivados,160
+394,"Frango, coração, cru",Frango e derivados,167
+395,"Frango, coração, grelhado",Frango e derivados,192
+396,"Frango, coxa, com pele, assada",Frango e derivados,222
+397,"Frango, coxa, com pele, crua",Frango e derivados,130
+398,"Frango, coxa, sem pele, cozida",Frango e derivados,110
+399,"Frango, coxa, sem pele, crua",Frango e derivados,123
+400,"Frango, fígado, cru",Frango e derivados,109
+401,"Frango, filé, à milanesa",Frango e derivados,213
+402,"Frango, inteiro, com pele, cru",Frango e derivados,195
+403,"Frango, inteiro, com pele, assado",Frango e derivados,246
+404,"Frango, inteiro, sem pele, cozido",Frango e derivados,172
+405,"Frango, inteiro, sem pele, cru",Frango e derivados,147
+400,"Frango, fígado, grelhado",Frango e derivados,180
+407,"Frango, peito, com pele, cru",Frango e derivados,176
+408,"Frango, peito, sem pele, cru",Frango e derivados,142
+409,"Frango, peito, sem pele, cozido",Frango e derivados,165
+411,"Frango, sobrecoxa, com pele, assada",Frango e derivados,201
+413,"Frango, sobrecoxa, sem pele, cozida",Frango e derivados,132
+415,"Hambúrguer, bovino, cru",Carnes e derivados,250
+416,"Hambúrguer, bovino, frito",Carnes e derivados,272

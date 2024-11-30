@@ -1,0 +1,8 @@
+﻿        <div class="input-secondary-item">
+			<TextInput Placeholder="<#=myName#>"
+					   @bind-Value:after="OnFormUpdated"
+                       @bind-Value="Model.<#=myName#>" />
+            </div>
+            <div class="este-campo-obrigatrio-1 valign-text-middle inter-normal-sonic-silver-10px">
+                <ValidationMessage For="@(() => Model.<#=myName#>)"></ValidationMessage>
+        </div>

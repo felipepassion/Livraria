@@ -1,0 +1,166 @@
+services:
+  niunutri:
+    container_name: NiuNutri
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__DefaultConnection=Server=postgres;Port=${DB_PORT};=${DB_NAME};Pooling=true;User Id=${DB_USER};Password=${DB_PASSWORD}
+    volumes:
+      - .\src:/app
+      - .\Shared.Blazor.Maps:/Shared.Blazor.Maps
+    working_dir: /app
+    command: >
+      sh -c "cd .. && dotnet build /app/Apps/WebApp/Niu.Nutri.WebApp/Niu.Nutri.WebApp && cd /app && dotnet Apps/WebApp/Niu.Nutri.WebApp/Niu.Nutri.WebApp/bin/Debug/net8.0/Niu.Nutri.WebApp.dll"
+    ports:
+      - "8087:8080"
+    depends_on:
+      - usersapi
+      - chatapi
+      - systemsettingsapi
+      - migrationsapi
+    networks:
+      - niunutri_network
+    
+  usersapi:
+    container_name: UserApi
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    volumes:
+      - ./src:/app
+    working_dir: /app
+    command: >
+      sh -c "cd /app/Users/Users.Api && dotnet build && cd /app && dotnet Users/Users.Api/bin/Debug/net8.0/Users.Api.dll"
+    ports:
+      - "5095:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__DefaultConnection=Server=postgres;Port=${DB_PORT};=${DB_NAME};Pooling=true;User Id=${DB_USER};Password=${DB_PASSWORD}
+    networks:
+      - niunutri_network
+
+  nestapi:
+    container_name: NestApi
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    volumes:
+      - .\src:/app
+    working_dir: /app
+    command: sh -c "cd Nests/Nests.Api && dotnet build && cd /app && dotnet Nests/Nests.Api/bin/Debug/net8.0/Nests.Api.dll"
+    ports:
+      - "5001:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__DefaultConnection=Server=postgres;Port=${DB_PORT};=${DB_NAME};Pooling=true;User Id=${DB_USER};Password=${DB_PASSWORD}
+    networks:
+      - niunutri_network
+
+  chatapi:
+    container_name: ChatApi
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    volumes:
+      - .\src:/app
+    working_dir: /app
+    command: >
+      sh -c "cd /app/Chat/Chat.Api && dotnet build && cd /app && dotnet Chat/Chat.Api/bin/Debug/net8.0/Chat.Api.dll"
+    networks:
+      - niunutri_network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__DefaultConnection=Server=postgres;Port=${DB_PORT};=${DB_NAME};Pooling=true;User Id=${DB_USER};Password=${DB_PASSWORD}  
+
+
+  systemsettingsapi:
+    container_name: SystemSettingsApi
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    volumes:
+      - .\src:/app
+    working_dir: /app
+    command: >
+      sh -c "cd /app/SystemSettings/SystemSettings.Api && dotnet build && cd /app && dotnet SystemSettings/SystemSettings.Api/bin/Debug/net8.0/SystemSettings.Api.dll"
+    networks:
+      - niunutri_network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrins__DefaultConnection=Server=postgres;Database=${DB_NAME};Pooling=true;User Id=${DB_USER};Password=${DB_PASSWORD}
+
+
+  addressapi:
+    container_name: AddressApi
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    volumes:
+      - .\src:/app
+    working_dir: /app
+    command: >
+      sh -c "cd /app/Addresses/Addresses.Api && dotnet build && cd /app && dotnet Addresses/Addresses.Api/bin/Debug/net8.0/Addresses.Api.dll"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__DefaultConnection=Server=postgres;Port=${DB_PORT};=${DB_NAME};Pooling=true;User Id=${DB_USER};Password=${DB_PASSWORD}
+    ports:
+      - "5004:8080"
+    networks:
+      - niunutri_network
+
+  admdashboard:
+    container_name: AdmPainelDashboard
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    volumes:
+      - .\src:/app
+    working_dir: /app
+    command: >
+      sh -c "cd /app/Apps/Dashboards/Adm.Dashboard && dotnet build && cd /app && dotnet Apps\Dashboards\Adm.Dashboard\bin\Debug\net8.0/Addresses.Api.dll"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__DefaultConnection=Server=postgres;Port=${DB_PORT};=${DB_NAME};Pooling=true;User Id=${DB_USER};Password=${DB_PASSWORD}
+    ports:
+      - "5098:8080"
+    networks:
+      - niunutri_network
+
+
+  migrationsapi:
+    container_name: MigrationsApi
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    volumes:
+      - .\src:/app
+    working_dir: /app
+    command: >
+      sh -c "dotnet build --no-restore /app/Migrations/Migrations.Api && cd /app && dotnet Migrations/Migrations.Api/bin/Debug/net8.0/Migrations.Api.dll"
+    networks:
+      - niunutri_network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__DefaultConnection=Server=postgres;Port=${DB_PORT};=${DB_NAME};Pooling=true;User Id=${DB_USER};Password=${DB_PASSWORD}
+ 
+      
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_DB: "${DB_NAME}"
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - db-Postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - niunutri_network
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "${DB_USER}"
+      MONGO_INITDB_ROOT_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - db-mongo:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - niunutri_network
+
+networks:
+  niunutri_network:
+    driver: bridge
+
+volumes:
+  db-Postgres:
+  db-mongo:

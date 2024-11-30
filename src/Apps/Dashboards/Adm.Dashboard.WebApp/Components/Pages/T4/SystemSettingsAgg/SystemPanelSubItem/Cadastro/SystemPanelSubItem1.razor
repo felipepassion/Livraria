@@ -1,0 +1,58 @@
+﻿	
+@using Niu.Nutri.SystemSettings.Application.DTO.Aggregates.SystemSettingsAgg.Requests;
+@inherits BaseCadastro<SystemPanelSubItemDTO>
+
+<div class="container-informations screen">
+    <div class="box-inputs">
+    <div class="input-secondary">
+    
+        <div class="input-secondary-item">
+			<TextInput Placeholder="Description"
+			           @bind-Value:after="OnFormUpdated"
+			           @bind-Value="Model.Description" />
+			
+            <div class="este-campo-obrigatrio-1 valign-text-middle inter-normal-sonic-silver-10px">
+                <ValidationMessage For="@(() => Model.Description)"></ValidationMessage>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="input-secondary"> 
+        <div class="input-secondary-item">
+			<TextInput Placeholder="Url"
+					   @bind-Value:after="OnFormUpdated"
+                       @bind-Value="Model.Url" />
+            </div>
+            <div class="este-campo-obrigatrio-1 valign-text-middle inter-normal-sonic-silver-10px">
+                <ValidationMessage For="@(() => Model.Url)"></ValidationMessage>
+        </div>
+        <div class="input-secondary-item">
+			<TextInput Placeholder="Icon"
+					   @bind-Value:after="OnFormUpdated"
+                       @bind-Value="Model.Icon" />
+            </div>
+            <div class="este-campo-obrigatrio-1 valign-text-middle inter-normal-sonic-silver-10px">
+                <ValidationMessage For="@(() => Model.Icon)"></ValidationMessage>
+        </div>
+    </div> 
+ 
+    <div class="input-secondary"> 
+<div class="active-grupo">
+    <div class="container-text-2"><div class="status-do-grupo valign-text-middle">LinkDireto</div></div>
+	<SwitchInput @bind-Value="Model.LinkDireto" />
+
+</div>
+ </div>     </div>
+</div>
+
+@code {
+    [CascadingParameter] BaseMainStepsLayout<SystemPanelSubItemDTO> layout { get; set; }
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            this.StateHasChanged();
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
+}

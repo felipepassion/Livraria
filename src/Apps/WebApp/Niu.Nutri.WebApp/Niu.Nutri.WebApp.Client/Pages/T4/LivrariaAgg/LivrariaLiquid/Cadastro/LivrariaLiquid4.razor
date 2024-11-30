@@ -1,0 +1,85 @@
+﻿@using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests;
+@using Niu.Nutri.Livraria
+@using Niu.Nutri.Livraria.Enumerations
+@using Niu.Nutri.Shared.Blazor.Components.Modal
+
+@inherits BaseCadastro<LivrariaLiquidDTO>
+
+<div class="container">
+    <div class="input-group">
+
+        @if (Model.Type == LiquidType.Tea)
+        {
+            <div class="input-wrapper">
+
+                <label>Tipo da Erva</label>
+                <SelectInputAuto Class="mealInput"
+                                 Placeholder="Manjericão, Orégano etc"
+                                 AfterValueChanged="OnChanged"
+                                 QuerySelector="x=>x.Name"
+                                 T="TacTableFoodDTO"
+                                 @bind-Value=Model.TacTableFoodId
+                                 K="int?" />
+                <button class="search-button"><i class="fa fa-search"></i></button>
+                <ValidationMessage For="@(() => Model.TacTableFoodId)"></ValidationMessage>
+            </div>
+        }
+
+        <div class="quantity-input">
+            <ButtonsGroup ToItemString="QuantityTypeExtensions.ToString"
+                          BtnClass="mealBtn"
+                          SelectedValue="QuantityType.L"
+                          OnBtnClick="OnClick"
+                          @bind-value="this.Model.QuantityType"
+                          Items="Enum.GetValues<QuantityType>().Select(x => (QuantityType?)x)" />
+
+            <TextInput Class="liquid-quantity"
+                       Placeholder="0000"
+                       @bind-Value:after="OnChanged2"
+                       @bind-Value="Model.Quantity" />
+
+            <ValidationMessage For="@(() => Model.Quantity)"></ValidationMessage>
+        </div>
+
+    </div>
+</div>
+
+@code {
+    protected override Task OnInitializedAsync()
+    {
+        if (Model.Type == LiquidType.Tea)
+        {
+            this.CadastroModalContext.ModalTitle = "Tipo de chá";
+        }
+        else
+        {
+            this.CadastroModalContext.ModalTitle = "Quantidade ingerida";
+        }
+        return base.OnInitializedAsync();
+    }
+
+    TacTableFoodDTO? currentSelectedFood { get; set; }
+
+    async Task OnChanged(TacTableFoodDTO model)
+    {
+        currentSelectedFood = model;
+        var valueInGrams = Model.Quantity;
+        Model.Calories = (model.Kcal / 100) * valueInGrams;
+        Model.Name = model.Name;
+        this.StateHasChanged();
+    }
+
+    async Task OnClick(QuantityType? clickedType)
+    {
+        this.StateHasChanged();
+    }
+
+    async Task OnChanged2()
+    {
+        if (currentSelectedFood == null) return;
+
+        var valueInGrams = Model.Quantity;
+        Model.Calories = (currentSelectedFood.Kcal / 100) * valueInGrams;
+        this.StateHasChanged();
+    }
+}

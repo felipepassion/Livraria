@@ -1,0 +1,105 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Preparando Ambiente') {
+            steps {
+                script {
+                    sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
+                        sh '''
+                        ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
+                        sudo rm -rf ~/niu-nutri || true
+                        git clone git@github.com:Niu-Technology/niu-nutri.git 
+                        if [ $? -ne 0 ]; then
+                            echo "Failed to clone repository"
+                            exit 1
+                        fi
+                        sudo chown -R niu-user:niu-user ~/niu-nutri
+                        sudo chmod -R 755 ~/niu-nutri
+                        cd ~/niu-nutri
+                        git pull origin main --force
+
+EOF
+                        ''' // EOF alinhado e com linha em branco acima
+                    }
+                }
+            }
+        }
+
+        stage('Construindo Ambiente') {
+            steps {
+                script {
+                    sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
+                        sh '''
+                        ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
+                        cd ~/niu-nutri/src/Addresses/Addresses.Api && \
+                        sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /niunutri/volumes/Addresses
+
+EOF
+                        ''' // EOF alinhado e com linha em branco acima
+                    }
+                }
+            }
+        }
+
+        stage('Deploy via Portainer') {
+            steps {
+                script {
+                    sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
+                        sh '''
+                        ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
+                        docker stop niu-nutri-addresses-api || true
+                        docker start niu-nutri-addresses-api
+
+EOF
+                        ''' // EOF alinhado e com linha em branco acima
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            script {
+                def message = 'Build e deploy do Niu.Nutri.WebApp concluídos com sucesso.'
+                echo message
+                sendLogToInfluxDB("INFO", message, "NiuNutri-success")
+            }
+        }
+        failure {
+            script {
+                def message = 'Build ou deploy do Niu.Nutri.WebApp falhou.'
+                echo message
+                sendLogToInfluxDB("ERROR", message, "NiuNutri-failure")
+            }
+        }
+    }
+}
+
+// Função para enviar logs para InfluxDB
+def sendLogToInfluxDB(String level, String message, String jobLabel) {
+    def influxDBUrl = "https://influxdb.niutech.app.br/write?db=infjenkins"  // URL do InfluxDB configurada
+
+    def logPayload = "${jobLabel},level=${level} message=\"${message}\" ${System.currentTimeMillis() * 1000000}"
+
+    sh """
+    curl -X POST -d '${logPayload}' ${influxDBUrl}
+    """
+}
+
+// Função para consultar logs no InfluxDB
+def queryLogsFromInfluxDB(String query) {
+    def influxDBUrl = "https://influxdb.niutech.app.br/api/v2/query?org=b6b3c83d4291aad6"  // URL do InfluxDB configurada
+    def token = "YdRNK7VSIj3L8ns4VUG7PHDxjt18kiFZJF3fI2t_RgKZS6iR-YsjEDQEMU35vFUKjEj-e1Kouhkn1DUi_3RPnA=="  // Token de autenticação do InfluxDB
+
+    def response = sh(script: """
+    curl -X POST ${influxDBUrl} \
+    -H "Authorization: Token ${token}" \
+    -H "Accept: application/csv" \
+    -H "Content-type: application/vnd.flux" \
+    -d '${query}'
+    """, returnStdout: true).trim()
+
+    return response
+}

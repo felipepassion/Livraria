@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <RootNamespace>Niu.Nutri.SystemSettings.Api</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Users\Users.Enumerations\Users.Enumerations.csproj" />
+    <ProjectReference Include="..\SystemSettings.Infra.IoC\SystemSettings.Infra.IoC.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Controllers\MiniControllers.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MiniControllers.generated.cs</LastGenOutput>
+    </None>
+    <None Update="Migrations.generated.bat">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Migrations.tt</DependentUpon>
+    </None>
+    <None Update="Migrations.tt">
+      <LastGenOutput>Migrations.generated.bat</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="ServerIoCFactory.tt">
+      <LastGenOutput>ServerIoCFactory.generated.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controllers\MiniControllers.generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MiniControllers.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ServerIoCFactory.generated.cs">
+      <DependentUpon>ServerIoCFactory.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+</Project>
