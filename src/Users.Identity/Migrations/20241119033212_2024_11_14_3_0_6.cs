@@ -13,7 +13,7 @@ namespace Niu.Nutri.Users.Identity.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<DateTime>(
-                name: "UpdatedAt",
+                name: "AtualizadoEm",
                 table: "AspNetUsers",
                 type: "timestamp without time zone",
                 nullable: true,
@@ -31,7 +31,7 @@ namespace Niu.Nutri.Users.Identity.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<DateTime>(
-                name: "DeletedAt",
+                name: "DeletadoEm",
                 table: "AspNetUsers",
                 type: "timestamp without time zone",
                 nullable: true,
@@ -40,7 +40,7 @@ namespace Niu.Nutri.Users.Identity.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<DateTime>(
-                name: "CreatedAt",
+                name: "CriadoEm",
                 table: "AspNetUsers",
                 type: "timestamp without time zone",
                 nullable: true,
@@ -69,7 +69,7 @@ namespace Niu.Nutri.Users.Identity.Migrations
                 name: "DataProtectionKeys");
 
             migrationBuilder.AlterColumn<DateTime>(
-                name: "UpdatedAt",
+                name: "AtualizadoEm",
                 table: "AspNetUsers",
                 type: "timestamp with time zone",
                 nullable: true,
@@ -87,7 +87,7 @@ namespace Niu.Nutri.Users.Identity.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<DateTime>(
-                name: "DeletedAt",
+                name: "DeletadoEm",
                 table: "AspNetUsers",
                 type: "timestamp with time zone",
                 nullable: true,
@@ -96,7 +96,7 @@ namespace Niu.Nutri.Users.Identity.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<DateTime>(
-                name: "CreatedAt",
+                name: "CriadoEm",
                 table: "AspNetUsers",
                 type: "timestamp with time zone",
                 nullable: false,

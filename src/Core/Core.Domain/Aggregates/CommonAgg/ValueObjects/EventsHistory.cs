@@ -13,12 +13,12 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.ValueObjects
         public EventsHistory(int userId, string userName)
         {
             UserId = userId;
-            UpdatedAt = DateTime.UtcNow;
+            AtualizadoEm = DateTime.UtcNow;
             UserName = userName;
         }
 
         public int UserId { get; set; }
         public string UserName { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public DateTime AtualizadoEm { get; set; }
     }
 }

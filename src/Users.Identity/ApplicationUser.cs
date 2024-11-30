@@ -14,27 +14,27 @@ namespace Niu.Nutri.Users.Identity
         public ApplicationUser()
         {
             this.ExternalId = Guid.NewGuid().ToString();
-            this.CreatedAt = DateTime.UtcNow;
+            this.CriadoEm = DateTime.UtcNow;
         }
 
         public string Name { get; set; }
 
         [IgnorePropertyT4OnRequest]
         [DisplayName("Criado em")]
-        public DateTime? CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? CriadoEm { get; set; } = DateTime.UtcNow;
 
         [IgnorePropertyT4OnRequest]
         [DisplayName("Atualizado em")]
-        public DateTime? UpdatedAt { get; set; }
+        public DateTime? AtualizadoEm { get; set; }
 
         [IgnorePropertyT4OnRequest]
         [DisplayName("Deletado em")]
-        public DateTime? DeletedAt { get; set; }
+        public DateTime? DeletadoEm { get; set; }
         
         public string ExternalId { get; set; }
 
         [IgnorePropertyT4OnRequest]
-        public bool IsDeleted { get; set; }
+        public bool Deletado { get; set; }
 
         //[Column(TypeName = "jsonb"), NotMapped]
         //public List<EventsHistory>? EventsHistory { get; set; }

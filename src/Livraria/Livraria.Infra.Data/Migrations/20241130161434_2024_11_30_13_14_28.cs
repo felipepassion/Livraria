@@ -20,10 +20,10 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Descricao = table.Column<string>(type: "text", nullable: false),
                     ExternalId = table.Column<string>(type: "text", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
+                    CriadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    AtualizadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    DeletadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Deletado = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,10 +38,10 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nome = table.Column<string>(type: "text", nullable: false),
                     ExternalId = table.Column<string>(type: "text", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
+                    CriadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    AtualizadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    DeletadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Deletado = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,10 +55,10 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ExternalId = table.Column<string>(type: "text", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    CriadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    AtualizadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    DeletadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Deletado = table.Column<bool>(type: "boolean", nullable: false),
                     AutoSaveSettingsEnabled = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -77,10 +77,10 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     Edicao = table.Column<string>(type: "text", nullable: false),
                     AnoPublicacao = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ExternalId = table.Column<string>(type: "text", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
+                    CriadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    AtualizadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    DeletadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Deletado = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,10 +96,10 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     Livro_Codl = table.Column<int>(type: "integer", nullable: false),
                     Assunto_CodAut = table.Column<int>(type: "integer", nullable: false),
                     ExternalId = table.Column<string>(type: "text", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
+                    CriadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    AtualizadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    DeletadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Deletado = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -127,10 +127,10 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     Livro_Codl = table.Column<int>(type: "integer", nullable: false),
                     Autor_CodAut = table.Column<int>(type: "integer", nullable: false),
                     ExternalId = table.Column<string>(type: "text", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
+                    CriadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    AtualizadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    DeletadoEm = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Deletado = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {

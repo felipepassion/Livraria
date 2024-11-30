@@ -188,10 +188,10 @@ namespace Niu.Nutri.Users.Identity.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime?>("CriadoEm")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("DeletedAt")
+                    b.Property<DateTime?>("DeletadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
@@ -205,7 +205,7 @@ namespace Niu.Nutri.Users.Identity.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool>("Deletado")
                         .HasColumnType("boolean");
 
                     b.Property<bool>("LockoutEnabled")
@@ -250,7 +250,7 @@ namespace Niu.Nutri.Users.Identity.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime?>("AtualizadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserName")

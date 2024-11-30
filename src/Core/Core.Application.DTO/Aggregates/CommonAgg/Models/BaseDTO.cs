@@ -18,7 +18,7 @@ namespace Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models
         public int? Id { get; set; }
         public string? ExternalId { get; set; }
         public string[] FieldsToValidate { get; set; }
-        public DateTime? CreatedAt { get; set; }
+        public DateTime? CriadoEm { get; set; }
         public string? H2AndSubTitle { get; }
         public string? CustomTitleOrH2 { get; }
         public string? H1 { get; }
@@ -49,9 +49,9 @@ namespace Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models
 
         public string[] FieldsToValidate { get; set; } = new string[0];
 
-        public DateTime? CreatedAt { get; set; }
+        public DateTime? CriadoEm { get; set; }
 
-        public DateTime? UpdatedAt { get; set; }
+        public DateTime? AtualizadoEm { get; set; }
         public string? TititleWithSubtitle => $"{TitleProperty}{(string.IsNullOrWhiteSpace(SubTitle) ? "" : $" - {SubTitle}")}";
 
         [JsonIgnore]
@@ -67,8 +67,8 @@ namespace Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models
         {
             if (newObj == null) return;
             Id = newObj.Id;
-            CreatedAt = newObj.CreatedAt;
-            UpdatedAt = newObj.UpdatedAt;
+            CriadoEm = newObj.CriadoEm;
+            AtualizadoEm = newObj.AtualizadoEm;
         }
 
         public virtual string GetRoute()

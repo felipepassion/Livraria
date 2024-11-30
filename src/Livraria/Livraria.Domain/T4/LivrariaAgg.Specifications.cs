@@ -78,79 +78,79 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Livro_Autor>(p => p.ExternalId != null);
         }
 		
-					public static Specification<Livro_Autor> CreatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro_Autor>(p => values.Contains(p.CreatedAt.Value));
+					public static Specification<Livro_Autor> CriadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro_Autor>(p => values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<Livro_Autor> CreatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro_Autor>(p => !values.Contains(p.CreatedAt.Value));
+		public static Specification<Livro_Autor> CriadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro_Autor>(p => !values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<Livro_Autor> CreatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Livro_Autor>(p => values.Contains(p.CreatedAt.Value));
+		public static Specification<Livro_Autor> CriadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Livro_Autor>(p => values.Contains(p.CriadoEm.Value));
         }
-        public static Specification<Livro_Autor> CreatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.CreatedAt >= value);
+        public static Specification<Livro_Autor> CriadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.CriadoEm >= value);
         }
-        public static Specification<Livro_Autor> CreatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.CreatedAt <= value);
+        public static Specification<Livro_Autor> CriadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.CriadoEm <= value);
         }
-        public static Specification<Livro_Autor> CreatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.CreatedAt != value);
+        public static Specification<Livro_Autor> CriadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.CriadoEm != value);
         }
-        public static Specification<Livro_Autor> CreatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.CreatedAt > value);
+        public static Specification<Livro_Autor> CriadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.CriadoEm > value);
         }
-        public static Specification<Livro_Autor> CreatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.CreatedAt < value);
-        }
-		
-					public static Specification<Livro_Autor> UpdatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro_Autor>(p => values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<Livro_Autor> UpdatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro_Autor>(p => !values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<Livro_Autor> UpdatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Livro_Autor>(p => values.Contains(p.UpdatedAt.Value));
-        }
-        public static Specification<Livro_Autor> UpdatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.UpdatedAt >= value);
-        }
-        public static Specification<Livro_Autor> UpdatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.UpdatedAt <= value);
-        }
-        public static Specification<Livro_Autor> UpdatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.UpdatedAt != value);
-        }
-        public static Specification<Livro_Autor> UpdatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.UpdatedAt > value);
-        }
-        public static Specification<Livro_Autor> UpdatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.UpdatedAt < value);
+        public static Specification<Livro_Autor> CriadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.CriadoEm < value);
         }
 		
-					public static Specification<Livro_Autor> DeletedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro_Autor>(p => values.Contains(p.DeletedAt.Value));
+					public static Specification<Livro_Autor> AtualizadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro_Autor>(p => values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<Livro_Autor> DeletedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro_Autor>(p => !values.Contains(p.DeletedAt.Value));
+		public static Specification<Livro_Autor> AtualizadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro_Autor>(p => !values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<Livro_Autor> DeletedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Livro_Autor>(p => values.Contains(p.DeletedAt.Value));
+		public static Specification<Livro_Autor> AtualizadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Livro_Autor>(p => values.Contains(p.AtualizadoEm.Value));
         }
-        public static Specification<Livro_Autor> DeletedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.DeletedAt >= value);
+        public static Specification<Livro_Autor> AtualizadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.AtualizadoEm >= value);
         }
-        public static Specification<Livro_Autor> DeletedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.DeletedAt <= value);
+        public static Specification<Livro_Autor> AtualizadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.AtualizadoEm <= value);
         }
-        public static Specification<Livro_Autor> DeletedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.DeletedAt != value);
+        public static Specification<Livro_Autor> AtualizadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.AtualizadoEm != value);
         }
-        public static Specification<Livro_Autor> DeletedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.DeletedAt > value);
+        public static Specification<Livro_Autor> AtualizadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.AtualizadoEm > value);
         }
-        public static Specification<Livro_Autor> DeletedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Livro_Autor>(p => p.DeletedAt < value);
+        public static Specification<Livro_Autor> AtualizadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.AtualizadoEm < value);
+        }
+		
+					public static Specification<Livro_Autor> DeletadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro_Autor>(p => values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<Livro_Autor> DeletadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro_Autor>(p => !values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<Livro_Autor> DeletadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Livro_Autor>(p => values.Contains(p.DeletadoEm.Value));
+        }
+        public static Specification<Livro_Autor> DeletadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.DeletadoEm >= value);
+        }
+        public static Specification<Livro_Autor> DeletadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.DeletadoEm <= value);
+        }
+        public static Specification<Livro_Autor> DeletadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.DeletadoEm != value);
+        }
+        public static Specification<Livro_Autor> DeletadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.DeletadoEm > value);
+        }
+        public static Specification<Livro_Autor> DeletadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Livro_Autor>(p => p.DeletadoEm < value);
         }
 		
 					public static Specification<Livro_Autor> IdContains(params int[] values) {
@@ -178,8 +178,8 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Livro_Autor>(p => p.Id < value);
         }
 		
-					public static Specification<Livro_Autor> IsDeletedEqual(bool value) {
-			return new DirectSpecification<Livro_Autor>(p => p.IsDeleted == value);
+					public static Specification<Livro_Autor> DeletadoEqual(bool value) {
+			return new DirectSpecification<Livro_Autor>(p => p.Deletado == value);
 		}
 		
 	   }
@@ -303,79 +303,79 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Livro>(p => p.ExternalId != null);
         }
 		
-					public static Specification<Livro> CreatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro>(p => values.Contains(p.CreatedAt.Value));
+					public static Specification<Livro> CriadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro>(p => values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<Livro> CreatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro>(p => !values.Contains(p.CreatedAt.Value));
+		public static Specification<Livro> CriadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro>(p => !values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<Livro> CreatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Livro>(p => values.Contains(p.CreatedAt.Value));
+		public static Specification<Livro> CriadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Livro>(p => values.Contains(p.CriadoEm.Value));
         }
-        public static Specification<Livro> CreatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.CreatedAt >= value);
+        public static Specification<Livro> CriadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.CriadoEm >= value);
         }
-        public static Specification<Livro> CreatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.CreatedAt <= value);
+        public static Specification<Livro> CriadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.CriadoEm <= value);
         }
-        public static Specification<Livro> CreatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.CreatedAt != value);
+        public static Specification<Livro> CriadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.CriadoEm != value);
         }
-        public static Specification<Livro> CreatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.CreatedAt > value);
+        public static Specification<Livro> CriadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.CriadoEm > value);
         }
-        public static Specification<Livro> CreatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.CreatedAt < value);
-        }
-		
-					public static Specification<Livro> UpdatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro>(p => values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<Livro> UpdatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro>(p => !values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<Livro> UpdatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Livro>(p => values.Contains(p.UpdatedAt.Value));
-        }
-        public static Specification<Livro> UpdatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.UpdatedAt >= value);
-        }
-        public static Specification<Livro> UpdatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.UpdatedAt <= value);
-        }
-        public static Specification<Livro> UpdatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.UpdatedAt != value);
-        }
-        public static Specification<Livro> UpdatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.UpdatedAt > value);
-        }
-        public static Specification<Livro> UpdatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.UpdatedAt < value);
+        public static Specification<Livro> CriadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.CriadoEm < value);
         }
 		
-					public static Specification<Livro> DeletedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro>(p => values.Contains(p.DeletedAt.Value));
+					public static Specification<Livro> AtualizadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro>(p => values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<Livro> DeletedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro>(p => !values.Contains(p.DeletedAt.Value));
+		public static Specification<Livro> AtualizadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro>(p => !values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<Livro> DeletedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Livro>(p => values.Contains(p.DeletedAt.Value));
+		public static Specification<Livro> AtualizadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Livro>(p => values.Contains(p.AtualizadoEm.Value));
         }
-        public static Specification<Livro> DeletedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.DeletedAt >= value);
+        public static Specification<Livro> AtualizadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.AtualizadoEm >= value);
         }
-        public static Specification<Livro> DeletedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.DeletedAt <= value);
+        public static Specification<Livro> AtualizadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.AtualizadoEm <= value);
         }
-        public static Specification<Livro> DeletedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.DeletedAt != value);
+        public static Specification<Livro> AtualizadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.AtualizadoEm != value);
         }
-        public static Specification<Livro> DeletedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.DeletedAt > value);
+        public static Specification<Livro> AtualizadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.AtualizadoEm > value);
         }
-        public static Specification<Livro> DeletedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.DeletedAt < value);
+        public static Specification<Livro> AtualizadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.AtualizadoEm < value);
+        }
+		
+					public static Specification<Livro> DeletadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro>(p => values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<Livro> DeletadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro>(p => !values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<Livro> DeletadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Livro>(p => values.Contains(p.DeletadoEm.Value));
+        }
+        public static Specification<Livro> DeletadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.DeletadoEm >= value);
+        }
+        public static Specification<Livro> DeletadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.DeletadoEm <= value);
+        }
+        public static Specification<Livro> DeletadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.DeletadoEm != value);
+        }
+        public static Specification<Livro> DeletadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.DeletadoEm > value);
+        }
+        public static Specification<Livro> DeletadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Livro>(p => p.DeletadoEm < value);
         }
 		
 					public static Specification<Livro> IdContains(params int[] values) {
@@ -403,8 +403,8 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Livro>(p => p.Id < value);
         }
 		
-					public static Specification<Livro> IsDeletedEqual(bool value) {
-			return new DirectSpecification<Livro>(p => p.IsDeleted == value);
+					public static Specification<Livro> DeletadoEqual(bool value) {
+			return new DirectSpecification<Livro>(p => p.Deletado == value);
 		}
 		
 	   }
@@ -455,79 +455,79 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Assunto>(p => p.ExternalId != null);
         }
 		
-					public static Specification<Assunto> CreatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Assunto>(p => values.Contains(p.CreatedAt.Value));
+					public static Specification<Assunto> CriadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Assunto>(p => values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<Assunto> CreatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Assunto>(p => !values.Contains(p.CreatedAt.Value));
+		public static Specification<Assunto> CriadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Assunto>(p => !values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<Assunto> CreatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Assunto>(p => values.Contains(p.CreatedAt.Value));
+		public static Specification<Assunto> CriadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Assunto>(p => values.Contains(p.CriadoEm.Value));
         }
-        public static Specification<Assunto> CreatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.CreatedAt >= value);
+        public static Specification<Assunto> CriadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.CriadoEm >= value);
         }
-        public static Specification<Assunto> CreatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.CreatedAt <= value);
+        public static Specification<Assunto> CriadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.CriadoEm <= value);
         }
-        public static Specification<Assunto> CreatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.CreatedAt != value);
+        public static Specification<Assunto> CriadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.CriadoEm != value);
         }
-        public static Specification<Assunto> CreatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.CreatedAt > value);
+        public static Specification<Assunto> CriadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.CriadoEm > value);
         }
-        public static Specification<Assunto> CreatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.CreatedAt < value);
-        }
-		
-					public static Specification<Assunto> UpdatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Assunto>(p => values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<Assunto> UpdatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Assunto>(p => !values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<Assunto> UpdatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Assunto>(p => values.Contains(p.UpdatedAt.Value));
-        }
-        public static Specification<Assunto> UpdatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.UpdatedAt >= value);
-        }
-        public static Specification<Assunto> UpdatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.UpdatedAt <= value);
-        }
-        public static Specification<Assunto> UpdatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.UpdatedAt != value);
-        }
-        public static Specification<Assunto> UpdatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.UpdatedAt > value);
-        }
-        public static Specification<Assunto> UpdatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.UpdatedAt < value);
+        public static Specification<Assunto> CriadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.CriadoEm < value);
         }
 		
-					public static Specification<Assunto> DeletedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Assunto>(p => values.Contains(p.DeletedAt.Value));
+					public static Specification<Assunto> AtualizadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Assunto>(p => values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<Assunto> DeletedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Assunto>(p => !values.Contains(p.DeletedAt.Value));
+		public static Specification<Assunto> AtualizadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Assunto>(p => !values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<Assunto> DeletedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Assunto>(p => values.Contains(p.DeletedAt.Value));
+		public static Specification<Assunto> AtualizadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Assunto>(p => values.Contains(p.AtualizadoEm.Value));
         }
-        public static Specification<Assunto> DeletedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.DeletedAt >= value);
+        public static Specification<Assunto> AtualizadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.AtualizadoEm >= value);
         }
-        public static Specification<Assunto> DeletedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.DeletedAt <= value);
+        public static Specification<Assunto> AtualizadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.AtualizadoEm <= value);
         }
-        public static Specification<Assunto> DeletedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.DeletedAt != value);
+        public static Specification<Assunto> AtualizadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.AtualizadoEm != value);
         }
-        public static Specification<Assunto> DeletedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.DeletedAt > value);
+        public static Specification<Assunto> AtualizadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.AtualizadoEm > value);
         }
-        public static Specification<Assunto> DeletedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Assunto>(p => p.DeletedAt < value);
+        public static Specification<Assunto> AtualizadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.AtualizadoEm < value);
+        }
+		
+					public static Specification<Assunto> DeletadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Assunto>(p => values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<Assunto> DeletadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Assunto>(p => !values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<Assunto> DeletadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Assunto>(p => values.Contains(p.DeletadoEm.Value));
+        }
+        public static Specification<Assunto> DeletadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.DeletadoEm >= value);
+        }
+        public static Specification<Assunto> DeletadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.DeletadoEm <= value);
+        }
+        public static Specification<Assunto> DeletadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.DeletadoEm != value);
+        }
+        public static Specification<Assunto> DeletadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.DeletadoEm > value);
+        }
+        public static Specification<Assunto> DeletadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Assunto>(p => p.DeletadoEm < value);
         }
 		
 					public static Specification<Assunto> IdContains(params int[] values) {
@@ -555,8 +555,8 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Assunto>(p => p.Id < value);
         }
 		
-					public static Specification<Assunto> IsDeletedEqual(bool value) {
-			return new DirectSpecification<Assunto>(p => p.IsDeleted == value);
+					public static Specification<Assunto> DeletadoEqual(bool value) {
+			return new DirectSpecification<Assunto>(p => p.Deletado == value);
 		}
 		
 	   }
@@ -636,79 +636,79 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Livro_Assunto>(p => p.ExternalId != null);
         }
 		
-					public static Specification<Livro_Assunto> CreatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.CreatedAt.Value));
+					public static Specification<Livro_Assunto> CriadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<Livro_Assunto> CreatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro_Assunto>(p => !values.Contains(p.CreatedAt.Value));
+		public static Specification<Livro_Assunto> CriadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro_Assunto>(p => !values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<Livro_Assunto> CreatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.CreatedAt.Value));
+		public static Specification<Livro_Assunto> CriadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.CriadoEm.Value));
         }
-        public static Specification<Livro_Assunto> CreatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.CreatedAt >= value);
+        public static Specification<Livro_Assunto> CriadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.CriadoEm >= value);
         }
-        public static Specification<Livro_Assunto> CreatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.CreatedAt <= value);
+        public static Specification<Livro_Assunto> CriadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.CriadoEm <= value);
         }
-        public static Specification<Livro_Assunto> CreatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.CreatedAt != value);
+        public static Specification<Livro_Assunto> CriadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.CriadoEm != value);
         }
-        public static Specification<Livro_Assunto> CreatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.CreatedAt > value);
+        public static Specification<Livro_Assunto> CriadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.CriadoEm > value);
         }
-        public static Specification<Livro_Assunto> CreatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.CreatedAt < value);
-        }
-		
-					public static Specification<Livro_Assunto> UpdatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<Livro_Assunto> UpdatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro_Assunto>(p => !values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<Livro_Assunto> UpdatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.UpdatedAt.Value));
-        }
-        public static Specification<Livro_Assunto> UpdatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.UpdatedAt >= value);
-        }
-        public static Specification<Livro_Assunto> UpdatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.UpdatedAt <= value);
-        }
-        public static Specification<Livro_Assunto> UpdatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.UpdatedAt != value);
-        }
-        public static Specification<Livro_Assunto> UpdatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.UpdatedAt > value);
-        }
-        public static Specification<Livro_Assunto> UpdatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.UpdatedAt < value);
+        public static Specification<Livro_Assunto> CriadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.CriadoEm < value);
         }
 		
-					public static Specification<Livro_Assunto> DeletedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.DeletedAt.Value));
+					public static Specification<Livro_Assunto> AtualizadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<Livro_Assunto> DeletedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro_Assunto>(p => !values.Contains(p.DeletedAt.Value));
+		public static Specification<Livro_Assunto> AtualizadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro_Assunto>(p => !values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<Livro_Assunto> DeletedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.DeletedAt.Value));
+		public static Specification<Livro_Assunto> AtualizadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.AtualizadoEm.Value));
         }
-        public static Specification<Livro_Assunto> DeletedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.DeletedAt >= value);
+        public static Specification<Livro_Assunto> AtualizadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.AtualizadoEm >= value);
         }
-        public static Specification<Livro_Assunto> DeletedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.DeletedAt <= value);
+        public static Specification<Livro_Assunto> AtualizadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.AtualizadoEm <= value);
         }
-        public static Specification<Livro_Assunto> DeletedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.DeletedAt != value);
+        public static Specification<Livro_Assunto> AtualizadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.AtualizadoEm != value);
         }
-        public static Specification<Livro_Assunto> DeletedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.DeletedAt > value);
+        public static Specification<Livro_Assunto> AtualizadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.AtualizadoEm > value);
         }
-        public static Specification<Livro_Assunto> DeletedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.DeletedAt < value);
+        public static Specification<Livro_Assunto> AtualizadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.AtualizadoEm < value);
+        }
+		
+					public static Specification<Livro_Assunto> DeletadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<Livro_Assunto> DeletadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Livro_Assunto>(p => !values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<Livro_Assunto> DeletadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.DeletadoEm.Value));
+        }
+        public static Specification<Livro_Assunto> DeletadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.DeletadoEm >= value);
+        }
+        public static Specification<Livro_Assunto> DeletadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.DeletadoEm <= value);
+        }
+        public static Specification<Livro_Assunto> DeletadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.DeletadoEm != value);
+        }
+        public static Specification<Livro_Assunto> DeletadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.DeletadoEm > value);
+        }
+        public static Specification<Livro_Assunto> DeletadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Livro_Assunto>(p => p.DeletadoEm < value);
         }
 		
 					public static Specification<Livro_Assunto> IdContains(params int[] values) {
@@ -736,8 +736,8 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Livro_Assunto>(p => p.Id < value);
         }
 		
-					public static Specification<Livro_Assunto> IsDeletedEqual(bool value) {
-			return new DirectSpecification<Livro_Assunto>(p => p.IsDeleted == value);
+					public static Specification<Livro_Assunto> DeletadoEqual(bool value) {
+			return new DirectSpecification<Livro_Assunto>(p => p.Deletado == value);
 		}
 		
 	   }
@@ -788,79 +788,79 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Autor>(p => p.ExternalId != null);
         }
 		
-					public static Specification<Autor> CreatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Autor>(p => values.Contains(p.CreatedAt.Value));
+					public static Specification<Autor> CriadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Autor>(p => values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<Autor> CreatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Autor>(p => !values.Contains(p.CreatedAt.Value));
+		public static Specification<Autor> CriadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Autor>(p => !values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<Autor> CreatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Autor>(p => values.Contains(p.CreatedAt.Value));
+		public static Specification<Autor> CriadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Autor>(p => values.Contains(p.CriadoEm.Value));
         }
-        public static Specification<Autor> CreatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.CreatedAt >= value);
+        public static Specification<Autor> CriadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.CriadoEm >= value);
         }
-        public static Specification<Autor> CreatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.CreatedAt <= value);
+        public static Specification<Autor> CriadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.CriadoEm <= value);
         }
-        public static Specification<Autor> CreatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.CreatedAt != value);
+        public static Specification<Autor> CriadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.CriadoEm != value);
         }
-        public static Specification<Autor> CreatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.CreatedAt > value);
+        public static Specification<Autor> CriadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.CriadoEm > value);
         }
-        public static Specification<Autor> CreatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.CreatedAt < value);
-        }
-		
-					public static Specification<Autor> UpdatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Autor>(p => values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<Autor> UpdatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Autor>(p => !values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<Autor> UpdatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Autor>(p => values.Contains(p.UpdatedAt.Value));
-        }
-        public static Specification<Autor> UpdatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.UpdatedAt >= value);
-        }
-        public static Specification<Autor> UpdatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.UpdatedAt <= value);
-        }
-        public static Specification<Autor> UpdatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.UpdatedAt != value);
-        }
-        public static Specification<Autor> UpdatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.UpdatedAt > value);
-        }
-        public static Specification<Autor> UpdatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.UpdatedAt < value);
+        public static Specification<Autor> CriadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.CriadoEm < value);
         }
 		
-					public static Specification<Autor> DeletedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<Autor>(p => values.Contains(p.DeletedAt.Value));
+					public static Specification<Autor> AtualizadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Autor>(p => values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<Autor> DeletedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Autor>(p => !values.Contains(p.DeletedAt.Value));
+		public static Specification<Autor> AtualizadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Autor>(p => !values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<Autor> DeletedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Autor>(p => values.Contains(p.DeletedAt.Value));
+		public static Specification<Autor> AtualizadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Autor>(p => values.Contains(p.AtualizadoEm.Value));
         }
-        public static Specification<Autor> DeletedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.DeletedAt >= value);
+        public static Specification<Autor> AtualizadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.AtualizadoEm >= value);
         }
-        public static Specification<Autor> DeletedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.DeletedAt <= value);
+        public static Specification<Autor> AtualizadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.AtualizadoEm <= value);
         }
-        public static Specification<Autor> DeletedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.DeletedAt != value);
+        public static Specification<Autor> AtualizadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.AtualizadoEm != value);
         }
-        public static Specification<Autor> DeletedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.DeletedAt > value);
+        public static Specification<Autor> AtualizadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.AtualizadoEm > value);
         }
-        public static Specification<Autor> DeletedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.DeletedAt < value);
+        public static Specification<Autor> AtualizadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.AtualizadoEm < value);
+        }
+		
+					public static Specification<Autor> DeletadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Autor>(p => values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<Autor> DeletadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Autor>(p => !values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<Autor> DeletadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Autor>(p => values.Contains(p.DeletadoEm.Value));
+        }
+        public static Specification<Autor> DeletadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.DeletadoEm >= value);
+        }
+        public static Specification<Autor> DeletadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.DeletadoEm <= value);
+        }
+        public static Specification<Autor> DeletadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.DeletadoEm != value);
+        }
+        public static Specification<Autor> DeletadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.DeletadoEm > value);
+        }
+        public static Specification<Autor> DeletadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Autor>(p => p.DeletadoEm < value);
         }
 		
 					public static Specification<Autor> IdContains(params int[] values) {
@@ -888,8 +888,8 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Autor>(p => p.Id < value);
         }
 		
-					public static Specification<Autor> IsDeletedEqual(bool value) {
-			return new DirectSpecification<Autor>(p => p.IsDeleted == value);
+					public static Specification<Autor> DeletadoEqual(bool value) {
+			return new DirectSpecification<Autor>(p => p.Deletado == value);
 		}
 		
 	   }
@@ -921,79 +921,79 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<LivrariaAggSettings>(p => p.ExternalId != null);
         }
 		
-					public static Specification<LivrariaAggSettings> CreatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.CreatedAt.Value));
+					public static Specification<LivrariaAggSettings> CriadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<LivrariaAggSettings> CreatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => !values.Contains(p.CreatedAt.Value));
+		public static Specification<LivrariaAggSettings> CriadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<LivrariaAggSettings>(p => !values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<LivrariaAggSettings> CreatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.CreatedAt.Value));
+		public static Specification<LivrariaAggSettings> CriadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.CriadoEm.Value));
         }
-        public static Specification<LivrariaAggSettings> CreatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.CreatedAt >= value);
+        public static Specification<LivrariaAggSettings> CriadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.CriadoEm >= value);
         }
-        public static Specification<LivrariaAggSettings> CreatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.CreatedAt <= value);
+        public static Specification<LivrariaAggSettings> CriadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.CriadoEm <= value);
         }
-        public static Specification<LivrariaAggSettings> CreatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.CreatedAt != value);
+        public static Specification<LivrariaAggSettings> CriadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.CriadoEm != value);
         }
-        public static Specification<LivrariaAggSettings> CreatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.CreatedAt > value);
+        public static Specification<LivrariaAggSettings> CriadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.CriadoEm > value);
         }
-        public static Specification<LivrariaAggSettings> CreatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.CreatedAt < value);
-        }
-		
-					public static Specification<LivrariaAggSettings> UpdatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<LivrariaAggSettings> UpdatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => !values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<LivrariaAggSettings> UpdatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.UpdatedAt.Value));
-        }
-        public static Specification<LivrariaAggSettings> UpdatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.UpdatedAt >= value);
-        }
-        public static Specification<LivrariaAggSettings> UpdatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.UpdatedAt <= value);
-        }
-        public static Specification<LivrariaAggSettings> UpdatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.UpdatedAt != value);
-        }
-        public static Specification<LivrariaAggSettings> UpdatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.UpdatedAt > value);
-        }
-        public static Specification<LivrariaAggSettings> UpdatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.UpdatedAt < value);
+        public static Specification<LivrariaAggSettings> CriadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.CriadoEm < value);
         }
 		
-					public static Specification<LivrariaAggSettings> DeletedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.DeletedAt.Value));
+					public static Specification<LivrariaAggSettings> AtualizadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<LivrariaAggSettings> DeletedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => !values.Contains(p.DeletedAt.Value));
+		public static Specification<LivrariaAggSettings> AtualizadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<LivrariaAggSettings>(p => !values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<LivrariaAggSettings> DeletedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.DeletedAt.Value));
+		public static Specification<LivrariaAggSettings> AtualizadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.AtualizadoEm.Value));
         }
-        public static Specification<LivrariaAggSettings> DeletedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletedAt >= value);
+        public static Specification<LivrariaAggSettings> AtualizadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.AtualizadoEm >= value);
         }
-        public static Specification<LivrariaAggSettings> DeletedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletedAt <= value);
+        public static Specification<LivrariaAggSettings> AtualizadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.AtualizadoEm <= value);
         }
-        public static Specification<LivrariaAggSettings> DeletedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletedAt != value);
+        public static Specification<LivrariaAggSettings> AtualizadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.AtualizadoEm != value);
         }
-        public static Specification<LivrariaAggSettings> DeletedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletedAt > value);
+        public static Specification<LivrariaAggSettings> AtualizadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.AtualizadoEm > value);
         }
-        public static Specification<LivrariaAggSettings> DeletedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletedAt < value);
+        public static Specification<LivrariaAggSettings> AtualizadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.AtualizadoEm < value);
+        }
+		
+					public static Specification<LivrariaAggSettings> DeletadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<LivrariaAggSettings> DeletadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<LivrariaAggSettings>(p => !values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<LivrariaAggSettings> DeletadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.DeletadoEm.Value));
+        }
+        public static Specification<LivrariaAggSettings> DeletadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletadoEm >= value);
+        }
+        public static Specification<LivrariaAggSettings> DeletadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletadoEm <= value);
+        }
+        public static Specification<LivrariaAggSettings> DeletadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletadoEm != value);
+        }
+        public static Specification<LivrariaAggSettings> DeletadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletadoEm > value);
+        }
+        public static Specification<LivrariaAggSettings> DeletadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletadoEm < value);
         }
 		
 					public static Specification<LivrariaAggSettings> IdContains(params int[] values) {
@@ -1021,8 +1021,8 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<LivrariaAggSettings>(p => p.Id < value);
         }
 		
-					public static Specification<LivrariaAggSettings> IsDeletedEqual(bool value) {
-			return new DirectSpecification<LivrariaAggSettings>(p => p.IsDeleted == value);
+					public static Specification<LivrariaAggSettings> DeletadoEqual(bool value) {
+			return new DirectSpecification<LivrariaAggSettings>(p => p.Deletado == value);
 		}
 		
 	   }

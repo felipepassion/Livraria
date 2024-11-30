@@ -26,79 +26,79 @@ namespace Niu.Nutri.DefaultTemplate.Domain.Aggregates.DefaultTemplateAgg.Specifi
             return new DirectSpecification<DefaultEntity>(p => p.ExternalId != null);
         }
 		
-					public static Specification<DefaultEntity> CreatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<DefaultEntity>(p => values.Contains(p.CreatedAt.Value));
+					public static Specification<DefaultEntity> CriadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<DefaultEntity>(p => values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<DefaultEntity> CreatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<DefaultEntity>(p => !values.Contains(p.CreatedAt.Value));
+		public static Specification<DefaultEntity> CriadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<DefaultEntity>(p => !values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<DefaultEntity> CreatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<DefaultEntity>(p => values.Contains(p.CreatedAt.Value));
+		public static Specification<DefaultEntity> CriadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<DefaultEntity>(p => values.Contains(p.CriadoEm.Value));
         }
-        public static Specification<DefaultEntity> CreatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.CreatedAt >= value);
+        public static Specification<DefaultEntity> CriadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.CriadoEm >= value);
         }
-        public static Specification<DefaultEntity> CreatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.CreatedAt <= value);
+        public static Specification<DefaultEntity> CriadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.CriadoEm <= value);
         }
-        public static Specification<DefaultEntity> CreatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.CreatedAt != value);
+        public static Specification<DefaultEntity> CriadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.CriadoEm != value);
         }
-        public static Specification<DefaultEntity> CreatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.CreatedAt > value);
+        public static Specification<DefaultEntity> CriadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.CriadoEm > value);
         }
-        public static Specification<DefaultEntity> CreatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.CreatedAt < value);
-        }
-		
-					public static Specification<DefaultEntity> UpdatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<DefaultEntity>(p => values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<DefaultEntity> UpdatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<DefaultEntity>(p => !values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<DefaultEntity> UpdatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<DefaultEntity>(p => values.Contains(p.UpdatedAt.Value));
-        }
-        public static Specification<DefaultEntity> UpdatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.UpdatedAt >= value);
-        }
-        public static Specification<DefaultEntity> UpdatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.UpdatedAt <= value);
-        }
-        public static Specification<DefaultEntity> UpdatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.UpdatedAt != value);
-        }
-        public static Specification<DefaultEntity> UpdatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.UpdatedAt > value);
-        }
-        public static Specification<DefaultEntity> UpdatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.UpdatedAt < value);
+        public static Specification<DefaultEntity> CriadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.CriadoEm < value);
         }
 		
-					public static Specification<DefaultEntity> DeletedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<DefaultEntity>(p => values.Contains(p.DeletedAt.Value));
+					public static Specification<DefaultEntity> AtualizadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<DefaultEntity>(p => values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<DefaultEntity> DeletedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<DefaultEntity>(p => !values.Contains(p.DeletedAt.Value));
+		public static Specification<DefaultEntity> AtualizadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<DefaultEntity>(p => !values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<DefaultEntity> DeletedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<DefaultEntity>(p => values.Contains(p.DeletedAt.Value));
+		public static Specification<DefaultEntity> AtualizadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<DefaultEntity>(p => values.Contains(p.AtualizadoEm.Value));
         }
-        public static Specification<DefaultEntity> DeletedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.DeletedAt >= value);
+        public static Specification<DefaultEntity> AtualizadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.AtualizadoEm >= value);
         }
-        public static Specification<DefaultEntity> DeletedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.DeletedAt <= value);
+        public static Specification<DefaultEntity> AtualizadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.AtualizadoEm <= value);
         }
-        public static Specification<DefaultEntity> DeletedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.DeletedAt != value);
+        public static Specification<DefaultEntity> AtualizadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.AtualizadoEm != value);
         }
-        public static Specification<DefaultEntity> DeletedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.DeletedAt > value);
+        public static Specification<DefaultEntity> AtualizadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.AtualizadoEm > value);
         }
-        public static Specification<DefaultEntity> DeletedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<DefaultEntity>(p => p.DeletedAt < value);
+        public static Specification<DefaultEntity> AtualizadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.AtualizadoEm < value);
+        }
+		
+					public static Specification<DefaultEntity> DeletadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<DefaultEntity>(p => values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<DefaultEntity> DeletadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<DefaultEntity>(p => !values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<DefaultEntity> DeletadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<DefaultEntity>(p => values.Contains(p.DeletadoEm.Value));
+        }
+        public static Specification<DefaultEntity> DeletadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.DeletadoEm >= value);
+        }
+        public static Specification<DefaultEntity> DeletadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.DeletadoEm <= value);
+        }
+        public static Specification<DefaultEntity> DeletadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.DeletadoEm != value);
+        }
+        public static Specification<DefaultEntity> DeletadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.DeletadoEm > value);
+        }
+        public static Specification<DefaultEntity> DeletadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<DefaultEntity>(p => p.DeletadoEm < value);
         }
 		
 					public static Specification<DefaultEntity> IdContains(params int[] values) {
@@ -126,8 +126,8 @@ namespace Niu.Nutri.DefaultTemplate.Domain.Aggregates.DefaultTemplateAgg.Specifi
             return new DirectSpecification<DefaultEntity>(p => p.Id < value);
         }
 		
-					public static Specification<DefaultEntity> IsDeletedEqual(bool value) {
-			return new DirectSpecification<DefaultEntity>(p => p.IsDeleted == value);
+					public static Specification<DefaultEntity> DeletadoEqual(bool value) {
+			return new DirectSpecification<DefaultEntity>(p => p.Deletado == value);
 		}
 		
 	   }
@@ -184,79 +184,79 @@ namespace Niu.Nutri.DefaultTemplate.Domain.Aggregates.DefaultTemplateAgg.Specifi
             return new DirectSpecification<DefaultTemplateAggSettings>(p => p.ExternalId != null);
         }
 		
-					public static Specification<DefaultTemplateAggSettings> CreatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => values.Contains(p.CreatedAt.Value));
+					public static Specification<DefaultTemplateAggSettings> CriadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<DefaultTemplateAggSettings> CreatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => !values.Contains(p.CreatedAt.Value));
+		public static Specification<DefaultTemplateAggSettings> CriadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => !values.Contains(p.CriadoEm.Value));
         }
-		public static Specification<DefaultTemplateAggSettings> CreatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<DefaultTemplateAggSettings>(p => values.Contains(p.CreatedAt.Value));
+		public static Specification<DefaultTemplateAggSettings> CriadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<DefaultTemplateAggSettings>(p => values.Contains(p.CriadoEm.Value));
         }
-        public static Specification<DefaultTemplateAggSettings> CreatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.CreatedAt >= value);
+        public static Specification<DefaultTemplateAggSettings> CriadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.CriadoEm >= value);
         }
-        public static Specification<DefaultTemplateAggSettings> CreatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.CreatedAt <= value);
+        public static Specification<DefaultTemplateAggSettings> CriadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.CriadoEm <= value);
         }
-        public static Specification<DefaultTemplateAggSettings> CreatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.CreatedAt != value);
+        public static Specification<DefaultTemplateAggSettings> CriadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.CriadoEm != value);
         }
-        public static Specification<DefaultTemplateAggSettings> CreatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.CreatedAt > value);
+        public static Specification<DefaultTemplateAggSettings> CriadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.CriadoEm > value);
         }
-        public static Specification<DefaultTemplateAggSettings> CreatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.CreatedAt < value);
-        }
-		
-					public static Specification<DefaultTemplateAggSettings> UpdatedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<DefaultTemplateAggSettings> UpdatedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => !values.Contains(p.UpdatedAt.Value));
-        }
-		public static Specification<DefaultTemplateAggSettings> UpdatedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<DefaultTemplateAggSettings>(p => values.Contains(p.UpdatedAt.Value));
-        }
-        public static Specification<DefaultTemplateAggSettings> UpdatedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.UpdatedAt >= value);
-        }
-        public static Specification<DefaultTemplateAggSettings> UpdatedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.UpdatedAt <= value);
-        }
-        public static Specification<DefaultTemplateAggSettings> UpdatedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.UpdatedAt != value);
-        }
-        public static Specification<DefaultTemplateAggSettings> UpdatedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.UpdatedAt > value);
-        }
-        public static Specification<DefaultTemplateAggSettings> UpdatedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.UpdatedAt < value);
+        public static Specification<DefaultTemplateAggSettings> CriadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.CriadoEm < value);
         }
 		
-					public static Specification<DefaultTemplateAggSettings> DeletedAtContains(params System.DateTime[] values) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => values.Contains(p.DeletedAt.Value));
+					public static Specification<DefaultTemplateAggSettings> AtualizadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<DefaultTemplateAggSettings> DeletedAtNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => !values.Contains(p.DeletedAt.Value));
+		public static Specification<DefaultTemplateAggSettings> AtualizadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => !values.Contains(p.AtualizadoEm.Value));
         }
-		public static Specification<DefaultTemplateAggSettings> DeletedAtEqual(params System.DateTime[] values) {
-			return new DirectSpecification<DefaultTemplateAggSettings>(p => values.Contains(p.DeletedAt.Value));
+		public static Specification<DefaultTemplateAggSettings> AtualizadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<DefaultTemplateAggSettings>(p => values.Contains(p.AtualizadoEm.Value));
         }
-        public static Specification<DefaultTemplateAggSettings> DeletedAtGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.DeletedAt >= value);
+        public static Specification<DefaultTemplateAggSettings> AtualizadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.AtualizadoEm >= value);
         }
-        public static Specification<DefaultTemplateAggSettings> DeletedAtLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.DeletedAt <= value);
+        public static Specification<DefaultTemplateAggSettings> AtualizadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.AtualizadoEm <= value);
         }
-        public static Specification<DefaultTemplateAggSettings> DeletedAtNotEqual(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.DeletedAt != value);
+        public static Specification<DefaultTemplateAggSettings> AtualizadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.AtualizadoEm != value);
         }
-        public static Specification<DefaultTemplateAggSettings> DeletedAtGreaterThan(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.DeletedAt > value);
+        public static Specification<DefaultTemplateAggSettings> AtualizadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.AtualizadoEm > value);
         }
-        public static Specification<DefaultTemplateAggSettings> DeletedAtLessThan(System.DateTime value) {
-            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.DeletedAt < value);
+        public static Specification<DefaultTemplateAggSettings> AtualizadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.AtualizadoEm < value);
+        }
+		
+					public static Specification<DefaultTemplateAggSettings> DeletadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<DefaultTemplateAggSettings> DeletadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => !values.Contains(p.DeletadoEm.Value));
+        }
+		public static Specification<DefaultTemplateAggSettings> DeletadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<DefaultTemplateAggSettings>(p => values.Contains(p.DeletadoEm.Value));
+        }
+        public static Specification<DefaultTemplateAggSettings> DeletadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.DeletadoEm >= value);
+        }
+        public static Specification<DefaultTemplateAggSettings> DeletadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.DeletadoEm <= value);
+        }
+        public static Specification<DefaultTemplateAggSettings> DeletadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.DeletadoEm != value);
+        }
+        public static Specification<DefaultTemplateAggSettings> DeletadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.DeletadoEm > value);
+        }
+        public static Specification<DefaultTemplateAggSettings> DeletadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<DefaultTemplateAggSettings>(p => p.DeletadoEm < value);
         }
 		
 					public static Specification<DefaultTemplateAggSettings> IdContains(params int[] values) {
@@ -284,8 +284,8 @@ namespace Niu.Nutri.DefaultTemplate.Domain.Aggregates.DefaultTemplateAgg.Specifi
             return new DirectSpecification<DefaultTemplateAggSettings>(p => p.Id < value);
         }
 		
-					public static Specification<DefaultTemplateAggSettings> IsDeletedEqual(bool value) {
-			return new DirectSpecification<DefaultTemplateAggSettings>(p => p.IsDeleted == value);
+					public static Specification<DefaultTemplateAggSettings> DeletadoEqual(bool value) {
+			return new DirectSpecification<DefaultTemplateAggSettings>(p => p.Deletado == value);
 		}
 		
 	   }

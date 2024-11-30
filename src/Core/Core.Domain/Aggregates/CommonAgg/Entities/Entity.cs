@@ -44,7 +44,7 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
         public string ExternalId { get; set; }
         string GetTitle();
         string GetTitlePropName();
-        DateTime? CreatedAt { get; set; }
+        DateTime? CriadoEm { get; set; }
     }
 
     public class Entity : IEntity
@@ -55,7 +55,7 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
 
         public Entity()
         {
-            CreatedAt ??= DateTime.UtcNow;
+            CriadoEm ??= DateTime.UtcNow;
             _externalId ??= Guid.NewGuid().ToString();
         }
 
@@ -66,7 +66,7 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
             {
                 if (string.IsNullOrWhiteSpace(_externalId))
                 {
-                    CreatedAt ??= DateTime.UtcNow;
+                    CriadoEm ??= DateTime.UtcNow;
                     _externalId = Guid.NewGuid().ToString();
                 }
                 return _externalId;
@@ -76,19 +76,19 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
 
         [IgnorePropertyT4OnRequest]
         [DisplayName("Criado em")]
-        public DateTime? CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? CriadoEm { get; set; } = DateTime.UtcNow;
 
         [IgnorePropertyT4OnRequest]
         [DisplayName("Atualizado em")]
-        public DateTime? UpdatedAt { get; set; }
+        public DateTime? AtualizadoEm { get; set; }
 
         [IgnorePropertyT4OnRequest]
         [DisplayName("Deletado em")]
-        public DateTime? DeletedAt { get; set; }
+        public DateTime? DeletadoEm { get; set; }
 
         protected virtual void Updated()
         {
-            this.UpdatedAt = DateTime.Now;
+            this.AtualizadoEm = DateTime.Now;
         }
 
         [Key]
@@ -114,7 +114,7 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
 
 
         [IgnorePropertyT4OnRequest]
-        public bool IsDeleted { get; set; }
+        public bool Deletado { get; set; }
 
         [NotMapped]
         [IgnorePropertyT4]
@@ -124,8 +124,8 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
         //public List<EventsHistory>? EventsHistory { get; set; }
         public void Delete()
         {
-            this.IsDeleted = true;
-            this.DeletedAt = DateTime.UtcNow;
+            this.Deletado = true;
+            this.DeletadoEm = DateTime.UtcNow;
         }
 
         public void ClearDomainEvents()

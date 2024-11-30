@@ -56,10 +56,10 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime?>("CriadoEm")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("DeletedAt")
+                    b.Property<DateTime?>("DeletadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Descricao")
@@ -70,10 +70,10 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool>("Deletado")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime?>("AtualizadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
@@ -90,24 +90,24 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime?>("CriadoEm")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("DeletedAt")
+                    b.Property<DateTime?>("DeletadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ExternalId")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool>("Deletado")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime?>("AtualizadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
@@ -126,20 +126,20 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     b.Property<bool>("AutoSaveSettingsEnabled")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime?>("CriadoEm")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("DeletedAt")
+                    b.Property<DateTime?>("DeletadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ExternalId")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool>("Deletado")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime?>("AtualizadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
@@ -159,10 +159,10 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     b.Property<DateTime>("AnoPublicacao")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime?>("CriadoEm")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("DeletedAt")
+                    b.Property<DateTime?>("DeletadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Edicao")
@@ -177,14 +177,14 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool>("Deletado")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime?>("AtualizadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
@@ -203,23 +203,23 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     b.Property<int>("Assunto_CodAut")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime?>("CriadoEm")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("DeletedAt")
+                    b.Property<DateTime?>("DeletadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ExternalId")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool>("Deletado")
                         .HasColumnType("boolean");
 
                     b.Property<int>("Livro_Codl")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime?>("AtualizadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
@@ -243,23 +243,23 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     b.Property<int>("Autor_CodAut")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime?>("CriadoEm")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("DeletedAt")
+                    b.Property<DateTime?>("DeletadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ExternalId")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool>("Deletado")
                         .HasColumnType("boolean");
 
                     b.Property<int>("Livro_Codl")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime?>("AtualizadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
@@ -280,20 +280,20 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime?>("CriadoEm")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("DeletedAt")
+                    b.Property<DateTime?>("DeletadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ExternalId")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool>("Deletado")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime?>("AtualizadoEm")
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
