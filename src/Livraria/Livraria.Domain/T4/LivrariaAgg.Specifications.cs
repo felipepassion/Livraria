@@ -409,32 +409,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
 		
 	   }
    public partial class AssuntoSpecifications {
-				public static Specification<Assunto> CodAsContains(params int[] values) {
-            return new DirectSpecification<Assunto>(p => values.Contains(p.CodAs));
-        }
-		public static Specification<Assunto> CodAsNotContains(params int[] values) {
-            return new DirectSpecification<Assunto>(p => !values.Contains(p.CodAs));
-        }
-		public static Specification<Assunto> CodAsEqual(params int[] values) {
-			return new DirectSpecification<Assunto>(p => values.Contains(p.CodAs));
-        }
-        public static Specification<Assunto> CodAsGreaterThanOrEqual(int value) {
-            return new DirectSpecification<Assunto>(p => p.CodAs >= value);
-        }
-        public static Specification<Assunto> CodAsLessThanOrEqual(int value) {
-            return new DirectSpecification<Assunto>(p => p.CodAs <= value);
-        }
-        public static Specification<Assunto> CodAsNotEqual(int value) {
-            return new DirectSpecification<Assunto>(p => p.CodAs != value);
-        }
-        public static Specification<Assunto> CodAsGreaterThan(int value) {
-            return new DirectSpecification<Assunto>(p => p.CodAs > value);
-        }
-        public static Specification<Assunto> CodAsLessThan(int value) {
-            return new DirectSpecification<Assunto>(p => p.CodAs < value);
-        }
-		
-					public static Specification<Assunto> DescricaoContains(string value) {
+				public static Specification<Assunto> DescricaoContains(string value) {
 			return new DirectSpecification<Assunto>(p => EF.Functions.Like(p.Descricao.ToLower(), $"%{value.ToLower()}%"));
 		}
 		public static Specification<Assunto> DescricaoNotContains(string value) {
@@ -767,32 +742,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
 		
 	   }
    public partial class AutorSpecifications {
-				public static Specification<Autor> CodAuContains(params int[] values) {
-            return new DirectSpecification<Autor>(p => values.Contains(p.CodAu));
-        }
-		public static Specification<Autor> CodAuNotContains(params int[] values) {
-            return new DirectSpecification<Autor>(p => !values.Contains(p.CodAu));
-        }
-		public static Specification<Autor> CodAuEqual(params int[] values) {
-			return new DirectSpecification<Autor>(p => values.Contains(p.CodAu));
-        }
-        public static Specification<Autor> CodAuGreaterThanOrEqual(int value) {
-            return new DirectSpecification<Autor>(p => p.CodAu >= value);
-        }
-        public static Specification<Autor> CodAuLessThanOrEqual(int value) {
-            return new DirectSpecification<Autor>(p => p.CodAu <= value);
-        }
-        public static Specification<Autor> CodAuNotEqual(int value) {
-            return new DirectSpecification<Autor>(p => p.CodAu != value);
-        }
-        public static Specification<Autor> CodAuGreaterThan(int value) {
-            return new DirectSpecification<Autor>(p => p.CodAu > value);
-        }
-        public static Specification<Autor> CodAuLessThan(int value) {
-            return new DirectSpecification<Autor>(p => p.CodAu < value);
-        }
-		
-					public static Specification<Autor> NomeContains(string value) {
+				public static Specification<Autor> NomeContains(string value) {
 			return new DirectSpecification<Autor>(p => EF.Functions.Like(p.Nome.ToLower(), $"%{value.ToLower()}%"));
 		}
 		public static Specification<Autor> NomeNotContains(string value) {

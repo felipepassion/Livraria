@@ -26,3 +26,10 @@ namespace Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests
 	{
               }
 }
+namespace Niu.Nutri.Livraria.Application.DTO.Aggregates.UsersAgg.Requests 
+{
+	using Requests;
+    public partial class UserListiningDTO : EntityDTO
+	{
+            }
+}

@@ -133,16 +133,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Queries.Models
 		public bool? IsDeletedEqual { get; set; }
 	}
 	public partial class AssuntoQueryModel : BaseQueryModel {
-		public int? CodAsEqual { get; set; }
-		public int? CodAsNotEqual { get; set; }
-		public int[]? CodAsContains { get; set; }
-		public int[]? CodAsNotContains { get; set; }
-		public int? CodAsSince { get; set; }
-		public int? CodAsUntil { get; set; }
-		public int? CodAsLessThan { get; set; }
-		public int? CodAsGreaterThan { get; set; }
-		public int? CodAsLessThanOrEqual { get; set; }
-		public int? CodAsGreaterThanOrEqual { get; set; }
 		public string? DescricaoEqual { get; set; }
 		public string? DescricaoNotEqual { get; set; }
 		public string? DescricaoContains { get; set; }
@@ -252,16 +242,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Queries.Models
 		public bool? IsDeletedEqual { get; set; }
 	}
 	public partial class AutorQueryModel : BaseQueryModel {
-		public int? CodAuEqual { get; set; }
-		public int? CodAuNotEqual { get; set; }
-		public int[]? CodAuContains { get; set; }
-		public int[]? CodAuNotContains { get; set; }
-		public int? CodAuSince { get; set; }
-		public int? CodAuUntil { get; set; }
-		public int? CodAuLessThan { get; set; }
-		public int? CodAuGreaterThan { get; set; }
-		public int? CodAuLessThanOrEqual { get; set; }
-		public int? CodAuGreaterThanOrEqual { get; set; }
 		public string? NomeEqual { get; set; }
 		public string? NomeNotEqual { get; set; }
 		public string? NomeContains { get; set; }

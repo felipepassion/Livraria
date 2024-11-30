@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Niu.Nutri.Livraria.Infra.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class _2024_11_30_12_44_16 : Migration
+    public partial class _2024_11_30_13_14_28 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,9 +16,8 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                 name: "Assunto",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    CodAs = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CodAs = table.Column<int>(type: "integer", nullable: false),
                     Descricao = table.Column<string>(type: "text", nullable: false),
                     ExternalId = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
@@ -28,16 +27,15 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Assunto", x => x.Id);
+                    table.PrimaryKey("PK_Assunto", x => x.CodAs);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Autor",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    CodAu = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CodAu = table.Column<int>(type: "integer", nullable: false),
                     Nome = table.Column<string>(type: "text", nullable: false),
                     ExternalId = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
@@ -47,7 +45,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Autor", x => x.Id);
+                    table.PrimaryKey("PK_Autor", x => x.CodAu);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,7 +70,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                 name: "Livro",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Codl = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Titulo = table.Column<string>(type: "text", nullable: false),
                     Editora = table.Column<string>(type: "text", nullable: false),
@@ -86,7 +84,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Livro", x => x.Id);
+                    table.PrimaryKey("PK_Livro", x => x.Codl);
                 });
 
             migrationBuilder.CreateTable(
@@ -110,13 +108,13 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                         name: "FK_Livro_Assunto_Assunto_Assunto_CodAut",
                         column: x => x.Assunto_CodAut,
                         principalTable: "Assunto",
-                        principalColumn: "Id",
+                        principalColumn: "CodAs",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Livro_Assunto_Livro_Livro_Codl",
                         column: x => x.Livro_Codl,
                         principalTable: "Livro",
-                        principalColumn: "Id",
+                        principalColumn: "Codl",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -141,13 +139,13 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                         name: "FK_Livro_Autor_Autor_Autor_CodAut",
                         column: x => x.Autor_CodAut,
                         principalTable: "Autor",
-                        principalColumn: "Id",
+                        principalColumn: "CodAu",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Livro_Autor_Livro_Livro_Codl",
                         column: x => x.Livro_Codl,
                         principalTable: "Livro",
-                        principalColumn: "Id",
+                        principalColumn: "Codl",
                         onDelete: ReferentialAction.Cascade);
                 });
 

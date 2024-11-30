@@ -19,7 +19,7 @@ namespace Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Validators
         public Livro_AutorStep1Validator(HttpClient db)
                     : base(db)
         {
-            RuleFor(Q => Q.Livro.AnoPublicacao).NotEmpty();RuleFor(Q => Q.Livro.Assunto);RuleFor(Q => Q.Livro.Assunto.CodAs);RuleFor(Q => Q.Livro.Assunto.Descricao);RuleFor(Q => Q.Livro.Edicao).NotEmpty();RuleFor(Q => Q.Livro.Editora).NotEmpty();RuleFor(Q => Q.Livro.Titulo).NotEmpty();
+            RuleFor(Q => Q.Livro.AnoPublicacao).NotEmpty();RuleFor(Q => Q.Livro.Assunto);RuleFor(Q => Q.Livro.Assunto.Descricao);RuleFor(Q => Q.Livro.Edicao).NotEmpty();RuleFor(Q => Q.Livro.Editora).NotEmpty();RuleFor(Q => Q.Livro.Titulo).NotEmpty();
             ConfigureAdditionalValidations();
         }
         partial void ConfigureAdditionalValidations();
@@ -49,7 +49,7 @@ namespace Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Validators
         public Livro_AssuntoStep1Validator(HttpClient db)
                     : base(db)
         {
-            RuleFor(Q => Q.Livro_Codl).NotEmpty();RuleFor(Q => Q.Assunto_CodAut).NotEmpty();RuleFor(Q => Q.Livro.AnoPublicacao).NotEmpty();RuleFor(Q => Q.Livro.Autor);RuleFor(Q => Q.Livro.Autor.CodAu);RuleFor(Q => Q.Livro.Autor.Nome);RuleFor(Q => Q.Livro.Edicao).NotEmpty();RuleFor(Q => Q.Livro.Editora).NotEmpty();RuleFor(Q => Q.Livro.Titulo).NotEmpty();
+            RuleFor(Q => Q.Livro_Codl).NotEmpty();RuleFor(Q => Q.Assunto_CodAut).NotEmpty();RuleFor(Q => Q.Livro.AnoPublicacao).NotEmpty();RuleFor(Q => Q.Livro.Autor);RuleFor(Q => Q.Livro.Autor.Nome);RuleFor(Q => Q.Livro.Edicao).NotEmpty();RuleFor(Q => Q.Livro.Editora).NotEmpty();RuleFor(Q => Q.Livro.Titulo).NotEmpty();
             ConfigureAdditionalValidations();
         }
         partial void ConfigureAdditionalValidations();

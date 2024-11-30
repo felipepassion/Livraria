@@ -25,7 +25,6 @@ public partial class LivroDTO : EntityDTO
 	}
 public partial class AssuntoDTO : EntityDTO
 	{
-	    public  int? CodAs { get; set; }
 	    public  string? Descricao { get; set; }
 	}
 public partial class Livro_AssuntoDTO : EntityDTO
@@ -37,10 +36,15 @@ public partial class Livro_AssuntoDTO : EntityDTO
 	}
 public partial class AutorDTO : EntityDTO
 	{
-	    public  int? CodAu { get; set; }
 	    public  string? Nome { get; set; }
 	}
 public partial class LivrariaAggSettingsDTO : BaseAggregateSettingsDTO
+	{
+	}
+}
+namespace Niu.Nutri.Livraria.Application.DTO.Aggregates.UsersAgg.Requests 
+{
+public partial class UserDTO : EntityDTO
 	{
 	}
 }
