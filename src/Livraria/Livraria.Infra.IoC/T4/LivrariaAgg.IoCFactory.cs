@@ -98,24 +98,24 @@ namespace Niu.Nutri.Livraria.Infra.IoC {
 
 		void ConfigureRepositories(IServiceCollection services) {
 
-            services.AddScoped<ILivrariaAggSettingsRepository, LivrariaAggSettingsRepository>();
             services.AddScoped<ILivro_AutorRepository, Livro_AutorRepository>();
-            services.AddScoped<IAutorRepository, AutorRepository>();
+            services.AddScoped<ILivroRepository, LivroRepository>();
             services.AddScoped<IAssuntoRepository, AssuntoRepository>();
             services.AddScoped<ILivro_AssuntoRepository, Livro_AssuntoRepository>();
-            services.AddScoped<ILivroRepository, LivroRepository>();
+            services.AddScoped<IAutorRepository, AutorRepository>();
+            services.AddScoped<ILivrariaAggSettingsRepository, LivrariaAggSettingsRepository>();
 			
 			ConfigureAdditionalRepositories();
 		}
 
 		void ConfigureAppServices(IServiceCollection services) {
 
-            services.AddScoped<ILivrariaAggSettingsAppService, LivrariaAggSettingsAppService>();
             services.AddScoped<ILivro_AutorAppService, Livro_AutorAppService>();
-            services.AddScoped<IAutorAppService, AutorAppService>();
+            services.AddScoped<ILivroAppService, LivroAppService>();
             services.AddScoped<IAssuntoAppService, AssuntoAppService>();
             services.AddScoped<ILivro_AssuntoAppService, Livro_AssuntoAppService>();
-            services.AddScoped<ILivroAppService, LivroAppService>();
+            services.AddScoped<IAutorAppService, AutorAppService>();
+            services.AddScoped<ILivrariaAggSettingsAppService, LivrariaAggSettingsAppService>();
 		
 			ConfigureAdditionalAppServices(services);
 		}

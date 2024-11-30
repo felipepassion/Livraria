@@ -9,13 +9,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Profiles
 {
 	using Application.DTO.Aggregates.LivrariaAgg.Requests;
 	using Entities;
-	public partial class LivrariaAggSettingsListiningProfile : Profile
-	{
-		public LivrariaAggSettingsListiningProfile()
-		{
-			 CreateMap<LivrariaAggSettings, LivrariaAggSettingsListiningDTO>();
-		}
-	}
 	public partial class Livro_AutorListiningProfile : Profile
 	{
 		public Livro_AutorListiningProfile()
@@ -23,11 +16,11 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Profiles
 			 CreateMap<Livro_Autor, Livro_AutorListiningDTO>();
 		}
 	}
-	public partial class AutorListiningProfile : Profile
+	public partial class LivroListiningProfile : Profile
 	{
-		public AutorListiningProfile()
+		public LivroListiningProfile()
 		{
-			 CreateMap<Autor, AutorListiningDTO>();
+			 CreateMap<Livro, LivroListiningDTO>();
 		}
 	}
 	public partial class AssuntoListiningProfile : Profile
@@ -44,11 +37,18 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Profiles
 			 CreateMap<Livro_Assunto, Livro_AssuntoListiningDTO>();
 		}
 	}
-	public partial class LivroListiningProfile : Profile
+	public partial class AutorListiningProfile : Profile
 	{
-		public LivroListiningProfile()
+		public AutorListiningProfile()
 		{
-			 CreateMap<Livro, LivroListiningDTO>();
+			 CreateMap<Autor, AutorListiningDTO>();
+		}
+	}
+	public partial class LivrariaAggSettingsListiningProfile : Profile
+	{
+		public LivrariaAggSettingsListiningProfile()
+		{
+			 CreateMap<LivrariaAggSettings, LivrariaAggSettingsListiningDTO>();
 		}
 	}
 }

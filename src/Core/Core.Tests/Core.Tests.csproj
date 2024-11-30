@@ -14,9 +14,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
 
-
-	<ItemGroup>
-		<ProjectReference Include="..\..\Users\Users.Infra.IoC\Users.Infra.IoC.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Users.Identity\Users.Identity.csproj" />
+    <ProjectReference Include="..\Core.Infra.IoC\Core.Infra.IoC.csproj" />
+  </ItemGroup>
 	
 </Project>

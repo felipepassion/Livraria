@@ -13,11 +13,6 @@ namespace Niu.Nutri.Migrations.Api {
 		public static void InjectDependencies(this IServiceCollection services, IConfiguration configuration) {
 
             Niu.Nutri.Users.Identity.Infra.IoC.IoCFactory.Current.Configure(configuration, services);
-            Niu.Nutri.SystemSettings.Infra.IoC.IoCFactory.Current.Configure(configuration, services);
-            Niu.Nutri.Users.Infra.IoC.IoCFactory.Current.Configure(configuration, services);
-            Niu.Nutri.Addresses.Infra.IoC.IoCFactory.Current.Configure(configuration, services);
-            Niu.Nutri.Chat.Infra.IoC.IoCFactory.Current.Configure(configuration, services);
-            Niu.Nutri.Livraria.Infra.IoC.IoCFactory.Current.Configure(configuration, services);
 			
             Niu.Nutri.Core.Infra.IoC.IoCFactory.Current.Configure(configuration, services);
 		}

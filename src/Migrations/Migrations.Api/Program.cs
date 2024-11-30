@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.DataProtection;
 using Niu.Nutri.Migrations.Api;
-using Niu.Nutri.Migrations.Api.DataSeeders;
-using Schedulings.Domain.Tests;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,11 +40,5 @@ app.Migrate();
 app.OnAppInitialized();
 
 await app.SeedAdministratorUser();
-await app.CriarMenus(builder.Services);
-await app.CriarPerfisDeUsuario(builder.Services);
-await app.CriarSeedUsers(builder.Services);
-await app.SeedDatabase();
-await app.SeedDbFunctions();
-
 
 app.Run();

@@ -11,60 +11,6 @@ namespace Niu.Nutri.Livraria.Api.Controllers {
 	using Domain.Aggregates.LivrariaAgg.Entities;
 	[ApiController]
     [Route("api/[controller]")]
-	public partial class LivrariaAggSettingsController : BaseMiniController {
-		ILivrariaAggSettingsAppService _livrariaAggSettingsAppService;
-		public LivrariaAggSettingsController(
-			IServiceProvider scope,
-            ILogRequestContext logRequestContext,
-			ILivrariaAggSettingsAppService livrariaAggSettingsAppService)
-				: base(logRequestContext, scope)
-			{ 
-				_livrariaAggSettingsAppService = livrariaAggSettingsAppService; 
-			}	
-		[HttpGet]
-		public async Task<IActionResult> Get([FromQuery] LivrariaAggSettingsQueryModel request) {
-		    var obj = await _livrariaAggSettingsAppService.Get(request);
-            return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
-        }
-		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<object>> Count([FromQuery] LivrariaAggSettingsQueryModel request) {
-            return GetHttpResponseDTO.Ok(await _livrariaAggSettingsAppService.CountAsync(request));
-        }
-		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<object>> Get([FromQuery] LivrariaAggSettingsQueryModel request, int page = 0, int size = 5) {
-		    var obj = await _livrariaAggSettingsAppService.GetAll(request, page, size);
-            return GetHttpResponseDTO.Ok(obj);
-        }
-		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<object>> GetSummary([FromQuery] LivrariaAggSettingsQueryModel request, int page = 0, int size = 5) {
-		    var obj = await _livrariaAggSettingsAppService.GetAllSummary(request, page, size);
-            return GetHttpResponseDTO.Ok(obj);
-        }
-		[HttpGet("select")]
-		public async Task<IActionResult> Select([FromQuery] LivrariaAggSettingsQueryModel request, int? page = null, int? size = null) {
-		    var obj = await _livrariaAggSettingsAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<LivrariaAggSettings>());
-            return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
-        }
-		
-		[HttpPost]
-		public async Task<GetHttpResponseDTO<object>> Post(Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.LivrariaAggSettingsDTO request) {
-			var loggedUserId = User.GetLoggedInUserId<int>();
-			var result = await _livrariaAggSettingsAppService.Create(request);
-            return result.Success ? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
-		}
-        [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<object>> Delete([FromQuery] LivrariaAggSettingsQueryModel request) {
-            var result = await _livrariaAggSettingsAppService.Delete(request);
-            return result.Success ? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
-        }
-        [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO<object>> DeleteRange(LivrariaAggSettingsQueryModel request) {
-            var result = await _livrariaAggSettingsAppService.DeleteRange(request);
-            return result.Success? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
-        }
-	}
-	[ApiController]
-    [Route("api/[controller]")]
 	public partial class Livro_AutorController : BaseMiniController {
 		ILivro_AutorAppService _livro_AutorAppService;
 		public Livro_AutorController(
@@ -119,55 +65,55 @@ namespace Niu.Nutri.Livraria.Api.Controllers {
 	}
 	[ApiController]
     [Route("api/[controller]")]
-	public partial class AutorController : BaseMiniController {
-		IAutorAppService _autorAppService;
-		public AutorController(
+	public partial class LivroController : BaseMiniController {
+		ILivroAppService _livroAppService;
+		public LivroController(
 			IServiceProvider scope,
             ILogRequestContext logRequestContext,
-			IAutorAppService autorAppService)
+			ILivroAppService livroAppService)
 				: base(logRequestContext, scope)
 			{ 
-				_autorAppService = autorAppService; 
+				_livroAppService = livroAppService; 
 			}	
 		[HttpGet]
-		public async Task<IActionResult> Get([FromQuery] AutorQueryModel request) {
-		    var obj = await _autorAppService.Get(request);
+		public async Task<IActionResult> Get([FromQuery] LivroQueryModel request) {
+		    var obj = await _livroAppService.Get(request);
             return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
         }
 		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<object>> Count([FromQuery] AutorQueryModel request) {
-            return GetHttpResponseDTO.Ok(await _autorAppService.CountAsync(request));
+		public async Task<GetHttpResponseDTO<object>> Count([FromQuery] LivroQueryModel request) {
+            return GetHttpResponseDTO.Ok(await _livroAppService.CountAsync(request));
         }
 		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<object>> Get([FromQuery] AutorQueryModel request, int page = 0, int size = 5) {
-		    var obj = await _autorAppService.GetAll(request, page, size);
+		public async Task<GetHttpResponseDTO<object>> Get([FromQuery] LivroQueryModel request, int page = 0, int size = 5) {
+		    var obj = await _livroAppService.GetAll(request, page, size);
             return GetHttpResponseDTO.Ok(obj);
         }
 		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<object>> GetSummary([FromQuery] AutorQueryModel request, int page = 0, int size = 5) {
-		    var obj = await _autorAppService.GetAllSummary(request, page, size);
+		public async Task<GetHttpResponseDTO<object>> GetSummary([FromQuery] LivroQueryModel request, int page = 0, int size = 5) {
+		    var obj = await _livroAppService.GetAllSummary(request, page, size);
             return GetHttpResponseDTO.Ok(obj);
         }
 		[HttpGet("select")]
-		public async Task<IActionResult> Select([FromQuery] AutorQueryModel request, int? page = null, int? size = null) {
-		    var obj = await _autorAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Autor>());
+		public async Task<IActionResult> Select([FromQuery] LivroQueryModel request, int? page = null, int? size = null) {
+		    var obj = await _livroAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Livro>());
             return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
         }
 		
 		[HttpPost]
-		public async Task<GetHttpResponseDTO<object>> Post(Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.AutorDTO request) {
+		public async Task<GetHttpResponseDTO<object>> Post(Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.LivroDTO request) {
 			var loggedUserId = User.GetLoggedInUserId<int>();
-			var result = await _autorAppService.Create(request);
+			var result = await _livroAppService.Create(request);
             return result.Success ? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
 		}
         [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<object>> Delete([FromQuery] AutorQueryModel request) {
-            var result = await _autorAppService.Delete(request);
+		public async Task<GetHttpResponseDTO<object>> Delete([FromQuery] LivroQueryModel request) {
+            var result = await _livroAppService.Delete(request);
             return result.Success ? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
         }
         [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO<object>> DeleteRange(AutorQueryModel request) {
-            var result = await _autorAppService.DeleteRange(request);
+        public async Task<GetHttpResponseDTO<object>> DeleteRange(LivroQueryModel request) {
+            var result = await _livroAppService.DeleteRange(request);
             return result.Success? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
         }
 	}
@@ -281,55 +227,109 @@ namespace Niu.Nutri.Livraria.Api.Controllers {
 	}
 	[ApiController]
     [Route("api/[controller]")]
-	public partial class LivroController : BaseMiniController {
-		ILivroAppService _livroAppService;
-		public LivroController(
+	public partial class AutorController : BaseMiniController {
+		IAutorAppService _autorAppService;
+		public AutorController(
 			IServiceProvider scope,
             ILogRequestContext logRequestContext,
-			ILivroAppService livroAppService)
+			IAutorAppService autorAppService)
 				: base(logRequestContext, scope)
 			{ 
-				_livroAppService = livroAppService; 
+				_autorAppService = autorAppService; 
 			}	
 		[HttpGet]
-		public async Task<IActionResult> Get([FromQuery] LivroQueryModel request) {
-		    var obj = await _livroAppService.Get(request);
+		public async Task<IActionResult> Get([FromQuery] AutorQueryModel request) {
+		    var obj = await _autorAppService.Get(request);
             return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
         }
 		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<object>> Count([FromQuery] LivroQueryModel request) {
-            return GetHttpResponseDTO.Ok(await _livroAppService.CountAsync(request));
+		public async Task<GetHttpResponseDTO<object>> Count([FromQuery] AutorQueryModel request) {
+            return GetHttpResponseDTO.Ok(await _autorAppService.CountAsync(request));
         }
 		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<object>> Get([FromQuery] LivroQueryModel request, int page = 0, int size = 5) {
-		    var obj = await _livroAppService.GetAll(request, page, size);
+		public async Task<GetHttpResponseDTO<object>> Get([FromQuery] AutorQueryModel request, int page = 0, int size = 5) {
+		    var obj = await _autorAppService.GetAll(request, page, size);
             return GetHttpResponseDTO.Ok(obj);
         }
 		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<object>> GetSummary([FromQuery] LivroQueryModel request, int page = 0, int size = 5) {
-		    var obj = await _livroAppService.GetAllSummary(request, page, size);
+		public async Task<GetHttpResponseDTO<object>> GetSummary([FromQuery] AutorQueryModel request, int page = 0, int size = 5) {
+		    var obj = await _autorAppService.GetAllSummary(request, page, size);
             return GetHttpResponseDTO.Ok(obj);
         }
 		[HttpGet("select")]
-		public async Task<IActionResult> Select([FromQuery] LivroQueryModel request, int? page = null, int? size = null) {
-		    var obj = await _livroAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Livro>());
+		public async Task<IActionResult> Select([FromQuery] AutorQueryModel request, int? page = null, int? size = null) {
+		    var obj = await _autorAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Autor>());
             return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
         }
 		
 		[HttpPost]
-		public async Task<GetHttpResponseDTO<object>> Post(Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.LivroDTO request) {
+		public async Task<GetHttpResponseDTO<object>> Post(Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.AutorDTO request) {
 			var loggedUserId = User.GetLoggedInUserId<int>();
-			var result = await _livroAppService.Create(request);
+			var result = await _autorAppService.Create(request);
             return result.Success ? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
 		}
         [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<object>> Delete([FromQuery] LivroQueryModel request) {
-            var result = await _livroAppService.Delete(request);
+		public async Task<GetHttpResponseDTO<object>> Delete([FromQuery] AutorQueryModel request) {
+            var result = await _autorAppService.Delete(request);
             return result.Success ? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
         }
         [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO<object>> DeleteRange(LivroQueryModel request) {
-            var result = await _livroAppService.DeleteRange(request);
+        public async Task<GetHttpResponseDTO<object>> DeleteRange(AutorQueryModel request) {
+            var result = await _autorAppService.DeleteRange(request);
+            return result.Success? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
+        }
+	}
+	[ApiController]
+    [Route("api/[controller]")]
+	public partial class LivrariaAggSettingsController : BaseMiniController {
+		ILivrariaAggSettingsAppService _livrariaAggSettingsAppService;
+		public LivrariaAggSettingsController(
+			IServiceProvider scope,
+            ILogRequestContext logRequestContext,
+			ILivrariaAggSettingsAppService livrariaAggSettingsAppService)
+				: base(logRequestContext, scope)
+			{ 
+				_livrariaAggSettingsAppService = livrariaAggSettingsAppService; 
+			}	
+		[HttpGet]
+		public async Task<IActionResult> Get([FromQuery] LivrariaAggSettingsQueryModel request) {
+		    var obj = await _livrariaAggSettingsAppService.Get(request);
+            return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
+        }
+		[HttpGet("count")]
+		public async Task<GetHttpResponseDTO<object>> Count([FromQuery] LivrariaAggSettingsQueryModel request) {
+            return GetHttpResponseDTO.Ok(await _livrariaAggSettingsAppService.CountAsync(request));
+        }
+		[HttpGet("search")]
+		public async Task<GetHttpResponseDTO<object>> Get([FromQuery] LivrariaAggSettingsQueryModel request, int page = 0, int size = 5) {
+		    var obj = await _livrariaAggSettingsAppService.GetAll(request, page, size);
+            return GetHttpResponseDTO.Ok(obj);
+        }
+		[HttpGet("summary")]
+		public async Task<GetHttpResponseDTO<object>> GetSummary([FromQuery] LivrariaAggSettingsQueryModel request, int page = 0, int size = 5) {
+		    var obj = await _livrariaAggSettingsAppService.GetAllSummary(request, page, size);
+            return GetHttpResponseDTO.Ok(obj);
+        }
+		[HttpGet("select")]
+		public async Task<IActionResult> Select([FromQuery] LivrariaAggSettingsQueryModel request, int? page = null, int? size = null) {
+		    var obj = await _livrariaAggSettingsAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<LivrariaAggSettings>());
+            return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
+        }
+		
+		[HttpPost]
+		public async Task<GetHttpResponseDTO<object>> Post(Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.LivrariaAggSettingsDTO request) {
+			var loggedUserId = User.GetLoggedInUserId<int>();
+			var result = await _livrariaAggSettingsAppService.Create(request);
+            return result.Success ? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
+		}
+        [HttpDelete("delete")]
+		public async Task<GetHttpResponseDTO<object>> Delete([FromQuery] LivrariaAggSettingsQueryModel request) {
+            var result = await _livrariaAggSettingsAppService.Delete(request);
+            return result.Success ? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
+        }
+        [HttpDelete("range")]
+        public async Task<GetHttpResponseDTO<object>> DeleteRange(LivrariaAggSettingsQueryModel request) {
+            var result = await _livrariaAggSettingsAppService.DeleteRange(request);
             return result.Success? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
         }
 	}

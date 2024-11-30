@@ -20,12 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Addresses\Addresses.Infra.IoC\Addresses.Infra.IoC.csproj" />
-    <ProjectReference Include="..\..\Chat\Chat.Infra.IoC\Chat.Infra.IoC.csproj" />
     <ProjectReference Include="..\..\Livraria\Livraria.Infra.IoC\Livraria.Infra.IoC.csproj" />
-    <ProjectReference Include="..\..\SystemSettings\SystemSettings.Infra.IoC\SystemSettings.Infra.IoC.csproj" />
     <ProjectReference Include="..\..\Users.Identity\Users.Identity.csproj" />
-    <ProjectReference Include="..\..\Users\Users.Infra.IoC\Users.Infra.IoC.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,12 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="DataSeeders\CsvFiles\Address.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="DataSeeders\CsvFiles\Nest.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Migrations.generated.bat">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -60,6 +50,10 @@
 
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataSeeders\" />
   </ItemGroup>
 
 </Project>

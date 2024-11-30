@@ -5,41 +5,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.ModelEvents
 {
     using ModelEvents;
     using Entities;
-    public partial class LivrariaAggSettingsCreatedEvent : BaseEvent
-    {
-        public LivrariaAggSettingsCreatedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
-            : base(ctx, data) { }
-    }
-    public partial class LivrariaAggSettingsDeletedEvent : BaseEvent
-    {
-        public LivrariaAggSettingsDeletedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
-            : base(ctx, data) { }
-    }
-    public partial class LivrariaAggSettingsDeletedRangeEvent : BaseEvent
-    {
-        public LivrariaAggSettingsDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<LivrariaAggSettings> data) 
-            : base(ctx, data) { }
-    }
-    public partial class LivrariaAggSettingsActivatedEvent : BaseEvent
-    {
-        public LivrariaAggSettingsActivatedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
-            : base(ctx, data) { }
-    }
-    public partial class LivrariaAggSettingsUpdatedEvent : BaseEvent
-    {
-        public LivrariaAggSettingsUpdatedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
-            : base(ctx, data) { }
-    }
-    public partial class LivrariaAggSettingsUpdatedRangeEvent : BaseEvent
-    {
-        public LivrariaAggSettingsUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<LivrariaAggSettings> data) 
-            : base(ctx, data) { }
-    }
-    public partial class LivrariaAggSettingsDeactivatedEvent : BaseEvent
-    {
-        public LivrariaAggSettingsDeactivatedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
-            : base(ctx, data) { }
-    }
     public partial class Livro_AutorCreatedEvent : BaseEvent
     {
         public Livro_AutorCreatedEvent(ILogRequestContext ctx, Livro_Autor data) 
@@ -75,39 +40,39 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.ModelEvents
         public Livro_AutorDeactivatedEvent(ILogRequestContext ctx, Livro_Autor data) 
             : base(ctx, data) { }
     }
-    public partial class AutorCreatedEvent : BaseEvent
+    public partial class LivroCreatedEvent : BaseEvent
     {
-        public AutorCreatedEvent(ILogRequestContext ctx, Autor data) 
+        public LivroCreatedEvent(ILogRequestContext ctx, Livro data) 
             : base(ctx, data) { }
     }
-    public partial class AutorDeletedEvent : BaseEvent
+    public partial class LivroDeletedEvent : BaseEvent
     {
-        public AutorDeletedEvent(ILogRequestContext ctx, Autor data) 
+        public LivroDeletedEvent(ILogRequestContext ctx, Livro data) 
             : base(ctx, data) { }
     }
-    public partial class AutorDeletedRangeEvent : BaseEvent
+    public partial class LivroDeletedRangeEvent : BaseEvent
     {
-        public AutorDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<Autor> data) 
+        public LivroDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<Livro> data) 
             : base(ctx, data) { }
     }
-    public partial class AutorActivatedEvent : BaseEvent
+    public partial class LivroActivatedEvent : BaseEvent
     {
-        public AutorActivatedEvent(ILogRequestContext ctx, Autor data) 
+        public LivroActivatedEvent(ILogRequestContext ctx, Livro data) 
             : base(ctx, data) { }
     }
-    public partial class AutorUpdatedEvent : BaseEvent
+    public partial class LivroUpdatedEvent : BaseEvent
     {
-        public AutorUpdatedEvent(ILogRequestContext ctx, Autor data) 
+        public LivroUpdatedEvent(ILogRequestContext ctx, Livro data) 
             : base(ctx, data) { }
     }
-    public partial class AutorUpdatedRangeEvent : BaseEvent
+    public partial class LivroUpdatedRangeEvent : BaseEvent
     {
-        public AutorUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<Autor> data) 
+        public LivroUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<Livro> data) 
             : base(ctx, data) { }
     }
-    public partial class AutorDeactivatedEvent : BaseEvent
+    public partial class LivroDeactivatedEvent : BaseEvent
     {
-        public AutorDeactivatedEvent(ILogRequestContext ctx, Autor data) 
+        public LivroDeactivatedEvent(ILogRequestContext ctx, Livro data) 
             : base(ctx, data) { }
     }
     public partial class AssuntoCreatedEvent : BaseEvent
@@ -180,39 +145,74 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.ModelEvents
         public Livro_AssuntoDeactivatedEvent(ILogRequestContext ctx, Livro_Assunto data) 
             : base(ctx, data) { }
     }
-    public partial class LivroCreatedEvent : BaseEvent
+    public partial class AutorCreatedEvent : BaseEvent
     {
-        public LivroCreatedEvent(ILogRequestContext ctx, Livro data) 
+        public AutorCreatedEvent(ILogRequestContext ctx, Autor data) 
             : base(ctx, data) { }
     }
-    public partial class LivroDeletedEvent : BaseEvent
+    public partial class AutorDeletedEvent : BaseEvent
     {
-        public LivroDeletedEvent(ILogRequestContext ctx, Livro data) 
+        public AutorDeletedEvent(ILogRequestContext ctx, Autor data) 
             : base(ctx, data) { }
     }
-    public partial class LivroDeletedRangeEvent : BaseEvent
+    public partial class AutorDeletedRangeEvent : BaseEvent
     {
-        public LivroDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<Livro> data) 
+        public AutorDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<Autor> data) 
             : base(ctx, data) { }
     }
-    public partial class LivroActivatedEvent : BaseEvent
+    public partial class AutorActivatedEvent : BaseEvent
     {
-        public LivroActivatedEvent(ILogRequestContext ctx, Livro data) 
+        public AutorActivatedEvent(ILogRequestContext ctx, Autor data) 
             : base(ctx, data) { }
     }
-    public partial class LivroUpdatedEvent : BaseEvent
+    public partial class AutorUpdatedEvent : BaseEvent
     {
-        public LivroUpdatedEvent(ILogRequestContext ctx, Livro data) 
+        public AutorUpdatedEvent(ILogRequestContext ctx, Autor data) 
             : base(ctx, data) { }
     }
-    public partial class LivroUpdatedRangeEvent : BaseEvent
+    public partial class AutorUpdatedRangeEvent : BaseEvent
     {
-        public LivroUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<Livro> data) 
+        public AutorUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<Autor> data) 
             : base(ctx, data) { }
     }
-    public partial class LivroDeactivatedEvent : BaseEvent
+    public partial class AutorDeactivatedEvent : BaseEvent
     {
-        public LivroDeactivatedEvent(ILogRequestContext ctx, Livro data) 
+        public AutorDeactivatedEvent(ILogRequestContext ctx, Autor data) 
+            : base(ctx, data) { }
+    }
+    public partial class LivrariaAggSettingsCreatedEvent : BaseEvent
+    {
+        public LivrariaAggSettingsCreatedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
+            : base(ctx, data) { }
+    }
+    public partial class LivrariaAggSettingsDeletedEvent : BaseEvent
+    {
+        public LivrariaAggSettingsDeletedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
+            : base(ctx, data) { }
+    }
+    public partial class LivrariaAggSettingsDeletedRangeEvent : BaseEvent
+    {
+        public LivrariaAggSettingsDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<LivrariaAggSettings> data) 
+            : base(ctx, data) { }
+    }
+    public partial class LivrariaAggSettingsActivatedEvent : BaseEvent
+    {
+        public LivrariaAggSettingsActivatedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
+            : base(ctx, data) { }
+    }
+    public partial class LivrariaAggSettingsUpdatedEvent : BaseEvent
+    {
+        public LivrariaAggSettingsUpdatedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
+            : base(ctx, data) { }
+    }
+    public partial class LivrariaAggSettingsUpdatedRangeEvent : BaseEvent
+    {
+        public LivrariaAggSettingsUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<LivrariaAggSettings> data) 
+            : base(ctx, data) { }
+    }
+    public partial class LivrariaAggSettingsDeactivatedEvent : BaseEvent
+    {
+        public LivrariaAggSettingsDeactivatedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
             : base(ctx, data) { }
     }
 }

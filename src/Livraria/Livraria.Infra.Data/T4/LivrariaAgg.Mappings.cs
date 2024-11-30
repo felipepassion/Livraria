@@ -5,16 +5,6 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings 
 {
-    public partial class LivrariaAggSettingsMapping : IEntityTypeConfiguration<LivrariaAggSettings>
-    {
-        public void Configure(EntityTypeBuilder<LivrariaAggSettings> builder)
-        {
-            builder.HasKey(x => x.Id);
-            ConfigureAdditionalMapping(builder);
-        }
-
-		partial void ConfigureAdditionalMapping(EntityTypeBuilder<LivrariaAggSettings> builder);
-    }
     public partial class Livro_AutorMapping : IEntityTypeConfiguration<Livro_Autor>
     {
         public void Configure(EntityTypeBuilder<Livro_Autor> builder)
@@ -25,15 +15,15 @@ namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings
 
 		partial void ConfigureAdditionalMapping(EntityTypeBuilder<Livro_Autor> builder);
     }
-    public partial class AutorMapping : IEntityTypeConfiguration<Autor>
+    public partial class LivroMapping : IEntityTypeConfiguration<Livro>
     {
-        public void Configure(EntityTypeBuilder<Autor> builder)
+        public void Configure(EntityTypeBuilder<Livro> builder)
         {
             builder.HasKey(x => x.Id);
             ConfigureAdditionalMapping(builder);
         }
 
-		partial void ConfigureAdditionalMapping(EntityTypeBuilder<Autor> builder);
+		partial void ConfigureAdditionalMapping(EntityTypeBuilder<Livro> builder);
     }
     public partial class AssuntoMapping : IEntityTypeConfiguration<Assunto>
     {
@@ -55,15 +45,25 @@ namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings
 
 		partial void ConfigureAdditionalMapping(EntityTypeBuilder<Livro_Assunto> builder);
     }
-    public partial class LivroMapping : IEntityTypeConfiguration<Livro>
+    public partial class AutorMapping : IEntityTypeConfiguration<Autor>
     {
-        public void Configure(EntityTypeBuilder<Livro> builder)
+        public void Configure(EntityTypeBuilder<Autor> builder)
         {
             builder.HasKey(x => x.Id);
             ConfigureAdditionalMapping(builder);
         }
 
-		partial void ConfigureAdditionalMapping(EntityTypeBuilder<Livro> builder);
+		partial void ConfigureAdditionalMapping(EntityTypeBuilder<Autor> builder);
+    }
+    public partial class LivrariaAggSettingsMapping : IEntityTypeConfiguration<LivrariaAggSettings>
+    {
+        public void Configure(EntityTypeBuilder<LivrariaAggSettings> builder)
+        {
+            builder.HasKey(x => x.Id);
+            ConfigureAdditionalMapping(builder);
+        }
+
+		partial void ConfigureAdditionalMapping(EntityTypeBuilder<LivrariaAggSettings> builder);
     }
 }
 namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.UsersAgg.Mappings 

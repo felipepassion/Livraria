@@ -24,10 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Users.Api\Users.Api.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 

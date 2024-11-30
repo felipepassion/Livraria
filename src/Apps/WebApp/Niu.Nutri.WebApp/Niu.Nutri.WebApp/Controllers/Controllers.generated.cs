@@ -630,153 +630,191 @@ namespace Niu.Nutri.Livraria.Controllers {
  using Application.DTO.Aggregates.LivrariaAgg.Requests;
 	[ApiController]
     [Route("api/[controller]")]
-	public partial class TacTableFoodController : BaseController {
-		public TacTableFoodController(IServiceProvider provider) : base(provider) { }
+	public partial class Livro_AutorController : BaseController {
+		public Livro_AutorController(IServiceProvider provider) : base(provider) { }
 		[HttpGet]
-		public async Task<GetHttpResponseDTO<TacTableFoodDTO>> Get([FromQuery] TacTableFoodQueryModel request) {
-            return await GetAsync<TacTableFoodDTO>(request);
+		public async Task<GetHttpResponseDTO<Livro_AutorDTO>> Get([FromQuery] Livro_AutorQueryModel request) {
+            return await GetAsync<Livro_AutorDTO>(request);
         }
 		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] TacTableFoodQueryModel request) {
-            return await GetAsync<TacTableFoodDTO, int>("count", request);
+		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] Livro_AutorQueryModel request) {
+            return await GetAsync<Livro_AutorDTO, int>("count", request);
         }
 		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<List<TacTableFoodDTO>>> Get([FromQuery] TacTableFoodQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<TacTableFoodDTO>("search", request, page, size);
+		public async Task<GetHttpResponseDTO<List<Livro_AutorDTO>>> Get([FromQuery] Livro_AutorQueryModel request, int page = 0, int size = 5) {
+            return await SearchAsync<Livro_AutorDTO>("search", request, page, size);
 
         }
 		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<List<TacTableFoodListiningDTO>>> GetSummary([FromQuery] TacTableFoodQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<TacTableFoodListiningDTO>("summary", request, page, size);
+		public async Task<GetHttpResponseDTO<List<Livro_AutorListiningDTO>>> GetSummary([FromQuery] Livro_AutorQueryModel request, int page = 0, int size = 5) {
+            return await SearchAsync<Livro_AutorListiningDTO>("summary", request, page, size);
         }
 		[HttpGet("select")]
-		public async Task<GetHttpResponseDTO<List<TacTableFoodDTO>>> Select([FromQuery] TacTableFoodQueryModel request, int? page = null, int? size = null) {
-            return await SearchAsync<TacTableFoodDTO>("select", request, page, size);
+		public async Task<GetHttpResponseDTO<List<Livro_AutorDTO>>> Select([FromQuery] Livro_AutorQueryModel request, int? page = null, int? size = null) {
+            return await SearchAsync<Livro_AutorDTO>("select", request, page, size);
         }
 		[HttpPost]
-		public async Task<GetHttpResponseDTO<TacTableFoodDTO>> Post(TacTableFoodDTO request) {
-            return await PostAsync<TacTableFoodDTO>(request);
+		public async Task<GetHttpResponseDTO<Livro_AutorDTO>> Post(Livro_AutorDTO request) {
+            return await PostAsync<Livro_AutorDTO>(request);
 		}
         [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<TacTableFoodDTO>> Delete([FromQuery] TacTableFoodQueryModel request) {
-            return await DeleteAsync<TacTableFoodDTO>(request);
+		public async Task<GetHttpResponseDTO<Livro_AutorDTO>> Delete([FromQuery] Livro_AutorQueryModel request) {
+            return await DeleteAsync<Livro_AutorDTO>(request);
         }
         [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] TacTableFoodQueryModel request) {
+        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] Livro_AutorQueryModel request) {
             return GetHttpResponseDTO.Ok();
         }
 	}
 	[ApiController]
     [Route("api/[controller]")]
-	public partial class LivrariaHealthNoteController : BaseController {
-		public LivrariaHealthNoteController(IServiceProvider provider) : base(provider) { }
+	public partial class LivroController : BaseController {
+		public LivroController(IServiceProvider provider) : base(provider) { }
 		[HttpGet]
-		public async Task<GetHttpResponseDTO<LivrariaHealthNoteDTO>> Get([FromQuery] LivrariaHealthNoteQueryModel request) {
-            return await GetAsync<LivrariaHealthNoteDTO>(request);
+		public async Task<GetHttpResponseDTO<LivroDTO>> Get([FromQuery] LivroQueryModel request) {
+            return await GetAsync<LivroDTO>(request);
         }
 		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] LivrariaHealthNoteQueryModel request) {
-            return await GetAsync<LivrariaHealthNoteDTO, int>("count", request);
+		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] LivroQueryModel request) {
+            return await GetAsync<LivroDTO, int>("count", request);
         }
 		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<List<LivrariaHealthNoteDTO>>> Get([FromQuery] LivrariaHealthNoteQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaHealthNoteDTO>("search", request, page, size);
+		public async Task<GetHttpResponseDTO<List<LivroDTO>>> Get([FromQuery] LivroQueryModel request, int page = 0, int size = 5) {
+            return await SearchAsync<LivroDTO>("search", request, page, size);
 
         }
 		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<List<LivrariaHealthNoteListiningDTO>>> GetSummary([FromQuery] LivrariaHealthNoteQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaHealthNoteListiningDTO>("summary", request, page, size);
+		public async Task<GetHttpResponseDTO<List<LivroListiningDTO>>> GetSummary([FromQuery] LivroQueryModel request, int page = 0, int size = 5) {
+            return await SearchAsync<LivroListiningDTO>("summary", request, page, size);
         }
 		[HttpGet("select")]
-		public async Task<GetHttpResponseDTO<List<LivrariaHealthNoteDTO>>> Select([FromQuery] LivrariaHealthNoteQueryModel request, int? page = null, int? size = null) {
-            return await SearchAsync<LivrariaHealthNoteDTO>("select", request, page, size);
+		public async Task<GetHttpResponseDTO<List<LivroDTO>>> Select([FromQuery] LivroQueryModel request, int? page = null, int? size = null) {
+            return await SearchAsync<LivroDTO>("select", request, page, size);
         }
 		[HttpPost]
-		public async Task<GetHttpResponseDTO<LivrariaHealthNoteDTO>> Post(LivrariaHealthNoteDTO request) {
-            return await PostAsync<LivrariaHealthNoteDTO>(request);
+		public async Task<GetHttpResponseDTO<LivroDTO>> Post(LivroDTO request) {
+            return await PostAsync<LivroDTO>(request);
 		}
         [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<LivrariaHealthNoteDTO>> Delete([FromQuery] LivrariaHealthNoteQueryModel request) {
-            return await DeleteAsync<LivrariaHealthNoteDTO>(request);
+		public async Task<GetHttpResponseDTO<LivroDTO>> Delete([FromQuery] LivroQueryModel request) {
+            return await DeleteAsync<LivroDTO>(request);
         }
         [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] LivrariaHealthNoteQueryModel request) {
+        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] LivroQueryModel request) {
             return GetHttpResponseDTO.Ok();
         }
 	}
 	[ApiController]
     [Route("api/[controller]")]
-	public partial class LivrariaExamController : BaseController {
-		public LivrariaExamController(IServiceProvider provider) : base(provider) { }
+	public partial class AssuntoController : BaseController {
+		public AssuntoController(IServiceProvider provider) : base(provider) { }
 		[HttpGet]
-		public async Task<GetHttpResponseDTO<LivrariaExamDTO>> Get([FromQuery] LivrariaExamQueryModel request) {
-            return await GetAsync<LivrariaExamDTO>(request);
+		public async Task<GetHttpResponseDTO<AssuntoDTO>> Get([FromQuery] AssuntoQueryModel request) {
+            return await GetAsync<AssuntoDTO>(request);
         }
 		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] LivrariaExamQueryModel request) {
-            return await GetAsync<LivrariaExamDTO, int>("count", request);
+		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] AssuntoQueryModel request) {
+            return await GetAsync<AssuntoDTO, int>("count", request);
         }
 		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<List<LivrariaExamDTO>>> Get([FromQuery] LivrariaExamQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaExamDTO>("search", request, page, size);
+		public async Task<GetHttpResponseDTO<List<AssuntoDTO>>> Get([FromQuery] AssuntoQueryModel request, int page = 0, int size = 5) {
+            return await SearchAsync<AssuntoDTO>("search", request, page, size);
 
         }
 		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<List<LivrariaExamListiningDTO>>> GetSummary([FromQuery] LivrariaExamQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaExamListiningDTO>("summary", request, page, size);
+		public async Task<GetHttpResponseDTO<List<AssuntoListiningDTO>>> GetSummary([FromQuery] AssuntoQueryModel request, int page = 0, int size = 5) {
+            return await SearchAsync<AssuntoListiningDTO>("summary", request, page, size);
         }
 		[HttpGet("select")]
-		public async Task<GetHttpResponseDTO<List<LivrariaExamDTO>>> Select([FromQuery] LivrariaExamQueryModel request, int? page = null, int? size = null) {
-            return await SearchAsync<LivrariaExamDTO>("select", request, page, size);
+		public async Task<GetHttpResponseDTO<List<AssuntoDTO>>> Select([FromQuery] AssuntoQueryModel request, int? page = null, int? size = null) {
+            return await SearchAsync<AssuntoDTO>("select", request, page, size);
         }
 		[HttpPost]
-		public async Task<GetHttpResponseDTO<LivrariaExamDTO>> Post(LivrariaExamDTO request) {
-            return await PostAsync<LivrariaExamDTO>(request);
+		public async Task<GetHttpResponseDTO<AssuntoDTO>> Post(AssuntoDTO request) {
+            return await PostAsync<AssuntoDTO>(request);
 		}
         [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<LivrariaExamDTO>> Delete([FromQuery] LivrariaExamQueryModel request) {
-            return await DeleteAsync<LivrariaExamDTO>(request);
+		public async Task<GetHttpResponseDTO<AssuntoDTO>> Delete([FromQuery] AssuntoQueryModel request) {
+            return await DeleteAsync<AssuntoDTO>(request);
         }
         [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] LivrariaExamQueryModel request) {
+        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] AssuntoQueryModel request) {
             return GetHttpResponseDTO.Ok();
         }
 	}
 	[ApiController]
     [Route("api/[controller]")]
-	public partial class LivrariaSelfCareController : BaseController {
-		public LivrariaSelfCareController(IServiceProvider provider) : base(provider) { }
+	public partial class Livro_AssuntoController : BaseController {
+		public Livro_AssuntoController(IServiceProvider provider) : base(provider) { }
 		[HttpGet]
-		public async Task<GetHttpResponseDTO<LivrariaSelfCareDTO>> Get([FromQuery] LivrariaSelfCareQueryModel request) {
-            return await GetAsync<LivrariaSelfCareDTO>(request);
+		public async Task<GetHttpResponseDTO<Livro_AssuntoDTO>> Get([FromQuery] Livro_AssuntoQueryModel request) {
+            return await GetAsync<Livro_AssuntoDTO>(request);
         }
 		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] LivrariaSelfCareQueryModel request) {
-            return await GetAsync<LivrariaSelfCareDTO, int>("count", request);
+		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] Livro_AssuntoQueryModel request) {
+            return await GetAsync<Livro_AssuntoDTO, int>("count", request);
         }
 		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<List<LivrariaSelfCareDTO>>> Get([FromQuery] LivrariaSelfCareQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaSelfCareDTO>("search", request, page, size);
+		public async Task<GetHttpResponseDTO<List<Livro_AssuntoDTO>>> Get([FromQuery] Livro_AssuntoQueryModel request, int page = 0, int size = 5) {
+            return await SearchAsync<Livro_AssuntoDTO>("search", request, page, size);
 
         }
 		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<List<LivrariaSelfCareListiningDTO>>> GetSummary([FromQuery] LivrariaSelfCareQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaSelfCareListiningDTO>("summary", request, page, size);
+		public async Task<GetHttpResponseDTO<List<Livro_AssuntoListiningDTO>>> GetSummary([FromQuery] Livro_AssuntoQueryModel request, int page = 0, int size = 5) {
+            return await SearchAsync<Livro_AssuntoListiningDTO>("summary", request, page, size);
         }
 		[HttpGet("select")]
-		public async Task<GetHttpResponseDTO<List<LivrariaSelfCareDTO>>> Select([FromQuery] LivrariaSelfCareQueryModel request, int? page = null, int? size = null) {
-            return await SearchAsync<LivrariaSelfCareDTO>("select", request, page, size);
+		public async Task<GetHttpResponseDTO<List<Livro_AssuntoDTO>>> Select([FromQuery] Livro_AssuntoQueryModel request, int? page = null, int? size = null) {
+            return await SearchAsync<Livro_AssuntoDTO>("select", request, page, size);
         }
 		[HttpPost]
-		public async Task<GetHttpResponseDTO<LivrariaSelfCareDTO>> Post(LivrariaSelfCareDTO request) {
-            return await PostAsync<LivrariaSelfCareDTO>(request);
+		public async Task<GetHttpResponseDTO<Livro_AssuntoDTO>> Post(Livro_AssuntoDTO request) {
+            return await PostAsync<Livro_AssuntoDTO>(request);
 		}
         [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<LivrariaSelfCareDTO>> Delete([FromQuery] LivrariaSelfCareQueryModel request) {
-            return await DeleteAsync<LivrariaSelfCareDTO>(request);
+		public async Task<GetHttpResponseDTO<Livro_AssuntoDTO>> Delete([FromQuery] Livro_AssuntoQueryModel request) {
+            return await DeleteAsync<Livro_AssuntoDTO>(request);
         }
         [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] LivrariaSelfCareQueryModel request) {
+        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] Livro_AssuntoQueryModel request) {
+            return GetHttpResponseDTO.Ok();
+        }
+	}
+	[ApiController]
+    [Route("api/[controller]")]
+	public partial class AutorController : BaseController {
+		public AutorController(IServiceProvider provider) : base(provider) { }
+		[HttpGet]
+		public async Task<GetHttpResponseDTO<AutorDTO>> Get([FromQuery] AutorQueryModel request) {
+            return await GetAsync<AutorDTO>(request);
+        }
+		[HttpGet("count")]
+		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] AutorQueryModel request) {
+            return await GetAsync<AutorDTO, int>("count", request);
+        }
+		[HttpGet("search")]
+		public async Task<GetHttpResponseDTO<List<AutorDTO>>> Get([FromQuery] AutorQueryModel request, int page = 0, int size = 5) {
+            return await SearchAsync<AutorDTO>("search", request, page, size);
+
+        }
+		[HttpGet("summary")]
+		public async Task<GetHttpResponseDTO<List<AutorListiningDTO>>> GetSummary([FromQuery] AutorQueryModel request, int page = 0, int size = 5) {
+            return await SearchAsync<AutorListiningDTO>("summary", request, page, size);
+        }
+		[HttpGet("select")]
+		public async Task<GetHttpResponseDTO<List<AutorDTO>>> Select([FromQuery] AutorQueryModel request, int? page = null, int? size = null) {
+            return await SearchAsync<AutorDTO>("select", request, page, size);
+        }
+		[HttpPost]
+		public async Task<GetHttpResponseDTO<AutorDTO>> Post(AutorDTO request) {
+            return await PostAsync<AutorDTO>(request);
+		}
+        [HttpDelete("delete")]
+		public async Task<GetHttpResponseDTO<AutorDTO>> Delete([FromQuery] AutorQueryModel request) {
+            return await DeleteAsync<AutorDTO>(request);
+        }
+        [HttpDelete("range")]
+        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] AutorQueryModel request) {
             return GetHttpResponseDTO.Ok();
         }
 	}
@@ -815,234 +853,6 @@ namespace Niu.Nutri.Livraria.Controllers {
         }
         [HttpDelete("range")]
         public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] LivrariaAggSettingsQueryModel request) {
-            return GetHttpResponseDTO.Ok();
-        }
-	}
-	[ApiController]
-    [Route("api/[controller]")]
-	public partial class LivrariaMenstrualCycleController : BaseController {
-		public LivrariaMenstrualCycleController(IServiceProvider provider) : base(provider) { }
-		[HttpGet]
-		public async Task<GetHttpResponseDTO<LivrariaMenstrualCycleDTO>> Get([FromQuery] LivrariaMenstrualCycleQueryModel request) {
-            return await GetAsync<LivrariaMenstrualCycleDTO>(request);
-        }
-		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] LivrariaMenstrualCycleQueryModel request) {
-            return await GetAsync<LivrariaMenstrualCycleDTO, int>("count", request);
-        }
-		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<List<LivrariaMenstrualCycleDTO>>> Get([FromQuery] LivrariaMenstrualCycleQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaMenstrualCycleDTO>("search", request, page, size);
-
-        }
-		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<List<LivrariaMenstrualCycleListiningDTO>>> GetSummary([FromQuery] LivrariaMenstrualCycleQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaMenstrualCycleListiningDTO>("summary", request, page, size);
-        }
-		[HttpGet("select")]
-		public async Task<GetHttpResponseDTO<List<LivrariaMenstrualCycleDTO>>> Select([FromQuery] LivrariaMenstrualCycleQueryModel request, int? page = null, int? size = null) {
-            return await SearchAsync<LivrariaMenstrualCycleDTO>("select", request, page, size);
-        }
-		[HttpPost]
-		public async Task<GetHttpResponseDTO<LivrariaMenstrualCycleDTO>> Post(LivrariaMenstrualCycleDTO request) {
-            return await PostAsync<LivrariaMenstrualCycleDTO>(request);
-		}
-        [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<LivrariaMenstrualCycleDTO>> Delete([FromQuery] LivrariaMenstrualCycleQueryModel request) {
-            return await DeleteAsync<LivrariaMenstrualCycleDTO>(request);
-        }
-        [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] LivrariaMenstrualCycleQueryModel request) {
-            return GetHttpResponseDTO.Ok();
-        }
-	}
-	[ApiController]
-    [Route("api/[controller]")]
-	public partial class LivrariaMealController : BaseController {
-		public LivrariaMealController(IServiceProvider provider) : base(provider) { }
-		[HttpGet]
-		public async Task<GetHttpResponseDTO<LivrariaMealDTO>> Get([FromQuery] LivrariaMealQueryModel request) {
-            return await GetAsync<LivrariaMealDTO>(request);
-        }
-		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] LivrariaMealQueryModel request) {
-            return await GetAsync<LivrariaMealDTO, int>("count", request);
-        }
-		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<List<LivrariaMealDTO>>> Get([FromQuery] LivrariaMealQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaMealDTO>("search", request, page, size);
-
-        }
-		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<List<LivrariaMealListiningDTO>>> GetSummary([FromQuery] LivrariaMealQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaMealListiningDTO>("summary", request, page, size);
-        }
-		[HttpGet("select")]
-		public async Task<GetHttpResponseDTO<List<LivrariaMealDTO>>> Select([FromQuery] LivrariaMealQueryModel request, int? page = null, int? size = null) {
-            return await SearchAsync<LivrariaMealDTO>("select", request, page, size);
-        }
-		[HttpPost]
-		public async Task<GetHttpResponseDTO<LivrariaMealDTO>> Post(LivrariaMealDTO request) {
-            return await PostAsync<LivrariaMealDTO>(request);
-		}
-        [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<LivrariaMealDTO>> Delete([FromQuery] LivrariaMealQueryModel request) {
-            return await DeleteAsync<LivrariaMealDTO>(request);
-        }
-        [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] LivrariaMealQueryModel request) {
-            return GetHttpResponseDTO.Ok();
-        }
-	}
-	[ApiController]
-    [Route("api/[controller]")]
-	public partial class LivrariaSymptomController : BaseController {
-		public LivrariaSymptomController(IServiceProvider provider) : base(provider) { }
-		[HttpGet]
-		public async Task<GetHttpResponseDTO<LivrariaSymptomDTO>> Get([FromQuery] LivrariaSymptomQueryModel request) {
-            return await GetAsync<LivrariaSymptomDTO>(request);
-        }
-		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] LivrariaSymptomQueryModel request) {
-            return await GetAsync<LivrariaSymptomDTO, int>("count", request);
-        }
-		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<List<LivrariaSymptomDTO>>> Get([FromQuery] LivrariaSymptomQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaSymptomDTO>("search", request, page, size);
-
-        }
-		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<List<LivrariaSymptomListiningDTO>>> GetSummary([FromQuery] LivrariaSymptomQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaSymptomListiningDTO>("summary", request, page, size);
-        }
-		[HttpGet("select")]
-		public async Task<GetHttpResponseDTO<List<LivrariaSymptomDTO>>> Select([FromQuery] LivrariaSymptomQueryModel request, int? page = null, int? size = null) {
-            return await SearchAsync<LivrariaSymptomDTO>("select", request, page, size);
-        }
-		[HttpPost]
-		public async Task<GetHttpResponseDTO<LivrariaSymptomDTO>> Post(LivrariaSymptomDTO request) {
-            return await PostAsync<LivrariaSymptomDTO>(request);
-		}
-        [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<LivrariaSymptomDTO>> Delete([FromQuery] LivrariaSymptomQueryModel request) {
-            return await DeleteAsync<LivrariaSymptomDTO>(request);
-        }
-        [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] LivrariaSymptomQueryModel request) {
-            return GetHttpResponseDTO.Ok();
-        }
-	}
-	[ApiController]
-    [Route("api/[controller]")]
-	public partial class LivrariaWaterConsumptionController : BaseController {
-		public LivrariaWaterConsumptionController(IServiceProvider provider) : base(provider) { }
-		[HttpGet]
-		public async Task<GetHttpResponseDTO<LivrariaWaterConsumptionDTO>> Get([FromQuery] LivrariaWaterConsumptionQueryModel request) {
-            return await GetAsync<LivrariaWaterConsumptionDTO>(request);
-        }
-		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] LivrariaWaterConsumptionQueryModel request) {
-            return await GetAsync<LivrariaWaterConsumptionDTO, int>("count", request);
-        }
-		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<List<LivrariaWaterConsumptionDTO>>> Get([FromQuery] LivrariaWaterConsumptionQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaWaterConsumptionDTO>("search", request, page, size);
-
-        }
-		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<List<LivrariaWaterConsumptionListiningDTO>>> GetSummary([FromQuery] LivrariaWaterConsumptionQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaWaterConsumptionListiningDTO>("summary", request, page, size);
-        }
-		[HttpGet("select")]
-		public async Task<GetHttpResponseDTO<List<LivrariaWaterConsumptionDTO>>> Select([FromQuery] LivrariaWaterConsumptionQueryModel request, int? page = null, int? size = null) {
-            return await SearchAsync<LivrariaWaterConsumptionDTO>("select", request, page, size);
-        }
-		[HttpPost]
-		public async Task<GetHttpResponseDTO<LivrariaWaterConsumptionDTO>> Post(LivrariaWaterConsumptionDTO request) {
-            return await PostAsync<LivrariaWaterConsumptionDTO>(request);
-		}
-        [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<LivrariaWaterConsumptionDTO>> Delete([FromQuery] LivrariaWaterConsumptionQueryModel request) {
-            return await DeleteAsync<LivrariaWaterConsumptionDTO>(request);
-        }
-        [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] LivrariaWaterConsumptionQueryModel request) {
-            return GetHttpResponseDTO.Ok();
-        }
-	}
-	[ApiController]
-    [Route("api/[controller]")]
-	public partial class LivrariaLiquidController : BaseController {
-		public LivrariaLiquidController(IServiceProvider provider) : base(provider) { }
-		[HttpGet]
-		public async Task<GetHttpResponseDTO<LivrariaLiquidDTO>> Get([FromQuery] LivrariaLiquidQueryModel request) {
-            return await GetAsync<LivrariaLiquidDTO>(request);
-        }
-		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] LivrariaLiquidQueryModel request) {
-            return await GetAsync<LivrariaLiquidDTO, int>("count", request);
-        }
-		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<List<LivrariaLiquidDTO>>> Get([FromQuery] LivrariaLiquidQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaLiquidDTO>("search", request, page, size);
-
-        }
-		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<List<LivrariaLiquidListiningDTO>>> GetSummary([FromQuery] LivrariaLiquidQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaLiquidListiningDTO>("summary", request, page, size);
-        }
-		[HttpGet("select")]
-		public async Task<GetHttpResponseDTO<List<LivrariaLiquidDTO>>> Select([FromQuery] LivrariaLiquidQueryModel request, int? page = null, int? size = null) {
-            return await SearchAsync<LivrariaLiquidDTO>("select", request, page, size);
-        }
-		[HttpPost]
-		public async Task<GetHttpResponseDTO<LivrariaLiquidDTO>> Post(LivrariaLiquidDTO request) {
-            return await PostAsync<LivrariaLiquidDTO>(request);
-		}
-        [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<LivrariaLiquidDTO>> Delete([FromQuery] LivrariaLiquidQueryModel request) {
-            return await DeleteAsync<LivrariaLiquidDTO>(request);
-        }
-        [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] LivrariaLiquidQueryModel request) {
-            return GetHttpResponseDTO.Ok();
-        }
-	}
-	[ApiController]
-    [Route("api/[controller]")]
-	public partial class LivrariaMealFoodController : BaseController {
-		public LivrariaMealFoodController(IServiceProvider provider) : base(provider) { }
-		[HttpGet]
-		public async Task<GetHttpResponseDTO<LivrariaMealFoodDTO>> Get([FromQuery] LivrariaMealFoodQueryModel request) {
-            return await GetAsync<LivrariaMealFoodDTO>(request);
-        }
-		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<int>> Count([FromQuery] LivrariaMealFoodQueryModel request) {
-            return await GetAsync<LivrariaMealFoodDTO, int>("count", request);
-        }
-		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<List<LivrariaMealFoodDTO>>> Get([FromQuery] LivrariaMealFoodQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaMealFoodDTO>("search", request, page, size);
-
-        }
-		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<List<LivrariaMealFoodListiningDTO>>> GetSummary([FromQuery] LivrariaMealFoodQueryModel request, int page = 0, int size = 5) {
-            return await SearchAsync<LivrariaMealFoodListiningDTO>("summary", request, page, size);
-        }
-		[HttpGet("select")]
-		public async Task<GetHttpResponseDTO<List<LivrariaMealFoodDTO>>> Select([FromQuery] LivrariaMealFoodQueryModel request, int? page = null, int? size = null) {
-            return await SearchAsync<LivrariaMealFoodDTO>("select", request, page, size);
-        }
-		[HttpPost]
-		public async Task<GetHttpResponseDTO<LivrariaMealFoodDTO>> Post(LivrariaMealFoodDTO request) {
-            return await PostAsync<LivrariaMealFoodDTO>(request);
-		}
-        [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<LivrariaMealFoodDTO>> Delete([FromQuery] LivrariaMealFoodQueryModel request) {
-            return await DeleteAsync<LivrariaMealFoodDTO>(request);
-        }
-        [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO> DeleteRange([FromQuery] LivrariaMealFoodQueryModel request) {
             return GetHttpResponseDTO.Ok();
         }
 	}

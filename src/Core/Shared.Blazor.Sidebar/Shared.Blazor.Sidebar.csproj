@@ -25,7 +25,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\SystemSettings\SystemSettings.Application.DTO\SystemSettings.Application.DTO.csproj" />
 		<ProjectReference Include="..\..\Users\Users.Application.DTO\Users.Application.DTO.csproj" />
 	</ItemGroup>
 
