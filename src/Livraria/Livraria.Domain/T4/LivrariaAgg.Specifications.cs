@@ -894,11 +894,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
 		
 	   }
    public partial class LivrariaAggSettingsSpecifications {
-				public static Specification<LivrariaAggSettings> AutoSaveSettingsEnabledEqual(bool value) {
-			return new DirectSpecification<LivrariaAggSettings>(p => p.AutoSaveSettingsEnabled == value);
-		}
-		
-					public static Specification<LivrariaAggSettings> IdExternoContains(string value) {
+				public static Specification<LivrariaAggSettings> IdExternoContains(string value) {
 			return new DirectSpecification<LivrariaAggSettings>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
 		public static Specification<LivrariaAggSettings> IdExternoNotContains(string value) {

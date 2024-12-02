@@ -1,49 +1,18 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection;
-using Niu.Nutri.Core.Application.DTO.Attributes;
+﻿using Niu.Nutri.Core.Application.DTO.Attributes;
 using Niu.Nutri.Core.Application.DTO.Extensions;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Events;
 using Niu.Nutri.Core.Domain.Attributes.T4;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection;
 
 namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
 {
-    public abstract class SteppableEntity : ActivableEntity
-    {
-        public void ChangeStep(int newStep)
-        {
-            this.CurrentStep = newStep;
-            if (!this.Active.HasValue && this.CurrentStep >= this.MaxSteps)
-                this.Active = true;
-        }
-        public int CurrentStep { get; set; }
-        public int? MaxSteps => this.GetType().GetCustomAttribute<Steppable>()?.Quantity;
-        public bool? RegisterDone { get; set; }
-    }
-
-    public abstract class ActivableEntity : Entity
-    {
-        [DisplayName("Habilitado?")]
-        public bool? Active { get; set; } = true;
-
-        public void Enable()
-        {
-            this.Active = true;
-        }
-
-        public void Disable()
-        {
-            this.Active = false;
-        }
-    }
-
     public interface IEntity
     {
         public int Id { get; set; }
         public string IdExterno { get; set; }
-        string GetTitle();
-        string GetTitlePropName();
         DateTime? CriadoEm { get; set; }
     }
 
@@ -86,7 +55,7 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
         [DisplayName("Deletado em")]
         public DateTime? DeletadoEm { get; set; }
 
-        protected virtual void Updated()
+        public virtual void Updated()
         {
             this.AtualizadoEm = DateTime.Now;
         }
@@ -95,24 +64,6 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string GetTitle()
-        {
-            var val = this.GetValueWithAttribute<Title>()?.ToString();
-            if (string.IsNullOrWhiteSpace(val))
-            {
-                val = this.GetType().GetCustomAttribute<H1>()?.Title ?? null;
-            }
-            return val;
-        }
-
-        public string GetTitlePropName()
-        {
-            var property = this.GetFieldInfoByWithAttribute<Title>();
-            var test = property?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? property?.Name ?? "Título";
-            return property?.Name;
-        }
-
-
         [IgnorePropertyT4OnRequest]
         public bool Deletado { get; set; }
 
@@ -120,8 +71,6 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
         [IgnorePropertyT4]
         public List<BaseEvent> DomainEvents { get { return _domainEvents; } set { _domainEvents = _domainEvents ?? value; } }
 
-        //[Column(TypeName = "jsonb"), NotMapped]
-        //public List<EventsHistory>? EventsHistory { get; set; }
         public void Delete()
         {
             this.Deletado = true;
@@ -136,7 +85,7 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
         public void AddDomainEvent(BaseEvent domainEvent)
         {
             _domainEvents = _domainEvents ?? new List<BaseEvent>();
-            //_domainEvents.Add(domainEvent);
+            _domainEvents.Add(domainEvent);
         }
 
         public bool IsEmpty()

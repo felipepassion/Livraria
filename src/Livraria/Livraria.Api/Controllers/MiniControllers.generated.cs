@@ -35,11 +35,6 @@ namespace Niu.Nutri.Livraria.Api.Controllers {
 		    var obj = await _livro_AutorAppService.GetAll(request, page, size);
             return GetHttpResponseDTO.Ok(obj);
         }
-		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<object>> GetSummary([FromQuery] Livro_AutorQueryModel request, int page = 0, int size = 5) {
-		    var obj = await _livro_AutorAppService.GetAllSummary(request, page, size);
-            return GetHttpResponseDTO.Ok(obj);
-        }
 		[HttpGet("select")]
 		public async Task<IActionResult> Select([FromQuery] Livro_AutorQueryModel request, int? page = null, int? size = null) {
 		    var obj = await _livro_AutorAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Livro_Autor>());
@@ -87,11 +82,6 @@ namespace Niu.Nutri.Livraria.Api.Controllers {
 		[HttpGet("search")]
 		public async Task<GetHttpResponseDTO<object>> Get([FromQuery] LivroQueryModel request, int page = 0, int size = 5) {
 		    var obj = await _livroAppService.GetAll(request, page, size);
-            return GetHttpResponseDTO.Ok(obj);
-        }
-		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<object>> GetSummary([FromQuery] LivroQueryModel request, int page = 0, int size = 5) {
-		    var obj = await _livroAppService.GetAllSummary(request, page, size);
             return GetHttpResponseDTO.Ok(obj);
         }
 		[HttpGet("select")]
@@ -143,11 +133,6 @@ namespace Niu.Nutri.Livraria.Api.Controllers {
 		    var obj = await _assuntoAppService.GetAll(request, page, size);
             return GetHttpResponseDTO.Ok(obj);
         }
-		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<object>> GetSummary([FromQuery] AssuntoQueryModel request, int page = 0, int size = 5) {
-		    var obj = await _assuntoAppService.GetAllSummary(request, page, size);
-            return GetHttpResponseDTO.Ok(obj);
-        }
 		[HttpGet("select")]
 		public async Task<IActionResult> Select([FromQuery] AssuntoQueryModel request, int? page = null, int? size = null) {
 		    var obj = await _assuntoAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Assunto>());
@@ -195,11 +180,6 @@ namespace Niu.Nutri.Livraria.Api.Controllers {
 		[HttpGet("search")]
 		public async Task<GetHttpResponseDTO<object>> Get([FromQuery] Livro_AssuntoQueryModel request, int page = 0, int size = 5) {
 		    var obj = await _livro_AssuntoAppService.GetAll(request, page, size);
-            return GetHttpResponseDTO.Ok(obj);
-        }
-		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<object>> GetSummary([FromQuery] Livro_AssuntoQueryModel request, int page = 0, int size = 5) {
-		    var obj = await _livro_AssuntoAppService.GetAllSummary(request, page, size);
             return GetHttpResponseDTO.Ok(obj);
         }
 		[HttpGet("select")]
@@ -251,11 +231,6 @@ namespace Niu.Nutri.Livraria.Api.Controllers {
 		    var obj = await _autorAppService.GetAll(request, page, size);
             return GetHttpResponseDTO.Ok(obj);
         }
-		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<object>> GetSummary([FromQuery] AutorQueryModel request, int page = 0, int size = 5) {
-		    var obj = await _autorAppService.GetAllSummary(request, page, size);
-            return GetHttpResponseDTO.Ok(obj);
-        }
 		[HttpGet("select")]
 		public async Task<IActionResult> Select([FromQuery] AutorQueryModel request, int? page = null, int? size = null) {
 		    var obj = await _autorAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Autor>());
@@ -303,11 +278,6 @@ namespace Niu.Nutri.Livraria.Api.Controllers {
 		[HttpGet("search")]
 		public async Task<GetHttpResponseDTO<object>> Get([FromQuery] LivrariaAggSettingsQueryModel request, int page = 0, int size = 5) {
 		    var obj = await _livrariaAggSettingsAppService.GetAll(request, page, size);
-            return GetHttpResponseDTO.Ok(obj);
-        }
-		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<object>> GetSummary([FromQuery] LivrariaAggSettingsQueryModel request, int page = 0, int size = 5) {
-		    var obj = await _livrariaAggSettingsAppService.GetAllSummary(request, page, size);
             return GetHttpResponseDTO.Ok(obj);
         }
 		[HttpGet("select")]

@@ -79,13 +79,6 @@ namespace <#= GetDefaultNamespace() #>.<#=shortAggName#>.Api.Controllers {
 		    var obj = await <#= serviceVarName #>.GetAll(request, page, size);
             return GetHttpResponseDTO.Ok(obj);
         }
-<#if(canCount){#>
-		[HttpGet("summary")]
-		public async Task<GetHttpResponseDTO<object>> GetSummary([FromQuery] <#= entity.Name #>QueryModel request, int page = 0, int size = 5) {
-		    var obj = await <#= serviceVarName #>.GetAllSummary(request, page, size);
-            return GetHttpResponseDTO.Ok(obj);
-        }
-<#}#>
 		[HttpGet("select")]
 		public async Task<IActionResult> Select([FromQuery] <#= entity.Name #>QueryModel request, int? page = null, int? size = null) {
 		    var obj = await <#= serviceVarName #>.GetAll(request, page, size, request.Selector.GetPropertySelector<<#=entity.Name#>>());

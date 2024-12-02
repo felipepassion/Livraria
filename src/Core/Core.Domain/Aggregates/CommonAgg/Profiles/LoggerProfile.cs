@@ -21,7 +21,6 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Profiles
                     JsonConvert.DeserializeObject<object>(JsonConvert.SerializeObject(notification, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects }))
                 ))
             .PreserveReferences()
-                //.ForMember(x => x.Properties, opt => opt.MapFrom(notification => notification.ExtractProperties().ToArray()))
             .IncludeAllDerived();
 
             CreateMap<ErrorEvent, LogEntry>().ForMember(x=>x.Content, opt => opt.Ignore());

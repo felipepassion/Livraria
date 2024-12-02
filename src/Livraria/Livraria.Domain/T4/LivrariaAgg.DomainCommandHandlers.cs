@@ -1,5 +1,6 @@
-﻿using MediatR;
-using Niu.Nutri.Core.Domain.CrossCutting;
+﻿
+using MediatR;
+using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
 using Niu.Nutri.Core.Application.DTO.Extensions;
 using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities;
@@ -14,7 +15,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandHandlers
     using Entities;
     using Queries.Models;
     using Application.DTO.Aggregates.LivrariaAgg.Requests;
-    
+
     public class BaseLivrariaAggCommandHandler<T> : BaseCommandHandler<T> where T : IEntity {public BaseLivrariaAggCommandHandler(IServiceProvider provider,IMediator mediator):base(mediator, provider){}}
     public partial class Livro_AutorCommandHandler : BaseLivrariaAggCommandHandler<Livro_Autor>,
         IRequestHandler<CreateLivro_AutorCommand,DomainResponse>,

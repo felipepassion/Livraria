@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
 using <#= GetDefaultNamespace() #>.Core.Application.DTO.Extensions;
 using <#= GetDefaultNamespace() #>.Core.Application.Aggregates.Common;
-using Niu.Nutri.Core.Domain.CrossCutting;
+using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
 
 <#foreach(var namespaces in groupEntities) {
 #>
@@ -65,18 +65,6 @@ foreach(var entity in namespaces) {
                 orderBy: request.OrderBy.GetPropertyListSelector<<#= entity.Name #>>(),
                 selector: x => x.ProjectedAs<<#= responseName #>>());
         }
-<#if(canSummary){#>
-		public async Task<IEnumerable<<#=entity.Name#>ListiningDTO>> GetAllSummary(<#=entity.Name#>QueryModel request, int? page = null, int? size = null)
-        {
-            return await <#= repoVarName #>.FindAllAsync(
-                filter: <#=entity.Name#>Filters.GetFilters(request, isOrSpecification: true),
-                take: size,
-                skip: page * size,
-                ascending: request.OrderByDesc != true,
-                orderBy: request.OrderBy.GetPropertyListSelector<<#= entity.Name #>>(),
-                selector: x => x.ProjectedAs<<#= entity.Name #>ListiningDTO>());
-        }
-<#}#>
 
 <#if(canCreate){#>
 		public Task<DomainResponse> Create(<#= entity.Name #>DTO request, bool updateIfExists = true, <#=entity.Name#>QueryModel searchQuery = null) { return _mediator.Send(new Create<#=entity.Name#>Command(_logRequestContext, request)); }

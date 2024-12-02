@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
-using Niu.Nutri.Core.Domain.CrossCutting;
 using Niu.Nutri.Core.Application.Aggregates.Common;
+using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
 
 namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 	using Application.DTO.Aggregates.LivrariaAgg.Requests;
@@ -11,7 +11,6 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 		public Task<IEnumerable<Livro_AutorDTO>> GetAll(Livro_AutorQueryModel request, int? page = null, int? size = null);
 		public Task<T> Select<T>(Livro_AutorQueryModel request, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Livro_Autor, T>> selector = null);
 		public Task<IEnumerable<T>> GetAll<T>(Livro_AutorQueryModel request, int? page = null, int? size = null, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Livro_Autor, T>> selector = null);
-		public Task<IEnumerable<Livro_AutorListiningDTO>> GetAllSummary(Livro_AutorQueryModel request, int? page = null, int? size = null);
 
 		public Task<DomainResponse> Create(Livro_AutorDTO request, bool updateIfExists = true, Livro_AutorQueryModel searchQuery = null);
 		public Task<DomainResponse> Delete(Livro_AutorQueryModel request);
@@ -24,7 +23,6 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 		public Task<IEnumerable<LivroDTO>> GetAll(LivroQueryModel request, int? page = null, int? size = null);
 		public Task<T> Select<T>(LivroQueryModel request, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Livro, T>> selector = null);
 		public Task<IEnumerable<T>> GetAll<T>(LivroQueryModel request, int? page = null, int? size = null, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Livro, T>> selector = null);
-		public Task<IEnumerable<LivroListiningDTO>> GetAllSummary(LivroQueryModel request, int? page = null, int? size = null);
 
 		public Task<DomainResponse> Create(LivroDTO request, bool updateIfExists = true, LivroQueryModel searchQuery = null);
 		public Task<DomainResponse> Delete(LivroQueryModel request);
@@ -37,7 +35,6 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 		public Task<IEnumerable<AssuntoDTO>> GetAll(AssuntoQueryModel request, int? page = null, int? size = null);
 		public Task<T> Select<T>(AssuntoQueryModel request, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Assunto, T>> selector = null);
 		public Task<IEnumerable<T>> GetAll<T>(AssuntoQueryModel request, int? page = null, int? size = null, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Assunto, T>> selector = null);
-		public Task<IEnumerable<AssuntoListiningDTO>> GetAllSummary(AssuntoQueryModel request, int? page = null, int? size = null);
 
 		public Task<DomainResponse> Create(AssuntoDTO request, bool updateIfExists = true, AssuntoQueryModel searchQuery = null);
 		public Task<DomainResponse> Delete(AssuntoQueryModel request);
@@ -50,7 +47,6 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 		public Task<IEnumerable<Livro_AssuntoDTO>> GetAll(Livro_AssuntoQueryModel request, int? page = null, int? size = null);
 		public Task<T> Select<T>(Livro_AssuntoQueryModel request, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Livro_Assunto, T>> selector = null);
 		public Task<IEnumerable<T>> GetAll<T>(Livro_AssuntoQueryModel request, int? page = null, int? size = null, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Livro_Assunto, T>> selector = null);
-		public Task<IEnumerable<Livro_AssuntoListiningDTO>> GetAllSummary(Livro_AssuntoQueryModel request, int? page = null, int? size = null);
 
 		public Task<DomainResponse> Create(Livro_AssuntoDTO request, bool updateIfExists = true, Livro_AssuntoQueryModel searchQuery = null);
 		public Task<DomainResponse> Delete(Livro_AssuntoQueryModel request);
@@ -63,7 +59,6 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 		public Task<IEnumerable<AutorDTO>> GetAll(AutorQueryModel request, int? page = null, int? size = null);
 		public Task<T> Select<T>(AutorQueryModel request, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Autor, T>> selector = null);
 		public Task<IEnumerable<T>> GetAll<T>(AutorQueryModel request, int? page = null, int? size = null, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Autor, T>> selector = null);
-		public Task<IEnumerable<AutorListiningDTO>> GetAllSummary(AutorQueryModel request, int? page = null, int? size = null);
 
 		public Task<DomainResponse> Create(AutorDTO request, bool updateIfExists = true, AutorQueryModel searchQuery = null);
 		public Task<DomainResponse> Delete(AutorQueryModel request);
@@ -76,7 +71,6 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 		public Task<IEnumerable<LivrariaAggSettingsDTO>> GetAll(LivrariaAggSettingsQueryModel request, int? page = null, int? size = null);
 		public Task<T> Select<T>(LivrariaAggSettingsQueryModel request, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.LivrariaAggSettings, T>> selector = null);
 		public Task<IEnumerable<T>> GetAll<T>(LivrariaAggSettingsQueryModel request, int? page = null, int? size = null, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.LivrariaAggSettings, T>> selector = null);
-		public Task<IEnumerable<LivrariaAggSettingsListiningDTO>> GetAllSummary(LivrariaAggSettingsQueryModel request, int? page = null, int? size = null);
 
 		public Task<DomainResponse> Create(LivrariaAggSettingsDTO request, bool updateIfExists = true, LivrariaAggSettingsQueryModel searchQuery = null);
 		public Task<DomainResponse> Delete(LivrariaAggSettingsQueryModel request);

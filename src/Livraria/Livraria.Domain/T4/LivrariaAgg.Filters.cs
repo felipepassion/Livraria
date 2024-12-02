@@ -2158,13 +2158,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Filters{
 			Specification<LivrariaAggSettings> filter = new DirectSpecification<LivrariaAggSettings>(p => request.IsEmpty() || !isOrSpecification);
 			if(request is not null)
 			{
-				if (request.AutoSaveSettingsEnabledEqual.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.AutoSaveSettingsEnabledEqual(request.AutoSaveSettingsEnabledEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.AutoSaveSettingsEnabledEqual(request.AutoSaveSettingsEnabledEqual.Value);
-				}
 				if (!string.IsNullOrWhiteSpace(request.IdExternoEqual)) 
 				{
 					if (isOrSpecification)

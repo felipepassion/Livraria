@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
 using Niu.Nutri.Core.Application.DTO.Extensions;
 using Niu.Nutri.Core.Application.Aggregates.Common;
-using Niu.Nutri.Core.Domain.CrossCutting;
+using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
 
 namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 	using Application.DTO.Aggregates.LivrariaAgg.Requests;
@@ -45,16 +45,6 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
                 orderBy: request.OrderBy.GetPropertyListSelector<Livro_Autor>(),
                 selector: x => x.ProjectedAs<Livro_AutorDTO>());
         }
-		public async Task<IEnumerable<Livro_AutorListiningDTO>> GetAllSummary(Livro_AutorQueryModel request, int? page = null, int? size = null)
-        {
-            return await _livro_AutorRepository.FindAllAsync(
-                filter: Livro_AutorFilters.GetFilters(request, isOrSpecification: true),
-                take: size,
-                skip: page * size,
-                ascending: request.OrderByDesc != true,
-                orderBy: request.OrderBy.GetPropertyListSelector<Livro_Autor>(),
-                selector: x => x.ProjectedAs<Livro_AutorListiningDTO>());
-        }
 
 		public Task<DomainResponse> Create(Livro_AutorDTO request, bool updateIfExists = true, Livro_AutorQueryModel searchQuery = null) { return _mediator.Send(new CreateLivro_AutorCommand(_logRequestContext, request)); }
 		public async Task<int> CountAsync(Livro_AutorQueryModel request) { return await _livro_AutorRepository.CountAsync(filter: Livro_AutorFilters.GetFilters(request, isOrSpecification: true)); }
@@ -93,16 +83,6 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 				ascending: request.OrderByDesc != true,
                 orderBy: request.OrderBy.GetPropertyListSelector<Livro>(),
                 selector: x => x.ProjectedAs<LivroDTO>());
-        }
-		public async Task<IEnumerable<LivroListiningDTO>> GetAllSummary(LivroQueryModel request, int? page = null, int? size = null)
-        {
-            return await _livroRepository.FindAllAsync(
-                filter: LivroFilters.GetFilters(request, isOrSpecification: true),
-                take: size,
-                skip: page * size,
-                ascending: request.OrderByDesc != true,
-                orderBy: request.OrderBy.GetPropertyListSelector<Livro>(),
-                selector: x => x.ProjectedAs<LivroListiningDTO>());
         }
 
 		public Task<DomainResponse> Create(LivroDTO request, bool updateIfExists = true, LivroQueryModel searchQuery = null) { return _mediator.Send(new CreateLivroCommand(_logRequestContext, request)); }
@@ -143,16 +123,6 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
                 orderBy: request.OrderBy.GetPropertyListSelector<Assunto>(),
                 selector: x => x.ProjectedAs<AssuntoDTO>());
         }
-		public async Task<IEnumerable<AssuntoListiningDTO>> GetAllSummary(AssuntoQueryModel request, int? page = null, int? size = null)
-        {
-            return await _assuntoRepository.FindAllAsync(
-                filter: AssuntoFilters.GetFilters(request, isOrSpecification: true),
-                take: size,
-                skip: page * size,
-                ascending: request.OrderByDesc != true,
-                orderBy: request.OrderBy.GetPropertyListSelector<Assunto>(),
-                selector: x => x.ProjectedAs<AssuntoListiningDTO>());
-        }
 
 		public Task<DomainResponse> Create(AssuntoDTO request, bool updateIfExists = true, AssuntoQueryModel searchQuery = null) { return _mediator.Send(new CreateAssuntoCommand(_logRequestContext, request)); }
 		public async Task<int> CountAsync(AssuntoQueryModel request) { return await _assuntoRepository.CountAsync(filter: AssuntoFilters.GetFilters(request, isOrSpecification: true)); }
@@ -191,16 +161,6 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 				ascending: request.OrderByDesc != true,
                 orderBy: request.OrderBy.GetPropertyListSelector<Livro_Assunto>(),
                 selector: x => x.ProjectedAs<Livro_AssuntoDTO>());
-        }
-		public async Task<IEnumerable<Livro_AssuntoListiningDTO>> GetAllSummary(Livro_AssuntoQueryModel request, int? page = null, int? size = null)
-        {
-            return await _livro_AssuntoRepository.FindAllAsync(
-                filter: Livro_AssuntoFilters.GetFilters(request, isOrSpecification: true),
-                take: size,
-                skip: page * size,
-                ascending: request.OrderByDesc != true,
-                orderBy: request.OrderBy.GetPropertyListSelector<Livro_Assunto>(),
-                selector: x => x.ProjectedAs<Livro_AssuntoListiningDTO>());
         }
 
 		public Task<DomainResponse> Create(Livro_AssuntoDTO request, bool updateIfExists = true, Livro_AssuntoQueryModel searchQuery = null) { return _mediator.Send(new CreateLivro_AssuntoCommand(_logRequestContext, request)); }
@@ -241,16 +201,6 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
                 orderBy: request.OrderBy.GetPropertyListSelector<Autor>(),
                 selector: x => x.ProjectedAs<AutorDTO>());
         }
-		public async Task<IEnumerable<AutorListiningDTO>> GetAllSummary(AutorQueryModel request, int? page = null, int? size = null)
-        {
-            return await _autorRepository.FindAllAsync(
-                filter: AutorFilters.GetFilters(request, isOrSpecification: true),
-                take: size,
-                skip: page * size,
-                ascending: request.OrderByDesc != true,
-                orderBy: request.OrderBy.GetPropertyListSelector<Autor>(),
-                selector: x => x.ProjectedAs<AutorListiningDTO>());
-        }
 
 		public Task<DomainResponse> Create(AutorDTO request, bool updateIfExists = true, AutorQueryModel searchQuery = null) { return _mediator.Send(new CreateAutorCommand(_logRequestContext, request)); }
 		public async Task<int> CountAsync(AutorQueryModel request) { return await _autorRepository.CountAsync(filter: AutorFilters.GetFilters(request, isOrSpecification: true)); }
@@ -289,16 +239,6 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 				ascending: request.OrderByDesc != true,
                 orderBy: request.OrderBy.GetPropertyListSelector<LivrariaAggSettings>(),
                 selector: x => x.ProjectedAs<LivrariaAggSettingsDTO>());
-        }
-		public async Task<IEnumerable<LivrariaAggSettingsListiningDTO>> GetAllSummary(LivrariaAggSettingsQueryModel request, int? page = null, int? size = null)
-        {
-            return await _livrariaAggSettingsRepository.FindAllAsync(
-                filter: LivrariaAggSettingsFilters.GetFilters(request, isOrSpecification: true),
-                take: size,
-                skip: page * size,
-                ascending: request.OrderByDesc != true,
-                orderBy: request.OrderBy.GetPropertyListSelector<LivrariaAggSettings>(),
-                selector: x => x.ProjectedAs<LivrariaAggSettingsListiningDTO>());
         }
 
 		public Task<DomainResponse> Create(LivrariaAggSettingsDTO request, bool updateIfExists = true, LivrariaAggSettingsQueryModel searchQuery = null) { return _mediator.Send(new CreateLivrariaAggSettingsCommand(_logRequestContext, request)); }

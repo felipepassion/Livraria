@@ -6,7 +6,6 @@ namespace Niu.Nutri.Core.Application.DTO.Seedwork
     [DataContract]
     public class PaginationDTO<T> : IEnumerable, IEnumerable<T>
     {
-
         public PaginationDTO()
         {
             Data = new List<T>();
