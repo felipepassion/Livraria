@@ -54,7 +54,7 @@ if(!string.IsNullOrWhiteSpace(property.Value.DocComment))
 	}
 <# SaveOutputToSubFolder(
 folderName: $"Aggregates/{AggName}/Requests", 
-outputFileName: @$"{entity.Name}DTO.cs", 
+outputFileName: @$"{entity.Name}DTO.generated.cs", 
 recreateFileIfExists: true); #>
 <# } #>
 <# } #>
