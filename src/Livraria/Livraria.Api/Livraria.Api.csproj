@@ -45,9 +45,9 @@
 
 	<ItemGroup>
 		<Compile Update="Controllers\MiniControllers.generated.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>MiniControllers.tt</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>MiniControllers.tt</DependentUpon>
 		</Compile>
 		<Compile Update="ServerIoCFactory.generated.cs">
 			<DependentUpon>ServerIoCFactory.tt</DependentUpon>

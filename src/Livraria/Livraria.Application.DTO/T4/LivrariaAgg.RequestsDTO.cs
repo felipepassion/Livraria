@@ -7,7 +7,7 @@ using Niu.Nutri.Core.Application.DTO.Attributes;
 
 namespace Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests 
 {
-public partial class Livro_AutorDTO : EntityDTO
+public partial class Livro_AutorDTO : ObjectDTO
 	{
 	    public  int? Livro_Codl { get; set; }
 	    public  int? Autor_CodAut { get; set; }
@@ -28,7 +28,7 @@ public partial class AssuntoDTO : EntityDTO
 	    public  string? Descricao { get; set; }
 	    public List<Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.LivroDTO>? Livros { get; set; } = new List<Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.LivroDTO>();
 	}
-public partial class Livro_AssuntoDTO : EntityDTO
+public partial class Livro_AssuntoDTO : ObjectDTO
 	{
 	    public  int Livro_Codl { get; set; }
 	    public  int Assunto_CodAut { get; set; }

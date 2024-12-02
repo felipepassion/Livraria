@@ -1,12 +1,11 @@
 using Niu.Nutri.Core.Domain.Attributes.T4;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities;
 
 namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities;
 
 [EndpointsT4(EndpointTypes.HttpAll)]
-public partial class Livro_Assunto : Entity
+public partial class Livro_Assunto
 {
     [Required]
     [ForeignKey(nameof(Livro))]

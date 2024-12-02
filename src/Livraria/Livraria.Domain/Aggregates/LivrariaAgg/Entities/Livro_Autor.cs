@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities
 {
     [EndpointsT4(EndpointTypes.HttpAll)]
-    public partial class Livro_Autor : Entity
+    public partial class Livro_Autor
     {
         [ForeignKey(nameof(Livro))]
         public int Livro_Codl { get; set; }
