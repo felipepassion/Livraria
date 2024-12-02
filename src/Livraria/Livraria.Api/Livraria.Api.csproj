@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
@@ -20,18 +20,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="Controllers\MiniControllers.tt">
+		<None Update="MiniControllers.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>MiniControllers.generated.cs</LastGenOutput>
-		</None>
-		<None Update="Migrations.generated.bat">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>Migrations.tt</DependentUpon>
-		</None>
-		<None Update="Migrations.tt">
-			<LastGenOutput>Migrations.generated.bat</LastGenOutput>
-			<Generator>TextTemplatingFileGenerator</Generator>
 		</None>
 		<None Update="ServerIoCFactory.tt">
 			<LastGenOutput>ServerIoCFactory.generated.cs</LastGenOutput>
@@ -44,7 +35,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Controllers\MiniControllers.generated.cs">
+		<Compile Update="MiniControllers - Copy.generated.cs">
+		  <DependentUpon>MiniControllers.tt</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		</Compile>
+		<Compile Update="MiniControllers.generated.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>MiniControllers.tt</DependentUpon>

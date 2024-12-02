@@ -44,10 +44,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataSeeders\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="ServerIoCFactory.generated.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

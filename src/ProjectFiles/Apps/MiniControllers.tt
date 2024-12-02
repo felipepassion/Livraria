@@ -11,22 +11,10 @@ aggSettingsList.AddRange(GetAggregateEntities(project, withAttribute:"EndpointsT
 if (aggSettingsList.Any()) {
 
 var groupEntities = aggSettingsList.GroupBy(p => p.Namespace.FullName);
-#>
-using Microsoft.AspNetCore.Mvc;
-using Niu.Nutri.CrossCutting.Infra.Log.Contexts;
-using Niu.Nutri.Core.Application.Aggregates.Common;
-using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
-using Niu.Nutri.Core.Application.Extensions;
-using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
-<#foreach(var namespaces in groupEntities) {
+foreach(var namespaces in groupEntities) {
 	var aggName = namespaces.Key.Split('.').FirstOrDefault(x=>x.EndsWith("Agg"));
 	var shortAggName = aggName.Replace("Agg","");
-#>
-namespace <#= GetDefaultNamespace() #>.<#=shortAggName#>.Api.Controllers {
-	using Domain.Aggregates.<#= aggName #>.Queries.Models;
-	using Application.Aggregates.<#= aggName #>.AppServices;
-	using Domain.Aggregates.<#= aggName #>.Entities;
-<#
+
  foreach(var entity in namespaces) {
 	var responseName = $"{entity.Name}DTO";
 	var className = entity.Name + "Controller";
@@ -39,6 +27,18 @@ namespace <#= GetDefaultNamespace() #>.<#=shortAggName#>.Api.Controllers {
 	var canDelete = attrs.Any(x=>x.Value.Contains("HttpDelete") || x.Value.Contains("All"));
 	if(!(canGet || canCount || canCreate || canSummary)) continue;
 #>
+using Microsoft.AspNetCore.Mvc;
+
+namespace <#= GetDefaultNamespace() #>.<#=shortAggName#>.Api.Controllers;
+
+using Core.Application.Aggregates.Common;
+using Core.Application.Extensions;
+using CrossCuting.Infra.Utils.Extensions;
+using Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+using Domain.Aggregates.<#= aggName #>.Queries.Models;
+using Application.Aggregates.<#= aggName #>.AppServices;
+using Domain.Aggregates.<#= aggName #>.Entities;
+
 	[ApiController]
     [Route("api/[controller]")]
 	public partial class <#= className #> : BaseMiniController {
@@ -52,9 +52,8 @@ namespace <#= GetDefaultNamespace() #>.<#=shortAggName#>.Api.Controllers {
 		<#= repoTypeName #> <#= serviceVarName #>;
 		public <#= className #>(
 			IServiceProvider scope,
-            ILogRequestContext logRequestContext,
 			<#= repoTypeName #> <#= serviceVarName.Substring(1) #>)
-				: base(logRequestContext, scope)
+				: base(scope)
 			{ 
 				<#= serviceVarName #> = <#= serviceVarName.Substring(1) #>; 
 <#if(props.ContainsKey("EmpresaId")){#>
@@ -88,7 +87,7 @@ namespace <#= GetDefaultNamespace() #>.<#=shortAggName#>.Api.Controllers {
 	if(canCreate){#>
 		
 		[HttpPost]
-		public async Task<GetHttpResponseDTO<object>> Post(Niu.Nutri.<#=aggName.Replace("Agg","")#>.Application.DTO.Aggregates.<#=aggName#>.Requests.<#= entity.Name #>DTO request) {
+		public async Task<GetHttpResponseDTO<object>> Post(Application.DTO.Aggregates.<#=aggName#>.Requests.<#= entity.Name #>DTO request) {
 			var loggedUserId = User.GetLoggedInUserId<int>();
 <#if(props.ContainsKey("EmpresaId") && aggName != "CompaniesAgg"){#>
 			
@@ -111,6 +110,10 @@ var DTOName = $"{entity.Name}QueryModel";
         }
 <#}#>
 	}
+<# SaveOutputToSubFolder(
+    folderName: "Controllers", 
+    outputFileName: $"{entity.Name}Controller.cs", 
+    recreateFileIfExists: true); #>
 <# } #>
 }
 <# } #>
