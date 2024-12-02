@@ -18,9 +18,6 @@
 
 using Niu.Nutri.Core.Infra.Data.Contexts;
 using Niu.Nutri.Core.Infra.IoC;
-using Niu.Nutri.Users.Identity;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
     
 namespace <#= GetDefaultNamespace() #>.<#= GetCurrentProject().Name #> {
@@ -28,7 +25,6 @@ namespace <#= GetDefaultNamespace() #>.<#= GetCurrentProject().Name #> {
        
 		public static void InjectDependencies(this IServiceCollection services, IConfiguration configuration) {
 
-            <#= GetDefaultNamespace() #>.Users.Identity.Infra.IoC.IoCFactory.Current.Configure(configuration, services);
 <# foreach (var namespc in aggSettingsList
     .OrderBy(x=>
         !GetAttributesDict(x).ContainsKey("MigrationOrder") ? 1000 :
@@ -47,7 +43,7 @@ var aggName = namespc.Key.Split('.').FirstOrDefault(x=>x.EndsWith("Agg")).Replac
             {
                 var contexts = (from asm in AppDomain.CurrentDomain.GetAssemblies()
                                 from type in asm.GetTypes()
-                                where type.IsClass && type.BaseType == typeof(BaseContext) || type.BaseType == typeof(IdentityDbContext<ApplicationUser, IdentityRole<int>, int>)
+                                where type.IsClass && type.BaseType == typeof(BaseContext)
                                 select type).ToArray();
 
                 foreach (var item in contexts)

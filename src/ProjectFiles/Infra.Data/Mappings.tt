@@ -24,7 +24,6 @@ namespace <#= namespaces.Key.Replace("Entities", "Mappings").Replace("Domain","I
 <# foreach(var item in oneToOneRelations){ #>
             builder.HasOne(x => x.<#= item.Key #>).WithOne().HasForeignKey<<#= item.Value.Type.AsFullName.Split('.').Last() #>>("Id");
 <#}#>
-            builder.HasKey(x => x.Id);
             ConfigureAdditionalMapping(builder);
         }
 

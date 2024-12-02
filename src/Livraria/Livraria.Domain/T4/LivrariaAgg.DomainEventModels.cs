@@ -5,41 +5,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.ModelEvents
 {
     using ModelEvents;
     using Entities;
-    public partial class Livro_AutorCreatedEvent : BaseEvent
-    {
-        public Livro_AutorCreatedEvent(ILogRequestContext ctx, Livro_Autor data) 
-            : base(ctx, data) { }
-    }
-    public partial class Livro_AutorDeletedEvent : BaseEvent
-    {
-        public Livro_AutorDeletedEvent(ILogRequestContext ctx, Livro_Autor data) 
-            : base(ctx, data) { }
-    }
-    public partial class Livro_AutorDeletedRangeEvent : BaseEvent
-    {
-        public Livro_AutorDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<Livro_Autor> data) 
-            : base(ctx, data) { }
-    }
-    public partial class Livro_AutorActivatedEvent : BaseEvent
-    {
-        public Livro_AutorActivatedEvent(ILogRequestContext ctx, Livro_Autor data) 
-            : base(ctx, data) { }
-    }
-    public partial class Livro_AutorUpdatedEvent : BaseEvent
-    {
-        public Livro_AutorUpdatedEvent(ILogRequestContext ctx, Livro_Autor data) 
-            : base(ctx, data) { }
-    }
-    public partial class Livro_AutorUpdatedRangeEvent : BaseEvent
-    {
-        public Livro_AutorUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<Livro_Autor> data) 
-            : base(ctx, data) { }
-    }
-    public partial class Livro_AutorDeactivatedEvent : BaseEvent
-    {
-        public Livro_AutorDeactivatedEvent(ILogRequestContext ctx, Livro_Autor data) 
-            : base(ctx, data) { }
-    }
     public partial class LivroCreatedEvent : BaseEvent
     {
         public LivroCreatedEvent(ILogRequestContext ctx, Livro data) 
@@ -108,41 +73,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.ModelEvents
     public partial class AssuntoDeactivatedEvent : BaseEvent
     {
         public AssuntoDeactivatedEvent(ILogRequestContext ctx, Assunto data) 
-            : base(ctx, data) { }
-    }
-    public partial class Livro_AssuntoCreatedEvent : BaseEvent
-    {
-        public Livro_AssuntoCreatedEvent(ILogRequestContext ctx, Livro_Assunto data) 
-            : base(ctx, data) { }
-    }
-    public partial class Livro_AssuntoDeletedEvent : BaseEvent
-    {
-        public Livro_AssuntoDeletedEvent(ILogRequestContext ctx, Livro_Assunto data) 
-            : base(ctx, data) { }
-    }
-    public partial class Livro_AssuntoDeletedRangeEvent : BaseEvent
-    {
-        public Livro_AssuntoDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<Livro_Assunto> data) 
-            : base(ctx, data) { }
-    }
-    public partial class Livro_AssuntoActivatedEvent : BaseEvent
-    {
-        public Livro_AssuntoActivatedEvent(ILogRequestContext ctx, Livro_Assunto data) 
-            : base(ctx, data) { }
-    }
-    public partial class Livro_AssuntoUpdatedEvent : BaseEvent
-    {
-        public Livro_AssuntoUpdatedEvent(ILogRequestContext ctx, Livro_Assunto data) 
-            : base(ctx, data) { }
-    }
-    public partial class Livro_AssuntoUpdatedRangeEvent : BaseEvent
-    {
-        public Livro_AssuntoUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<Livro_Assunto> data) 
-            : base(ctx, data) { }
-    }
-    public partial class Livro_AssuntoDeactivatedEvent : BaseEvent
-    {
-        public Livro_AssuntoDeactivatedEvent(ILogRequestContext ctx, Livro_Assunto data) 
             : base(ctx, data) { }
     }
     public partial class AutorCreatedEvent : BaseEvent

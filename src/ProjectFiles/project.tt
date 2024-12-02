@@ -883,6 +883,7 @@
 
     public string MyParent(CodeClass entity){
         foreach(CodeClass item in entity.Bases){
+            if(item.Name == "Object") return null;
             return item.Name;
         }
         return null;
@@ -926,7 +927,7 @@
     }
 
     public CodeClass MyParentClass(CodeClass entity){
-        foreach(CodeClass item in entity.Bases){
+        foreach(CodeClass item in entity.Bases) {
             return item;
         }
         return null;

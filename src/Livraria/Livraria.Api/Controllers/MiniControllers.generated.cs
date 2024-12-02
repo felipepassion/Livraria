@@ -11,55 +11,6 @@ namespace Niu.Nutri.Livraria.Api.Controllers {
 	using Domain.Aggregates.LivrariaAgg.Entities;
 	[ApiController]
     [Route("api/[controller]")]
-	public partial class Livro_AutorController : BaseMiniController {
-		ILivro_AutorAppService _livro_AutorAppService;
-		public Livro_AutorController(
-			IServiceProvider scope,
-            ILogRequestContext logRequestContext,
-			ILivro_AutorAppService livro_AutorAppService)
-				: base(logRequestContext, scope)
-			{ 
-				_livro_AutorAppService = livro_AutorAppService; 
-			}	
-		[HttpGet]
-		public async Task<IActionResult> Get([FromQuery] Livro_AutorQueryModel request) {
-		    var obj = await _livro_AutorAppService.Get(request);
-            return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
-        }
-		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<object>> Count([FromQuery] Livro_AutorQueryModel request) {
-            return GetHttpResponseDTO.Ok(await _livro_AutorAppService.CountAsync(request));
-        }
-		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<object>> Get([FromQuery] Livro_AutorQueryModel request, int page = 0, int size = 5) {
-		    var obj = await _livro_AutorAppService.GetAll(request, page, size);
-            return GetHttpResponseDTO.Ok(obj);
-        }
-		[HttpGet("select")]
-		public async Task<IActionResult> Select([FromQuery] Livro_AutorQueryModel request, int? page = null, int? size = null) {
-		    var obj = await _livro_AutorAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Livro_Autor>());
-            return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
-        }
-		
-		[HttpPost]
-		public async Task<GetHttpResponseDTO<object>> Post(Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.Livro_AutorDTO request) {
-			var loggedUserId = User.GetLoggedInUserId<int>();
-			var result = await _livro_AutorAppService.Create(request);
-            return result.Success ? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
-		}
-        [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<object>> Delete([FromQuery] Livro_AutorQueryModel request) {
-            var result = await _livro_AutorAppService.Delete(request);
-            return result.Success ? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
-        }
-        [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO<object>> DeleteRange(Livro_AutorQueryModel request) {
-            var result = await _livro_AutorAppService.DeleteRange(request);
-            return result.Success? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
-        }
-	}
-	[ApiController]
-    [Route("api/[controller]")]
 	public partial class LivroController : BaseMiniController {
 		ILivroAppService _livroAppService;
 		public LivroController(
@@ -153,55 +104,6 @@ namespace Niu.Nutri.Livraria.Api.Controllers {
         [HttpDelete("range")]
         public async Task<GetHttpResponseDTO<object>> DeleteRange(AssuntoQueryModel request) {
             var result = await _assuntoAppService.DeleteRange(request);
-            return result.Success? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
-        }
-	}
-	[ApiController]
-    [Route("api/[controller]")]
-	public partial class Livro_AssuntoController : BaseMiniController {
-		ILivro_AssuntoAppService _livro_AssuntoAppService;
-		public Livro_AssuntoController(
-			IServiceProvider scope,
-            ILogRequestContext logRequestContext,
-			ILivro_AssuntoAppService livro_AssuntoAppService)
-				: base(logRequestContext, scope)
-			{ 
-				_livro_AssuntoAppService = livro_AssuntoAppService; 
-			}	
-		[HttpGet]
-		public async Task<IActionResult> Get([FromQuery] Livro_AssuntoQueryModel request) {
-		    var obj = await _livro_AssuntoAppService.Get(request);
-            return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
-        }
-		[HttpGet("count")]
-		public async Task<GetHttpResponseDTO<object>> Count([FromQuery] Livro_AssuntoQueryModel request) {
-            return GetHttpResponseDTO.Ok(await _livro_AssuntoAppService.CountAsync(request));
-        }
-		[HttpGet("search")]
-		public async Task<GetHttpResponseDTO<object>> Get([FromQuery] Livro_AssuntoQueryModel request, int page = 0, int size = 5) {
-		    var obj = await _livro_AssuntoAppService.GetAll(request, page, size);
-            return GetHttpResponseDTO.Ok(obj);
-        }
-		[HttpGet("select")]
-		public async Task<IActionResult> Select([FromQuery] Livro_AssuntoQueryModel request, int? page = null, int? size = null) {
-		    var obj = await _livro_AssuntoAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Livro_Assunto>());
-            return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
-        }
-		
-		[HttpPost]
-		public async Task<GetHttpResponseDTO<object>> Post(Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.Livro_AssuntoDTO request) {
-			var loggedUserId = User.GetLoggedInUserId<int>();
-			var result = await _livro_AssuntoAppService.Create(request);
-            return result.Success ? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
-		}
-        [HttpDelete("delete")]
-		public async Task<GetHttpResponseDTO<object>> Delete([FromQuery] Livro_AssuntoQueryModel request) {
-            var result = await _livro_AssuntoAppService.Delete(request);
-            return result.Success ? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
-        }
-        [HttpDelete("range")]
-        public async Task<GetHttpResponseDTO<object>> DeleteRange(Livro_AssuntoQueryModel request) {
-            var result = await _livro_AssuntoAppService.DeleteRange(request);
             return result.Success? GetHttpResponseDTO.Ok(result) : GetHttpResponseDTO.BadRequest(result);
         }
 	}

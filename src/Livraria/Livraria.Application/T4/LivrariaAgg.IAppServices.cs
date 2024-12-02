@@ -5,18 +5,6 @@ using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
 namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 	using Application.DTO.Aggregates.LivrariaAgg.Requests;
     using Domain.Aggregates.LivrariaAgg.Queries.Models;
-	public partial interface ILivro_AutorAppService : IBaseAppService {	
-		public Task<Livro_AutorDTO> Get(Livro_AutorQueryModel request);
-		public Task<int> CountAsync(Livro_AutorQueryModel request);
-		public Task<IEnumerable<Livro_AutorDTO>> GetAll(Livro_AutorQueryModel request, int? page = null, int? size = null);
-		public Task<T> Select<T>(Livro_AutorQueryModel request, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Livro_Autor, T>> selector = null);
-		public Task<IEnumerable<T>> GetAll<T>(Livro_AutorQueryModel request, int? page = null, int? size = null, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Livro_Autor, T>> selector = null);
-
-		public Task<DomainResponse> Create(Livro_AutorDTO request, bool updateIfExists = true, Livro_AutorQueryModel searchQuery = null);
-		public Task<DomainResponse> Delete(Livro_AutorQueryModel request);
-		public Task<DomainResponse> DeleteRange(Livro_AutorQueryModel request);
-		public Task Update(Livro_AutorQueryModel searchQuery, Livro_AutorDTO request, bool createIfNotExists = true);
-	}
 	public partial interface ILivroAppService : IBaseAppService {	
 		public Task<LivroDTO> Get(LivroQueryModel request);
 		public Task<int> CountAsync(LivroQueryModel request);
@@ -40,18 +28,6 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 		public Task<DomainResponse> Delete(AssuntoQueryModel request);
 		public Task<DomainResponse> DeleteRange(AssuntoQueryModel request);
 		public Task Update(AssuntoQueryModel searchQuery, AssuntoDTO request, bool createIfNotExists = true);
-	}
-	public partial interface ILivro_AssuntoAppService : IBaseAppService {	
-		public Task<Livro_AssuntoDTO> Get(Livro_AssuntoQueryModel request);
-		public Task<int> CountAsync(Livro_AssuntoQueryModel request);
-		public Task<IEnumerable<Livro_AssuntoDTO>> GetAll(Livro_AssuntoQueryModel request, int? page = null, int? size = null);
-		public Task<T> Select<T>(Livro_AssuntoQueryModel request, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Livro_Assunto, T>> selector = null);
-		public Task<IEnumerable<T>> GetAll<T>(Livro_AssuntoQueryModel request, int? page = null, int? size = null, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Livro_Assunto, T>> selector = null);
-
-		public Task<DomainResponse> Create(Livro_AssuntoDTO request, bool updateIfExists = true, Livro_AssuntoQueryModel searchQuery = null);
-		public Task<DomainResponse> Delete(Livro_AssuntoQueryModel request);
-		public Task<DomainResponse> DeleteRange(Livro_AssuntoQueryModel request);
-		public Task Update(Livro_AssuntoQueryModel searchQuery, Livro_AssuntoDTO request, bool createIfNotExists = true);
 	}
 	public partial interface IAutorAppService : IBaseAppService {	
 		public Task<AutorDTO> Get(AutorQueryModel request);

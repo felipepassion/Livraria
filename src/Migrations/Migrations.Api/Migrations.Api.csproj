@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Livraria\Livraria.Infra.IoC\Livraria.Infra.IoC.csproj" />
-    <ProjectReference Include="..\..\Users.Identity\Users.Identity.csproj" />
   </ItemGroup>
 
   <ItemGroup>

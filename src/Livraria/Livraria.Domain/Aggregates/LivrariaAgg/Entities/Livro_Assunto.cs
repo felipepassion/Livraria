@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities;
 
-[EndpointsT4(EndpointTypes.HttpAll)]
 public partial class Livro_Assunto
 {
     [Required]

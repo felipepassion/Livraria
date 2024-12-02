@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Users.Identity\Users.Identity.csproj" />
     <ProjectReference Include="..\Core.Infra.IoC\Core.Infra.IoC.csproj" />
   </ItemGroup>
 	

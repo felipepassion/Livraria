@@ -39,6 +39,4 @@ app.MapControllers();
 app.Migrate();
 app.OnAppInitialized();
 
-await app.SeedAdministratorUser();
-
 app.Run();

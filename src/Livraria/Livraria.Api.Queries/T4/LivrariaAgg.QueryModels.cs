@@ -3,28 +3,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Queries.Models
 {
     using Core.Api.Queries;
 	using Enumerations;
-	public partial class Livro_AutorQueryModel : BaseQueryModel {
-		public int? Livro_CodlEqual { get; set; }
-		public int? Livro_CodlNotEqual { get; set; }
-		public int[]? Livro_CodlContains { get; set; }
-		public int[]? Livro_CodlNotContains { get; set; }
-		public int? Livro_CodlSince { get; set; }
-		public int? Livro_CodlUntil { get; set; }
-		public int? Livro_CodlLessThan { get; set; }
-		public int? Livro_CodlGreaterThan { get; set; }
-		public int? Livro_CodlLessThanOrEqual { get; set; }
-		public int? Livro_CodlGreaterThanOrEqual { get; set; }
-		public int? Autor_CodAutEqual { get; set; }
-		public int? Autor_CodAutNotEqual { get; set; }
-		public int[]? Autor_CodAutContains { get; set; }
-		public int[]? Autor_CodAutNotContains { get; set; }
-		public int? Autor_CodAutSince { get; set; }
-		public int? Autor_CodAutUntil { get; set; }
-		public int? Autor_CodAutLessThan { get; set; }
-		public int? Autor_CodAutGreaterThan { get; set; }
-		public int? Autor_CodAutLessThanOrEqual { get; set; }
-		public int? Autor_CodAutGreaterThanOrEqual { get; set; }
-	}
 	public partial class LivroQueryModel : BaseQueryModel {
 		public string? TituloEqual { get; set; }
 		public string? TituloNotEqual { get; set; }
@@ -138,28 +116,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Queries.Models
 		public int[]? IdContains { get; set; }
 		public int[]? IdNotContains { get; set; }
 		public bool? DeletadoEqual { get; set; }
-	}
-	public partial class Livro_AssuntoQueryModel : BaseQueryModel {
-		public int? Livro_CodlEqual { get; set; }
-		public int? Livro_CodlNotEqual { get; set; }
-		public int[]? Livro_CodlContains { get; set; }
-		public int[]? Livro_CodlNotContains { get; set; }
-		public int? Livro_CodlSince { get; set; }
-		public int? Livro_CodlUntil { get; set; }
-		public int? Livro_CodlLessThan { get; set; }
-		public int? Livro_CodlGreaterThan { get; set; }
-		public int? Livro_CodlLessThanOrEqual { get; set; }
-		public int? Livro_CodlGreaterThanOrEqual { get; set; }
-		public int? Assunto_CodAutEqual { get; set; }
-		public int? Assunto_CodAutNotEqual { get; set; }
-		public int[]? Assunto_CodAutContains { get; set; }
-		public int[]? Assunto_CodAutNotContains { get; set; }
-		public int? Assunto_CodAutSince { get; set; }
-		public int? Assunto_CodAutUntil { get; set; }
-		public int? Assunto_CodAutLessThan { get; set; }
-		public int? Assunto_CodAutGreaterThan { get; set; }
-		public int? Assunto_CodAutLessThanOrEqual { get; set; }
-		public int? Assunto_CodAutGreaterThanOrEqual { get; set; }
 	}
 	public partial class AutorQueryModel : BaseQueryModel {
 		public string? NomeEqual { get; set; }

@@ -2,9 +2,6 @@
 
 using Niu.Nutri.Core.Infra.Data.Contexts;
 using Niu.Nutri.Core.Infra.IoC;
-using Niu.Nutri.Users.Identity;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
     
 namespace Niu.Nutri.Migrations.Api {
@@ -12,7 +9,6 @@ namespace Niu.Nutri.Migrations.Api {
        
 		public static void InjectDependencies(this IServiceCollection services, IConfiguration configuration) {
 
-            Niu.Nutri.Users.Identity.Infra.IoC.IoCFactory.Current.Configure(configuration, services);
             Niu.Nutri.Livraria.Infra.IoC.IoCFactory.Current.Configure(configuration, services);
 			
             Niu.Nutri.Core.Infra.IoC.IoCFactory.Current.Configure(configuration, services);
@@ -24,7 +20,7 @@ namespace Niu.Nutri.Migrations.Api {
             {
                 var contexts = (from asm in AppDomain.CurrentDomain.GetAssemblies()
                                 from type in asm.GetTypes()
-                                where type.IsClass && type.BaseType == typeof(BaseContext) || type.BaseType == typeof(IdentityDbContext<ApplicationUser, IdentityRole<int>, int>)
+                                where type.IsClass && type.BaseType == typeof(BaseContext)
                                 select type).ToArray();
 
                 foreach (var item in contexts)

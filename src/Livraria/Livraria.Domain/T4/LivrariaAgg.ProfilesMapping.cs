@@ -12,24 +12,12 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Profiles
 	{
 		public LivrariaAggProfile()
 		{
-			CreateMap<Livro_AutorDTO, Livro_Autor>()
-				.ForMember(x=>x.IdExterno, opt => opt.MapFrom(x=>x.IdExterno ?? Guid.NewGuid().ToString()));
-			CreateMap<Livro_Autor, Livro_AutorDTO>();
-			CreateMap<LivroDTO, Livro>()
-				.ForMember(x=>x.IdExterno, opt => opt.MapFrom(x=>x.IdExterno ?? Guid.NewGuid().ToString()));
-			CreateMap<Livro, LivroDTO>();
-			CreateMap<AssuntoDTO, Assunto>()
-				.ForMember(x=>x.IdExterno, opt => opt.MapFrom(x=>x.IdExterno ?? Guid.NewGuid().ToString()));
-			CreateMap<Assunto, AssuntoDTO>();
-			CreateMap<Livro_AssuntoDTO, Livro_Assunto>()
-				.ForMember(x=>x.IdExterno, opt => opt.MapFrom(x=>x.IdExterno ?? Guid.NewGuid().ToString()));
-			CreateMap<Livro_Assunto, Livro_AssuntoDTO>();
-			CreateMap<AutorDTO, Autor>()
-				.ForMember(x=>x.IdExterno, opt => opt.MapFrom(x=>x.IdExterno ?? Guid.NewGuid().ToString()));
-			CreateMap<Autor, AutorDTO>();
-			CreateMap<LivrariaAggSettingsDTO, LivrariaAggSettings>()
-				.ForMember(x=>x.IdExterno, opt => opt.MapFrom(x=>x.IdExterno ?? Guid.NewGuid().ToString()));
-			CreateMap<LivrariaAggSettings, LivrariaAggSettingsDTO>();
+			CreateMap<Livro_AutorDTO, Livro_Autor>().ReverseMap();;
+			CreateMap<LivroDTO, Livro>().ReverseMap();;
+			CreateMap<AssuntoDTO, Assunto>().ReverseMap();;
+			CreateMap<Livro_AssuntoDTO, Livro_Assunto>().ReverseMap();;
+			CreateMap<AutorDTO, Autor>().ReverseMap();;
+			CreateMap<LivrariaAggSettingsDTO, LivrariaAggSettings>().ReverseMap();;
 			ConfigureAdditionalProfiles();
 		}
 		partial void ConfigureAdditionalProfiles();
@@ -44,9 +32,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.UsersAgg.Profiles
 	{
 		public UsersAggProfile()
 		{
-			CreateMap<UserDTO, User>()
-				.ForMember(x=>x.IdExterno, opt => opt.MapFrom(x=>x.IdExterno ?? Guid.NewGuid().ToString()));
-			CreateMap<User, UserDTO>();
+			CreateMap<UserDTO, User>().ReverseMap();;
 			ConfigureAdditionalProfiles();
 		}
 		partial void ConfigureAdditionalProfiles();

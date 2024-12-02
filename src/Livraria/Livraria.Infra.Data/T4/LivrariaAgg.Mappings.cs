@@ -9,7 +9,6 @@ namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings
     {
         public void Configure(EntityTypeBuilder<Livro_Autor> builder)
         {
-            builder.HasKey(x => x.Id);
             ConfigureAdditionalMapping(builder);
         }
 
@@ -19,7 +18,6 @@ namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings
     {
         public void Configure(EntityTypeBuilder<Livro> builder)
         {
-            builder.HasKey(x => x.Id);
             ConfigureAdditionalMapping(builder);
         }
 
@@ -29,7 +27,6 @@ namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings
     {
         public void Configure(EntityTypeBuilder<Assunto> builder)
         {
-            builder.HasKey(x => x.Id);
             ConfigureAdditionalMapping(builder);
         }
 
@@ -39,7 +36,6 @@ namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings
     {
         public void Configure(EntityTypeBuilder<Livro_Assunto> builder)
         {
-            builder.HasKey(x => x.Id);
             ConfigureAdditionalMapping(builder);
         }
 
@@ -49,7 +45,6 @@ namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings
     {
         public void Configure(EntityTypeBuilder<Autor> builder)
         {
-            builder.HasKey(x => x.Id);
             ConfigureAdditionalMapping(builder);
         }
 
@@ -59,7 +54,6 @@ namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings
     {
         public void Configure(EntityTypeBuilder<LivrariaAggSettings> builder)
         {
-            builder.HasKey(x => x.Id);
             ConfigureAdditionalMapping(builder);
         }
 
@@ -73,7 +67,6 @@ namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.UsersAgg.Mappings
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.Metadata.SetIsTableExcludedFromMigrations(true);
-            builder.HasKey(x => x.Id);
             ConfigureAdditionalMapping(builder);
         }
 

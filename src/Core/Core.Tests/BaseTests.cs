@@ -32,8 +32,6 @@ namespace Core.Tests
 
             _serviceCollection.AddLogging(logging => logging.AddConsole());
 
-            Niu.Nutri.Users.Identity.Infra.IoC.IoCFactory.Current.Configure(this.Configuration, this.ServiceCollection);
-            
             Niu.Nutri.Core.Infra.IoC.IoCFactory.Current.Configure(this.Configuration, this.ServiceCollection);
 
             _mediator = ServiceProvider.GetRequiredService<IMediator>();

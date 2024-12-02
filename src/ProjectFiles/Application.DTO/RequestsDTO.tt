@@ -14,10 +14,18 @@ var otherNamespace = entity.Namespace.FullName.Replace("Domain","Application.DTO
 var isAggregateRoot = GetAttributes(entity, true).Contains("[AggregateSettingsT4]");
 var tType = MyParentTType(entity);
 var parentTypeStr = tType?.Key.Replace("Entities","Requests").Replace("Domain","Application.DTO");
+var myParent = MyParent(entity);
+
+if(myParent != null){
+	myParent = ": " +  $"{myParent}DTO";
+}
+else{
+	myParent = "";
+}
 
 var myClassAttrs = GetAttributes(entity).Where(x=>x.StartsWith("[H") || x.Contains("Hide"));
 foreach(var myAttr in myClassAttrs) {#> <#=myAttr#> <# } #>
-public partial class <#= entity.Name #>DTO : <#= MyParent(entity) #>DTO<#=string.IsNullOrWhiteSpace(parentTypeStr)?"":$"<{parentTypeStr}DTO>"#>
+public partial class <#= entity.Name #>DTO <#= myParent #><#=string.IsNullOrWhiteSpace(parentTypeStr)?"":$"<{parentTypeStr}DTO>"#>
 	{
 <#if(tType.HasValue)
 {

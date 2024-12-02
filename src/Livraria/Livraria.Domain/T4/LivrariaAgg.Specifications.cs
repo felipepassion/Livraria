@@ -2,60 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
 	using Entities;
-   public partial class Livro_AutorSpecifications {
-				public static Specification<Livro_Autor> Livro_CodlContains(params int[] values) {
-            return new DirectSpecification<Livro_Autor>(p => values.Contains(p.Livro_Codl));
-        }
-		public static Specification<Livro_Autor> Livro_CodlNotContains(params int[] values) {
-            return new DirectSpecification<Livro_Autor>(p => !values.Contains(p.Livro_Codl));
-        }
-		public static Specification<Livro_Autor> Livro_CodlEqual(params int[] values) {
-			return new DirectSpecification<Livro_Autor>(p => values.Contains(p.Livro_Codl));
-        }
-        public static Specification<Livro_Autor> Livro_CodlGreaterThanOrEqual(int value) {
-            return new DirectSpecification<Livro_Autor>(p => p.Livro_Codl >= value);
-        }
-        public static Specification<Livro_Autor> Livro_CodlLessThanOrEqual(int value) {
-            return new DirectSpecification<Livro_Autor>(p => p.Livro_Codl <= value);
-        }
-        public static Specification<Livro_Autor> Livro_CodlNotEqual(int value) {
-            return new DirectSpecification<Livro_Autor>(p => p.Livro_Codl != value);
-        }
-        public static Specification<Livro_Autor> Livro_CodlGreaterThan(int value) {
-            return new DirectSpecification<Livro_Autor>(p => p.Livro_Codl > value);
-        }
-        public static Specification<Livro_Autor> Livro_CodlLessThan(int value) {
-            return new DirectSpecification<Livro_Autor>(p => p.Livro_Codl < value);
-        }
-		
-					public static Specification<Livro_Autor> Autor_CodAutContains(params int[] values) {
-            return new DirectSpecification<Livro_Autor>(p => values.Contains(p.Autor_CodAut));
-        }
-		public static Specification<Livro_Autor> Autor_CodAutNotContains(params int[] values) {
-            return new DirectSpecification<Livro_Autor>(p => !values.Contains(p.Autor_CodAut));
-        }
-		public static Specification<Livro_Autor> Autor_CodAutEqual(params int[] values) {
-			return new DirectSpecification<Livro_Autor>(p => values.Contains(p.Autor_CodAut));
-        }
-        public static Specification<Livro_Autor> Autor_CodAutGreaterThanOrEqual(int value) {
-            return new DirectSpecification<Livro_Autor>(p => p.Autor_CodAut >= value);
-        }
-        public static Specification<Livro_Autor> Autor_CodAutLessThanOrEqual(int value) {
-            return new DirectSpecification<Livro_Autor>(p => p.Autor_CodAut <= value);
-        }
-        public static Specification<Livro_Autor> Autor_CodAutNotEqual(int value) {
-            return new DirectSpecification<Livro_Autor>(p => p.Autor_CodAut != value);
-        }
-        public static Specification<Livro_Autor> Autor_CodAutGreaterThan(int value) {
-            return new DirectSpecification<Livro_Autor>(p => p.Autor_CodAut > value);
-        }
-        public static Specification<Livro_Autor> Autor_CodAutLessThan(int value) {
-            return new DirectSpecification<Livro_Autor>(p => p.Autor_CodAut < value);
-        }
-		
-				
-				
-	   }
    public partial class LivroSpecifications {
 				public static Specification<Livro> TituloContains(string value) {
 			return new DirectSpecification<Livro>(p => EF.Functions.Like(p.Titulo.ToLower(), $"%{value.ToLower()}%"));
@@ -433,60 +379,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
 			return new DirectSpecification<Assunto>(p => p.Deletado == value);
 		}
 		
-	   }
-   public partial class Livro_AssuntoSpecifications {
-				public static Specification<Livro_Assunto> Livro_CodlContains(params int[] values) {
-            return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.Livro_Codl));
-        }
-		public static Specification<Livro_Assunto> Livro_CodlNotContains(params int[] values) {
-            return new DirectSpecification<Livro_Assunto>(p => !values.Contains(p.Livro_Codl));
-        }
-		public static Specification<Livro_Assunto> Livro_CodlEqual(params int[] values) {
-			return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.Livro_Codl));
-        }
-        public static Specification<Livro_Assunto> Livro_CodlGreaterThanOrEqual(int value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.Livro_Codl >= value);
-        }
-        public static Specification<Livro_Assunto> Livro_CodlLessThanOrEqual(int value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.Livro_Codl <= value);
-        }
-        public static Specification<Livro_Assunto> Livro_CodlNotEqual(int value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.Livro_Codl != value);
-        }
-        public static Specification<Livro_Assunto> Livro_CodlGreaterThan(int value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.Livro_Codl > value);
-        }
-        public static Specification<Livro_Assunto> Livro_CodlLessThan(int value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.Livro_Codl < value);
-        }
-		
-					public static Specification<Livro_Assunto> Assunto_CodAutContains(params int[] values) {
-            return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.Assunto_CodAut));
-        }
-		public static Specification<Livro_Assunto> Assunto_CodAutNotContains(params int[] values) {
-            return new DirectSpecification<Livro_Assunto>(p => !values.Contains(p.Assunto_CodAut));
-        }
-		public static Specification<Livro_Assunto> Assunto_CodAutEqual(params int[] values) {
-			return new DirectSpecification<Livro_Assunto>(p => values.Contains(p.Assunto_CodAut));
-        }
-        public static Specification<Livro_Assunto> Assunto_CodAutGreaterThanOrEqual(int value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.Assunto_CodAut >= value);
-        }
-        public static Specification<Livro_Assunto> Assunto_CodAutLessThanOrEqual(int value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.Assunto_CodAut <= value);
-        }
-        public static Specification<Livro_Assunto> Assunto_CodAutNotEqual(int value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.Assunto_CodAut != value);
-        }
-        public static Specification<Livro_Assunto> Assunto_CodAutGreaterThan(int value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.Assunto_CodAut > value);
-        }
-        public static Specification<Livro_Assunto> Assunto_CodAutLessThan(int value) {
-            return new DirectSpecification<Livro_Assunto>(p => p.Assunto_CodAut < value);
-        }
-		
-				
-				
 	   }
    public partial class AutorSpecifications {
 				public static Specification<Autor> NomeContains(string value) {

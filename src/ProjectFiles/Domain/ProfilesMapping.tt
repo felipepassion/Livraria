@@ -22,9 +22,7 @@ namespace <#= namespaces.Key.Replace(".Entities",".Profiles") #>
 		{
 <# foreach (var entity in namespaces) 
 {#>
-			CreateMap<<#= entity.Name #>DTO, <#= entity.Name #>>()
-				.ForMember(x=>x.IdExterno, opt => opt.MapFrom(x=>x.IdExterno ?? Guid.NewGuid().ToString()));
-			CreateMap<<#= entity.Name #>, <#= entity.Name #>DTO>();
+			CreateMap<<#= entity.Name #>DTO, <#= entity.Name #>>().ReverseMap();;
 <# } #>
 			ConfigureAdditionalProfiles();
 		}

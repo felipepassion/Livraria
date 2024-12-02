@@ -6,19 +6,6 @@ using Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.ModelEvents;
 
 namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.EventHandlers
 {
-    public partial class Livro_AutorEventHandler : BaseEventHandler,
-        INotificationHandler<Livro_AutorCreatedEvent>,
-        INotificationHandler<Livro_AutorDeletedEvent>,
-        INotificationHandler<Livro_AutorUpdatedEvent>,
-        INotificationHandler<Livro_AutorActivatedEvent>,
-        INotificationHandler<Livro_AutorDeactivatedEvent>{
-        public Livro_AutorEventHandler(ILogProvider logProvider, IServiceProvider serviceProvider):base(logProvider, serviceProvider){}
-        public async Task Handle(Livro_AutorCreatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-        public async Task Handle(Livro_AutorDeletedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-        public async Task Handle(Livro_AutorActivatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-        public async Task Handle(Livro_AutorUpdatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-        public async Task Handle(Livro_AutorDeactivatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-    }
     public partial class LivroEventHandler : BaseEventHandler,
         INotificationHandler<LivroCreatedEvent>,
         INotificationHandler<LivroDeletedEvent>,
@@ -44,19 +31,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.EventHandlers
         public async Task Handle(AssuntoActivatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
         public async Task Handle(AssuntoUpdatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
         public async Task Handle(AssuntoDeactivatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-    }
-    public partial class Livro_AssuntoEventHandler : BaseEventHandler,
-        INotificationHandler<Livro_AssuntoCreatedEvent>,
-        INotificationHandler<Livro_AssuntoDeletedEvent>,
-        INotificationHandler<Livro_AssuntoUpdatedEvent>,
-        INotificationHandler<Livro_AssuntoActivatedEvent>,
-        INotificationHandler<Livro_AssuntoDeactivatedEvent>{
-        public Livro_AssuntoEventHandler(ILogProvider logProvider, IServiceProvider serviceProvider):base(logProvider, serviceProvider){}
-        public async Task Handle(Livro_AssuntoCreatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-        public async Task Handle(Livro_AssuntoDeletedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-        public async Task Handle(Livro_AssuntoActivatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-        public async Task Handle(Livro_AssuntoUpdatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-        public async Task Handle(Livro_AssuntoDeactivatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
     }
     public partial class AutorEventHandler : BaseEventHandler,
         INotificationHandler<AutorCreatedEvent>,

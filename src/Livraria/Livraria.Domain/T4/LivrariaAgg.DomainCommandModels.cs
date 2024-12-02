@@ -4,52 +4,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandModels
 {
     using Queries.Models; 
     using Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests; 
-    public partial class CreateLivro_AutorCommand : BaseRequestableCommand<Livro_AutorQueryModel, Livro_AutorDTO>
-    {
-        public bool UpdateIfExists { get; set; }
-        public CreateLivro_AutorCommand(ILogRequestContext ctx, Livro_AutorDTO data, bool updateIfExists = true, Livro_AutorQueryModel query = null) 
-            : base(ctx, query, data) { this.UpdateIfExists = updateIfExists; }
-    }
-    public partial class DeleteLivro_AutorCommand : BaseDeletionCommand<Livro_AutorQueryModel>
-    {
-        public DeleteLivro_AutorCommand(ILogRequestContext ctx, Livro_AutorQueryModel query, bool isLogicalDeletion = true)
-            : base(ctx, query, isLogicalDeletion) { }
-    }
-      public partial class DeleteRangeLivro_AutorCommand : BaseDeletionCommand<Livro_AutorQueryModel>
-    {
-        public DeleteRangeLivro_AutorCommand(ILogRequestContext ctx, Livro_AutorQueryModel query, bool isLogicalDeletion = true)
-            : base(ctx, query, isLogicalDeletion) { }
-    }
-    public partial class UpdateRangeLivro_AutorCommand : BaseRequestableRangeCommand<Livro_AutorQueryModel, Livro_AutorDTO>
-    {
-        public bool CreateIfNotExists { get; set; } = true;
-        public UpdateRangeLivro_AutorCommand(ILogRequestContext ctx, Dictionary<Livro_AutorQueryModel, Livro_AutorDTO> query)
-            : base(ctx, query) { }
-        public UpdateRangeLivro_AutorCommand(ILogRequestContext ctx, Livro_AutorQueryModel query, Livro_AutorDTO data)
-            : base(ctx, new Dictionary<Livro_AutorQueryModel, Livro_AutorDTO> { { query, data } }) { }
-    }
-    
-    public partial class UpdateLivro_AutorCommand : BaseRequestableCommand<Livro_AutorQueryModel, Livro_AutorDTO>
-    {
-        public bool CreateIfNotExists { get; set; } = true;
-        public UpdateLivro_AutorCommand(ILogRequestContext ctx, Livro_AutorQueryModel query, Livro_AutorDTO data, bool createIfNotExists = true)
-            : base(ctx, query, data) { this.CreateIfNotExists = createIfNotExists; }
-    }
-    public partial class ActiveLivro_AutorCommand : Livro_AutorSearchableCommand
-    {
-        public ActiveLivro_AutorCommand(ILogRequestContext ctx, Livro_AutorQueryModel query)
-            : base(ctx, query) { }
-    }
-    public partial class DeactiveLivro_AutorCommand : Livro_AutorSearchableCommand
-    {
-        public DeactiveLivro_AutorCommand(ILogRequestContext ctx, Livro_AutorQueryModel query)
-            : base(ctx, query) { }
-    }
-    public class Livro_AutorSearchableCommand : BaseSearchableCommand<Livro_AutorQueryModel> {
-        public Livro_AutorSearchableCommand(ILogRequestContext ctx, Livro_AutorQueryModel query)
-            : base(ctx, query) { }
-    }
-
     public partial class CreateLivroCommand : BaseRequestableCommand<LivroQueryModel, LivroDTO>
     {
         public bool UpdateIfExists { get; set; }
@@ -139,52 +93,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandModels
     }
     public class AssuntoSearchableCommand : BaseSearchableCommand<AssuntoQueryModel> {
         public AssuntoSearchableCommand(ILogRequestContext ctx, AssuntoQueryModel query)
-            : base(ctx, query) { }
-    }
-
-    public partial class CreateLivro_AssuntoCommand : BaseRequestableCommand<Livro_AssuntoQueryModel, Livro_AssuntoDTO>
-    {
-        public bool UpdateIfExists { get; set; }
-        public CreateLivro_AssuntoCommand(ILogRequestContext ctx, Livro_AssuntoDTO data, bool updateIfExists = true, Livro_AssuntoQueryModel query = null) 
-            : base(ctx, query, data) { this.UpdateIfExists = updateIfExists; }
-    }
-    public partial class DeleteLivro_AssuntoCommand : BaseDeletionCommand<Livro_AssuntoQueryModel>
-    {
-        public DeleteLivro_AssuntoCommand(ILogRequestContext ctx, Livro_AssuntoQueryModel query, bool isLogicalDeletion = true)
-            : base(ctx, query, isLogicalDeletion) { }
-    }
-      public partial class DeleteRangeLivro_AssuntoCommand : BaseDeletionCommand<Livro_AssuntoQueryModel>
-    {
-        public DeleteRangeLivro_AssuntoCommand(ILogRequestContext ctx, Livro_AssuntoQueryModel query, bool isLogicalDeletion = true)
-            : base(ctx, query, isLogicalDeletion) { }
-    }
-    public partial class UpdateRangeLivro_AssuntoCommand : BaseRequestableRangeCommand<Livro_AssuntoQueryModel, Livro_AssuntoDTO>
-    {
-        public bool CreateIfNotExists { get; set; } = true;
-        public UpdateRangeLivro_AssuntoCommand(ILogRequestContext ctx, Dictionary<Livro_AssuntoQueryModel, Livro_AssuntoDTO> query)
-            : base(ctx, query) { }
-        public UpdateRangeLivro_AssuntoCommand(ILogRequestContext ctx, Livro_AssuntoQueryModel query, Livro_AssuntoDTO data)
-            : base(ctx, new Dictionary<Livro_AssuntoQueryModel, Livro_AssuntoDTO> { { query, data } }) { }
-    }
-    
-    public partial class UpdateLivro_AssuntoCommand : BaseRequestableCommand<Livro_AssuntoQueryModel, Livro_AssuntoDTO>
-    {
-        public bool CreateIfNotExists { get; set; } = true;
-        public UpdateLivro_AssuntoCommand(ILogRequestContext ctx, Livro_AssuntoQueryModel query, Livro_AssuntoDTO data, bool createIfNotExists = true)
-            : base(ctx, query, data) { this.CreateIfNotExists = createIfNotExists; }
-    }
-    public partial class ActiveLivro_AssuntoCommand : Livro_AssuntoSearchableCommand
-    {
-        public ActiveLivro_AssuntoCommand(ILogRequestContext ctx, Livro_AssuntoQueryModel query)
-            : base(ctx, query) { }
-    }
-    public partial class DeactiveLivro_AssuntoCommand : Livro_AssuntoSearchableCommand
-    {
-        public DeactiveLivro_AssuntoCommand(ILogRequestContext ctx, Livro_AssuntoQueryModel query)
-            : base(ctx, query) { }
-    }
-    public class Livro_AssuntoSearchableCommand : BaseSearchableCommand<Livro_AssuntoQueryModel> {
-        public Livro_AssuntoSearchableCommand(ILogRequestContext ctx, Livro_AssuntoQueryModel query)
             : base(ctx, query) { }
     }
 
