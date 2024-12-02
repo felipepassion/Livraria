@@ -14,8 +14,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\CrossCutting\CrossCutting.Application.Mail\ClassLibrary1\CrossCutting.Application.Mail.csproj" />
-	  <ProjectReference Include="..\..\CrossCutting\CrossCutting.Infra.Log\CrossCutting.Infra.Log.csproj" />
-	  <ProjectReference Include="..\Core.Application.Validators\Core.Application.Validators.csproj" />
 	  <ProjectReference Include="..\Core.Domain\Core.Domain.csproj" />
 	</ItemGroup>
 

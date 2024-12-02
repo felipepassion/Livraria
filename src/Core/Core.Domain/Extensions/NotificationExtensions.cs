@@ -1,6 +1,5 @@
 ﻿using Niu.Nutri.Core.Application.DTO.Extensions;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Events;
-using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Notifications;
 using Niu.Nutri.CrossCutting.Infra.Log.Entries;
 using Niu.Nutri.CrossCutting.Infra.Log.Extensions;
 using Niu.Nutri.CrossCutting.Infra.Log.Providers;

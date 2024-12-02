@@ -61,15 +61,6 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Repositories
             int? take = null,
             bool includeAll = true,
             params Expression<Func<T, object>>[] include);
-        Task<IEnumerable<IGrouping<object, K>>> GroupByAsync<K>(
-            Expression<Func<T, bool>> filter,
-            Expression<Func<T, K>> selector,
-            Expression<Func<K, object>> groupBy,
-            Expression<Func<T, object>>[]? orderBy,
-            bool ascending = true,
-            int? skip = null,
-            int? take = null,
-            params Expression<Func<T, object>>[]? include);
 
         public IUnitOfWork UnitOfWork { get; }
     }

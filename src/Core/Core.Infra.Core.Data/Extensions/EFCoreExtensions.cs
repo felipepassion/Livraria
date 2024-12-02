@@ -1,42 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Niu.Nutri.Core.Application.DTO.Attributes;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities;
 using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
-using System.Reflection;
 
 namespace Niu.Nutri.Core.Infra.Data.Extensions
 {
     public static class EfExtensions
     {
-        public static bool IsManyToMany(this INavigation navigation)
-        {
-            var joinEntityType = navigation.ForeignKey.DeclaringEntityType;
-            return joinEntityType.IsOwned() && joinEntityType.GetForeignKeys().Count() == 2;
-        }
-
-        /// <summary>
-        /// Ensures that all navigation properties (up to a certain depth) are eagerly loaded when entities are resolved from this
-        /// DbSet.
-        /// </summary>
-        /// <returns>The queryable representation of this DbSet</returns>
-        public static IQueryable<TEntity> IncludeAll<TEntity>(
-            this DbSet<TEntity> dbSet,
-            int maxDepth = int.MaxValue) where TEntity : class
-        {
-            IQueryable<TEntity> result = dbSet;
-            var context = dbSet.GetService<ICurrentDbContext>().Context;
-            var includePaths = GetIncludePaths<TEntity>(context, maxDepth);
-
-            foreach (var includePath in includePaths)
-            {
-                result = result.Include(includePath);
-            }
-
-            return result;
-        }
-
         public static IQueryable<T> Include<T>(this IQueryable<T> source, IEnumerable<string> navigationPropertyPaths)
             where T : class
         {
@@ -46,6 +16,9 @@ namespace Niu.Nutri.Core.Infra.Data.Extensions
             return navigationPropertyPaths.Aggregate(source, (query, path) => query.Include(path));
         }
 
+        /// <remarks>
+        /// Adapted from https://stackoverflow.com/a/49597502/1636276
+        /// </remarks>
         public static IEnumerable<string> GetIncludePaths(this DbContext context, Type clrEntityType, int maxDepth = int.MaxValue)
         {
             var entityType = context.Model.FindEntityType(clrEntityType);
@@ -63,18 +36,6 @@ namespace Niu.Nutri.Core.Infra.Data.Extensions
                         {
                             if (includedNavigations.Add(navigation))
                                 entityNavigations.Add(navigation);
-                        }
-
-                        var listIncludes = entityType.ClrType.GetProperties()
-                            .Where(x => x.GetCustomAttributes<ListingPicker>().Any())
-                            .ToDictionary(x => clrEntityType.Name + x.PropertyType.FullName?.Substring(19).Split(',')[0].Split(".").Last(), x => x.Name);
-                        if (listIncludes.Any())
-                        {
-                            foreach (var navigation2 in entityType.GetDeclaredReferencingForeignKeys().Where(x => x.PrincipalToDependent == null))
-                            {
-                                if (listIncludes.ContainsKey(navigation2.DeclaringEntityType.Name))
-                                    yield return listIncludes[navigation2.DeclaringEntityType.Name];
-                            }
                         }
                     }
                 }
@@ -97,58 +58,6 @@ namespace Niu.Nutri.Core.Infra.Data.Extensions
                     stack.Pop();
                 if (stack.Count == 0) break;
                 entityType = stack.Peek().Current.TargetEntityType;
-            }
-        }
-
-        /// <remarks>
-        /// Adapted from https://stackoverflow.com/a/49597502/1636276
-        /// </remarks>
-        private static IEnumerable<string> GetIncludePaths<T>(DbContext context, int maxDepth = int.MaxValue)
-        {
-            if (maxDepth < 0)
-                throw new ArgumentOutOfRangeException(nameof(maxDepth));
-
-            var entityType = context.Model.FindEntityType(typeof(T));
-            var includedNavigations = new HashSet<INavigation>();
-            var stack = new Stack<IEnumerator<INavigation>>();
-
-            while (true)
-            {
-                var entityNavigations = new List<INavigation>();
-
-                if (stack.Count <= maxDepth && entityType != null)
-                {
-                    foreach (var navigation in entityType.GetNavigations())
-                    {
-                        if (includedNavigations.Add(navigation))
-                            entityNavigations.Add(navigation);
-                    }
-                }
-
-                if (entityNavigations.Count == 0)
-                {
-                    if (stack.Count > 0)
-                        yield return string.Join(".", stack.Reverse().Select(e => e.Current!.Name));
-                }
-                else
-                {
-                    foreach (var navigation in entityNavigations)
-                    {
-                        var inverseNavigation = navigation.Inverse;
-                        if (inverseNavigation != null)
-                            includedNavigations.Add(inverseNavigation);
-                    }
-
-                    stack.Push(entityNavigations.GetEnumerator());
-                }
-
-                while (stack.Count > 0 && !stack.Peek().MoveNext())
-                    stack.Pop();
-
-                if (stack.Count == 0)
-                    break;
-
-                entityType = stack.Peek().Current!.TargetEntityType;
             }
         }
 

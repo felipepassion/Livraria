@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.DataProtection;
 using Niu.Nutri.Core.Api.Middlewares;
 
 namespace Niu.Nutri.Livraria.Api

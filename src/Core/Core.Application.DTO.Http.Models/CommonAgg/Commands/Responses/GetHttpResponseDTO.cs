@@ -1,5 +1,4 @@
-﻿using Niu.Nutri.Core.Domain.CrossCutting;
-using System.Net;
+﻿using System.Net;
 
 namespace Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses
 {

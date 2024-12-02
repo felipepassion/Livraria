@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CrossCutting\CrossCutting.Infra.Log\CrossCutting.Infra.Log.csproj" />
     <ProjectReference Include="..\Core.Application\Core.Application.csproj" />
   </ItemGroup>
 

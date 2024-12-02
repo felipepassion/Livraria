@@ -308,107 +308,11 @@ namespace Niu.Nutri.Core.Infra.Data.Repositories
             return await set.Where(filter).ToArrayAsync();
         }
 
-        public async Task<IEnumerable<IGrouping<object, K>>> GroupByAsync<K>(
-            Expression<Func<T, bool>> filter,
-            Expression<Func<T, K>> selector,
-            Expression<Func<K, object>> groupBy,
-            Expression<Func<T, object>>[]? orderBy,
-            bool ascending = true,
-            int? skip = null,
-            int? take = null,
-            params Expression<Func<T, object>>[]? include)
-        {
-            var tableName = typeof(T).Name;
-
-            // Inicia a construção da string SQL
-            var sqlQuery = new StringBuilder();
-            sqlQuery.Append("SELECT ");
-
-            // Adicionando colunas selecionadas
-            var selectColumns = selector.Body is MemberInitExpression newExpr
-                ? string.Join(", ", newExpr.NewExpression.Members?.Select(m => m.Name) ?? [""])
-                : throw new InvalidOperationException("Selector must be a new expression");
-
-            sqlQuery.Append(selectColumns);
-            sqlQuery.Append($" FROM {tableName} ");
-
-            // Adiciona os JOINs se houver includes
-            if (include != null)
-            {
-                foreach (var includeExpression in include)
-                {
-                    // Simplificado para ilustrar. Adapte para refletir relacionamentos reais.
-                    sqlQuery.Append("JOIN <related_table> ON <join_condition> ");
-                }
-            }
-
-            // Adiciona a cláusula WHERE
-            if (filter != null)
-            {
-                var filterBody = filter.Body.ToString();
-                filterBody = filterBody.Replace("AndAlso", "AND").Replace("OrElse", "OR");
-                filterBody = filterBody.Replace("==", "=").Replace("!=", "<>");
-
-                sqlQuery.Append("WHERE " + filterBody + " ");
-            }
-
-            // Adiciona a cláusula GROUP BY
-            if (groupBy != null)
-            {
-                var groupByColumn = (groupBy.Body as MemberExpression)?.Member.Name
-                                    ?? throw new InvalidOperationException("GroupBy must be a member expression");
-                sqlQuery.Append($"GROUP BY {groupByColumn} ");
-            }
-
-            // Adiciona a cláusula ORDER BY
-            if (orderBy != null && orderBy.Any())
-            {
-                sqlQuery.Append("ORDER BY ");
-                foreach (var orderExpression in orderBy)
-                {
-                    var orderColumn = (orderExpression.Body as MemberExpression)?.Member.Name
-                                      ?? throw new InvalidOperationException("OrderBy must be a member expression");
-                    sqlQuery.Append($"{orderColumn} {(ascending ? "ASC" : "DESC")}, ");
-                }
-                sqlQuery.Length -= 2; // Remove a última vírgula e espaço
-                sqlQuery.Append(" ");
-            }
-
-            // Paginação
-            if (skip.HasValue)
-            {
-                sqlQuery.Append($"OFFSET {skip.Value} ROWS ");
-            }
-
-            if (take.HasValue)
-            {
-                sqlQuery.Append($"FETCH NEXT {take.Value} ROWS ONLY ");
-            }
-
-            // Converte a string SQL em um comando SQL e executa
-            var result = await ExecuteSqlQueryAsync(sqlQuery.ToString());
-
-            // Seleciona os resultados em memória e agrupa
-            var groupedResult = result
-                .Select(selector.Compile())
-                .GroupBy(groupBy.Compile())
-                .ToList();
-
-            return groupedResult;
-        }
-
-        private async Task<List<T>> ExecuteSqlQueryAsync(string sqlQuery)
-        {
-            // Implementação do método para executar a consulta SQL no banco de dados
-            // Isso depende do seu contexto de dados e provedor de banco de dados.
-            // Aqui, estou assumindo que você está usando um DbContext do Entity Framework.
-            return await this._ctx.Set<T>().FromSqlRaw(sqlQuery).ToListAsync();
-        }
-
         public async Task<bool> ExecuteCommandAsync(string command)
         {
             return await this._ctx.ExecuteNpCommand(command);
         }
+
         public void Dispose()
         {
         }

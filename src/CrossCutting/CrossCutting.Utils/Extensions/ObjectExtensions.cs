@@ -287,38 +287,6 @@ namespace Niu.Nutri.CrossCuting.Infra.Utils.Extensions
             }
         }
 
-        public static List<PropertyDetails> ExtractPropertyInfos(this object obj, params string[] attrs)
-        {
-            List<PropertyDetails> props = new List<PropertyDetails>();
-
-            PrintProperties(obj, props);
-            if (attrs?.Any() == true)
-                props = (props.Where(x => x.info.CustomAttributes
-
-                .Any(p => attrs.Contains(p.AttributeType.Name)))).ToList();
-            return props;
-        }
-
-        public static List<PropertyDetails> ExtractPropertyInfos(this object obj, BindingFlags flags, params string[] attrs)
-        {
-            List<PropertyDetails> props = new List<PropertyDetails>();
-
-            PrintProperties(obj, props, flags);
-            if (attrs?.Any() == true)
-                props = (props.Where(x => x.info.CustomAttributes.Any(p => attrs.Contains(p.AttributeType.Name)))).ToList();
-            return props;
-        }
-
-        public static PropertyDetails FindPropertyInfo(this object obj, string name, params string[] attrs)
-        {
-            List<PropertyDetails> props = new List<PropertyDetails>();
-
-            PrintProperties(obj, props);
-            if (attrs?.Any() == true)
-                props = (props.Where(x => x.info.CustomAttributes.Any(x => attrs.Contains(x.AttributeType.Name)))).ToList();
-            return props.FirstOrDefault(x => x.info.Name == name);
-        }
-
         public static bool ContainsBase<T>(this Type t)
         {
             if (t.BaseType == null)
@@ -328,75 +296,5 @@ namespace Niu.Nutri.CrossCuting.Infra.Utils.Extensions
             else
                 return t.BaseType.Name.Contains(nameof(T));
         }
-
-        public static bool HasChanged<T>(this T obj1, T obj2)
-            where T : class
-        {
-            obj1 = obj1 ?? throw new NullReferenceException(nameof(obj1));
-            obj2 = obj2 ?? throw new NullReferenceException(nameof(obj2));
-
-            var fis = FillFields(obj1?.GetType());
-            var fis2 = FillFields(obj2?.GetType());
-
-            return fis.Any(x => fis2.FirstOrDefault(k => k.Name.Equals(x.Name)).GetValue(obj2) != x.GetValue(obj1));
-        }
-
-        public static List<PropertyDescriptor> FetchProperties(this object obj)
-        {
-            var list = new List<PropertyDescriptor>();
-
-            var props = obj?.GetType().GetProperties();
-            foreach (var item in props)
-            {
-                if (item.PropertyType.IsClass
-                    && item.PropertyType.Assembly.FullName == obj.GetType().Assembly.FullName)
-                {
-                    list.AddRange(DisplayObjectRecursive(obj, list));
-                    if (item.Name.Contains("Entity")) break;
-                }
-            }
-            return list;
-        }
-
-        public static List<PropertyDescriptor> DisplayObjectRecursive(object obj, List<PropertyDescriptor> list)
-        {
-            var type = obj.GetType();
-            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(type))
-            {
-                if (descriptor.PropertyType.IsClass
-                    && descriptor.PropertyType.Assembly.FullName == type.Assembly.FullName)
-                {
-                    //var value = descriptor.GetValue(obj);
-                    //DisplayObjectRecursive(value, list);
-                }
-                else
-                {
-                    string name = descriptor.Name;
-                    object value = descriptor.GetValue(obj);
-                    list.Add(descriptor);
-                }
-                if (type.Name == "Entity") break;
-            }
-            return list;
-        }
-
-        public static string GetName(this FieldInfo obj)
-        {
-            var name = obj.CustomAttributes.OfType<DisplayNameAttribute>().FirstOrDefault()?.DisplayName;
-            if (!string.IsNullOrWhiteSpace(name)) return name;
-
-            var from = obj.Name.IndexOf("<") + "<".Length;
-            var to = obj.Name.IndexOf(">");
-            return obj.Name[from..to];  // THE_TARGET_STRING
-        }
-
-        public static string GetName(this PropertyInfo obj)
-        {
-            var name = obj.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName;
-            if (!string.IsNullOrWhiteSpace(name)) return name;
-
-            return obj.Name;  // THE_TARGET_STRING
-        }
     }
-
 }

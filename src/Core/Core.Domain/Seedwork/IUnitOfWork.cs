@@ -1,5 +1,5 @@
-﻿using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities;
-using Niu.Nutri.Core.Domain.CrossCutting;
+﻿using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities;
 
 namespace Niu.Nutri.Core.Domain.Seedwork
 {

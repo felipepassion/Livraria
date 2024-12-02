@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Commands
+﻿namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Commands
 {
     public class BaseCommandResponse
     {

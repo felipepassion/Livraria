@@ -9,10 +9,13 @@
 
   <ItemGroup>
     <Compile Remove="Aggregates\CommonAgg\Commands\**" />
+    <Compile Remove="Extensions\Http\**" />
     <Compile Remove="Seedwork\Mapping\**" />
     <EmbeddedResource Remove="Aggregates\CommonAgg\Commands\**" />
+    <EmbeddedResource Remove="Extensions\Http\**" />
     <EmbeddedResource Remove="Seedwork\Mapping\**" />
     <None Remove="Aggregates\CommonAgg\Commands\**" />
+    <None Remove="Extensions\Http\**" />
     <None Remove="Seedwork\Mapping\**" />
   </ItemGroup>
 
@@ -26,14 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\Http\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\CrossCutting\CrossCutting.Utils\CrossCuting.Infra.Utils.csproj" />
     <ProjectReference Include="..\Core.Application.DTO.Http.Models\Core.Application.DTO.Http.Models.csproj" />
-    <ProjectReference Include="..\Core.Application.Validators\Core.Application.Validators.csproj" />
-    <ProjectReference Include="..\Core.Enumeration\Core.Enumeration.csproj" />
   </ItemGroup>
 
 </Project>

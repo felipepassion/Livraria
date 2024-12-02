@@ -1,8 +1,7 @@
-﻿using Niu.Nutri.Core.Application.Aggregates.Common.Models;
-using Niu.Nutri.CrossCutting.Infra.Log.Contexts;
-using Microsoft.AspNetCore.Mvc;
-using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+using Niu.Nutri.CrossCutting.Infra.Log.Contexts;
 
 namespace Niu.Nutri.Core.Application.Aggregates.Common
 {
@@ -10,7 +9,6 @@ namespace Niu.Nutri.Core.Application.Aggregates.Common
     {
         protected readonly IServiceProvider _scope;
         protected readonly ILogRequestContext _logRequestContext;
-        protected readonly ILoggedUserContext _loggedUserContext;
 
         protected GetHttpResponseDTO<object> BadValidationRequest(ModelStateDictionary modelState)
         {

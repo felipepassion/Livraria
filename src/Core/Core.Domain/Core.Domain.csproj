@@ -12,10 +12,13 @@
   <ItemGroup>
     <Compile Remove="Aggregates\CommonAgg\Interfaces\**" />
     <Compile Remove="Aggregates\CommonAgg\Queries\**" />
+    <Compile Remove="Attributes\Auth\**" />
     <EmbeddedResource Remove="Aggregates\CommonAgg\Interfaces\**" />
     <EmbeddedResource Remove="Aggregates\CommonAgg\Queries\**" />
+    <EmbeddedResource Remove="Attributes\Auth\**" />
     <None Remove="Aggregates\CommonAgg\Interfaces\**" />
     <None Remove="Aggregates\CommonAgg\Queries\**" />
+    <None Remove="Attributes\Auth\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,10 +42,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Attributes\Auth\" />
   </ItemGroup>
 
 </Project>

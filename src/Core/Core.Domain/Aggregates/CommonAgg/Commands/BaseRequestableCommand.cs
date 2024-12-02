@@ -1,6 +1,5 @@
-﻿using Niu.Nutri.CrossCutting.Infra.Log.Contexts;
-using Newtonsoft.Json;
-using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities;
+﻿using Newtonsoft.Json;
+using Niu.Nutri.CrossCutting.Infra.Log.Contexts;
 
 namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Commands
 {

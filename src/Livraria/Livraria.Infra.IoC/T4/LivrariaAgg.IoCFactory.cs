@@ -1,24 +1,24 @@
 ﻿
-using Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices;
-using Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Repositories;
-using Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Repositories;
-using Microsoft.Extensions.DependencyInjection;
-using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Commands;
-using System.Reflection;
-using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Niu.Nutri.Core.Application.DTO.Seedwork;
-using Niu.Nutri.Core.Infra.IoC;
-using Newtonsoft.Json.Serialization;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using Microsoft.AspNetCore.DataProtection;
+using Newtonsoft.Json.Serialization;
+using Niu.Nutri.Core.Application.DTO.Seedwork;
+using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Commands;
+using Niu.Nutri.Core.Infra.IoC;
+using Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices;
+using Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Repositories;
+using Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Repositories;
+using System.Reflection;
 
-namespace Niu.Nutri.Livraria.Infra.IoC {
-	using Core.Infra.IoC.Extensions;
+namespace Niu.Nutri.Livraria.Infra.IoC
+{
     using Core.Api.Middlewares;
-	using Infra.Data.Context;
-	using Domain.Aggregates.LivrariaAgg.CommandHandlers;
-	
+    using Core.Infra.IoC.Extensions;
+    using Domain.Aggregates.LivrariaAgg.CommandHandlers;
+    using Infra.Data.Context;
+
 
     public partial class IoCFactory : IBaseIoC {
 		string connectionString;

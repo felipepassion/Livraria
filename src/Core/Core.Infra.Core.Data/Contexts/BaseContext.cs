@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Events;
-using Niu.Nutri.Core.Domain.CrossCutting;
 using Niu.Nutri.Core.Domain.Seedwork;
 using Niu.Nutri.Core.Infra.Data.Extensions;
 using Niu.Nutri.CrossCutting.Infra.Log.Contexts;

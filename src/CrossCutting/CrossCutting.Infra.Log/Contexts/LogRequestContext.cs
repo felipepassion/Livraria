@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace Niu.Nutri.CrossCutting.Infra.Log.Contexts
+﻿namespace Niu.Nutri.CrossCutting.Infra.Log.Contexts
 {
     public interface ILogRequestContext
     {

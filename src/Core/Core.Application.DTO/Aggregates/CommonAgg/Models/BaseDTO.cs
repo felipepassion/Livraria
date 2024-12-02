@@ -3,284 +3,48 @@ using Niu.Nutri.Core.Application.DTO.Extensions;
 using System.Collections;
 using System.ComponentModel;
 using System.Reflection;
-using System.Text.Json.Serialization;
 
-namespace Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models
+namespace Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models;
+
+public interface IEntityDTO
 {
-    public interface IEntityDTO
-    {
-        public string? TitleProperty { get; }
-        public string? SubTitle { get; }
-        public string? SubTitlePropertyName { get; }
-        public string? TititleWithSubtitle { get; }
-        public string? DisplayNameTitle { get; }
-        public string? DisplayNameSubTitle { get; }
-        public int? Id { get; set; }
-        public string? IdExterno { get; set; }
-        public string[] FieldsToValidate { get; set; }
-        public DateTime? CriadoEm { get; set; }
-        public string? H2AndSubTitle { get; }
-        public string? CustomTitleOrH2 { get; }
-        public string? H1 { get; }
-        public string? H1AndTitle { get; }
-        public bool IsSubmiting { get; set; }
-        public bool IsManuallySubmiting { get; set; }
+    public int? Id { get; set; }
+    public string? IdExterno { get; set; }
+    public DateTime? CriadoEm { get; set; }
+}
 
-        public string GetRoute();
-        public string GetCountRoute();
-        public string GetPageIndexRoute();
-        public string GetRoute(object id);
-        public string GetDeleteRoute();
-        public string GetSearchRoute();
-        public string GetSelectRoute();
-        public string GetSummaryRoute();
-        public string GetMyTypeName();
-    }
+public class EntityDTO : IEntityDTO, IEqualityComparer
+{
+    public bool IsCreated => Id.HasValue;
 
-    public class EntityDTO : IEntityDTO, IEqualityComparer
-    {
-        public bool IsCreated => Id.HasValue;
+    public int? Id { get; set; }
 
-        public int? Id { get; set; }
+    [NullableProperty]
+    public string? IdExterno { get; set; } = Guid.NewGuid().ToString();
 
-        [NullableProperty]
-        public string? IdExterno { get; set; } = Guid.NewGuid().ToString();
+    public DateTime? CriadoEm { get; set; }
 
+    public DateTime? AtualizadoEm { get; set; }
 
-        public string[] FieldsToValidate { get; set; } = new string[0];
+    [NullableProperty]
+    public string? TitleProperty => this.GetValueWithAttribute<Title>()?.ToString();
 
-        public DateTime? CriadoEm { get; set; }
+    [NullableProperty]
+    public string? SubTitle => this.GetValueWithAttribute<Subtitle>()?.ToString();
 
-        public DateTime? AtualizadoEm { get; set; }
-        public string? TititleWithSubtitle => $"{TitleProperty}{(string.IsNullOrWhiteSpace(SubTitle) ? "" : $" - {SubTitle}")}";
+    [NullableProperty]
+    public string? DisplayNameTitle => this.GetFieldInfoByWithAttribute<Title>()?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? property?.Name ?? "Título";
 
-        [JsonIgnore]
-        public bool IsSubmiting { get; set; }
-        [JsonIgnore]
-        public bool IsManuallySubmiting { get; set; }
+    [NullableProperty]
+    public string? DisplayNameSubTitle => this.GetFieldInfoByWithAttribute<Subtitle>()?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? property?.Name ?? "SubTítulo";
 
-        public EntityDTO()
-        {
-        }
+    [NullableProperty]
+    public string? TitlePropertyName => this.GetFieldInfoByWithAttribute<Title>()?.Name;
 
-        public void Created(EntityDTO? newObj)
-        {
-            if (newObj == null) return;
-            Id = newObj.Id;
-            CriadoEm = newObj.CriadoEm;
-            AtualizadoEm = newObj.AtualizadoEm;
-        }
+    [NullableProperty]
+    public string? SubTitlePropertyName => this.GetFieldInfoByWithAttribute<Subtitle>()?.Name;
 
-        public virtual string GetRoute()
-        {
-            return $"api/{GetMyTypeName()}";
-        }
+    public new bool Equals(object? x, object? y) => (x as IEntityDTO)?.Id == (y as IEntityDTO)?.Id;
 
-        public virtual string GetPageIndexRoute()
-        {
-            return $"{GetMyTypeName()}";
-        }
-
-        public virtual string GetRoute(object id)
-        {
-            return $"{GetRoute()}/{id}";
-        }
-
-        public virtual string GetDeleteRoute()
-        {
-            return $"{GetRoute()}/delete";
-        }
-        public virtual string GetSearchRoute()
-        {
-            return $"{GetRoute()}/search";
-        }
-        public virtual string GetSelectRoute()
-        {
-            return $"{GetRoute()}/select";
-        }
-        public virtual string GetSummaryRoute()
-        {
-            return $"{GetRoute()}/summary";
-        }
-        public virtual string GetCountRoute()
-        {
-            return $"{GetRoute()}/count";
-        }
-        public virtual string GetRegisterPageRoute()
-        {
-            return $"{GetMyTypeName()}/Cadastro";
-        }
-
-        public virtual string GetMyTypeName()
-        {
-            var type = GetType().Name;
-            var route = type.Replace("[]", "").Replace("DTO", "").Replace("Listining", "");
-            if (route.StartsWith("Base"))
-                route = route.Substring("Base".Length);
-            return $"{route}";
-            //return $"{route}?id={IdExterno}";
-        }
-
-        public string GetFieldPlaceholder(string col)
-        {
-            MemberInfo property = GetType().GetProperty(col);
-            if (property == null) return null;
-
-            var dd = property.GetCustomAttribute(typeof(DisplayNameAttribute)) as DisplayNameAttribute;
-
-            return dd?.DisplayName ?? property.Name;
-        }
-
-        public string GetFieldPlaceholder(PropertyInfo property)
-        {
-            if (property == null) return null;
-
-            var dd = property.GetCustomAttribute(typeof(DisplayNameAttribute)) as DisplayNameAttribute;
-
-            return dd?.DisplayName ?? property.Name;
-        }
-
-        [NullableProperty]
-        public string? TitleProperty
-        {
-            get
-            {
-                var val = this.GetValueWithAttribute<Title>()?.ToString();
-                if (string.IsNullOrWhiteSpace(val))
-                {
-                    //val = this.GetType().GetCustomAttribute<H1>()?.Title ?? null;
-                }
-                return val;
-            }
-        }
-
-        [NullableProperty]
-        public string? SubTitle
-        {
-            get
-            {
-                var val = this.GetValueWithAttribute<Subtitle>()?.ToString();
-                if (string.IsNullOrWhiteSpace(val))
-                {
-                    //val = this.GetType().GetCustomAttribute<H2>()?.Title ?? null;
-                }
-                return val;
-            }
-        }
-
-        [NullableProperty]
-        public string? DisplayNameTitle
-        {
-            get
-            {
-                var property = this.GetFieldInfoByWithAttribute<Title>();
-                return property?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? property?.Name ?? "Título";
-            }
-        }
-
-        [NullableProperty]
-        public string? DisplayNameSubTitle
-        {
-            get
-            {
-                var property = this.GetFieldInfoByWithAttribute<Subtitle>();
-                return property?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? property?.Name ?? "SubTítulo";
-            }
-        }
-
-        [NullableProperty]
-        public string? TitlePropertyName
-        {
-            get
-            {
-                var property = this.GetFieldInfoByWithAttribute<Title>();
-                return property?.Name;
-            }
-        }
-
-        [NullableProperty]
-        public string? H1
-        {
-            get
-            {
-                return GetType().GetCustomAttribute<H1>()?.Title;
-            }
-        }
-
-        [NullableProperty]
-        public string? H2
-        {
-            get
-            {
-                return GetType().GetCustomAttribute<H2>()?.Title;
-            }
-        }
-
-        [NullableProperty]
-        public string? H1AndTitle
-        {
-            get
-            {
-                return H1 + (string.IsNullOrWhiteSpace(TitleProperty) ? "" : $"{(string.IsNullOrWhiteSpace(H1) ? "" : " - ")}{TitleProperty}");
-            }
-        }
-        public string? H2AndSubTitle
-        {
-            get
-            {
-                return H2 + (string.IsNullOrWhiteSpace(SubTitle) ? "" : $" - {SubTitle}");
-            }
-        }
-
-        [NullableProperty]
-        public string? CustomTitleOrH2
-        {
-            get
-            {
-                return string.IsNullOrWhiteSpace(TitleProperty) ? H2 : TitleProperty;
-            }
-        }
-
-        [NullableProperty]
-        public string? CustomTitleOrH1
-        {
-            get
-            {
-                return string.IsNullOrWhiteSpace(TitleProperty) ? H1 : TitleProperty;
-            }
-        }
-
-        [NullableProperty]
-        public string? SubTitlePropertyName
-        {
-            get
-            {
-                var property = this.GetFieldInfoByWithAttribute<Subtitle>();
-                return property?.Name;
-            }
-        }
-
-        string buildParam(string name, object val, bool and = true)
-        {
-            if (string.IsNullOrWhiteSpace(val?.ToString())) return null;
-            return $"{name}={val}{(and ? "&" : "")}";
-        }
-
-        public string BuildQuerySearchString(string searchText, bool getOnlyActive = true) =>
-                string.IsNullOrWhiteSpace(searchText) ? "" :
-                $"{buildParam($"{TitlePropertyName}Contains", searchText)}" +
-                $"{buildParam($"{SubTitlePropertyName}Contains", searchText)}" +
-                $"{buildParam("Active", getOnlyActive)}" +
-                $"{buildParam("IsOrSpecification", true)}";
-
-        public new bool Equals(object? x, object? y)
-        {
-            return (x as IEntityDTO)?.Id == (y as IEntityDTO)?.Id;
-        }
-
-        public int GetHashCode(object obj)
-        {
-            return (obj as IEntityDTO)?.Id ?? base.GetHashCode();
-        }
-    }
+    public int GetHashCode(object obj) => (obj as IEntityDTO)?.Id ?? base.GetHashCode();
 }
