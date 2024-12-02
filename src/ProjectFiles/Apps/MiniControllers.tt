@@ -115,6 +115,5 @@ var DTOName = $"{entity.Name}QueryModel";
     outputFileName: $"{entity.Name}Controller.cs", 
     recreateFileIfExists: true); #>
 <# } #>
-}
 <# } #>
 <# } #>

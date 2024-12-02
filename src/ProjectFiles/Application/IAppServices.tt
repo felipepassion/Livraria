@@ -1,19 +1,22 @@
-﻿using System.Linq.Expressions;
-using Niu.Nutri.Core.Application.Aggregates.Common;
-using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
-
+﻿
 <# if (entities.Any()) { #>
 <# foreach(var namespaces in groupEntities) { #>
-namespace <#= namespaces.Key.Replace("Entities", "AppServices").Replace("Domain","Application") #> {
 <#
 	var aggName = namespaces.Key.Split('.').FirstOrDefault(x=>x.EndsWith("Agg"));
 #>
-	using Application.DTO.Aggregates.<#= aggName #>.Requests;
-    using Domain.Aggregates.<#= aggName #>.Queries.Models;
+
 <# foreach(var entity in namespaces) { 
 var attrs = GetAttributesDict(entity)["EndpointsT4"];
 var canSummary = attrs.Any(x=>x.Value.Contains("HttpListining") || x.Value.Contains("All"));
 #>
+using System.Linq.Expressions;
+
+namespace <#= namespaces.Key.Replace("Entities", "AppServices").Replace("Domain","Application") #>;
+	using Application.DTO.Aggregates.<#= aggName #>.Requests;
+    using Domain.Aggregates.<#= aggName #>.Queries.Models;
+	using Core.Application.Aggregates.Common;
+	using Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+
 	public partial interface I<#= entity.Name #>AppService : IBaseAppService {	
 		public Task<<#= entity.Name #>DTO> Get(<#=entity.Name#>QueryModel request);
 		public Task<int> CountAsync(<#=entity.Name#>QueryModel request);
@@ -32,12 +35,11 @@ var canSummary = attrs.Any(x=>x.Value.Contains("HttpListining") || x.Value.Conta
 		public Task<DomainResponse> DeleteRange(<#=entity.Name#>QueryModel request);
 		public Task Update(<#=entity.Name#>QueryModel searchQuery, <#= entity.Name #>DTO request, bool createIfNotExists = true);
 <# } #>
-	}
-<# } #>
 }
-<# } #>
-<# } #>
-<# SaveOutputToSubFolder(
-    folderName: $"T4", 
-    outputFileName: @$"{AggName}.IAppServices.cs", 
+	<# SaveOutputToSubFolder(
+    folderName: $"Interfaces", 
+    outputFileName: @$"{entity.Name}.IAppServices.cs", 
     recreateFileIfExists: true); #>
+<# } #>
+<# } #>
+<# } #>

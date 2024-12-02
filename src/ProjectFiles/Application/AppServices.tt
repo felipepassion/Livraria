@@ -1,31 +1,30 @@
 ﻿<# if (entities.Any()) {
 #>
-using MediatR;
-using System.Linq.Expressions;
-using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
-using <#= GetDefaultNamespace() #>.Core.Application.DTO.Extensions;
-using <#= GetDefaultNamespace() #>.Core.Application.Aggregates.Common;
-using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+
 
 <#foreach(var namespaces in groupEntities) {
-#>
-namespace <#= namespaces.Key.Replace("Entities", "AppServices").Replace("Domain","Application") #> {
-<#
 	var aggName = namespaces.Key.Split('.').FirstOrDefault(x=>x.EndsWith("Agg"));
 	var isFromSameAgg = AggName == namespaces.Key.Split('.').FirstOrDefault(x=>x.EndsWith("Agg"));
+foreach(var entity in namespaces) {
+	var responseName = $"{entity.Name}DTO";
+	var className = entity.Name + "AppService";
+	var props = GetProperties(entity);
 #>
+using MediatR;
+using System.Linq.Expressions;
+
+namespace <#= namespaces.Key.Replace("Entities", "AppServices").Replace("Domain","Application") #>;
+	using Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+	using CrossCuting.Infra.Utils.Extensions;
 	using Application.DTO.Aggregates.<#= aggName #>.Requests;
 	using Domain.Aggregates.<#= aggName #>.Queries.Models;
 	using Domain.Aggregates.<#= aggName #>.Repositories;
 	using Domain.Aggregates.<#= aggName #>.Filters;
 	using Domain.Aggregates.<#= aggName #>.Entities;
 	using Domain.Aggregates.<#= aggName #>.CommandModels;
-<#
-foreach(var entity in namespaces) {
-	var responseName = $"{entity.Name}DTO";
-	var className = entity.Name + "AppService";
-	var props = GetProperties(entity);
-#>
+	using Core.Application.DTO.Extensions;
+	using Core.Application.Aggregates.Common;
+
 	public partial class <#= className #> : BaseAppService, I<#= className #> {	
 <#
 	var repoTypeName = $"I{entity.Name}Repository";
@@ -80,11 +79,9 @@ var DTOName = $"{entity.Name}QueryModel";
 		public Task<DomainResponse> Delete(<#=entity.Name#>QueryModel request){ return _mediator.Send(new Delete<#=entity.Name#>Command(_logRequestContext, request)); }
 <# } #>
 	}
-<# } #>
-}
-<# } #>
-<# } #>
 <# SaveOutputToSubFolder(
-    folderName: $"T4", 
-    outputFileName: @$"{AggName}.AppServices.cs", 
+    folderName: $"Services", 
+    outputFileName: @$"{entity.Name}AppServices.cs", 
     recreateFileIfExists: true); #>
+<# } #>
+<# } #><# } #>

@@ -1,14 +1,10 @@
-﻿using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
-using Niu.Nutri.Core.Application.DTO.Attributes;
+﻿
 
 <# if (entities.Any()) {#>
 <# foreach(var namespaces in groupEntities) { 
 var myNamespace = namespaces.Key.Replace("Entities","Requests").Replace("Domain","Application.DTO");
 #>
-namespace <#= myNamespace #> 
-{
+
 <# foreach(var entity in namespaces) { 
 var otherNamespace = entity.Namespace.FullName.Replace("Domain","Application.DTO");
 var isAggregateRoot = GetAttributes(entity, true).Contains("[AggregateSettingsT4]");
@@ -25,6 +21,15 @@ else{
 
 var myClassAttrs = GetAttributes(entity).Where(x=>x.StartsWith("[H") || x.Contains("Hide"));
 foreach(var myAttr in myClassAttrs) {#> <#=myAttr#> <# } #>
+
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+
+namespace <#= myNamespace #>;
+
+using Core.Application.DTO.Aggregates.CommonAgg.Models;
+using Core.Application.DTO.Attributes;
+
 public partial class <#= entity.Name #>DTO <#= myParent #><#=string.IsNullOrWhiteSpace(parentTypeStr)?"":$"<{parentTypeStr}DTO>"#>
 	{
 <#if(tType.HasValue)
@@ -47,11 +52,10 @@ if(!string.IsNullOrWhiteSpace(property.Value.DocComment))
 	    <#= WriteProperty(property, property.Value.Getter.MustImplement == true, AggName: AggName) #>
 <# } #>
 	}
-<# } #>
-}
-<# } #>
-<# } #>
 <# SaveOutputToSubFolder(
-    folderName: $"T4", 
-    outputFileName: @$"{AggName}.RequestsDTO.cs", 
-    recreateFileIfExists: true); #>
+folderName: $"Aggregates/{AggName}/Requests", 
+outputFileName: @$"{entity.Name}DTO.cs", 
+recreateFileIfExists: true); #>
+<# } #>
+<# } #>
+<# } #>
