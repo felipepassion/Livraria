@@ -20,12 +20,13 @@ public partial class LivroDTO : EntityDTO
 	    public  string Editora { get; set; }
 	    public  string Edicao { get; set; }
 	    public  System.DateTime AnoPublicacao { get; set; }
-	    public Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.AutorDTO? Autor { get; set; } 
-	    public Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.AssuntoDTO? Assunto { get; set; } 
+	    public List<Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.AutorDTO>? Autores { get; set; } = new List<Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.AutorDTO>();
+	    public List<Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.AssuntoDTO>? Assuntos { get; set; } = new List<Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.AssuntoDTO>();
 	}
 public partial class AssuntoDTO : EntityDTO
 	{
 	    public  string? Descricao { get; set; }
+	    public List<Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.LivroDTO>? Livros { get; set; } = new List<Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.LivroDTO>();
 	}
 public partial class Livro_AssuntoDTO : EntityDTO
 	{
@@ -37,6 +38,7 @@ public partial class Livro_AssuntoDTO : EntityDTO
 public partial class AutorDTO : EntityDTO
 	{
 	    public  string? Nome { get; set; }
+	    public List<Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.LivroDTO>? Livros { get; set; } = new List<Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests.LivroDTO>();
 	}
 public partial class LivrariaAggSettingsDTO : BaseAggregateSettingsDTO
 	{

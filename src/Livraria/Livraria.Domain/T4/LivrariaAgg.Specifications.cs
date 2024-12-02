@@ -432,6 +432,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Assunto>(p => p.Descricao != null);
         }
 		
+				
 					public static Specification<Assunto> IdExternoContains(string value) {
 			return new DirectSpecification<Assunto>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
@@ -765,6 +766,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Autor>(p => p.Nome != null);
         }
 		
+				
 					public static Specification<Autor> IdExternoContains(string value) {
 			return new DirectSpecification<Autor>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}

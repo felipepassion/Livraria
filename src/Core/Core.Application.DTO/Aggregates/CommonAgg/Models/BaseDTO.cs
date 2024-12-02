@@ -15,16 +15,12 @@ public class EntityDTO : IEntityDTO, IEqualityComparer
 {
     public bool IsCreated => Id.HasValue;
 
-    [IgnoreDataMember]
     public int? Id { get; set; }
 
-    [NullableProperty]
     public string? IdExterno { get; set; } = Guid.NewGuid().ToString();
 
-    [IgnoreDataMember]
     public DateTime? CriadoEm { get; set; }
 
-    [IgnoreDataMember]
     public DateTime? AtualizadoEm { get; set; }
 
     public new bool Equals(object? x, object? y) => (x as IEntityDTO)?.Id == (y as IEntityDTO)?.Id;
