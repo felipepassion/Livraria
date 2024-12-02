@@ -45,17 +45,4 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.EventHandlers
         public async Task Handle(AutorUpdatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
         public async Task Handle(AutorDeactivatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
     }
-    public partial class LivrariaAggSettingsEventHandler : BaseEventHandler,
-        INotificationHandler<LivrariaAggSettingsCreatedEvent>,
-        INotificationHandler<LivrariaAggSettingsDeletedEvent>,
-        INotificationHandler<LivrariaAggSettingsUpdatedEvent>,
-        INotificationHandler<LivrariaAggSettingsActivatedEvent>,
-        INotificationHandler<LivrariaAggSettingsDeactivatedEvent>{
-        public LivrariaAggSettingsEventHandler(ILogProvider logProvider, IServiceProvider serviceProvider):base(logProvider, serviceProvider){}
-        public async Task Handle(LivrariaAggSettingsCreatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-        public async Task Handle(LivrariaAggSettingsDeletedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-        public async Task Handle(LivrariaAggSettingsActivatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-        public async Task Handle(LivrariaAggSettingsUpdatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-        public async Task Handle(LivrariaAggSettingsDeactivatedEvent notification, CancellationToken cancellationToken){PublishLog(notification);}
-    }
 }

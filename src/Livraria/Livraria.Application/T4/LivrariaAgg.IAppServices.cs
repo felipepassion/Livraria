@@ -41,16 +41,4 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 		public Task<DomainResponse> DeleteRange(AutorQueryModel request);
 		public Task Update(AutorQueryModel searchQuery, AutorDTO request, bool createIfNotExists = true);
 	}
-	public partial interface ILivrariaAggSettingsAppService : IBaseAppService {	
-		public Task<LivrariaAggSettingsDTO> Get(LivrariaAggSettingsQueryModel request);
-		public Task<int> CountAsync(LivrariaAggSettingsQueryModel request);
-		public Task<IEnumerable<LivrariaAggSettingsDTO>> GetAll(LivrariaAggSettingsQueryModel request, int? page = null, int? size = null);
-		public Task<T> Select<T>(LivrariaAggSettingsQueryModel request, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.LivrariaAggSettings, T>> selector = null);
-		public Task<IEnumerable<T>> GetAll<T>(LivrariaAggSettingsQueryModel request, int? page = null, int? size = null, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.LivrariaAggSettings, T>> selector = null);
-
-		public Task<DomainResponse> Create(LivrariaAggSettingsDTO request, bool updateIfExists = true, LivrariaAggSettingsQueryModel searchQuery = null);
-		public Task<DomainResponse> Delete(LivrariaAggSettingsQueryModel request);
-		public Task<DomainResponse> DeleteRange(LivrariaAggSettingsQueryModel request);
-		public Task Update(LivrariaAggSettingsQueryModel searchQuery, LivrariaAggSettingsDTO request, bool createIfNotExists = true);
-	}
 }

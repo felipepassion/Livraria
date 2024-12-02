@@ -130,43 +130,4 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices {
 		public Task<DomainResponse> DeleteRange(AutorQueryModel request){ return _mediator.Send(new DeleteRangeAutorCommand(_logRequestContext, request)); }
 		public Task<DomainResponse> Delete(AutorQueryModel request){ return _mediator.Send(new DeleteAutorCommand(_logRequestContext, request)); }
 	}
-	public partial class LivrariaAggSettingsAppService : BaseAppService, ILivrariaAggSettingsAppService {	
-		public ILivrariaAggSettingsRepository _livrariaAggSettingsRepository;
-		public LivrariaAggSettingsAppService(IMediator mediator, Niu.Nutri.CrossCutting.Infra.Log.Contexts.ILogRequestContext ctx, ILivrariaAggSettingsRepository livrariaAggSettingsRepository) : base(ctx, mediator) { _livrariaAggSettingsRepository = livrariaAggSettingsRepository; }	
-		public async Task<LivrariaAggSettingsDTO> Get(LivrariaAggSettingsQueryModel request) {
-            return (await _livrariaAggSettingsRepository.FindAsync(filter: LivrariaAggSettingsFilters.GetFilters(request, isOrSpecification: request.IsOrSpecification), selector: x => x.ProjectedAs<LivrariaAggSettingsDTO>()));
-        }
-		public void Dispose()
-        {
-			_livrariaAggSettingsRepository = null;
-        }
-		public async Task<IEnumerable<T>> GetAll<T>(LivrariaAggSettingsQueryModel request, int? page = null, int? size = null, Expression<Func<LivrariaAggSettings, T>> selector = null) {
-			return await _livrariaAggSettingsRepository.SelectAllAsync(
-                filter: LivrariaAggSettingsFilters.GetFilters(request, isOrSpecification: request.IsOrSpecification),
-                take: size,
-                skip: page * size,
-				ascending: request.OrderByDesc != true,
-                orderBy: request.OrderBy.GetPropertyListSelector<LivrariaAggSettings>(),
-                selector: selector);
-		}
-		public async Task<T> Select<T>(LivrariaAggSettingsQueryModel request, Expression<Func<LivrariaAggSettings, T>> selector = null)
-        {
-            return (await _livrariaAggSettingsRepository.FindAsync(filter: LivrariaAggSettingsFilters.GetFilters(request, isOrSpecification: true), selector: selector));
-        }
-        public async Task<IEnumerable<LivrariaAggSettingsDTO>> GetAll(LivrariaAggSettingsQueryModel request, int? page = null, int? size = null) {
-            return await _livrariaAggSettingsRepository.FindAllAsync(
-                filter: LivrariaAggSettingsFilters.GetFilters(request, isOrSpecification: true),
-                take: size,
-                skip: page * size,
-				ascending: request.OrderByDesc != true,
-                orderBy: request.OrderBy.GetPropertyListSelector<LivrariaAggSettings>(),
-                selector: x => x.ProjectedAs<LivrariaAggSettingsDTO>());
-        }
-
-		public Task<DomainResponse> Create(LivrariaAggSettingsDTO request, bool updateIfExists = true, LivrariaAggSettingsQueryModel searchQuery = null) { return _mediator.Send(new CreateLivrariaAggSettingsCommand(_logRequestContext, request)); }
-		public async Task<int> CountAsync(LivrariaAggSettingsQueryModel request) { return await _livrariaAggSettingsRepository.CountAsync(filter: LivrariaAggSettingsFilters.GetFilters(request, isOrSpecification: true)); }
-		public Task Update(LivrariaAggSettingsQueryModel searchQuery, LivrariaAggSettingsDTO request, bool createIfNotExists = true) { return _mediator.Send(new UpdateLivrariaAggSettingsCommand(_logRequestContext, searchQuery, request)); }
-		public Task<DomainResponse> DeleteRange(LivrariaAggSettingsQueryModel request){ return _mediator.Send(new DeleteRangeLivrariaAggSettingsCommand(_logRequestContext, request)); }
-		public Task<DomainResponse> Delete(LivrariaAggSettingsQueryModel request){ return _mediator.Send(new DeleteLivrariaAggSettingsCommand(_logRequestContext, request)); }
-	}
 }

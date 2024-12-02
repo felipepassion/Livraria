@@ -58,7 +58,9 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandHandlers
             if (!creationResult.Success) return creationResult;
 			_livroRepository.Add(entity);
 
-            return await Commit(_livroRepository.UnitOfWork, entity.ProjectedAs<LivroDTO>());
+            var result = await Commit(_livroRepository.UnitOfWork);
+            result.Data = entity.ProjectedAs<LivroDTO>();
+            return result;
         }
 
         public async Task<DomainResponse> Handle(DeleteLivroCommand command,CancellationToken cancellationToken) {
@@ -179,7 +181,9 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandHandlers
             if (!creationResult.Success) return creationResult;
 			_assuntoRepository.Add(entity);
 
-            return await Commit(_assuntoRepository.UnitOfWork, entity.ProjectedAs<AssuntoDTO>());
+            var result = await Commit(_assuntoRepository.UnitOfWork);
+            result.Data = entity.ProjectedAs<AssuntoDTO>();
+            return result;
         }
 
         public async Task<DomainResponse> Handle(DeleteAssuntoCommand command,CancellationToken cancellationToken) {
@@ -300,7 +304,9 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandHandlers
             if (!creationResult.Success) return creationResult;
 			_autorRepository.Add(entity);
 
-            return await Commit(_autorRepository.UnitOfWork, entity.ProjectedAs<AutorDTO>());
+            var result = await Commit(_autorRepository.UnitOfWork);
+            result.Data = entity.ProjectedAs<AutorDTO>();
+            return result;
         }
 
         public async Task<DomainResponse> Handle(DeleteAutorCommand command,CancellationToken cancellationToken) {
@@ -378,127 +384,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandHandlers
             PublishLog(command);
             
             return await Commit(_autorRepository.UnitOfWork);
-        }
-    }
-    public partial class LivrariaAggSettingsCommandHandler : BaseLivrariaAggCommandHandler<LivrariaAggSettings>,
-        IRequestHandler<CreateLivrariaAggSettingsCommand,DomainResponse>,
-        IRequestHandler<DeleteRangeLivrariaAggSettingsCommand,DomainResponse>,
-        IRequestHandler<DeleteLivrariaAggSettingsCommand,DomainResponse>,
-        IRequestHandler<UpdateRangeLivrariaAggSettingsCommand,DomainResponse>,
-        IRequestHandler<UpdateLivrariaAggSettingsCommand,DomainResponse>,
-        IRequestHandler<ActiveLivrariaAggSettingsCommand,DomainResponse>,
-        IRequestHandler<DeactiveLivrariaAggSettingsCommand,DomainResponse>
-    {
-        ILivrariaAggSettingsRepository _livrariaAggSettingsRepository;
-
-        public LivrariaAggSettingsCommandHandler(IServiceProvider provider,IMediator mediator,ILivrariaAggSettingsRepository livrariaAggSettingsRepository ) : base(provider,mediator) { _livrariaAggSettingsRepository = livrariaAggSettingsRepository; }
-
-        partial void OnCreate(LivrariaAggSettings entity);
-        partial void OnUpdate(LivrariaAggSettings entity);
-
-        public async Task<DomainResponse> Handle(CreateLivrariaAggSettingsCommand command,CancellationToken cancellationToken) {
-
-            LivrariaAggSettings entity;
-            if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.IdExterno))
-            {
-                var filter = LivrariaAggSettingsFilters.GetFilters(command.Query ?? new LivrariaAggSettingsQueryModel { IdExternoEqual = command.Request.IdExterno });
-                entity = await _livrariaAggSettingsRepository.FindAsync(filter, includeAll: false);
-                if (entity != null)
-                {
-                    if (command.UpdateIfExists)
-                        return await Handle(new UpdateLivrariaAggSettingsCommand(
-                            command.Context,
-                            new Queries.Models.LivrariaAggSettingsQueryModel { IdExternoEqual = command.Request.IdExterno },
-                            command.Request),
-                        cancellationToken);
-                }
-            }
-            entity = command.Request.ProjectedAs<Entities.LivrariaAggSettings>();
-            entity.AddDomainEvent(new LivrariaAggSettingsCreatedEvent(command.Context,entity));
-
-            _livrariaAggSettingsRepository.UnitOfWork.ResolveAttaches(entity);
-            var creationResult = await OnCreateAsync(entity);
-            if (!creationResult.Success) return creationResult;
-			_livrariaAggSettingsRepository.Add(entity);
-
-            return await Commit(_livrariaAggSettingsRepository.UnitOfWork, entity.ProjectedAs<LivrariaAggSettingsDTO>());
-        }
-
-        public async Task<DomainResponse> Handle(DeleteLivrariaAggSettingsCommand command,CancellationToken cancellationToken) {
-            var filter = LivrariaAggSettingsFilters.GetFilters(command.Query);
-			var entity = await _livrariaAggSettingsRepository.FindAsync(filter);
-
-            if(entity is null) {
-                return AddError($"Entity {nameof(LivrariaAggSettings)} not found with the request.");
-            }
-            
-            if (command.IsLogicalDeletion)
-                entity.Delete();
-            else
-			    _livrariaAggSettingsRepository.Delete(entity);
-
-            var deleteResult = await OnDeleteAsync(entity);
-            if (!deleteResult.Success) return deleteResult;
-
-            entity.AddDomainEvent(new LivrariaAggSettingsDeletedEvent(command.Context,entity));
-            return await Commit(_livrariaAggSettingsRepository.UnitOfWork);
-        }
-
-        public async Task<DomainResponse> Handle(DeleteRangeLivrariaAggSettingsCommand command,CancellationToken cancellationToken) {
-            var filter = LivrariaAggSettingsFilters.GetFilters(command.Query);
-			var entities = await _livrariaAggSettingsRepository.FindAllAsync(filter);
-
-			_livrariaAggSettingsRepository.DeleteRange(entities);
-
-            PublishLog(command);
-            
-            return await Commit(_livrariaAggSettingsRepository.UnitOfWork);
-        }
-
-        public async Task<DomainResponse> Handle(UpdateLivrariaAggSettingsCommand command,CancellationToken cancellationToken) {
-            return await Handle(new UpdateRangeLivrariaAggSettingsCommand(command.Context,command.Query,command.Request),cancellationToken);
-        }
-
-        public async Task<DomainResponse> Handle(UpdateRangeLivrariaAggSettingsCommand command,CancellationToken cancellationToken) {
-            var entities = new List<LivrariaAggSettings>();
-            foreach (var item in command.Query)
-            {
-                var entity = command.Entity as LivrariaAggSettings ?? await _livrariaAggSettingsRepository.FindAsync(LivrariaAggSettingsFilters.GetFilters(item.Key));
-                
-                if(entity == null) {
-                    if(command.CreateIfNotExists)
-                        return await Handle(new CreateLivrariaAggSettingsCommand(command.Context,item.Value),cancellationToken);
-                    return AddError($"Entity {nameof(LivrariaAggSettings)} not found with the request.");
-                }
-                var entityAfter = item.Value.ProjectedAs<LivrariaAggSettings>();
-                _livrariaAggSettingsRepository.UnitOfWork.ResolveAttachesOnUpdate(entity, entityAfter);
-                entity.Update(entityAfter,"Id");
-                var updateResult = await OnUpdateAsync(entity, entityAfter);
-                if (!updateResult.Success) return updateResult;
-                entity.AddDomainEvent(new LivrariaAggSettingsUpdatedEvent(command.Context, entity));
-            }
-            
-            PublishLog(command);
-
-            return await Commit(_livrariaAggSettingsRepository.UnitOfWork, command.Entity.ProjectedAs<LivrariaAggSettingsDTO>());
-        }
-         
-        public async Task<DomainResponse> Handle(ActiveLivrariaAggSettingsCommand command,CancellationToken cancellationToken) {
-            var livrariaaggsettings = await _livrariaAggSettingsRepository.FindAsync(filter: LivrariaAggSettingsFilters.GetFilters(command.Query));
-            //livrariaaggsettings.Disable();
-
-            PublishLog(command);
-            
-            return await Commit(_livrariaAggSettingsRepository.UnitOfWork);
-        }
-
-        public async Task<DomainResponse> Handle(DeactiveLivrariaAggSettingsCommand command,CancellationToken cancellationToken) {
-            var livrariaaggsettings = await _livrariaAggSettingsRepository.FindAsync(filter: LivrariaAggSettingsFilters.GetFilters(command.Query));
-            //livrariaaggsettings.Enable();
-
-            PublishLog(command);
-            
-            return await Commit(_livrariaAggSettingsRepository.UnitOfWork);
         }
     }
 }

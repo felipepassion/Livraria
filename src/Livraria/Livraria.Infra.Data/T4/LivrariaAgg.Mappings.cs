@@ -50,15 +50,6 @@ namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings
 
 		partial void ConfigureAdditionalMapping(EntityTypeBuilder<Autor> builder);
     }
-    public partial class LivrariaAggSettingsMapping : IEntityTypeConfiguration<LivrariaAggSettings>
-    {
-        public void Configure(EntityTypeBuilder<LivrariaAggSettings> builder)
-        {
-            ConfigureAdditionalMapping(builder);
-        }
-
-		partial void ConfigureAdditionalMapping(EntityTypeBuilder<LivrariaAggSettings> builder);
-    }
 }
 namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.UsersAgg.Mappings 
 {

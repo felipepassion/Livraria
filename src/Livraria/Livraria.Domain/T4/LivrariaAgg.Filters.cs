@@ -88,40 +88,82 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Filters{
 					else
 						filter &= LivroSpecifications.EditoraStartsWith(request.EditoraStartsWith);
 				}
-				if (!string.IsNullOrWhiteSpace(request.EdicaoEqual)) 
+				if (request.EdicaoEqual.HasValue)
 				{
 					if (isOrSpecification)
-						filter |= LivroSpecifications.EdicaoEqual(request.EdicaoEqual);
+						filter |= LivroSpecifications.EdicaoEqual(request.EdicaoEqual.Value);
 					else
-						filter &= LivroSpecifications.EdicaoEqual(request.EdicaoEqual);
+						filter &= LivroSpecifications.EdicaoEqual(request.EdicaoEqual.Value);
 				}
-				if (!string.IsNullOrWhiteSpace(request.EdicaoNotEqual)) 
+				if (request.EdicaoNotEqual.HasValue)
 				{
 					if (isOrSpecification)
-						filter |= LivroSpecifications.EdicaoNotEqual(request.EdicaoNotEqual);
+						filter |= LivroSpecifications.EdicaoNotEqual(request.EdicaoNotEqual.Value);
 					else
-						filter &= LivroSpecifications.EdicaoNotEqual(request.EdicaoNotEqual);
+						filter &= LivroSpecifications.EdicaoNotEqual(request.EdicaoNotEqual.Value);
 				}
-				if (!string.IsNullOrWhiteSpace(request.EdicaoNotEqual)) 
-				{
-					if (isOrSpecification)
-						filter |= LivroSpecifications.EdicaoNotEqual(request.EdicaoNotEqual);
-					else
-						filter &= LivroSpecifications.EdicaoNotEqual(request.EdicaoNotEqual);
-				}
-				if (!string.IsNullOrWhiteSpace(request.EdicaoContains)) 
+				if (request.EdicaoContains != null)
 				{
 					if (isOrSpecification)
 						filter |= LivroSpecifications.EdicaoContains(request.EdicaoContains);
 					else
 						filter &= LivroSpecifications.EdicaoContains(request.EdicaoContains);
 				}
-				if (!string.IsNullOrWhiteSpace(request.EdicaoStartsWith)) 
+				if (request.EdicaoNotContains != null)
 				{
 					if (isOrSpecification)
-						filter |= LivroSpecifications.EdicaoStartsWith(request.EdicaoStartsWith);
+						filter |= LivroSpecifications.EdicaoNotContains(request.EdicaoNotContains);
 					else
-						filter &= LivroSpecifications.EdicaoStartsWith(request.EdicaoStartsWith);
+						filter &= LivroSpecifications.EdicaoNotContains(request.EdicaoNotContains);
+				}
+				if (request.EdicaoSince.HasValue)
+				{
+					if (isOrSpecification)
+						filter |= LivroSpecifications.EdicaoGreaterThanOrEqual(request.EdicaoSince.Value);
+					else
+						filter &= LivroSpecifications.EdicaoGreaterThanOrEqual(request.EdicaoSince.Value);
+				}
+				if (request.EdicaoUntil.HasValue)
+				{
+					if (isOrSpecification)
+						filter |= LivroSpecifications.EdicaoLessThan(request.EdicaoUntil.Value);
+					else
+						filter &= LivroSpecifications.EdicaoLessThan(request.EdicaoUntil.Value);
+				}
+				if (request.EdicaoNotEqual.HasValue) 
+				{
+					if (isOrSpecification)
+						filter |= LivroSpecifications.EdicaoNotEqual(request.EdicaoNotEqual.Value);
+					else
+						filter &= LivroSpecifications.EdicaoNotEqual(request.EdicaoNotEqual.Value);
+				}
+				if (request.EdicaoLessThan.HasValue) 
+				{
+					if (isOrSpecification)
+						filter |= LivroSpecifications.EdicaoLessThan(request.EdicaoLessThan.Value);
+					else
+						filter &= LivroSpecifications.EdicaoLessThan(request.EdicaoLessThan.Value);
+				}
+				if (request.EdicaoGreaterThan.HasValue) 
+				{
+					if (isOrSpecification)
+						filter |= LivroSpecifications.EdicaoGreaterThan(request.EdicaoGreaterThan.Value);
+					else
+						filter &= LivroSpecifications.EdicaoGreaterThan(request.EdicaoGreaterThan.Value);
+				}
+				if (request.EdicaoLessThanOrEqual.HasValue) 
+				{
+					if (isOrSpecification)
+						filter |= LivroSpecifications.EdicaoLessThanOrEqual(request.EdicaoLessThanOrEqual.Value);
+					else
+						filter &= LivroSpecifications.EdicaoLessThanOrEqual(request.EdicaoLessThanOrEqual.Value);
+				}
+				if (request.EdicaoGreaterThanOrEqual.HasValue) 
+				{
+					if (isOrSpecification)
+						filter |= LivroSpecifications.EdicaoGreaterThanOrEqual(request.EdicaoGreaterThanOrEqual.Value);
+					else
+						filter &= LivroSpecifications.EdicaoGreaterThanOrEqual(request.EdicaoGreaterThanOrEqual.Value);
 				}
 				if (request.AnoPublicacaoEqual.HasValue)
 				{
@@ -1202,322 +1244,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Filters{
 						filter |= AutorSpecifications.DeletadoEqual(request.DeletadoEqual.Value);
 					else
 						filter &= AutorSpecifications.DeletadoEqual(request.DeletadoEqual.Value);
-				}
-			}
-			return filter;
-		}
-	}
-	public static class LivrariaAggSettingsFilters 
-	{
-	    public static Expression<Func<LivrariaAggSettings, bool>> GetFilters(this LivrariaAggSettingsQueryModel request, bool isOrSpecification = false)
-
-		{ return request.GetFiltersSpecification(isOrSpecification).SatisfiedBy(); }
-		public static Specification<LivrariaAggSettings> GetFiltersSpecification(this LivrariaAggSettingsQueryModel request, bool isOrSpecification = false) 
-		{
-			isOrSpecification = request.IsOrSpecification;
-			Specification<LivrariaAggSettings> filter = new DirectSpecification<LivrariaAggSettings>(p => request.IsEmpty() || !isOrSpecification);
-			if(request is not null)
-			{
-				if (!string.IsNullOrWhiteSpace(request.IdExternoEqual)) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.IdExternoEqual(request.IdExternoEqual);
-					else
-						filter &= LivrariaAggSettingsSpecifications.IdExternoEqual(request.IdExternoEqual);
-				}
-				if (!string.IsNullOrWhiteSpace(request.IdExternoNotEqual)) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.IdExternoNotEqual(request.IdExternoNotEqual);
-					else
-						filter &= LivrariaAggSettingsSpecifications.IdExternoNotEqual(request.IdExternoNotEqual);
-				}
-				if (!string.IsNullOrWhiteSpace(request.IdExternoNotEqual)) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.IdExternoNotEqual(request.IdExternoNotEqual);
-					else
-						filter &= LivrariaAggSettingsSpecifications.IdExternoNotEqual(request.IdExternoNotEqual);
-				}
-				if (!string.IsNullOrWhiteSpace(request.IdExternoContains)) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.IdExternoContains(request.IdExternoContains);
-					else
-						filter &= LivrariaAggSettingsSpecifications.IdExternoContains(request.IdExternoContains);
-				}
-				if (!string.IsNullOrWhiteSpace(request.IdExternoStartsWith)) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.IdExternoStartsWith(request.IdExternoStartsWith);
-					else
-						filter &= LivrariaAggSettingsSpecifications.IdExternoStartsWith(request.IdExternoStartsWith);
-				}
-				if (request.CriadoEmEqual.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.CriadoEmEqual(request.CriadoEmEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.CriadoEmEqual(request.CriadoEmEqual.Value);
-				}
-				if (request.CriadoEmNotEqual.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.CriadoEmNotEqual(request.CriadoEmNotEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.CriadoEmNotEqual(request.CriadoEmNotEqual.Value);
-				}
-				if (request.CriadoEmContains != null)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.CriadoEmContains(request.CriadoEmContains);
-					else
-						filter &= LivrariaAggSettingsSpecifications.CriadoEmContains(request.CriadoEmContains);
-				}
-				if (request.CriadoEmNotContains != null)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.CriadoEmNotContains(request.CriadoEmNotContains);
-					else
-						filter &= LivrariaAggSettingsSpecifications.CriadoEmNotContains(request.CriadoEmNotContains);
-				}
-				if (request.CriadoEmSince.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.CriadoEmGreaterThanOrEqual(request.CriadoEmSince.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.CriadoEmGreaterThanOrEqual(request.CriadoEmSince.Value);
-				}
-				if (request.CriadoEmUntil.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.CriadoEmLessThan(request.CriadoEmUntil.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.CriadoEmLessThan(request.CriadoEmUntil.Value);
-				}
-				if (request.CriadoEmNotEqual.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.CriadoEmNotEqual(request.CriadoEmNotEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.CriadoEmNotEqual(request.CriadoEmNotEqual.Value);
-				}
-				if (request.CriadoEmLessThan.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.CriadoEmLessThan(request.CriadoEmLessThan.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.CriadoEmLessThan(request.CriadoEmLessThan.Value);
-				}
-				if (request.CriadoEmGreaterThan.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.CriadoEmGreaterThan(request.CriadoEmGreaterThan.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.CriadoEmGreaterThan(request.CriadoEmGreaterThan.Value);
-				}
-				if (request.CriadoEmLessThanOrEqual.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.CriadoEmLessThanOrEqual(request.CriadoEmLessThanOrEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.CriadoEmLessThanOrEqual(request.CriadoEmLessThanOrEqual.Value);
-				}
-				if (request.CriadoEmGreaterThanOrEqual.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.CriadoEmGreaterThanOrEqual(request.CriadoEmGreaterThanOrEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.CriadoEmGreaterThanOrEqual(request.CriadoEmGreaterThanOrEqual.Value);
-				}
-				if (request.AtualizadoEmEqual.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.AtualizadoEmEqual(request.AtualizadoEmEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.AtualizadoEmEqual(request.AtualizadoEmEqual.Value);
-				}
-				if (request.AtualizadoEmNotEqual.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.AtualizadoEmNotEqual(request.AtualizadoEmNotEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.AtualizadoEmNotEqual(request.AtualizadoEmNotEqual.Value);
-				}
-				if (request.AtualizadoEmContains != null)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.AtualizadoEmContains(request.AtualizadoEmContains);
-					else
-						filter &= LivrariaAggSettingsSpecifications.AtualizadoEmContains(request.AtualizadoEmContains);
-				}
-				if (request.AtualizadoEmNotContains != null)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.AtualizadoEmNotContains(request.AtualizadoEmNotContains);
-					else
-						filter &= LivrariaAggSettingsSpecifications.AtualizadoEmNotContains(request.AtualizadoEmNotContains);
-				}
-				if (request.AtualizadoEmSince.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.AtualizadoEmGreaterThanOrEqual(request.AtualizadoEmSince.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.AtualizadoEmGreaterThanOrEqual(request.AtualizadoEmSince.Value);
-				}
-				if (request.AtualizadoEmUntil.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.AtualizadoEmLessThan(request.AtualizadoEmUntil.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.AtualizadoEmLessThan(request.AtualizadoEmUntil.Value);
-				}
-				if (request.AtualizadoEmNotEqual.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.AtualizadoEmNotEqual(request.AtualizadoEmNotEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.AtualizadoEmNotEqual(request.AtualizadoEmNotEqual.Value);
-				}
-				if (request.AtualizadoEmLessThan.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.AtualizadoEmLessThan(request.AtualizadoEmLessThan.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.AtualizadoEmLessThan(request.AtualizadoEmLessThan.Value);
-				}
-				if (request.AtualizadoEmGreaterThan.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.AtualizadoEmGreaterThan(request.AtualizadoEmGreaterThan.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.AtualizadoEmGreaterThan(request.AtualizadoEmGreaterThan.Value);
-				}
-				if (request.AtualizadoEmLessThanOrEqual.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.AtualizadoEmLessThanOrEqual(request.AtualizadoEmLessThanOrEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.AtualizadoEmLessThanOrEqual(request.AtualizadoEmLessThanOrEqual.Value);
-				}
-				if (request.AtualizadoEmGreaterThanOrEqual.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.AtualizadoEmGreaterThanOrEqual(request.AtualizadoEmGreaterThanOrEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.AtualizadoEmGreaterThanOrEqual(request.AtualizadoEmGreaterThanOrEqual.Value);
-				}
-				if (request.DeletadoEmEqual.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.DeletadoEmEqual(request.DeletadoEmEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.DeletadoEmEqual(request.DeletadoEmEqual.Value);
-				}
-				if (request.DeletadoEmNotEqual.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.DeletadoEmNotEqual(request.DeletadoEmNotEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.DeletadoEmNotEqual(request.DeletadoEmNotEqual.Value);
-				}
-				if (request.DeletadoEmContains != null)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.DeletadoEmContains(request.DeletadoEmContains);
-					else
-						filter &= LivrariaAggSettingsSpecifications.DeletadoEmContains(request.DeletadoEmContains);
-				}
-				if (request.DeletadoEmNotContains != null)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.DeletadoEmNotContains(request.DeletadoEmNotContains);
-					else
-						filter &= LivrariaAggSettingsSpecifications.DeletadoEmNotContains(request.DeletadoEmNotContains);
-				}
-				if (request.DeletadoEmSince.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.DeletadoEmGreaterThanOrEqual(request.DeletadoEmSince.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.DeletadoEmGreaterThanOrEqual(request.DeletadoEmSince.Value);
-				}
-				if (request.DeletadoEmUntil.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.DeletadoEmLessThan(request.DeletadoEmUntil.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.DeletadoEmLessThan(request.DeletadoEmUntil.Value);
-				}
-				if (request.DeletadoEmNotEqual.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.DeletadoEmNotEqual(request.DeletadoEmNotEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.DeletadoEmNotEqual(request.DeletadoEmNotEqual.Value);
-				}
-				if (request.DeletadoEmLessThan.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.DeletadoEmLessThan(request.DeletadoEmLessThan.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.DeletadoEmLessThan(request.DeletadoEmLessThan.Value);
-				}
-				if (request.DeletadoEmGreaterThan.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.DeletadoEmGreaterThan(request.DeletadoEmGreaterThan.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.DeletadoEmGreaterThan(request.DeletadoEmGreaterThan.Value);
-				}
-				if (request.DeletadoEmLessThanOrEqual.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.DeletadoEmLessThanOrEqual(request.DeletadoEmLessThanOrEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.DeletadoEmLessThanOrEqual(request.DeletadoEmLessThanOrEqual.Value);
-				}
-				if (request.DeletadoEmGreaterThanOrEqual.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.DeletadoEmGreaterThanOrEqual(request.DeletadoEmGreaterThanOrEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.DeletadoEmGreaterThanOrEqual(request.DeletadoEmGreaterThanOrEqual.Value);
-				}
-				if (request.IdEqual.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.IdEqual(request.IdEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.IdEqual(request.IdEqual.Value);
-				}
-				if (request.IdNotEqual.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.IdNotEqual(request.IdNotEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.IdNotEqual(request.IdNotEqual.Value);
-				}
-				if (request.IdContains != null)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.IdContains(request.IdContains);
-					else
-						filter &= LivrariaAggSettingsSpecifications.IdContains(request.IdContains);
-				}
-				if (request.IdNotContains != null)
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.IdNotContains(request.IdNotContains);
-					else
-						filter &= LivrariaAggSettingsSpecifications.IdNotContains(request.IdNotContains);
-				}
-				if (request.DeletadoEqual.HasValue) 
-				{
-					if (isOrSpecification)
-						filter |= LivrariaAggSettingsSpecifications.DeletadoEqual(request.DeletadoEqual.Value);
-					else
-						filter &= LivrariaAggSettingsSpecifications.DeletadoEqual(request.DeletadoEqual.Value);
 				}
 			}
 			return filter;

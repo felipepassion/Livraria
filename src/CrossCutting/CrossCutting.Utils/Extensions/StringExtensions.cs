@@ -5,6 +5,16 @@ namespace Niu.Nutri.CrossCuting.Infra.Utils.Extensions
 {
     public static class StringExtensions
     {
+        /// <summary>
+        /// meu metodo maneiro
+        /// </summary>
+        /// <remarks>
+        /// opa blz? info adicional 
+        /// </remarks>
+        /// <typeparam name="T">tipo tal</typeparam>
+        /// <param name="request">passa o request ai po</param>
+        /// <param name="result">esse eh o resultado</param>
+        /// <returns></returns>
         public static bool TryDeserializeJSON<T>(this string request, out T result)
             where T : class
         {

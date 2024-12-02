@@ -12,13 +12,13 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Notifications
         {
 
         }
+
         public BaseNotification(ILogRequestContext context)
         {
             Context = context;
             Date = DateTime.UtcNow;
             StopWatch = new Stopwatch();
             LogType = LogEventLevel.Information;
-            this.LoggedUserId = context.LoggedUserId;
             Title = $"[{context.OperationName} - {context.ServiceName}] ({StopWatch.ElapsedMilliseconds})";
         }
 

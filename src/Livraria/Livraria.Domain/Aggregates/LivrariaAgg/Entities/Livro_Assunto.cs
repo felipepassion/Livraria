@@ -1,4 +1,3 @@
-using Niu.Nutri.Core.Domain.Attributes.T4;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

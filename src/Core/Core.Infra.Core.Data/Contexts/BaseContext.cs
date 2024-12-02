@@ -12,10 +12,8 @@ using Npgsql;
 
 namespace Niu.Nutri.Core.Infra.Data.Contexts
 {
-    public class BaseContext : DbContext, IUnitOfWork, IDataProtectionKeyContext
+    public class BaseContext : DbContext, IUnitOfWork
     {
-        public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
-
         public bool IsEmpty<T>(T entity) where T : class => this.Find<T>() == null;
 
         IMediator _mediator;

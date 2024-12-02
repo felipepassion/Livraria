@@ -1,6 +1,4 @@
-﻿using Niu.Nutri.Core.Application.DTO.Attributes;
-using System.Collections;
-using System.Runtime.Serialization;
+﻿using System.Collections;
 
 namespace Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models;
 

@@ -9,14 +9,14 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities;
 public partial class Livro : Entity
 {
     [Required]
-    [StringLength(4)]
+    [StringLength(40)]
     public string Titulo { get; set; }
 
     [Required]
+    [StringLength(40)]
     public string Editora { get; set; }
 
-    [Required]
-    public string Edicao { get; set; }
+    public int? Edicao { get; set; } = 1;
 
     [Required]
     public DateTime AnoPublicacao { get; set; }

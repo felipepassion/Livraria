@@ -16,7 +16,6 @@ namespace Niu.Nutri.Livraria.Infra.Data.Context
 		public DbSet<Assunto> Assunto { get; set; }
 		public DbSet<Livro_Assunto> Livro_Assunto { get; set; }
 		public DbSet<Autor> Autor { get; set; }
-		public DbSet<LivrariaAggSettings> LivrariaAggSettings { get; set; }
 		public DbSet<User> User { get; set; }
 
 		public LivrariaAggContext (MediatR.IMediator mediator, DbContextOptions<LivrariaAggContext> options, IServiceProvider scope)
@@ -31,7 +30,6 @@ namespace Niu.Nutri.Livraria.Infra.Data.Context
 			builder.ApplyConfiguration(new AssuntoMapping());
 			builder.ApplyConfiguration(new Livro_AssuntoMapping());
 			builder.ApplyConfiguration(new AutorMapping());
-			builder.ApplyConfiguration(new LivrariaAggSettingsMapping());
 			builder.ApplyConfiguration(new UserMapping());
 		
 			ApplyAdditionalMappings(builder);

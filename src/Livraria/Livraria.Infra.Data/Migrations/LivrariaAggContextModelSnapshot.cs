@@ -67,7 +67,8 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.Property<string>("IdExterno")
                         .IsRequired()
@@ -105,7 +106,8 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)");
 
                     b.HasKey("Id");
 
@@ -165,13 +167,13 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     b.Property<DateTime?>("DeletadoEm")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("Edicao")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int?>("Edicao")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Editora")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)");
 
                     b.Property<string>("IdExterno")
                         .IsRequired()
@@ -179,7 +181,8 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
 
                     b.Property<string>("Titulo")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)");
 
                     b.HasKey("Id");
 
@@ -188,37 +191,13 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
 
             modelBuilder.Entity("Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities.Livro_Assunto", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
                     b.Property<int>("Assunto_CodAut")
                         .HasColumnType("integer");
-
-                    b.Property<DateTime?>("AtualizadoEm")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("CriadoEm")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<bool>("Deletado")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime?>("DeletadoEm")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("IdExterno")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<int>("Livro_Codl")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("Assunto_CodAut");
+                    b.HasKey("Assunto_CodAut", "Livro_Codl");
 
                     b.HasIndex("Livro_Codl");
 
@@ -227,37 +206,13 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
 
             modelBuilder.Entity("Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities.Livro_Autor", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("AtualizadoEm")
-                        .HasColumnType("timestamp without time zone");
-
                     b.Property<int>("Autor_CodAut")
                         .HasColumnType("integer");
-
-                    b.Property<DateTime?>("CriadoEm")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<bool>("Deletado")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime?>("DeletadoEm")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("IdExterno")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<int>("Livro_Codl")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("Autor_CodAut");
+                    b.HasKey("Autor_CodAut", "Livro_Codl");
 
                     b.HasIndex("Livro_Codl");
 

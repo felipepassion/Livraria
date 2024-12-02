@@ -13,6 +13,4 @@ namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Repositories
 
 	public partial class AutorRepository : Repository<Autor>, IAutorRepository { public AutorRepository(LivrariaAggContext ctx) : base(ctx) { } }
 
-	public partial class LivrariaAggSettingsRepository : Repository<LivrariaAggSettings>, ILivrariaAggSettingsRepository { public LivrariaAggSettingsRepository(LivrariaAggContext ctx) : base(ctx) { } }
-
 }

@@ -49,27 +49,29 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
             return new DirectSpecification<Livro>(p => p.Editora != null);
         }
 		
-					public static Specification<Livro> EdicaoContains(string value) {
-			return new DirectSpecification<Livro>(p => EF.Functions.Like(p.Edicao.ToLower(), $"%{value.ToLower()}%"));
-		}
-		public static Specification<Livro> EdicaoNotContains(string value) {
-			return new DirectSpecification<Livro>(p => !EF.Functions.Like(p.Edicao.ToLower(), $"%{value.ToLower()}%"));
-		}
-		public static Specification<Livro> EdicaoStartsWith(string value) {
-			return new DirectSpecification<Livro>(p => EF.Functions.Like(p.Edicao.ToLower(), $"{value.ToLower()}%"));
-		}
-	
-		public static Specification<Livro> EdicaoEqual(string value) {
-			return new DirectSpecification<Livro>(p => value.ToLower() == (p.Edicao.ToLower()));
-		}
-		public static Specification<Livro> EdicaoNotEqual(string value) {
-			return new DirectSpecification<Livro>(p => p.Edicao != value);
-		}
-		public static Specification<Livro> EdicaoIsNull() {
-            return new DirectSpecification<Livro>(p => p.Edicao == null);
+					public static Specification<Livro> EdicaoContains(params int[] values) {
+            return new DirectSpecification<Livro>(p => values.Contains(p.Edicao.Value));
         }
-		public static Specification<Livro> EdicaoIsNotNull() {
-            return new DirectSpecification<Livro>(p => p.Edicao != null);
+		public static Specification<Livro> EdicaoNotContains(params int[] values) {
+            return new DirectSpecification<Livro>(p => !values.Contains(p.Edicao.Value));
+        }
+		public static Specification<Livro> EdicaoEqual(params int[] values) {
+			return new DirectSpecification<Livro>(p => values.Contains(p.Edicao.Value));
+        }
+        public static Specification<Livro> EdicaoGreaterThanOrEqual(int value) {
+            return new DirectSpecification<Livro>(p => p.Edicao >= value);
+        }
+        public static Specification<Livro> EdicaoLessThanOrEqual(int value) {
+            return new DirectSpecification<Livro>(p => p.Edicao <= value);
+        }
+        public static Specification<Livro> EdicaoNotEqual(int value) {
+            return new DirectSpecification<Livro>(p => p.Edicao != value);
+        }
+        public static Specification<Livro> EdicaoGreaterThan(int value) {
+            return new DirectSpecification<Livro>(p => p.Edicao > value);
+        }
+        public static Specification<Livro> EdicaoLessThan(int value) {
+            return new DirectSpecification<Livro>(p => p.Edicao < value);
         }
 		
 					public static Specification<Livro> AnoPublicacaoContains(params System.DateTime[] values) {
@@ -530,135 +532,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Specifications {
 		
 					public static Specification<Autor> DeletadoEqual(bool value) {
 			return new DirectSpecification<Autor>(p => p.Deletado == value);
-		}
-		
-	   }
-   public partial class LivrariaAggSettingsSpecifications {
-				public static Specification<LivrariaAggSettings> IdExternoContains(string value) {
-			return new DirectSpecification<LivrariaAggSettings>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
-		}
-		public static Specification<LivrariaAggSettings> IdExternoNotContains(string value) {
-			return new DirectSpecification<LivrariaAggSettings>(p => !EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
-		}
-		public static Specification<LivrariaAggSettings> IdExternoStartsWith(string value) {
-			return new DirectSpecification<LivrariaAggSettings>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"{value.ToLower()}%"));
-		}
-	
-		public static Specification<LivrariaAggSettings> IdExternoEqual(string value) {
-			return new DirectSpecification<LivrariaAggSettings>(p => value.ToLower() == (p.IdExterno.ToLower()));
-		}
-		public static Specification<LivrariaAggSettings> IdExternoNotEqual(string value) {
-			return new DirectSpecification<LivrariaAggSettings>(p => p.IdExterno != value);
-		}
-		public static Specification<LivrariaAggSettings> IdExternoIsNull() {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.IdExterno == null);
-        }
-		public static Specification<LivrariaAggSettings> IdExternoIsNotNull() {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.IdExterno != null);
-        }
-		
-					public static Specification<LivrariaAggSettings> CriadoEmContains(params System.DateTime[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.CriadoEm.Value));
-        }
-		public static Specification<LivrariaAggSettings> CriadoEmNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => !values.Contains(p.CriadoEm.Value));
-        }
-		public static Specification<LivrariaAggSettings> CriadoEmEqual(params System.DateTime[] values) {
-			return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.CriadoEm.Value));
-        }
-        public static Specification<LivrariaAggSettings> CriadoEmGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.CriadoEm >= value);
-        }
-        public static Specification<LivrariaAggSettings> CriadoEmLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.CriadoEm <= value);
-        }
-        public static Specification<LivrariaAggSettings> CriadoEmNotEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.CriadoEm != value);
-        }
-        public static Specification<LivrariaAggSettings> CriadoEmGreaterThan(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.CriadoEm > value);
-        }
-        public static Specification<LivrariaAggSettings> CriadoEmLessThan(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.CriadoEm < value);
-        }
-		
-					public static Specification<LivrariaAggSettings> AtualizadoEmContains(params System.DateTime[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.AtualizadoEm.Value));
-        }
-		public static Specification<LivrariaAggSettings> AtualizadoEmNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => !values.Contains(p.AtualizadoEm.Value));
-        }
-		public static Specification<LivrariaAggSettings> AtualizadoEmEqual(params System.DateTime[] values) {
-			return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.AtualizadoEm.Value));
-        }
-        public static Specification<LivrariaAggSettings> AtualizadoEmGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.AtualizadoEm >= value);
-        }
-        public static Specification<LivrariaAggSettings> AtualizadoEmLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.AtualizadoEm <= value);
-        }
-        public static Specification<LivrariaAggSettings> AtualizadoEmNotEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.AtualizadoEm != value);
-        }
-        public static Specification<LivrariaAggSettings> AtualizadoEmGreaterThan(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.AtualizadoEm > value);
-        }
-        public static Specification<LivrariaAggSettings> AtualizadoEmLessThan(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.AtualizadoEm < value);
-        }
-		
-					public static Specification<LivrariaAggSettings> DeletadoEmContains(params System.DateTime[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.DeletadoEm.Value));
-        }
-		public static Specification<LivrariaAggSettings> DeletadoEmNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => !values.Contains(p.DeletadoEm.Value));
-        }
-		public static Specification<LivrariaAggSettings> DeletadoEmEqual(params System.DateTime[] values) {
-			return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.DeletadoEm.Value));
-        }
-        public static Specification<LivrariaAggSettings> DeletadoEmGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletadoEm >= value);
-        }
-        public static Specification<LivrariaAggSettings> DeletadoEmLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletadoEm <= value);
-        }
-        public static Specification<LivrariaAggSettings> DeletadoEmNotEqual(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletadoEm != value);
-        }
-        public static Specification<LivrariaAggSettings> DeletadoEmGreaterThan(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletadoEm > value);
-        }
-        public static Specification<LivrariaAggSettings> DeletadoEmLessThan(System.DateTime value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.DeletadoEm < value);
-        }
-		
-					public static Specification<LivrariaAggSettings> IdContains(params int[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.Id));
-        }
-		public static Specification<LivrariaAggSettings> IdNotContains(params int[] values) {
-            return new DirectSpecification<LivrariaAggSettings>(p => !values.Contains(p.Id));
-        }
-		public static Specification<LivrariaAggSettings> IdEqual(params int[] values) {
-			return new DirectSpecification<LivrariaAggSettings>(p => values.Contains(p.Id));
-        }
-        public static Specification<LivrariaAggSettings> IdGreaterThanOrEqual(int value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.Id >= value);
-        }
-        public static Specification<LivrariaAggSettings> IdLessThanOrEqual(int value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.Id <= value);
-        }
-        public static Specification<LivrariaAggSettings> IdNotEqual(int value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.Id != value);
-        }
-        public static Specification<LivrariaAggSettings> IdGreaterThan(int value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.Id > value);
-        }
-        public static Specification<LivrariaAggSettings> IdLessThan(int value) {
-            return new DirectSpecification<LivrariaAggSettings>(p => p.Id < value);
-        }
-		
-					public static Specification<LivrariaAggSettings> DeletadoEqual(bool value) {
-			return new DirectSpecification<LivrariaAggSettings>(p => p.Deletado == value);
 		}
 		
 	   }

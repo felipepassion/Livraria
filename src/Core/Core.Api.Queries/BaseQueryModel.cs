@@ -1,10 +1,16 @@
-﻿using Niu.Nutri.Core.Api.Queries.Extensions;
-using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
-using System.Linq.Expressions;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Niu.Nutri.Core.Api.Queries
 {
+    public interface IQueryModel
+    {
+        public string? Selector { get; set; }
+        public string? OrderBy { get; set; }
+        public bool? OrderByDesc { get; set; }
+        public bool? GetOnlySummary { get; set; }
+        public bool IsOrSpecification { get; set; }
+    }
+
     public class BaseQueryModel : IQueryModel
     {
         [JsonIgnore]

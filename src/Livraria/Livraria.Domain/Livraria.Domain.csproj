@@ -39,11 +39,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>DefaultCommands.tt</DependentUpon>
     </Compile>
-    <Compile Update="DefaultEntities.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>DefaultEntities.tt</DependentUpon>
-    </Compile>
     <Compile Update="Filters.cs">
       <DependentUpon>Filters.tt</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -57,12 +52,6 @@
   </ItemGroup>
 
 <ItemGroup><None Update="*.tt"><Generator>TextTemplatingFileGenerator</Generator></None></ItemGroup>
-
-<ItemGroup>
-  <None Update="DefaultEntities.tt">
-    <LastGenOutput>DefaultEntities.generated.cs</LastGenOutput>
-  </None>
-</ItemGroup>
 <ItemGroup><None Update="*.tt"><Generator>TextTemplatingFileGenerator</Generator></None></ItemGroup>
 <ItemGroup>
   <None Update="DefaultCommands.tt">

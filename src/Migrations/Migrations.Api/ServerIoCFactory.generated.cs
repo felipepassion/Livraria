@@ -9,7 +9,6 @@ namespace Niu.Nutri.Migrations.Api {
        
 		public static void InjectDependencies(this IServiceCollection services, IConfiguration configuration) {
 
-            Niu.Nutri.Livraria.Infra.IoC.IoCFactory.Current.Configure(configuration, services);
 			
             Niu.Nutri.Core.Infra.IoC.IoCFactory.Current.Configure(configuration, services);
 		}

@@ -63,7 +63,9 @@ namespace <#= namespaces.Key.Replace(".Entities",".CommandHandlers") #>
             if (!creationResult.Success) return creationResult;
 			<#= repoVarName #>.Add(entity);
 
-            return await Commit(<#= repoVarName #>.UnitOfWork, entity.ProjectedAs<<#= entity.Name #>DTO>());
+            var result = await Commit(<#= repoVarName #>.UnitOfWork);
+            result.Data = entity.ProjectedAs<<#= entity.Name #>DTO>();
+            return result;
         }
 
         public async Task<DomainResponse> Handle(Delete<#= entity.Name #>Command command,CancellationToken cancellationToken) {

@@ -9,8 +9,6 @@
         string OperationName { get; set; }
         void Setup(string topicName, string serviceName);
         void Start();
-        int? LoggedUserId { get; set; }
-        string? LoggedUserName { get; set; }
     }
 
     public class LogRequestContext : ILogRequestContext

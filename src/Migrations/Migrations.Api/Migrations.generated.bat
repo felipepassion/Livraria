@@ -1,3 +1,3 @@
 ﻿
-dotnet ef migrations add 2024_12_2_10_19_52 -c ApplicationDbContext -p ..\..\..\Users.Identity
-dotnet ef migrations add 2024_12_2_10_19_52 -c LivrariaAggcontext -p ..\..\..\Livraria\Livraria.Infra.Data
+dotnet ef migrations add 2024_12_2_14_11_42 -c ApplicationDbContext -p ..\..\..\Users.Identity
+dotnet ef migrations add 2024_12_2_14_11_42 -c LivrariaAggcontext -p ..\..\..\Livraria\Livraria.Infra.Data

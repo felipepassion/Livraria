@@ -110,39 +110,4 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.ModelEvents
         public AutorDeactivatedEvent(ILogRequestContext ctx, Autor data) 
             : base(ctx, data) { }
     }
-    public partial class LivrariaAggSettingsCreatedEvent : BaseEvent
-    {
-        public LivrariaAggSettingsCreatedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
-            : base(ctx, data) { }
-    }
-    public partial class LivrariaAggSettingsDeletedEvent : BaseEvent
-    {
-        public LivrariaAggSettingsDeletedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
-            : base(ctx, data) { }
-    }
-    public partial class LivrariaAggSettingsDeletedRangeEvent : BaseEvent
-    {
-        public LivrariaAggSettingsDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<LivrariaAggSettings> data) 
-            : base(ctx, data) { }
-    }
-    public partial class LivrariaAggSettingsActivatedEvent : BaseEvent
-    {
-        public LivrariaAggSettingsActivatedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
-            : base(ctx, data) { }
-    }
-    public partial class LivrariaAggSettingsUpdatedEvent : BaseEvent
-    {
-        public LivrariaAggSettingsUpdatedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
-            : base(ctx, data) { }
-    }
-    public partial class LivrariaAggSettingsUpdatedRangeEvent : BaseEvent
-    {
-        public LivrariaAggSettingsUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<LivrariaAggSettings> data) 
-            : base(ctx, data) { }
-    }
-    public partial class LivrariaAggSettingsDeactivatedEvent : BaseEvent
-    {
-        public LivrariaAggSettingsDeactivatedEvent(ILogRequestContext ctx, LivrariaAggSettings data) 
-            : base(ctx, data) { }
-    }
 }

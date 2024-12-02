@@ -14,8 +14,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Repositories
 
 	public partial interface IAutorRepository : IRepository<Autor> { }
 
-	public partial interface ILivrariaAggSettingsRepository : IRepository<LivrariaAggSettings> { }
-
 }
 namespace Niu.Nutri.Livraria.Domain.Aggregates.UsersAgg.Repositories 
 {

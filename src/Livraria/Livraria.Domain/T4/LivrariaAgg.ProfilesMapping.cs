@@ -17,7 +17,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Profiles
 			CreateMap<AssuntoDTO, Assunto>().ReverseMap();;
 			CreateMap<Livro_AssuntoDTO, Livro_Assunto>().ReverseMap();;
 			CreateMap<AutorDTO, Autor>().ReverseMap();;
-			CreateMap<LivrariaAggSettingsDTO, LivrariaAggSettings>().ReverseMap();;
 			ConfigureAdditionalProfiles();
 		}
 		partial void ConfigureAdditionalProfiles();

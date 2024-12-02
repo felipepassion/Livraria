@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Niu.Nutri.Core.Api.Queries.Extensions;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Repositories;
 using Niu.Nutri.Core.Domain.Seedwork;
 using Niu.Nutri.Core.Infra.Data.Contexts;
 using Niu.Nutri.Core.Infra.Data.Extensions;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace Niu.Nutri.Core.Infra.Data.Repositories
 {
@@ -24,6 +22,7 @@ namespace Niu.Nutri.Core.Infra.Data.Repositories
         {
 
         }
+
         public virtual void Add(T entity)
         {
             _ctx.Add(entity);
