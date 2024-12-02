@@ -7,5 +7,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities
     public partial class Assunto : Entity
     {
         public string Descricao { get; set; }
+
+        public List<Livro> Livros { get; set; }
     }
 }

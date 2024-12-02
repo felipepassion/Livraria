@@ -1,6 +1,6 @@
-﻿using Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities;
 
 namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings
 {
@@ -10,6 +10,11 @@ namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings
         {
             builder.Property(x => x.Id).Metadata.SetColumnName("Codl");
 
+            builder.HasMany(x => x.Autores).WithMany(x => x.Livros)
+                .UsingEntity<Livro_Autor>();
+
+            builder.HasMany(x => x.Assuntos).WithMany(x => x.Livros)
+                .UsingEntity<Livro_Assunto>();
         }
     }
 }

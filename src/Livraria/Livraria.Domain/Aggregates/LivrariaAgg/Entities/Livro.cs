@@ -19,13 +19,7 @@ public partial class Livro : Entity
     [Required]
     public DateTime AnoPublicacao { get; set; }
 
-    public Autor Autor => this.LivroAutor.Autor;
+    public List<Autor> Autores { get; set; } = new();
 
-    public Assunto Assunto => this.LivroAssunto.Assunto;
-
-    [IgnorePropertyT4]
-    public Livro_Assunto LivroAssunto { get; set; } = new();
-
-    [IgnorePropertyT4]
-    public Livro_Autor LivroAutor { get; set; } = new();
+    public List<Assunto> Assuntos { get; set; } = new();
 }

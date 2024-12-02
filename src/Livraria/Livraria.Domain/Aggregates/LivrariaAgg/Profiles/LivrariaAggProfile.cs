@@ -7,11 +7,6 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Profiles
     {
         partial void ConfigureAdditionalProfiles()
         {
-            CreateMap<LivroDTO, Livro>()
-                .ForPath(x => x.LivroAutor.Autor, opt => opt.MapFrom(x => x.Autor))
-                .ForPath(x => x.LivroAssunto.Assunto, opt => opt.MapFrom(x => x.Assunto));
-
-            CreateMap<Livro, LivroDTO>();
         }
     }
 }

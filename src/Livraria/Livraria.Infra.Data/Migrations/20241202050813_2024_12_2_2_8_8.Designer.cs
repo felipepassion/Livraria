@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Niu.Nutri.Livraria.Infra.Data.Context;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Niu.Nutri.Livraria.Infra.Data.Migrations
 {
     [DbContext(typeof(LivrariaAggContext))]
-    partial class LivrariaAggContextModelSnapshot : ModelSnapshot
+    [Migration("20241202050813_2024_12_2_2_8_8")]
+    partial class _2024_12_2_2_8_8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,4 +1,3 @@
-using Niu.Nutri.Core.Application.DTO.Attributes;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities;
 using Niu.Nutri.Core.Domain.Attributes.T4;
 
@@ -8,5 +7,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities
     public partial class Autor : Entity
     {
         public string Nome { get; set; }
+
+        public List<Livro> Livros { get; set; }
     }
 }
