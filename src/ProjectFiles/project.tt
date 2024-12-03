@@ -507,7 +507,7 @@
                 if (item.FullName == type) return item;
             }
             catch(Exception ex) {
-                throw new Exception("Error in FindType method: " + item + " - " + ex.Message);
+                //throw new Exception("Error in FindType method: " + item + " - " + ex.Message);
             }
         }
         

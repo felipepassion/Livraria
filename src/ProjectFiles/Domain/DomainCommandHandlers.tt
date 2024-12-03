@@ -153,6 +153,7 @@ namespace <#= namespaces.Key.Replace(".Entities",".CommandHandlers") #>;
 <#if(entitiesT4.Any()){#>
 
 namespace <#= GetDefaultNamespace() #>.<#= project.Name #>.Aggregates.<#= AggName #>.CommandHandlers {
+    using MediatR;
     using Core.Domain.Aggregates.CommonAgg.Commands.Handles;
     using Core.Domain.Aggregates.CommonAgg.Entities;
     public class Base<#= AggName #>CommandHandler<T> : BaseCommandHandler<T> where T : IEntity {public Base<#= AggName #>CommandHandler(IServiceProvider provider,IMediator mediator):base(mediator, provider){}}

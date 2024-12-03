@@ -1,8 +1,6 @@
 ﻿
 using Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities; 
 using Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings; 
-using Niu.Nutri.Livraria.Domain.Aggregates.UsersAgg.Entities; 
-using Niu.Nutri.Livraria.Infra.Data.Aggregates.UsersAgg.Mappings; 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Niu.Nutri.Core.Infra.Data.Contexts;
@@ -16,7 +14,6 @@ namespace Niu.Nutri.Livraria.Infra.Data.Context
 		public DbSet<Assunto> Assunto { get; set; }
 		public DbSet<Livro_Assunto> Livro_Assunto { get; set; }
 		public DbSet<Autor> Autor { get; set; }
-		public DbSet<User> User { get; set; }
 
 		public LivrariaAggContext (MediatR.IMediator mediator, DbContextOptions<LivrariaAggContext> options, IServiceProvider scope)
             : base(mediator, options, scope)
@@ -30,7 +27,6 @@ namespace Niu.Nutri.Livraria.Infra.Data.Context
 			builder.ApplyConfiguration(new AssuntoMapping());
 			builder.ApplyConfiguration(new Livro_AssuntoMapping());
 			builder.ApplyConfiguration(new AutorMapping());
-			builder.ApplyConfiguration(new UserMapping());
 		
 			ApplyAdditionalMappings(builder);
 			base.OnModelCreating(builder);

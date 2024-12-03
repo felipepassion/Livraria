@@ -1,5 +1,4 @@
 ﻿using Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities;
-using Niu.Nutri.Livraria.Domain.Aggregates.UsersAgg.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -49,18 +48,5 @@ namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings
         }
 
 		partial void ConfigureAdditionalMapping(EntityTypeBuilder<Autor> builder);
-    }
-}
-namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.UsersAgg.Mappings 
-{
-    public partial class UserMapping : IEntityTypeConfiguration<User>
-    {
-        public void Configure(EntityTypeBuilder<User> builder)
-        {
-            builder.Metadata.SetIsTableExcludedFromMigrations(true);
-            ConfigureAdditionalMapping(builder);
-        }
-
-		partial void ConfigureAdditionalMapping(EntityTypeBuilder<User> builder);
     }
 }

@@ -23,18 +23,3 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Profiles
 	}
 }
 
-namespace Niu.Nutri.Livraria.Domain.Aggregates.UsersAgg.Profiles
-{
-	using Application.DTO.Aggregates.UsersAgg.Requests;
-	using Entities;
-	public partial class UsersAggProfile : Profile
-	{
-		public UsersAggProfile()
-		{
-			CreateMap<UserDTO, User>().ReverseMap();;
-			ConfigureAdditionalProfiles();
-		}
-		partial void ConfigureAdditionalProfiles();
-	}
-}
-
