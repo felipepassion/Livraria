@@ -8,25 +8,17 @@ pipeline {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
-                        set -e
-                        set -o pipefail
                         sudo rm -rf ~/Livraria || true
-                        echo "Removed old Livraria directory"
                         git clone git@github.com:felipepassion/Livraria.git
-                        echo "Cloned repository"
                         if [ $? -ne 0 ]; then
                             echo "Failed to clone repository"
                             exit 1
                         fi
                         sudo chown -R niu-user:niu-user ~/Livraria
-                        echo "Changed ownership"
                         sudo chmod -R 755 ~/Livraria
-                        echo "Changed permissions"
                         cd ~/Livraria
                         git pull origin master --force
-                        echo "Pulled latest changes"
-                        exit
-                        EOF
+                        
                         '''
                     }
                 }
@@ -39,16 +31,10 @@ pipeline {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
-                        set -e
-                        set -o pipefail
                         cd ~/Livraria/src/Livraria/Livraria.Api
-                        echo "Changed directory to Livraria.Api"
                         git pull origin master --force
-                        echo "Pulled latest changes"
                         sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /livraria/volumes/WebApp
-                        echo "Published .NET application"
-                        exit
-                        EOF
+                        
                         '''
                     }
                 }
@@ -61,14 +47,9 @@ pipeline {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
-                        set -e
-                        set -o pipefail
                         sudo docker stop livraria-webapp || true
-                        echo "Stopped Docker container"
                         sudo docker start livraria-webapp 
-                        echo "Started Docker container"
-                        exit
-                        EOF
+                        
                         '''
                     }
                 }
