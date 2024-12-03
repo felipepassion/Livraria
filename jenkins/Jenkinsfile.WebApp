@@ -9,7 +9,7 @@ pipeline {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
                         sudo rm -rf ~/Livraria || true
-                        git clone git@github.com:felipepassion/Livraria.git 
+                        git clone git@github.com:felipepassion/Livraria.git
                         if [ $? -ne 0 ]; then
                             echo "Failed to clone repository"
                             exit 1
