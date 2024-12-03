@@ -9,6 +9,7 @@ pipeline {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
                         set -e
+                        set -o pipefail
                         sudo rm -rf ~/Livraria || true
                         git clone git@github.com:felipepassion/Livraria.git
                         if [ $? -ne 0 ]; then
@@ -34,6 +35,7 @@ pipeline {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
                         set -e
+                        set -o pipefail
                         cd ~/Livraria/src/Livraria/Livraria.Api
                         git pull origin master --force
                         sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /livraria/volumes/WebApp
@@ -52,6 +54,7 @@ pipeline {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
                         set -e
+                        set -o pipefail
                         sudo docker stop livraria-webapp || true
                         sudo docker start livraria-webapp 
                         exit
