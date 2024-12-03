@@ -23,8 +23,7 @@ namespace Niu.Nutri.Livraria.Api
                         builder.AllowAnyOrigin()
                                .AllowAnyHeader()
                                .AllowAnyMethod()
-                               .SetIsOriginAllowed((x) => true)
-                               .AllowCredentials();
+                               .SetIsOriginAllowed((x) => true);
                     });
             });
 
