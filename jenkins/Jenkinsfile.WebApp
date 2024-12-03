@@ -18,7 +18,6 @@ pipeline {
                         sudo chmod -R 755 ~/Livraria
                         cd ~/Livraria
                         git pull origin master --force
-                        
                         '''
                     }
                 }
@@ -33,8 +32,8 @@ pipeline {
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
                         cd ~/Livraria/src/Livraria/Livraria.Api
                         git pull origin master --force
+                        sudo /usr/bin/dotnet restore
                         sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /livraria/volumes/WebApp
-                        
                         '''
                     }
                 }
@@ -49,7 +48,6 @@ pipeline {
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
                         sudo docker stop livraria-webapp || true
                         sudo docker start livraria-webapp 
-                        
                         '''
                     }
                 }
