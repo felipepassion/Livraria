@@ -6,11 +6,11 @@ using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Commands.Handles;
 
-namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandHandlers;
+namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
     using Filters;
-    using ModelEvents;
+    using Events;
     using Repositories;
-    using CommandModels;
+    using Commands;
     using Entities;
     using Queries.Models;
     using Application.DTO.Aggregates.LivrariaAgg.Requests;

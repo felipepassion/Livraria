@@ -12,7 +12,7 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices;
 	using Domain.Aggregates.LivrariaAgg.Repositories;
 	using Domain.Aggregates.LivrariaAgg.Filters;
 	using Domain.Aggregates.LivrariaAgg.Entities;
-	using Domain.Aggregates.LivrariaAgg.CommandModels;
+	using Domain.Aggregates.LivrariaAgg.Commands;
 	using Core.Application.DTO.Extensions;
 	using Core.Application.Aggregates.Common;
 

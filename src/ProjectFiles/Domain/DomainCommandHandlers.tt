@@ -11,11 +11,11 @@ using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Commands.Handles;
 
-namespace <#= namespaces.Key.Replace(".Entities",".CommandHandlers") #>;
+namespace <#= namespaces.Key.Replace(".Entities",".Commands.Handlers") #>;
     using Filters;
-    using ModelEvents;
+    using Events;
     using Repositories;
-    using CommandModels;
+    using Commands;
     using Entities;
     using Queries.Models;
     using Application.DTO.Aggregates.<#= AggName #>.Requests;
@@ -144,7 +144,7 @@ namespace <#= namespaces.Key.Replace(".Entities",".CommandHandlers") #>;
         }
     }
     <#SaveOutputToSubFolder(
-    folderName: $@"Aggregates\{AggName}\CommandHandlers", 
+    folderName: $@"Aggregates\{AggName}\Commands\Handlers", 
     outputFileName: @$"{entity.Name}CommandHandler.generated.cs", 
     recreateFileIfExists: true); #>
 <# } #>
@@ -152,7 +152,7 @@ namespace <#= namespaces.Key.Replace(".Entities",".CommandHandlers") #>;
 
 <#if(entitiesT4.Any()){#>
 
-namespace <#= GetDefaultNamespace() #>.<#= project.Name #>.Aggregates.<#= AggName #>.CommandHandlers {
+namespace <#= GetDefaultNamespace() #>.<#= project.Name #>.Aggregates.<#= AggName #>.Commands.Handlers {
     using MediatR;
     using Core.Domain.Aggregates.CommonAgg.Commands.Handles;
     using Core.Domain.Aggregates.CommonAgg.Entities;
@@ -161,6 +161,6 @@ namespace <#= GetDefaultNamespace() #>.<#= project.Name #>.Aggregates.<#= AggNam
 <#}#>
 
         <#SaveOutputToSubFolder(
-    folderName: $@"Aggregates\{AggName}\CommandHandlers", 
+    folderName: $@"Aggregates\{AggName}\Commands\Handlers", 
     outputFileName: @$"{AggName}CommandHandler.generated.cs", 
     recreateFileIfExists: true); #>

@@ -21,7 +21,7 @@ namespace <#= namespaces.Key.Replace("Entities", "AppServices").Replace("Domain"
 	using Domain.Aggregates.<#= aggName #>.Repositories;
 	using Domain.Aggregates.<#= aggName #>.Filters;
 	using Domain.Aggregates.<#= aggName #>.Entities;
-	using Domain.Aggregates.<#= aggName #>.CommandModels;
+	using Domain.Aggregates.<#= aggName #>.Commands;
 	using Core.Application.DTO.Extensions;
 	using Core.Application.Aggregates.Common;
 

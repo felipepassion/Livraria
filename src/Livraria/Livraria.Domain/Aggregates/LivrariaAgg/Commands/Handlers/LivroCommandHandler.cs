@@ -1,4 +1,4 @@
-﻿namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.CommandHandlers
+﻿namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers
 {
     using Entities;
     using Microsoft.Extensions.DependencyInjection;

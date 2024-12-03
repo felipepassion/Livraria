@@ -8,12 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Aggregates\LivrariaAgg\ValueObjects\**" />
-    <EmbeddedResource Remove="Aggregates\LivrariaAgg\ValueObjects\**" />
-    <None Remove="Aggregates\LivrariaAgg\ValueObjects\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Core\Core.Domain\Core.Domain.csproj" />
     <ProjectReference Include="..\Livraria.Application.DTO\Livraria.Application.DTO.csproj" />
   </ItemGroup>

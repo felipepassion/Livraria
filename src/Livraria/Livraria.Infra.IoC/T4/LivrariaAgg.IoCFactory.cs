@@ -17,7 +17,7 @@ namespace Niu.Nutri.Livraria.Infra.IoC {
 	using Core.Infra.IoC.Extensions;
     using Core.Api.Middlewares;
 	using Infra.Data.Context;
-	using Domain.Aggregates.LivrariaAgg.CommandHandlers;
+	using Domain.Aggregates.LivrariaAgg.Commands.Handlers;
 	
 
     public partial class IoCFactory : IBaseIoC {

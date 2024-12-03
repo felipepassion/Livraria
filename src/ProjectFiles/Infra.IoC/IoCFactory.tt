@@ -25,7 +25,7 @@ namespace <#= GetDefaultNamespace() #>.<#= GetCurrentProject().Name #> {
     using Core.Api.Middlewares;
 	using Infra.Data.Context;
 <# if(entitiesT4?.Any() == true) { #>
-	using Domain.Aggregates.<#= AggName #>.CommandHandlers;
+	using Domain.Aggregates.<#= AggName #>.Commands.Handlers;
 <# } #>	
 
     public partial class IoCFactory : IBaseIoC {

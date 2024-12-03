@@ -24,7 +24,7 @@ namespace <#= GetDefaultNamespace() #>.<#=shortAggName#>.Controllers {
 	using Domain.Aggregates.<#= aggName #>.Queries.Models;
 	using Application.Aggregates.<#= aggName #>.AppServices;
 	using Domain.Aggregates.<#= aggName #>.Entities;
-	using Niu.Nutri.<#= aggName.Replace("Agg","") #>.Domain.Aggregates.<#= aggName #>.CommandModels;
+	using Niu.Nutri.<#= aggName.Replace("Agg","") #>.Domain.Aggregates.<#= aggName #>.Commands;
 <#
  foreach(var entity in namespaces) {
 	var responseName = $"{entity.Name}DTO";

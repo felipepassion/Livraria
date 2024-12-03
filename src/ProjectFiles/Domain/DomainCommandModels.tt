@@ -1,14 +1,14 @@
-﻿using Niu.Nutri.CrossCutting.Infra.Log.Contexts;
-using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Commands;
-<#foreach(var namespaces in groupEntitiesT4) {#>
-namespace <#= namespaces.Key.Replace(".Entities",".CommandModels") #>
-{
-    using Queries.Models; 
-    using <#= namespaces.Key.Replace("Domain","Application.DTO").Replace("Entities", "Requests") #>; 
+﻿<#foreach(var namespaces in groupEntitiesT4) {#>
 <#foreach(var entity in namespaces) {
     var mySearchParent = $"{entity.Name}SearchableCommand";
     var myQueryModel = $"{entity.Name}QueryModel";
 #>
+namespace <#= namespaces.Key.Replace(".Entities",".Commands") #>;
+
+using CrossCutting.Infra.Log.Contexts;
+using Core.Domain.Aggregates.CommonAgg.Commands;
+using Queries.Models; 
+using <#= namespaces.Key.Replace("Domain","Application.DTO").Replace("Entities", "Requests") #>; 
     public partial class Create<#= entity.Name #>Command : BaseRequestableCommand<<#= myQueryModel #>, <#=entity.Name#>DTO>
     {
         public bool UpdateIfExists { get; set; }
@@ -54,11 +54,9 @@ namespace <#= namespaces.Key.Replace(".Entities",".CommandModels") #>
         public <#= mySearchParent#>(ILogRequestContext ctx, <#= myQueryModel #> query)
             : base(ctx, query) { }
     }
-
-<# } #>
-}
-<# } #>
 <# SaveOutputToSubFolder(
-    folderName: $"T4", 
-    outputFileName: @$"{AggName}.DomainCommandModels.cs", 
-    recreateFileIfExists: true); #>
+folderName: $@"Aggregates\{AggName}\Commands", 
+outputFileName: @$"{entity.Name}Command.cs", 
+recreateFileIfExists: true); #>
+<# } #>
+<# } #>

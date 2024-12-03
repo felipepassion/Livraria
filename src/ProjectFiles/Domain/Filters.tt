@@ -1,18 +1,19 @@
 ﻿<# if (entities.Any()) { #>
-using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
-using System.Linq.Expressions;
-using <#= GetDefaultNamespace() #>.Core.Domain.Seedwork.Specification;
-using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
 
 <# foreach(var namespaces in groupEntitiesT4) { #>
-namespace <#= namespaces.Key.Replace("Entities", "Filters") #>{
 <#
 	var aggName = namespaces.Key.Split('.').FirstOrDefault(x=>x.EndsWith("Agg"));
 #>
-	using Entities;
-	using Specifications;
-	using Queries.Models;
 <# foreach(var entity in namespaces) { #>
+namespace <#= namespaces.Key.Replace("Entities", "Filters") #>;
+
+using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
+using System.Linq.Expressions;
+using <#= GetDefaultNamespace() #>.Core.Domain.Seedwork.Specification;
+using Entities;
+using Specifications;
+using Queries.Models;
+
 	public static class <#= entity.Name #>Filters 
 	{
 	    public static Expression<Func<<#= entity.Name #>, bool>> GetFilters(this <#= entity.Name #>QueryModel request, bool isOrSpecification = false)
@@ -232,12 +233,10 @@ switch(property.Value.Type.AsString) {
 			return filter;
 		}
 	}
-<# } #>
-}
-<# } #>
-<# } #>
-
 <# SaveOutputToSubFolder(
-    folderName: $"T4", 
-    outputFileName: @$"{AggName}.Filters.cs", 
+	folderName: $@"Aggregates\{AggName}\Filters", 
+    outputFileName: @$"{entity.Name}.Filters.cs", 
     recreateFileIfExists: true); #>
+<# } #>
+<# } #>
+<# } #>
