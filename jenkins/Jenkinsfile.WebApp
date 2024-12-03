@@ -48,7 +48,7 @@ pipeline {
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
                         sudo docker stop livraria-webapp || true
                         sudo docker start livraria-webapp
-                        EOF
+                        
                         '''
                     }
                 }
