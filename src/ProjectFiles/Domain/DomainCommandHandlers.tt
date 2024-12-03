@@ -103,7 +103,7 @@ namespace <#= namespaces.Key.Replace(".Entities",".Commands.Handlers") #>;
     }
     <#SaveOutputToSubFolder(
     folderName: $@"Aggregates\{AggName}\Commands\Handlers", 
-    outputFileName: @$"{entity.Name}CommandHandler.generated.cs", 
+    outputFileName: @$"{entity.Name}CommandHandler.cs", 
     recreateFileIfExists: true); #>
 <# } #>
 <# } #>
@@ -120,5 +120,5 @@ namespace <#= GetDefaultNamespace() #>.<#= project.Name #>.Aggregates.<#= AggNam
 
 <#SaveOutputToSubFolder(
 folderName: $@"Aggregates\{AggName}\Commands\Handlers", 
-outputFileName: @$"{AggName}CommandHandler.generated.cs", 
+outputFileName: @$"{AggName}CommandHandler.cs", 
 recreateFileIfExists: true); #>
