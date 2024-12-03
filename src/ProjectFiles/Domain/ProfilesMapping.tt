@@ -1,41 +1,27 @@
-﻿<# if (entities.Any()) { #>
-using AutoMapper;
-namespace <#= GetDefaultNamespace() #>.<#= myName #>.Domain.Aggregates.<#= AggName #>.Profiles
-{
-    public class <#= AggName #>CoreProfile : Core.Domain.Aggregates.CommonAgg.Profiles.CoreAggProfile { }
-}
-
-<#
+﻿<# if (entities.Any()) {
 	foreach(var namespaces in groupEntities) {
 		            var aggregateName = namespaces.Key.Split('.').FirstOrDefault(x=>x.EndsWith("Agg"));
- #>
-namespace <#= namespaces.Key.Replace(".Entities",".Profiles") #>
-{
-<#
 	var AggName2 = namespaces.Key.Split('.').First(x=>x.EndsWith("Agg"));
 #>
-	using Application.DTO.Aggregates.<#= AggName2 #>.Requests;
-	using Entities;
-	public partial class <#= aggregateName #>Profile : Profile
+namespace <#= namespaces.Key.Replace(".Entities",".Profiles") #>;
+
+using Entities;
+using AutoMapper;
+using Application.DTO.Aggregates.<#= AggName2 #>.Requests;
+
+public partial class <#= aggregateName #>Profile : Profile
+{
+	public <#= aggregateName #>Profile()
 	{
-		public <#= aggregateName #>Profile()
-		{
-<# foreach (var entity in namespaces) 
+<# foreach (var entity in namespaces.OrderBy(x=>x.Name.Length)) 
 {#>
-			CreateMap<<#= entity.Name #>DTO, <#= entity.Name #>>().ReverseMap();;
+		CreateMap<<#= entity.Name #>DTO, <#= entity.Name #>>().ReverseMap();
 <# } #>
-			ConfigureAdditionalProfiles();
-		}
-		partial void ConfigureAdditionalProfiles();
 	}
 }
-
-<# } #>
-<# } #>
-<#    else  {#>
-
-<# } #>
 <# SaveOutputToSubFolder(
-    folderName: $"T4", 
-    outputFileName: @$"{AggName}.ProfilesMapping.cs",
+	folderName: $@"Aggregates\{AggName}\Profiles", 
+	outputFileName: @$"{AggName}Profiles.cs", 
     recreateFileIfExists: true); #>
+<# } #>
+<# } #>

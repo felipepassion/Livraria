@@ -1,14 +1,11 @@
 ﻿<# if (entitiesT4.Any()) { #>
-using <#= GetDefaultNamespace() #>.Core.Domain.Seedwork.Specification;
-using Microsoft.EntityFrameworkCore;
 <# foreach(var namespaces in groupEntitiesT4) { #>
-namespace <#= namespaces.Key.Replace("Entities", "Specifications") #> {
-	using Entities;
-<# foreach(var entity in namespaces) { 
-var test = GetProperties(entity);
-
-#>
-   public partial class <#= entity.Name #>Specifications {
+<# foreach(var entity in namespaces) { #>
+namespace <#= namespaces.Key.Replace("Entities", "Specifications") #>;
+using Entities;
+using Microsoft.EntityFrameworkCore;
+using Core.Domain.Seedwork.Specification;
+public partial class <#= entity.Name #>Specifications {
 <# foreach(var prop in GetProperties(entity)) {
 	KeyValuePair<string, CodeProperty> property = prop;
 	var propFullName = property.Value.Type.CodeType.FullName;
@@ -20,11 +17,10 @@ var test = GetProperties(entity);
 	<#@ include file="..\..\ProjectFiles\Domain\SpecificationItem.tt" #>
 	<#}#>
    }
-<# } #>
-}
-<# } #>
-<# } #>
 <# SaveOutputToSubFolder(
-    folderName: $"T4", 
-    outputFileName: @$"{AggName}.Specifications.cs",
+    folderName: $@"Aggregates\{AggName}\Specifications", 
+	outputFileName: @$"{entity.Name}Specification.cs", 
     recreateFileIfExists: true); #>
+<# } #>
+<# } #>
+<# } #>

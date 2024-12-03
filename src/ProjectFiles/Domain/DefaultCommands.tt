@@ -7,8 +7,7 @@
 	var AggName = myName + "Agg";
 	var parentName = "Commands";
 	var groupEntities = entities.GroupBy(p => p.Namespace.FullName);
-	var groupEntitiesT4 = entitiesT4.GroupBy(p => p.Namespace.FullName);
-#>
+	var groupEntitiesT4 = entitiesT4.GroupBy(p => p.Namespace.FullName);#>
 <#@ include file="..\..\ProjectFiles\Domain\DomainCommandHandlers.tt" #>
 <#@ include file="..\..\ProjectFiles\Domain\DomainCommandModels.tt" #>
 <#@ include file="..\..\ProjectFiles\Domain\DomainEventHandlers.tt" #>

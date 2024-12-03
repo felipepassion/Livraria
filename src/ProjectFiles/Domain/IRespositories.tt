@@ -1,8 +1,6 @@
 ﻿<# if (entities.Any()) { #>
-using <#= GetDefaultNamespace() #>.Core.Domain.Aggregates.CommonAgg.Repositories;
 <# foreach (var nmspc in groupEntities) 
 { #>
-using <#= nmspc.Key #>;
 <# } #>
 <#  
 var className = GetDefaultNamespace().Replace(".","");
@@ -12,18 +10,16 @@ var contextName = className + "Context";
 <# var path = Path.GetDirectoryName(project.FullName);
    var repositories = Directory.GetFiles(path, "*Repository.cs", SearchOption.AllDirectories).Select(p => Path.GetFileNameWithoutExtension(p));
    foreach(var namespaces in entities.GroupBy(p => p.Namespace.FullName)) { #>
-namespace <#= namespaces.Key.Replace("Entities", "Repositories") #> 
-{
 <# foreach (var entity in namespaces) { #>
-	public partial interface I<#= entity.Name #>Repository : IRepository<<#= entity.Name #>> { }
 
-<# } #>
-}
-<# } #>
-<# } #>
-<#    else  {#>
-<# } #>
+namespace <#= namespaces.Key.Replace("Entities", "Repositories") #>;
+    using Core.Domain.Aggregates.CommonAgg.Repositories;
+    using Entities;
+	public partial interface I<#= entity.Name #>Repository : IRepository<<#= entity.Name #>> { }
 <# SaveOutputToSubFolder(
-    folderName: $"T4", 
-    outputFileName: @$"{AggName}.IRespositories.cs",
+	folderName: $@"Aggregates\{AggName}\Repositories\Interfaces", 
+    outputFileName: @$"I{entity.Name}Respository.cs",
     recreateFileIfExists: true); #>
+<# } #>
+<# } #>
+<# } #>
