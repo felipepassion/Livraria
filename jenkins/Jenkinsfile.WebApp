@@ -8,15 +8,15 @@ pipeline {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
-                        sudo rm -rf ~/livraria || true
+                        sudo rm -rf ~/Livraria || true
                         git clone git@github.com:felipepassion/Livraria.git 
                         if [ $? -ne 0 ]; then
                             echo "Failed to clone repository"
                             exit 1
                         fi
-                        sudo chown -R niu-user:niu-user ~/livraria
-                        sudo chmod -R 755 ~/livraria
-                        cd ~/livraria
+                        sudo chown -R niu-user:niu-user ~/Livraria
+                        sudo chmod -R 755 ~/Livraria
+                        cd ~/Livraria
                         git pull origin main --force
                         
                         '''
@@ -32,6 +32,7 @@ pipeline {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
                         cd ~/Livraria/src/Livraria/Livraria.Api
+                        git pull origin main --force
                         sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /livraria/volumes/WebApp
                         
                         '''
