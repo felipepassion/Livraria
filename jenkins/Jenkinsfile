@@ -22,7 +22,7 @@ pipeline {
                     }
                     
                     if (changes.contains('Migrations.Api')) {
-                        build job: 'migrations-api-nutri', parameters: [string(name: 'BRANCH_NAME', value: env.BRANCH_NAME)]
+                        build job: 'migrations-api-livraria', parameters: [string(name: 'BRANCH_NAME', value: env.BRANCH_NAME)]
                     }
 
                     if (changes.contains('SystemSettings.Api')) {
@@ -38,11 +38,13 @@ pipeline {
                     }
 
                     // Checa se há mudanças na Niu.Living.WebApp
-                    if (changes.contains('src/Apps/WebApp/Niu.Nutri.WebApp/Niu.Nutri.WebApp')) {
-                        build job: 'niu-nutri-webapp', parameters: [string(name: 'BRANCH_NAME', value: env.BRANCH_NAME)]
+                    if (changes.contains('src/Apps/WebApp/Livraria.WebApp/livraria.webapp.client')) {
+                        build job: 'WebApp-livraria', parameters: [string(name: 'BRANCH_NAME', value: env.BRANCH_NAME)]
                     }
                 }
             }
         }
     }
 }
+
+

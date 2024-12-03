@@ -31,8 +31,8 @@ pipeline {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
-                        cd ~/niu-nutri/src/Migrations/Migrations.Api/ && \
-                        sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /niunutri/volumes/MigrationsApi
+                        cd ~/Livraria/src/Migrations/Migrations.Api && \
+                        sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /livraria/volumes/MigrationsApi
                         
                         '''
                     }
