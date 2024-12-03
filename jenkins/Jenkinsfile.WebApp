@@ -8,15 +8,15 @@ pipeline {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
-                        sudo rm -rf ~/niu-nutri || true
-                        git clone git@github.com:Niu-Technology/niu-nutri.git 
+                        sudo rm -rf ~/livraria || true
+                        git clone git@github.com:felipepassion/Livraria.git 
                         if [ $? -ne 0 ]; then
                             echo "Failed to clone repository"
                             exit 1
                         fi
-                        sudo chown -R niu-user:niu-user ~/niu-nutri
-                        sudo chmod -R 755 ~/niu-nutri
-                        cd ~/niu-nutri
+                        sudo chown -R niu-user:niu-user ~/livraria
+                        sudo chmod -R 755 ~/livraria
+                        cd ~/livraria
                         git pull origin main --force
                         
                         '''
@@ -31,7 +31,7 @@ pipeline {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
-                        cd ~/niu-nutri/src/Apps/WebApp/Niu.Nutri.WebApp/Niu.Nutri.WebApp
+                        cd ~/livraria/src/Apps/WebApp/Niu.Nutri.WebApp/Niu.Nutri.WebApp
                         sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /niunutri/volumes/WebApp
                         
                         '''
@@ -46,8 +46,8 @@ pipeline {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
-                        sudo docker stop niu-nutri-webapp || true
-                        sudo docker start niu-nutri-webapp 
+                        sudo docker stop livraria-webapp || true
+                        sudo docker start livraria-webapp 
                         
                         '''
                     }
