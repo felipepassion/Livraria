@@ -31,8 +31,8 @@ pipeline {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
-                        cd ~/livraria/src/Apps/WebApp/Niu.Nutri.WebApp/Niu.Nutri.WebApp
-                        sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /niunutri/volumes/WebApp
+                        cd ~/Livraria/src/Livraria/Livraria.Api
+                        sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /livraria/volumes/WebApp
                         
                         '''
                     }
