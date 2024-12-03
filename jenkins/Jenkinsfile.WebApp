@@ -17,7 +17,7 @@ pipeline {
                         sudo chown -R niu-user:niu-user ~/Livraria
                         sudo chmod -R 755 ~/Livraria
                         cd ~/Livraria
-                        git pull origin main --force
+                        git pull origin master --force
                         
                         '''
                     }
@@ -32,7 +32,7 @@ pipeline {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
                         cd ~/Livraria/src/Livraria/Livraria.Api
-                        git pull origin main --force
+                        git pull origin master --force
                         sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /livraria/volumes/WebApp
                         
                         '''
