@@ -1,24 +1,66 @@
 <header-component></header-component>
 <div class="register--container">
     <div class="register--content">
-            <h1>Cadastro de livro</h1>
-        <div class="regsiter-form">
-            <form>
-                <label for="title">Titulo</label>
-                <input name="title" type="text" placeholder="Nome do livro" />
+        <h1>Cadastro de livro</h1>
+        <div class="register-form">
+            <form class="form-container" (ngSubmit)="createLivro()">
+                <div class="book-title">
+                    <label for="title">Título</label>
+                    <input [(ngModel)]="titulo" name="title" type="text" placeholder="Nome do livro" />
+                </div>
 
-                <label for="author">Autor</label>
-                <input name="author" type="text" placeholder="Nome do autor" />
+                <div class="book-author">
+                    <label for="author">Autor</label>
+                    <select (change)="setAutorId($event)">
+                        <option value="">Selecione um autor</option>
+                        <option *ngFor="let autor of autores" [value]="autor.id">{{ autor.nome }}</option>
+                        <option value="-1">Nenhum autor cadastrado</option>
+                    </select>
+                    <div class="selecteds">
+                        <span *ngFor="let autor of selectedAutores">
+                            {{ autor.nome }}
+                            <button type="button" (click)="removeAutor(autor)">🗑️</button>
+                        </span>
+                    </div>
+                    <button type="button" (click)="addAutor()">+ Adicionar mais autores</button>
+                </div>
 
-                <label for="editora">Editora</label>
-                <input name="editora" type="text" placeholder="Nome da editora" />
+                <div class="book-subject">
+                    <label for="subject">Assunto</label>
+                    <select (change)="setAssuntoId($event)">
+                        <option value="">Selecione um assunto</option>
+                        <option *ngFor="let assunto of assuntos" [value]="assunto.id">{{ assunto.descricao }}</option>
+                        <option value="-1">Nenhum assunto cadastrado</option>
+                    </select>
+                    <div class="selecteds">
+                        <span *ngFor="let assunto of selectedAssuntos">
+                            {{ assunto.descricao }}
+                            <button type="button" (click)="removeAssunto(assunto)">🗑️</button>
+                        </span>
+                    </div>
+                    <button type="button" (click)="addAssunto()">+ Adicionar mais assuntos</button>
+                </div>
 
-                <label for="edition">Edição</label>
-                <input name="edition" type="number" placeholder="1" />
+                <div class="book--edition-content">
+                    <div class="book-editora">
+                        <label for="editora">Editora</label>
+                        <input [(ngModel)]="editora" name="editora" id="editora" type="text" placeholder="Nome da editora" />
+                    </div>
+                    <div class="book-edition">
+                        <label for="edition">Edição</label>
+                        <input [(ngModel)]="edicao" name="edition" id="edition" type="number" placeholder="1" />
+                    </div>
+                </div>
 
-                <label for="year">Data de publica~çao</label>
-                <input name="year" type="number" placeholder="2020" />
+                <div class="book--year-content">
+                    <div class="book-year">
+                        <label for="year">Data de publicação</label>
+                        <input [(ngModel)]="anoPublicacao" name="year" id="year" type="number" placeholder="2020" />
+                    </div>
+                </div>
+
+                <button class="btn" (click)="createLivro()" type="submit">Continuar</button>
             </form>
         </div>
     </div>
-</div> 
+</div>

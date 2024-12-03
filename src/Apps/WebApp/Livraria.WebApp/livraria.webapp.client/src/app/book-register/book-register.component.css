@@ -1,0 +1,160 @@
+.register--container {
+  max-width: 36rem;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.register--content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border-radius: .5rem;
+  padding: 2rem;
+  padding-bottom: 4rem;
+}
+
+  .register--content h1 {
+    color: #474747;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 1.5rem 0;
+  }
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+label {
+  color: #474747;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+input,select {
+  color: #474747;
+  padding: .75rem;
+  border: 1px solid #D3D3D3;
+  border-radius: .5rem;
+}
+
+  input::placeholder {
+    color: #D3D3D3;
+    font-size: 1rem;
+  }
+
+.book-title {
+  display: grid;
+}
+
+.book-author,
+.book-subject {
+  display: grid;
+}
+
+  .book-author button,
+  .book-subject button {
+    border: none;
+    padding: .75rem 1rem;
+    background: #F5F5F5;
+    color: 000000;
+    font-size: 1rem;
+    transition: all .3s ease;
+    border-radius: .5rem;
+    width: max-content;
+    margin-top: .5rem;
+  }
+
+    .book-author button:hover,
+    .book-subject button:hover {
+      cursor: pointer;
+      background: #d3d3d3;
+    }
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  background-color: #d3d3d3;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.remove-btn {
+  margin-left: 0.5rem;
+  border: none;
+  background: transparent;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+  .remove-btn:hover {
+    color: #f00;
+  }
+
+.book--edition-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.book-editora,
+.book-edition {
+  display: grid;
+}
+
+.book--year-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.btn {
+  border: none;
+  padding: .75rem 1rem;
+  background: #F5F5F5;
+  color: #000000;
+  font-size: 1rem;
+  transition: all .3s ease;
+  border-radius: .5rem;
+  margin-top: .5rem;
+}
+
+  .btn:hover {
+    cursor: pointer;
+    background: #d3d3d3;
+  }
+
+.selecteds {
+  display: flex;
+  gap: .5rem;
+}
+
+  .selecteds button {
+    padding: 0;
+    background: none;
+    transition: none;
+  }
+
+    .selecteds button:hover {
+      cursor: pointer;
+      background: none;
+    }
+
+  .selecteds span {
+    background: #fff;
+    padding: 0.25rem 0.5rem;
+  }

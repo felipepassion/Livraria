@@ -5,3 +5,7 @@
   box-sizing: border-box;
   font-family: "Inter";
 }
+
+body {
+  background: #F9F9F9;
+}

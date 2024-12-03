@@ -7,7 +7,7 @@ import { BookRegisterComponent } from './book-register/book-register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Redireciona para "books" por padrão
-  { path: 'books', component: BooksListComponent },    // Caminho correto
+  { path: 'books-list', component: BooksListComponent },    // Caminho correto
   { path: 'book', component: BooksDetailComponent },    // Caminho correto
   { path: 'book/register', component: BookRegisterComponent },    // Caminho correto
   { path: '**', redirectTo: '' },
