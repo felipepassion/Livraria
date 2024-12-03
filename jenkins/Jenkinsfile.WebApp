@@ -8,17 +8,16 @@ pipeline {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
-                        sudo rm -rf ~/livraria || true
-                        git clone git@github.com:felipepassion/Livraria.git 
+                        sudo rm -rf ~/Livraria || true
+                        git clone git@github.com:felipepassion/Livraria.git
                         if [ $? -ne 0 ]; then
                             echo "Failed to clone repository"
                             exit 1
                         fi
-                        sudo chown -R niu-user:niu-user ~/livraria
-                        sudo chmod -R 755 ~/livraria
-                        cd ~/livraria
-                        git pull origin main --force
-                        
+                        sudo chown -R niu-user:niu-user ~/Livraria
+                        sudo chmod -R 755 ~/Livraria
+                        cd ~/Livraria
+                        git pull origin master --force
                         '''
                     }
                 }
@@ -31,9 +30,10 @@ pipeline {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
-                        cd ~/livraria/src/Apps/WebApp/Niu.Nutri.WebApp/Niu.Nutri.WebApp
-                        sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /niunutri/volumes/WebApp
-                        
+                        cd ~/Livraria/src/Livraria/Livraria.Api
+                        git pull origin master --force
+                        sudo /usr/bin/dotnet restore
+                        sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /livraria/volumes/WebApp
                         '''
                     }
                 }
@@ -47,8 +47,8 @@ pipeline {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
                         sudo docker stop livraria-webapp || true
-                        sudo docker start livraria-webapp 
-                        
+                        sudo docker start livraria-webapp
+                        EOF
                         '''
                     }
                 }
