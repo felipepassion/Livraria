@@ -45,9 +45,10 @@ pipeline {
                 script {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
-                        ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
+                        ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<
                         sudo docker stop livraria-webapp || true
-                        sudo docker start livraria-webapp 
+                        sudo docker start livraria-webapp
+                        
                         '''
                     }
                 }
