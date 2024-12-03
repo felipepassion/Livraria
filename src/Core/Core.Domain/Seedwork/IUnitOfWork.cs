@@ -1,4 +1,4 @@
-﻿using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+﻿using Niu.Nutri.Core.Application.DTO.Http.Models.Responses;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities;
 
 namespace Niu.Nutri.Core.Domain.Seedwork

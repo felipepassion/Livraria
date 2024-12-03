@@ -14,7 +14,7 @@ using MediatR;
 using System.Linq.Expressions;
 
 namespace <#= namespaces.Key.Replace("Entities", "AppServices").Replace("Domain","Application") #>;
-	using Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+	using Core.Application.DTO.Http.Models.Responses;
 	using CrossCuting.Infra.Utils.Extensions;
 	using Application.DTO.Aggregates.<#= aggName #>.Requests;
 	using Domain.Aggregates.<#= aggName #>.Queries.Models;

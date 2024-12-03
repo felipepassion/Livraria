@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses
+namespace Niu.Nutri.Core.Application.DTO.Http.Models.Responses
 {
     public partial class GetHttpResponseDTO : GetHttpResponseDTO<object>
     {
@@ -40,8 +40,8 @@ namespace Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Response
 
         public GetHttpResponseDTO(HttpStatusCode response, string[] errors)
         {
-            this.StatusCode = response;
-            this.Errors = errors;
+            StatusCode = response;
+            Errors = errors;
         }
 
         public static GetHttpResponseDTO<T> Ok<T>(T response)
@@ -110,7 +110,7 @@ namespace Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Response
             return new GetHttpResponseDTO<T>(HttpStatusCode.InternalServerError, errors);
         }
 
-        public static Http.Models.CommonAgg.Commands.Responses.GetHttpResponseDTO BadRequest(DomainResponse response)
+        public static GetHttpResponseDTO BadRequest(DomainResponse response)
         {
             return Error(HttpStatusCode.BadRequest, response.Errors.Select(x => $"{x.Key}: {x.Value}").ToArray());
         }

@@ -4,7 +4,7 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices;
 	using Application.DTO.Aggregates.LivrariaAgg.Requests;
     using Domain.Aggregates.LivrariaAgg.Queries.Models;
 	using Core.Application.Aggregates.Common;
-	using Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+	using Core.Application.DTO.Http.Models.Responses;
 
 	public partial interface IAssuntoAppService : IBaseAppService {	
 		public Task<AssuntoDTO> Get(AssuntoQueryModel request);

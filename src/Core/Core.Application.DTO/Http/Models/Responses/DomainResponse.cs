@@ -1,4 +1,4 @@
-﻿namespace Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses
+﻿namespace Niu.Nutri.Core.Application.DTO.Http.Models.Responses
 {
     public class DomainResponse
     {
@@ -11,12 +11,12 @@
         {
             Data = data;
         }
-        
+
         public DomainResponse(Dictionary<string, string> errors)
         {
             foreach (var item in errors)
             {
-                this.Errors.Add(item.Key ?? Guid.NewGuid().ToString(), item.Value);
+                Errors.Add(item.Key ?? Guid.NewGuid().ToString(), item.Value);
             }
         }
 
@@ -61,12 +61,12 @@
         {
             foreach (var item in newErrors)
             {
-                this.Errors.Add(Guid.NewGuid().ToString(), item);
+                Errors.Add(Guid.NewGuid().ToString(), item);
             }
         }
 
         public Dictionary<string, string> Errors { get; set; } = new Dictionary<string, string>();
         public object? Data { get; set; }
-        public bool Success => this.Errors.Count == 0;
+        public bool Success => Errors.Count == 0;
     }
 }

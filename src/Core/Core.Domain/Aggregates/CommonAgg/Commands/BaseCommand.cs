@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 using MediatR;
-using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+using Niu.Nutri.Core.Application.DTO.Http.Models.Responses;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Notifications;
 using Niu.Nutri.CrossCutting.Infra.Log.Contexts;

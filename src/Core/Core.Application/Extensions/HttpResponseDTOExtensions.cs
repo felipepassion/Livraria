@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Newtonsoft.Json;
-using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+using Niu.Nutri.Core.Application.DTO.Http.Models.Responses;
 
 namespace Niu.Nutri.Core.Application.Extensions
 {

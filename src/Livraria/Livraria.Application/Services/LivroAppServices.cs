@@ -5,7 +5,7 @@ using MediatR;
 using System.Linq.Expressions;
 
 namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices;
-	using Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+	using Core.Application.DTO.Http.Models.Responses;
 	using CrossCuting.Infra.Utils.Extensions;
 	using Application.DTO.Aggregates.LivrariaAgg.Requests;
 	using Domain.Aggregates.LivrariaAgg.Queries.Models;

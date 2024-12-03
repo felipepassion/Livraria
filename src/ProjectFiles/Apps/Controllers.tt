@@ -14,7 +14,7 @@ if (aggSettingsList.Any()) {
 var groupEntities = aggSettingsList.GroupBy(p => p.Namespace.FullName);#>
 using Microsoft.AspNetCore.Mvc;
 using Niu.Nutri.WebApp.Controllers;
-using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+using Niu.Nutri.Core.Application.DTO.Http.Models.Responses;
 <#foreach(var namespaces in groupEntities) {
 	var aggName = namespaces.Key.Split('.').FirstOrDefault(x=>x.EndsWith("Agg"));
 	var shortAggName = aggName.Replace("Agg","");

@@ -1,4 +1,4 @@
-﻿namespace Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses
+﻿namespace Niu.Nutri.Core.Application.DTO.Http.Models.Responses
 {
     public class GetDTO : GetDTO<object>
     {
@@ -18,7 +18,7 @@
             get { return Errors?.Any() != true; }
         }
 
-      
+
 
         public void AddError(params string[] newErrors)
         {

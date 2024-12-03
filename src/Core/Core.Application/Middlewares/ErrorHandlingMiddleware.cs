@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Niu.Nutri.Core.Application.DTO.Aggregates.CommonAgg.Models;
-using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+using Niu.Nutri.Core.Application.DTO.Http.Models.Responses;
 using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Events;
 using Niu.Nutri.Core.Domain.Extensions;
 using Niu.Nutri.CrossCutting.Infra.Log.Contexts;

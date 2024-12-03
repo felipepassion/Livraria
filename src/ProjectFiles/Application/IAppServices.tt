@@ -15,7 +15,7 @@ namespace <#= namespaces.Key.Replace("Entities", "AppServices").Replace("Domain"
 	using Application.DTO.Aggregates.<#= aggName #>.Requests;
     using Domain.Aggregates.<#= aggName #>.Queries.Models;
 	using Core.Application.Aggregates.Common;
-	using Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+	using Core.Application.DTO.Http.Models.Responses;
 
 	public partial interface I<#= entity.Name #>AppService : IBaseAppService {	
 		public Task<<#= entity.Name #>DTO> Get(<#=entity.Name#>QueryModel request);

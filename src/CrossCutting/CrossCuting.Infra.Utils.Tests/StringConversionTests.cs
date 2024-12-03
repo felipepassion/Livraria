@@ -1,4 +1,4 @@
-using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+using Niu.Nutri.Core.Application.DTO.Http.Models.Responses;
 using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
 
 namespace CrossCuting.Infra.Utils.Tests

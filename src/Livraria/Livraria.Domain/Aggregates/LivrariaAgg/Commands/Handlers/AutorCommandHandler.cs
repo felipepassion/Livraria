@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+using Niu.Nutri.Core.Application.DTO.Http.Models.Responses;
 using Niu.Nutri.Core.Application.DTO.Extensions;
 using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
 

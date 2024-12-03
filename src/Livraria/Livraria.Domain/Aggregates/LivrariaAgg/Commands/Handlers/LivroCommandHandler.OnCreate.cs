@@ -2,7 +2,7 @@
 {
     using Entities;
     using Microsoft.Extensions.DependencyInjection;
-    using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+    using Niu.Nutri.Core.Application.DTO.Http.Models.Responses;
     using Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Repositories;
     using System.Threading.Tasks;
 

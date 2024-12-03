@@ -5,7 +5,7 @@ namespace Niu.Nutri.Livraria.Api.Controllers;
 using Core.Application.Aggregates.Common;
 using Core.Application.Extensions;
 using CrossCuting.Infra.Utils.Extensions;
-using Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
+using Core.Application.DTO.Http.Models.Responses;
 using Domain.Aggregates.LivrariaAgg.Queries.Models;
 using Application.Aggregates.LivrariaAgg.AppServices;
 using Domain.Aggregates.LivrariaAgg.Entities;
