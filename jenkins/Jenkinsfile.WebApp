@@ -8,6 +8,7 @@ pipeline {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
+                        set -e
                         sudo rm -rf ~/Livraria || true
                         git clone git@github.com:felipepassion/Livraria.git
                         if [ $? -ne 0 ]; then
@@ -32,6 +33,7 @@ pipeline {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
+                        set -e
                         cd ~/Livraria/src/Livraria/Livraria.Api
                         git pull origin master --force
                         sudo /usr/bin/dotnet publish --os linux --arch x64 -p:PublishTrimmed=false -o /livraria/volumes/WebApp
@@ -49,6 +51,7 @@ pipeline {
                     sshagent(['05a8ee26-8f12-46ce-9167-6936db51de60']) {
                         sh '''
                         ssh -o StrictHostKeyChecking=no niu-user@vmi2229239 <<'EOF'
+                        set -e
                         sudo docker stop livraria-webapp || true
                         sudo docker start livraria-webapp 
                         exit
