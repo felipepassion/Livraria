@@ -15,10 +15,24 @@ namespace Niu.Nutri.Livraria.Api
 
             builder.Services.InjectDependencies(builder.Configuration);
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("_myAllowSpecificOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyHeader()
+                               .AllowAnyMethod()
+                               .SetIsOriginAllowed((x) => true)
+                               .AllowCredentials();
+                    });
+            });
+
             var app = builder.Build();
 
             app.UseSwagger();
             app.UseSwaggerUI();
+            app.UseCors("_myAllowSpecificOrigins");
 
             app.UseForwardedHeaders();
             app.UseHttpsRedirection();

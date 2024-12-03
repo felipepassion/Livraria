@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Core.Application.DTO.Http.Models\Core.Application.DTO.Http.Models.csproj" />
     <ProjectReference Include="..\..\Core\Core.Application.DTO\Core.Application.DTO.csproj" />
     <ProjectReference Include="..\CrossCutting.Utils\CrossCuting.Infra.Utils.csproj" />
   </ItemGroup>

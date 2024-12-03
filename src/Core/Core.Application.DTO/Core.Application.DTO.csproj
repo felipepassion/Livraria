@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\CrossCutting\CrossCutting.Utils\CrossCuting.Infra.Utils.csproj" />
-    <ProjectReference Include="..\Core.Application.DTO.Http.Models\Core.Application.DTO.Http.Models.csproj" />
   </ItemGroup>
 
 </Project>

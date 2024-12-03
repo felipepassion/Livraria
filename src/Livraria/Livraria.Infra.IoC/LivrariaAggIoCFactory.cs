@@ -64,7 +64,7 @@ namespace Niu.Nutri.Livraria.Infra.IoC {
 				settings.PreserveReferencesHandling = PreserveReferencesHandling.None;
 				settings.DefaultValueHandling = DefaultValueHandling.Ignore;
 				settings.Formatting = Formatting.Indented;
-				settings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
+				settings.PreserveReferencesHandling = PreserveReferencesHandling.All;
 				options.AllowInputFormatterExceptionMessages = false;
 				//settings.Converters.Add(new TiimeOnlyJsonConverter());
 			}).AddBadRequestCustomValidator();;
