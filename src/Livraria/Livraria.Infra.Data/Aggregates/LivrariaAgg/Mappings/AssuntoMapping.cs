@@ -1,14 +1,12 @@
-﻿using Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities;
+﻿namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings;
+
+using Domain.Aggregates.LivrariaAgg.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings
+public partial class AssuntoMapping : IEntityTypeConfiguration<Assunto>
 {
-    public partial class AssuntoMapping : IEntityTypeConfiguration<Assunto>
+    public void Configure(EntityTypeBuilder<Assunto> builder)
     {
-        partial void ConfigureAdditionalMapping(EntityTypeBuilder<Assunto> builder)
-        {
-            builder.Property(x => x.Id).Metadata.SetColumnName("CodAs");
-        }
     }
 }

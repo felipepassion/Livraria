@@ -7,7 +7,6 @@ var otherNamespace = entity.Namespace.FullName; #>
 namespace <#= myNamespace #>.Models;
 
 using Core.Api.Queries;
-using Enumerations;
 
 public partial class <#= entity.Name #>QueryModel : BaseQueryModel {
 <# foreach(var property in GetProperties(entity))

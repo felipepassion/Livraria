@@ -42,6 +42,6 @@ namespace <#= GetDefaultNamespace() #>.<#= project.Name #>.Context
 	}
 }
 <# SaveOutputToSubFolder(
-    folderName: $"T4", 
-    outputFileName: @$"{AggName}.IdentityContext.cs", 
+    folderName: $"Context", 
+    outputFileName: @$"{AggName}Context.cs", 
     recreateFileIfExists: true); #>

@@ -2,8 +2,6 @@
 using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
 using Niu.Nutri.Core.Application.DTO.Extensions;
 using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
-using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities;
-using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Commands.Handles;
 
 namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
     using Filters;
@@ -16,12 +14,8 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
 
     public partial class AssuntoCommandHandler : BaseLivrariaAggCommandHandler<Assunto>,
         IRequestHandler<CreateAssuntoCommand,DomainResponse>,
-        IRequestHandler<DeleteRangeAssuntoCommand,DomainResponse>,
         IRequestHandler<DeleteAssuntoCommand,DomainResponse>,
-        IRequestHandler<UpdateRangeAssuntoCommand,DomainResponse>,
-        IRequestHandler<UpdateAssuntoCommand,DomainResponse>,
-        IRequestHandler<ActiveAssuntoCommand,DomainResponse>,
-        IRequestHandler<DeactiveAssuntoCommand,DomainResponse>
+        IRequestHandler<UpdateAssuntoCommand,DomainResponse>
     {
         IAssuntoRepository _assuntoRepository;
 
@@ -50,10 +44,10 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
             entity = command.Request.ProjectedAs<Entities.Assunto>();
             entity.AddDomainEvent(new AssuntoCreatedEvent(command.Context,entity));
 
-            _assuntoRepository.UnitOfWork.ResolveAttaches(entity);
             var creationResult = await OnCreateAsync(entity);
             if (!creationResult.Success) return creationResult;
-			_assuntoRepository.Add(entity);
+			
+            _assuntoRepository.Add(entity);
 
             var result = await Commit(_assuntoRepository.UnitOfWork);
             result.Data = entity.ProjectedAs<AssuntoDTO>();
@@ -80,61 +74,25 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
             return await Commit(_assuntoRepository.UnitOfWork);
         }
 
-        public async Task<DomainResponse> Handle(DeleteRangeAssuntoCommand command,CancellationToken cancellationToken) {
-            var filter = AssuntoFilters.GetFilters(command.Query);
-			var entities = await _assuntoRepository.FindAllAsync(filter);
-
-			_assuntoRepository.DeleteRange(entities);
-
-            PublishLog(command);
-            
-            return await Commit(_assuntoRepository.UnitOfWork);
-        }
-
         public async Task<DomainResponse> Handle(UpdateAssuntoCommand command,CancellationToken cancellationToken) {
-            return await Handle(new UpdateRangeAssuntoCommand(command.Context,command.Query,command.Request),cancellationToken);
-        }
-
-        public async Task<DomainResponse> Handle(UpdateRangeAssuntoCommand command,CancellationToken cancellationToken) {
             var entities = new List<Assunto>();
-            foreach (var item in command.Query)
-            {
-                var entity = command.Entity as Assunto ?? await _assuntoRepository.FindAsync(AssuntoFilters.GetFilters(item.Key));
+            var entity = command.Entity as Assunto ?? await _assuntoRepository.FindAsync(AssuntoFilters.GetFilters(command.Query));
                 
-                if(entity == null) {
-                    if(command.CreateIfNotExists)
-                        return await Handle(new CreateAssuntoCommand(command.Context,item.Value),cancellationToken);
-                    return AddError($"Entity {nameof(Assunto)} not found with the request.");
-                }
-                var entityAfter = item.Value.ProjectedAs<Assunto>();
-                _assuntoRepository.UnitOfWork.ResolveAttachesOnUpdate(entity, entityAfter);
-                entity.Update(entityAfter,"Id");
-                var updateResult = await OnUpdateAsync(entity, entityAfter);
-                if (!updateResult.Success) return updateResult;
-                entity.AddDomainEvent(new AssuntoUpdatedEvent(command.Context, entity));
+            if(entity == null) {
+                if(command.CreateIfNotExists)
+                    return await Handle(new CreateAssuntoCommand(command.Context,command.Request),cancellationToken);
+                return AddError($"Entity {nameof(Assunto)} not found with the request.");
             }
+
+            var entityAfter = command.Request.ProjectedAs<Assunto>();
             
-            PublishLog(command);
+            entity.Update(entityAfter,"Id");
+            var updateResult = await OnUpdateAsync(entity, entityAfter);
+            
+            if (!updateResult.Success) return updateResult;
+            entity.AddDomainEvent(new AssuntoUpdatedEvent(command.Context, entity));
 
             return await Commit(_assuntoRepository.UnitOfWork, command.Entity.ProjectedAs<AssuntoDTO>());
-        }
-         
-        public async Task<DomainResponse> Handle(ActiveAssuntoCommand command,CancellationToken cancellationToken) {
-            var assunto = await _assuntoRepository.FindAsync(filter: AssuntoFilters.GetFilters(command.Query));
-            //assunto.Disable();
-
-            PublishLog(command);
-            
-            return await Commit(_assuntoRepository.UnitOfWork);
-        }
-
-        public async Task<DomainResponse> Handle(DeactiveAssuntoCommand command,CancellationToken cancellationToken) {
-            var assunto = await _assuntoRepository.FindAsync(filter: AssuntoFilters.GetFilters(command.Query));
-            //assunto.Enable();
-
-            PublishLog(command);
-            
-            return await Commit(_assuntoRepository.UnitOfWork);
         }
     }
     

@@ -126,6 +126,6 @@ namespace <#= GetDefaultNamespace() #>.<#= GetCurrentProject().Name #> {
     }
 }
 <# SaveOutputToSubFolder(
-    folderName: $"T4", 
-    outputFileName: @$"{AggName}.IoCFactory.cs",
+    folderName: $"", 
+    outputFileName: @$"{AggName}IoCFactory.cs",
     recreateFileIfExists: true); #>

@@ -8,8 +8,6 @@ using MediatR;
 using Niu.Nutri.Core.Application.DTO.Http.Models.CommonAgg.Commands.Responses;
 using Niu.Nutri.Core.Application.DTO.Extensions;
 using Niu.Nutri.CrossCuting.Infra.Utils.Extensions;
-using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities;
-using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Commands.Handles;
 
 namespace <#= namespaces.Key.Replace(".Entities",".Commands.Handlers") #>;
     using Filters;
@@ -22,12 +20,8 @@ namespace <#= namespaces.Key.Replace(".Entities",".Commands.Handlers") #>;
 
     public partial class <#= entity.Name #>CommandHandler : Base<#= AggName #>CommandHandler<<#=entity.Name#>>,
         IRequestHandler<Create<#= entity.Name #>Command,DomainResponse>,
-        IRequestHandler<DeleteRange<#= entity.Name #>Command,DomainResponse>,
         IRequestHandler<Delete<#= entity.Name #>Command,DomainResponse>,
-        IRequestHandler<UpdateRange<#= entity.Name #>Command,DomainResponse>,
-        IRequestHandler<Update<#= entity.Name #>Command,DomainResponse>,
-        IRequestHandler<Active<#= entity.Name #>Command,DomainResponse>,
-        IRequestHandler<Deactive<#= entity.Name #>Command,DomainResponse>
+        IRequestHandler<Update<#= entity.Name #>Command,DomainResponse>
     {
         <#= repoTypeName #> <#= repoVarName #>;
 
@@ -56,10 +50,10 @@ namespace <#= namespaces.Key.Replace(".Entities",".Commands.Handlers") #>;
             entity = command.Request.ProjectedAs<Entities.<#= entity.Name #>>();
             entity.AddDomainEvent(new <#= entity.Name #>CreatedEvent(command.Context,entity));
 
-            <#= repoVarName #>.UnitOfWork.ResolveAttaches(entity);
             var creationResult = await OnCreateAsync(entity);
             if (!creationResult.Success) return creationResult;
-			<#= repoVarName #>.Add(entity);
+			
+            <#= repoVarName #>.Add(entity);
 
             var result = await Commit(<#= repoVarName #>.UnitOfWork);
             result.Data = entity.ProjectedAs<<#= entity.Name #>DTO>();
@@ -86,61 +80,25 @@ namespace <#= namespaces.Key.Replace(".Entities",".Commands.Handlers") #>;
             return await Commit(<#= repoVarName #>.UnitOfWork);
         }
 
-        public async Task<DomainResponse> Handle(DeleteRange<#= entity.Name #>Command command,CancellationToken cancellationToken) {
-            var filter = <#= entity.Name #>Filters.GetFilters(command.Query);
-			var entities = await <#= repoVarName #>.FindAllAsync(filter);
-
-			<#= repoVarName #>.DeleteRange(entities);
-
-            PublishLog(command);
-            
-            return await Commit(<#= repoVarName #>.UnitOfWork);
-        }
-
         public async Task<DomainResponse> Handle(Update<#= entity.Name #>Command command,CancellationToken cancellationToken) {
-            return await Handle(new UpdateRange<#= entity.Name #>Command(command.Context,command.Query,command.Request),cancellationToken);
-        }
-
-        public async Task<DomainResponse> Handle(UpdateRange<#= entity.Name #>Command command,CancellationToken cancellationToken) {
             var entities = new List<<#= entity.Name #>>();
-            foreach (var item in command.Query)
-            {
-                var entity = command.Entity as <#= entity.Name #> ?? await <#= repoVarName #>.FindAsync(<#= entity.Name #>Filters.GetFilters(item.Key));
+            var entity = command.Entity as <#= entity.Name #> ?? await <#= repoVarName #>.FindAsync(<#= entity.Name #>Filters.GetFilters(command.Query));
                 
-                if(entity == null) {
-                    if(command.CreateIfNotExists)
-                        return await Handle(new Create<#= entity.Name #>Command(command.Context,item.Value),cancellationToken);
-                    return AddError($"Entity {nameof(<#= entity.Name #>)} not found with the request.");
-                }
-                var entityAfter = item.Value.ProjectedAs<<#= entity.Name #>>();
-                <#= repoVarName #>.UnitOfWork.ResolveAttachesOnUpdate(entity, entityAfter);
-                entity.Update(entityAfter,"Id");
-                var updateResult = await OnUpdateAsync(entity, entityAfter);
-                if (!updateResult.Success) return updateResult;
-                entity.AddDomainEvent(new <#= entity.Name #>UpdatedEvent(command.Context, entity));
+            if(entity == null) {
+                if(command.CreateIfNotExists)
+                    return await Handle(new Create<#= entity.Name #>Command(command.Context,command.Request),cancellationToken);
+                return AddError($"Entity {nameof(<#= entity.Name #>)} not found with the request.");
             }
+
+            var entityAfter = command.Request.ProjectedAs<<#= entity.Name #>>();
             
-            PublishLog(command);
+            entity.Update(entityAfter,"Id");
+            var updateResult = await OnUpdateAsync(entity, entityAfter);
+            
+            if (!updateResult.Success) return updateResult;
+            entity.AddDomainEvent(new <#= entity.Name #>UpdatedEvent(command.Context, entity));
 
             return await Commit(<#= repoVarName #>.UnitOfWork, command.Entity.ProjectedAs<<#= entity.Name #>DTO>());
-        }
-         
-        public async Task<DomainResponse> Handle(Active<#= entity.Name #>Command command,CancellationToken cancellationToken) {
-            var <#= entity.Name.ToLower() #> = await <#= repoVarName #>.FindAsync(filter: <#= entity.Name #>Filters.GetFilters(command.Query));
-            //<#= entity.Name.ToLower() #>.Disable();
-
-            PublishLog(command);
-            
-            return await Commit(<#= repoVarName #>.UnitOfWork);
-        }
-
-        public async Task<DomainResponse> Handle(Deactive<#= entity.Name #>Command command,CancellationToken cancellationToken) {
-            var <#= entity.Name.ToLower() #> = await <#= repoVarName #>.FindAsync(filter: <#= entity.Name #>Filters.GetFilters(command.Query));
-            //<#= entity.Name.ToLower() #>.Enable();
-
-            PublishLog(command);
-            
-            return await Commit(<#= repoVarName #>.UnitOfWork);
         }
     }
     <#SaveOutputToSubFolder(
@@ -160,7 +118,7 @@ namespace <#= GetDefaultNamespace() #>.<#= project.Name #>.Aggregates.<#= AggNam
 }
 <#}#>
 
-        <#SaveOutputToSubFolder(
-    folderName: $@"Aggregates\{AggName}\Commands\Handlers", 
-    outputFileName: @$"{AggName}CommandHandler.generated.cs", 
-    recreateFileIfExists: true); #>
+<#SaveOutputToSubFolder(
+folderName: $@"Aggregates\{AggName}\Commands\Handlers", 
+outputFileName: @$"{AggName}CommandHandler.generated.cs", 
+recreateFileIfExists: true); #>

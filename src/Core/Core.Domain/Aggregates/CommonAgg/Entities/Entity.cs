@@ -1,11 +1,8 @@
-﻿using Niu.Nutri.Core.Application.DTO.Attributes;
-using Niu.Nutri.Core.Application.DTO.Extensions;
-using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Events;
+﻿using Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Events;
 using Niu.Nutri.Core.Domain.Attributes.T4;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection;
 
 namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
 {
@@ -62,7 +59,7 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
         [IgnorePropertyT4OnRequest]
         public bool Deletado { get; set; }

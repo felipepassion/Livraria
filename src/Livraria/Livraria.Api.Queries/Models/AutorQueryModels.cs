@@ -1,9 +1,12 @@
 ﻿namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Queries.Models;
 
 using Core.Api.Queries;
-using Enumerations;
 
 public partial class AutorQueryModel : BaseQueryModel {
+		public int? IdEqual { get; set; }
+		public int? IdNotEqual { get; set; }
+		public int[]? IdContains { get; set; }
+		public int[]? IdNotContains { get; set; }
 		public string? NomeEqual { get; set; }
 		public string? NomeNotEqual { get; set; }
 		public string? NomeContains { get; set; }
@@ -44,9 +47,5 @@ public partial class AutorQueryModel : BaseQueryModel {
 		public System.DateTime? DeletadoEmGreaterThan { get; set; }
 		public System.DateTime? DeletadoEmLessThanOrEqual { get; set; }
 		public System.DateTime? DeletadoEmGreaterThanOrEqual { get; set; }
-		public int? IdEqual { get; set; }
-		public int? IdNotEqual { get; set; }
-		public int[]? IdContains { get; set; }
-		public int[]? IdNotContains { get; set; }
 		public bool? DeletadoEqual { get; set; }
 	}

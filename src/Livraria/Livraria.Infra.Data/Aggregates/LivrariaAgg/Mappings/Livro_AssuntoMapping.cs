@@ -1,13 +1,12 @@
-﻿using Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities;
+﻿namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings;
+
+using Domain.Aggregates.LivrariaAgg.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Niu.Nutri.Livraria.Infra.Data.Aggregates.LivrariaAgg.Mappings
+public partial class Livro_AssuntoMapping : IEntityTypeConfiguration<Livro_Assunto>
 {
-    public partial class Livro_AssuntoMapping : IEntityTypeConfiguration<Livro_Assunto>
+    public void Configure(EntityTypeBuilder<Livro_Assunto> builder)
     {
-        partial void ConfigureAdditionalMapping(EntityTypeBuilder<Livro_Assunto> builder)
-        {
-        }
     }
 }

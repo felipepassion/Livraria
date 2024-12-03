@@ -18,6 +18,34 @@ using Queries.Models;
 			Specification<Assunto> filter = new DirectSpecification<Assunto>(p => request.IsEmpty() || !isOrSpecification);
 			if(request is not null)
 			{
+				if (request.IdEqual.HasValue)
+				{
+					if (isOrSpecification)
+						filter |= AssuntoSpecifications.IdEqual(request.IdEqual.Value);
+					else
+						filter &= AssuntoSpecifications.IdEqual(request.IdEqual.Value);
+				}
+				if (request.IdNotEqual.HasValue)
+				{
+					if (isOrSpecification)
+						filter |= AssuntoSpecifications.IdNotEqual(request.IdNotEqual.Value);
+					else
+						filter &= AssuntoSpecifications.IdNotEqual(request.IdNotEqual.Value);
+				}
+				if (request.IdContains != null)
+				{
+					if (isOrSpecification)
+						filter |= AssuntoSpecifications.IdContains(request.IdContains);
+					else
+						filter &= AssuntoSpecifications.IdContains(request.IdContains);
+				}
+				if (request.IdNotContains != null)
+				{
+					if (isOrSpecification)
+						filter |= AssuntoSpecifications.IdNotContains(request.IdNotContains);
+					else
+						filter &= AssuntoSpecifications.IdNotContains(request.IdNotContains);
+				}
 				if (!string.IsNullOrWhiteSpace(request.DescricaoEqual)) 
 				{
 					if (isOrSpecification)
@@ -318,34 +346,6 @@ using Queries.Models;
 						filter |= AssuntoSpecifications.DeletadoEmGreaterThanOrEqual(request.DeletadoEmGreaterThanOrEqual.Value);
 					else
 						filter &= AssuntoSpecifications.DeletadoEmGreaterThanOrEqual(request.DeletadoEmGreaterThanOrEqual.Value);
-				}
-				if (request.IdEqual.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= AssuntoSpecifications.IdEqual(request.IdEqual.Value);
-					else
-						filter &= AssuntoSpecifications.IdEqual(request.IdEqual.Value);
-				}
-				if (request.IdNotEqual.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= AssuntoSpecifications.IdNotEqual(request.IdNotEqual.Value);
-					else
-						filter &= AssuntoSpecifications.IdNotEqual(request.IdNotEqual.Value);
-				}
-				if (request.IdContains != null)
-				{
-					if (isOrSpecification)
-						filter |= AssuntoSpecifications.IdContains(request.IdContains);
-					else
-						filter &= AssuntoSpecifications.IdContains(request.IdContains);
-				}
-				if (request.IdNotContains != null)
-				{
-					if (isOrSpecification)
-						filter |= AssuntoSpecifications.IdNotContains(request.IdNotContains);
-					else
-						filter &= AssuntoSpecifications.IdNotContains(request.IdNotContains);
 				}
 				if (request.DeletadoEqual.HasValue) 
 				{

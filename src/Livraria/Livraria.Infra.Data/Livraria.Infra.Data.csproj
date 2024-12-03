@@ -31,5 +31,9 @@
     <LastGenOutput>DefaultCommands.generated.cs</LastGenOutput>
   </None>
 </ItemGroup>
+
+<ItemGroup>
+  <Folder Include="Aggregates\LivrariaAgg\" />
+</ItemGroup>
 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'"><NoWarn>1701;1702;8618;1998;8602;8625;8629</NoWarn></PropertyGroup><PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'"><NoWarn>1701;1702;8618;1998;8602;8625;8629</NoWarn></PropertyGroup>
 </Project>

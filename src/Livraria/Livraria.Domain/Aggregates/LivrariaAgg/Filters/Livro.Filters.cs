@@ -19,6 +19,34 @@ using Queries.Models;
 			Specification<Livro> filter = new DirectSpecification<Livro>(p => request.IsEmpty() || !isOrSpecification);
 			if(request is not null)
 			{
+				if (request.IdEqual.HasValue)
+				{
+					if (isOrSpecification)
+						filter |= LivroSpecifications.IdEqual(request.IdEqual.Value);
+					else
+						filter &= LivroSpecifications.IdEqual(request.IdEqual.Value);
+				}
+				if (request.IdNotEqual.HasValue)
+				{
+					if (isOrSpecification)
+						filter |= LivroSpecifications.IdNotEqual(request.IdNotEqual.Value);
+					else
+						filter &= LivroSpecifications.IdNotEqual(request.IdNotEqual.Value);
+				}
+				if (request.IdContains != null)
+				{
+					if (isOrSpecification)
+						filter |= LivroSpecifications.IdContains(request.IdContains);
+					else
+						filter &= LivroSpecifications.IdContains(request.IdContains);
+				}
+				if (request.IdNotContains != null)
+				{
+					if (isOrSpecification)
+						filter |= LivroSpecifications.IdNotContains(request.IdNotContains);
+					else
+						filter &= LivroSpecifications.IdNotContains(request.IdNotContains);
+				}
 				if (!string.IsNullOrWhiteSpace(request.TituloEqual)) 
 				{
 					if (isOrSpecification)
@@ -508,34 +536,6 @@ using Queries.Models;
 						filter |= LivroSpecifications.DeletadoEmGreaterThanOrEqual(request.DeletadoEmGreaterThanOrEqual.Value);
 					else
 						filter &= LivroSpecifications.DeletadoEmGreaterThanOrEqual(request.DeletadoEmGreaterThanOrEqual.Value);
-				}
-				if (request.IdEqual.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivroSpecifications.IdEqual(request.IdEqual.Value);
-					else
-						filter &= LivroSpecifications.IdEqual(request.IdEqual.Value);
-				}
-				if (request.IdNotEqual.HasValue)
-				{
-					if (isOrSpecification)
-						filter |= LivroSpecifications.IdNotEqual(request.IdNotEqual.Value);
-					else
-						filter &= LivroSpecifications.IdNotEqual(request.IdNotEqual.Value);
-				}
-				if (request.IdContains != null)
-				{
-					if (isOrSpecification)
-						filter |= LivroSpecifications.IdContains(request.IdContains);
-					else
-						filter &= LivroSpecifications.IdContains(request.IdContains);
-				}
-				if (request.IdNotContains != null)
-				{
-					if (isOrSpecification)
-						filter |= LivroSpecifications.IdNotContains(request.IdNotContains);
-					else
-						filter &= LivroSpecifications.IdNotContains(request.IdNotContains);
 				}
 				if (request.DeletadoEqual.HasValue) 
 				{
