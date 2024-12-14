@@ -13,7 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\CrossCutting\CrossCutting.Application.Mail\ClassLibrary1\CrossCutting.Application.Mail.csproj" />
+	  <ProjectReference Include="..\..\CrossCutting\CrossCutting.Application.Mail\CrossCutting.Application.Mail.csproj" />
 	  <ProjectReference Include="..\Core.Domain\Core.Domain.csproj" />
 	</ItemGroup>
 
