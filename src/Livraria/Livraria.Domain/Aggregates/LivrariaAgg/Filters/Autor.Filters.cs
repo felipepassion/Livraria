@@ -9,13 +9,13 @@ using Queries.Models;
 
 	public static class AutorFilters 
 	{
-	    public static Expression<Func<Autor, bool>> GetFilters(this AutorQueryModel request, bool isOrSpecification = false)
+	    public static Expression<Func<Author, bool>> GetFilters(this AutorQueryModel request, bool isOrSpecification = false)
 
 		{ return request.GetFiltersSpecification(isOrSpecification).SatisfiedBy(); }
-		public static Specification<Autor> GetFiltersSpecification(this AutorQueryModel request, bool isOrSpecification = false) 
+		public static Specification<Author> GetFiltersSpecification(this AutorQueryModel request, bool isOrSpecification = false) 
 		{
 			isOrSpecification = request.IsOrSpecification;
-			Specification<Autor> filter = new DirectSpecification<Autor>(p => request.IsEmpty() || !isOrSpecification);
+			Specification<Author> filter = new DirectSpecification<Author>(p => request.IsEmpty() || !isOrSpecification);
 			if(request is not null)
 			{
 				if (request.IdEqual.HasValue)

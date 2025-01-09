@@ -4,9 +4,9 @@ using Domain.Aggregates.LivrariaAgg.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-public partial class AutorMapping : IEntityTypeConfiguration<Autor>
+public partial class AutorMapping : IEntityTypeConfiguration<Author>
 {
-    public void Configure(EntityTypeBuilder<Autor> builder)
+    public void Configure(EntityTypeBuilder<Author> builder)
     {
     }
 }

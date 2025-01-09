@@ -4,14 +4,14 @@ using Domain.Aggregates.LivrariaAgg.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-public partial class LivroMapping : IEntityTypeConfiguration<Livro>
+public partial class LivroMapping : IEntityTypeConfiguration<Book>
 {
-    public void Configure(EntityTypeBuilder<Livro> builder)
+    public void Configure(EntityTypeBuilder<Book> builder)
     {
-        builder.HasMany(x => x.Autores).WithMany(x => x.Livros)
-            .UsingEntity<Livro_Autor>();
+        builder.HasMany(x => x.Authors).WithMany(x => x.Livros)
+            .UsingEntity<AutorLivro>();
 
-        builder.HasMany(x => x.Assuntos).WithMany(x => x.Livros)
-            .UsingEntity<Livro_Assunto>();
+        builder.HasMany(x => x.Subjects).WithMany(x => x.Livros)
+            .UsingEntity<AssuntoLivro>();
     }
 }

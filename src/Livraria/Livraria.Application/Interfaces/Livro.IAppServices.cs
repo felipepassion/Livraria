@@ -11,8 +11,8 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices;
 		public Task<LivroDTO> Get(LivroQueryModel request);
 		public Task<int> CountAsync(LivroQueryModel request);
 		public Task<IEnumerable<LivroDTO>> GetAll(LivroQueryModel request, int? page = null, int? size = null);
-		public Task<T> Select<T>(LivroQueryModel request, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Livro, T>> selector = null);
-		public Task<IEnumerable<T>> GetAll<T>(LivroQueryModel request, int? page = null, int? size = null, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Livro, T>> selector = null);
+		public Task<T> Select<T>(LivroQueryModel request, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Book, T>> selector = null);
+		public Task<IEnumerable<T>> GetAll<T>(LivroQueryModel request, int? page = null, int? size = null, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Book, T>> selector = null);
 
 		public Task<DomainResponse> Create(LivroDTO request, bool updateIfExists = true, LivroQueryModel searchQuery = null);
 		public Task<DomainResponse> Delete(LivroQueryModel request);

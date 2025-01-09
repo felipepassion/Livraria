@@ -3,229 +3,229 @@ using Entities;
 using Microsoft.EntityFrameworkCore;
 using Core.Domain.Seedwork.Specification;
 public partial class LivroSpecifications {
-				public static Specification<Livro> IdContains(params int[] values) {
-            return new DirectSpecification<Livro>(p => values.Contains(p.Id));
+				public static Specification<Book> IdContains(params int[] values) {
+            return new DirectSpecification<Book>(p => values.Contains(p.Id));
         }
-		public static Specification<Livro> IdNotContains(params int[] values) {
-            return new DirectSpecification<Livro>(p => !values.Contains(p.Id));
+		public static Specification<Book> IdNotContains(params int[] values) {
+            return new DirectSpecification<Book>(p => !values.Contains(p.Id));
         }
-		public static Specification<Livro> IdEqual(params int[] values) {
-			return new DirectSpecification<Livro>(p => values.Contains(p.Id));
+		public static Specification<Book> IdEqual(params int[] values) {
+			return new DirectSpecification<Book>(p => values.Contains(p.Id));
         }
-        public static Specification<Livro> IdGreaterThanOrEqual(int value) {
-            return new DirectSpecification<Livro>(p => p.Id >= value);
+        public static Specification<Book> IdGreaterThanOrEqual(int value) {
+            return new DirectSpecification<Book>(p => p.Id >= value);
         }
-        public static Specification<Livro> IdLessThanOrEqual(int value) {
-            return new DirectSpecification<Livro>(p => p.Id <= value);
+        public static Specification<Book> IdLessThanOrEqual(int value) {
+            return new DirectSpecification<Book>(p => p.Id <= value);
         }
-        public static Specification<Livro> IdNotEqual(int value) {
-            return new DirectSpecification<Livro>(p => p.Id != value);
+        public static Specification<Book> IdNotEqual(int value) {
+            return new DirectSpecification<Book>(p => p.Id != value);
         }
-        public static Specification<Livro> IdGreaterThan(int value) {
-            return new DirectSpecification<Livro>(p => p.Id > value);
+        public static Specification<Book> IdGreaterThan(int value) {
+            return new DirectSpecification<Book>(p => p.Id > value);
         }
-        public static Specification<Livro> IdLessThan(int value) {
-            return new DirectSpecification<Livro>(p => p.Id < value);
+        public static Specification<Book> IdLessThan(int value) {
+            return new DirectSpecification<Book>(p => p.Id < value);
         }
 		
-					public static Specification<Livro> TituloContains(string value) {
-			return new DirectSpecification<Livro>(p => EF.Functions.Like(p.Titulo.ToLower(), $"%{value.ToLower()}%"));
+					public static Specification<Book> TituloContains(string value) {
+			return new DirectSpecification<Book>(p => EF.Functions.Like(p.Title.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Livro> TituloNotContains(string value) {
-			return new DirectSpecification<Livro>(p => !EF.Functions.Like(p.Titulo.ToLower(), $"%{value.ToLower()}%"));
+		public static Specification<Book> TituloNotContains(string value) {
+			return new DirectSpecification<Book>(p => !EF.Functions.Like(p.Title.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Livro> TituloStartsWith(string value) {
-			return new DirectSpecification<Livro>(p => EF.Functions.Like(p.Titulo.ToLower(), $"{value.ToLower()}%"));
+		public static Specification<Book> TituloStartsWith(string value) {
+			return new DirectSpecification<Book>(p => EF.Functions.Like(p.Title.ToLower(), $"{value.ToLower()}%"));
 		}
 	
-		public static Specification<Livro> TituloEqual(string value) {
-			return new DirectSpecification<Livro>(p => value.ToLower() == (p.Titulo.ToLower()));
+		public static Specification<Book> TituloEqual(string value) {
+			return new DirectSpecification<Book>(p => value.ToLower() == (p.Title.ToLower()));
 		}
-		public static Specification<Livro> TituloNotEqual(string value) {
-			return new DirectSpecification<Livro>(p => p.Titulo != value);
+		public static Specification<Book> TituloNotEqual(string value) {
+			return new DirectSpecification<Book>(p => p.Title != value);
 		}
-		public static Specification<Livro> TituloIsNull() {
-            return new DirectSpecification<Livro>(p => p.Titulo == null);
+		public static Specification<Book> TituloIsNull() {
+            return new DirectSpecification<Book>(p => p.Title == null);
         }
-		public static Specification<Livro> TituloIsNotNull() {
-            return new DirectSpecification<Livro>(p => p.Titulo != null);
+		public static Specification<Book> TituloIsNotNull() {
+            return new DirectSpecification<Book>(p => p.Title != null);
         }
 		
-					public static Specification<Livro> EditoraContains(string value) {
-			return new DirectSpecification<Livro>(p => EF.Functions.Like(p.Editora.ToLower(), $"%{value.ToLower()}%"));
+					public static Specification<Book> EditoraContains(string value) {
+			return new DirectSpecification<Book>(p => EF.Functions.Like(p.Publisher.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Livro> EditoraNotContains(string value) {
-			return new DirectSpecification<Livro>(p => !EF.Functions.Like(p.Editora.ToLower(), $"%{value.ToLower()}%"));
+		public static Specification<Book> EditoraNotContains(string value) {
+			return new DirectSpecification<Book>(p => !EF.Functions.Like(p.Publisher.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Livro> EditoraStartsWith(string value) {
-			return new DirectSpecification<Livro>(p => EF.Functions.Like(p.Editora.ToLower(), $"{value.ToLower()}%"));
+		public static Specification<Book> EditoraStartsWith(string value) {
+			return new DirectSpecification<Book>(p => EF.Functions.Like(p.Publisher.ToLower(), $"{value.ToLower()}%"));
 		}
 	
-		public static Specification<Livro> EditoraEqual(string value) {
-			return new DirectSpecification<Livro>(p => value.ToLower() == (p.Editora.ToLower()));
+		public static Specification<Book> EditoraEqual(string value) {
+			return new DirectSpecification<Book>(p => value.ToLower() == (p.Publisher.ToLower()));
 		}
-		public static Specification<Livro> EditoraNotEqual(string value) {
-			return new DirectSpecification<Livro>(p => p.Editora != value);
+		public static Specification<Book> EditoraNotEqual(string value) {
+			return new DirectSpecification<Book>(p => p.Publisher != value);
 		}
-		public static Specification<Livro> EditoraIsNull() {
-            return new DirectSpecification<Livro>(p => p.Editora == null);
+		public static Specification<Book> EditoraIsNull() {
+            return new DirectSpecification<Book>(p => p.Publisher == null);
         }
-		public static Specification<Livro> EditoraIsNotNull() {
-            return new DirectSpecification<Livro>(p => p.Editora != null);
+		public static Specification<Book> EditoraIsNotNull() {
+            return new DirectSpecification<Book>(p => p.Publisher != null);
         }
 		
-					public static Specification<Livro> EdicaoContains(params int[] values) {
-            return new DirectSpecification<Livro>(p => values.Contains(p.Edicao.Value));
+					public static Specification<Book> EdicaoContains(params int[] values) {
+            return new DirectSpecification<Book>(p => values.Contains(p.Edition.Value));
         }
-		public static Specification<Livro> EdicaoNotContains(params int[] values) {
-            return new DirectSpecification<Livro>(p => !values.Contains(p.Edicao.Value));
+		public static Specification<Book> EdicaoNotContains(params int[] values) {
+            return new DirectSpecification<Book>(p => !values.Contains(p.Edition.Value));
         }
-		public static Specification<Livro> EdicaoEqual(params int[] values) {
-			return new DirectSpecification<Livro>(p => values.Contains(p.Edicao.Value));
+		public static Specification<Book> EdicaoEqual(params int[] values) {
+			return new DirectSpecification<Book>(p => values.Contains(p.Edition.Value));
         }
-        public static Specification<Livro> EdicaoGreaterThanOrEqual(int value) {
-            return new DirectSpecification<Livro>(p => p.Edicao >= value);
+        public static Specification<Book> EdicaoGreaterThanOrEqual(int value) {
+            return new DirectSpecification<Book>(p => p.Edition >= value);
         }
-        public static Specification<Livro> EdicaoLessThanOrEqual(int value) {
-            return new DirectSpecification<Livro>(p => p.Edicao <= value);
+        public static Specification<Book> EdicaoLessThanOrEqual(int value) {
+            return new DirectSpecification<Book>(p => p.Edition <= value);
         }
-        public static Specification<Livro> EdicaoNotEqual(int value) {
-            return new DirectSpecification<Livro>(p => p.Edicao != value);
+        public static Specification<Book> EdicaoNotEqual(int value) {
+            return new DirectSpecification<Book>(p => p.Edition != value);
         }
-        public static Specification<Livro> EdicaoGreaterThan(int value) {
-            return new DirectSpecification<Livro>(p => p.Edicao > value);
+        public static Specification<Book> EdicaoGreaterThan(int value) {
+            return new DirectSpecification<Book>(p => p.Edition > value);
         }
-        public static Specification<Livro> EdicaoLessThan(int value) {
-            return new DirectSpecification<Livro>(p => p.Edicao < value);
+        public static Specification<Book> EdicaoLessThan(int value) {
+            return new DirectSpecification<Book>(p => p.Edition < value);
         }
 		
-					public static Specification<Livro> AnoPublicacaoContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro>(p => values.Contains(p.AnoPublicacao));
+					public static Specification<Book> AnoPublicacaoContains(params System.DateTime[] values) {
+            return new DirectSpecification<Book>(p => values.Contains(p.AnoPublicacao));
         }
-		public static Specification<Livro> AnoPublicacaoNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro>(p => !values.Contains(p.AnoPublicacao));
+		public static Specification<Book> AnoPublicacaoNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Book>(p => !values.Contains(p.AnoPublicacao));
         }
-		public static Specification<Livro> AnoPublicacaoEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Livro>(p => values.Contains(p.AnoPublicacao));
+		public static Specification<Book> AnoPublicacaoEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Book>(p => values.Contains(p.AnoPublicacao));
         }
-        public static Specification<Livro> AnoPublicacaoGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.AnoPublicacao >= value);
+        public static Specification<Book> AnoPublicacaoGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.AnoPublicacao >= value);
         }
-        public static Specification<Livro> AnoPublicacaoLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.AnoPublicacao <= value);
+        public static Specification<Book> AnoPublicacaoLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.AnoPublicacao <= value);
         }
-        public static Specification<Livro> AnoPublicacaoNotEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.AnoPublicacao != value);
+        public static Specification<Book> AnoPublicacaoNotEqual(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.AnoPublicacao != value);
         }
-        public static Specification<Livro> AnoPublicacaoGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.AnoPublicacao > value);
+        public static Specification<Book> AnoPublicacaoGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.AnoPublicacao > value);
         }
-        public static Specification<Livro> AnoPublicacaoLessThan(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.AnoPublicacao < value);
+        public static Specification<Book> AnoPublicacaoLessThan(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.AnoPublicacao < value);
         }
 		
 				
 				
-					public static Specification<Livro> IdExternoContains(string value) {
-			return new DirectSpecification<Livro>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
+					public static Specification<Book> IdExternoContains(string value) {
+			return new DirectSpecification<Book>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Livro> IdExternoNotContains(string value) {
-			return new DirectSpecification<Livro>(p => !EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
+		public static Specification<Book> IdExternoNotContains(string value) {
+			return new DirectSpecification<Book>(p => !EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Livro> IdExternoStartsWith(string value) {
-			return new DirectSpecification<Livro>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"{value.ToLower()}%"));
+		public static Specification<Book> IdExternoStartsWith(string value) {
+			return new DirectSpecification<Book>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"{value.ToLower()}%"));
 		}
 	
-		public static Specification<Livro> IdExternoEqual(string value) {
-			return new DirectSpecification<Livro>(p => value.ToLower() == (p.IdExterno.ToLower()));
+		public static Specification<Book> IdExternoEqual(string value) {
+			return new DirectSpecification<Book>(p => value.ToLower() == (p.IdExterno.ToLower()));
 		}
-		public static Specification<Livro> IdExternoNotEqual(string value) {
-			return new DirectSpecification<Livro>(p => p.IdExterno != value);
+		public static Specification<Book> IdExternoNotEqual(string value) {
+			return new DirectSpecification<Book>(p => p.IdExterno != value);
 		}
-		public static Specification<Livro> IdExternoIsNull() {
-            return new DirectSpecification<Livro>(p => p.IdExterno == null);
+		public static Specification<Book> IdExternoIsNull() {
+            return new DirectSpecification<Book>(p => p.IdExterno == null);
         }
-		public static Specification<Livro> IdExternoIsNotNull() {
-            return new DirectSpecification<Livro>(p => p.IdExterno != null);
-        }
-		
-					public static Specification<Livro> CriadoEmContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro>(p => values.Contains(p.CriadoEm.Value));
-        }
-		public static Specification<Livro> CriadoEmNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro>(p => !values.Contains(p.CriadoEm.Value));
-        }
-		public static Specification<Livro> CriadoEmEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Livro>(p => values.Contains(p.CriadoEm.Value));
-        }
-        public static Specification<Livro> CriadoEmGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.CriadoEm >= value);
-        }
-        public static Specification<Livro> CriadoEmLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.CriadoEm <= value);
-        }
-        public static Specification<Livro> CriadoEmNotEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.CriadoEm != value);
-        }
-        public static Specification<Livro> CriadoEmGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.CriadoEm > value);
-        }
-        public static Specification<Livro> CriadoEmLessThan(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.CriadoEm < value);
+		public static Specification<Book> IdExternoIsNotNull() {
+            return new DirectSpecification<Book>(p => p.IdExterno != null);
         }
 		
-					public static Specification<Livro> AtualizadoEmContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro>(p => values.Contains(p.AtualizadoEm.Value));
+					public static Specification<Book> CriadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Book>(p => values.Contains(p.CreatedAt.Value));
         }
-		public static Specification<Livro> AtualizadoEmNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro>(p => !values.Contains(p.AtualizadoEm.Value));
+		public static Specification<Book> CriadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Book>(p => !values.Contains(p.CreatedAt.Value));
         }
-		public static Specification<Livro> AtualizadoEmEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Livro>(p => values.Contains(p.AtualizadoEm.Value));
+		public static Specification<Book> CriadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Book>(p => values.Contains(p.CreatedAt.Value));
         }
-        public static Specification<Livro> AtualizadoEmGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.AtualizadoEm >= value);
+        public static Specification<Book> CriadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.CreatedAt >= value);
         }
-        public static Specification<Livro> AtualizadoEmLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.AtualizadoEm <= value);
+        public static Specification<Book> CriadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.CreatedAt <= value);
         }
-        public static Specification<Livro> AtualizadoEmNotEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.AtualizadoEm != value);
+        public static Specification<Book> CriadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.CreatedAt != value);
         }
-        public static Specification<Livro> AtualizadoEmGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.AtualizadoEm > value);
+        public static Specification<Book> CriadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.CreatedAt > value);
         }
-        public static Specification<Livro> AtualizadoEmLessThan(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.AtualizadoEm < value);
-        }
-		
-					public static Specification<Livro> DeletadoEmContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro>(p => values.Contains(p.DeletadoEm.Value));
-        }
-		public static Specification<Livro> DeletadoEmNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Livro>(p => !values.Contains(p.DeletadoEm.Value));
-        }
-		public static Specification<Livro> DeletadoEmEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Livro>(p => values.Contains(p.DeletadoEm.Value));
-        }
-        public static Specification<Livro> DeletadoEmGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.DeletadoEm >= value);
-        }
-        public static Specification<Livro> DeletadoEmLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.DeletadoEm <= value);
-        }
-        public static Specification<Livro> DeletadoEmNotEqual(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.DeletadoEm != value);
-        }
-        public static Specification<Livro> DeletadoEmGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.DeletadoEm > value);
-        }
-        public static Specification<Livro> DeletadoEmLessThan(System.DateTime value) {
-            return new DirectSpecification<Livro>(p => p.DeletadoEm < value);
+        public static Specification<Book> CriadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.CreatedAt < value);
         }
 		
-					public static Specification<Livro> DeletadoEqual(bool value) {
-			return new DirectSpecification<Livro>(p => p.Deletado == value);
+					public static Specification<Book> AtualizadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Book>(p => values.Contains(p.UpdatedAt.Value));
+        }
+		public static Specification<Book> AtualizadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Book>(p => !values.Contains(p.UpdatedAt.Value));
+        }
+		public static Specification<Book> AtualizadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Book>(p => values.Contains(p.UpdatedAt.Value));
+        }
+        public static Specification<Book> AtualizadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.UpdatedAt >= value);
+        }
+        public static Specification<Book> AtualizadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.UpdatedAt <= value);
+        }
+        public static Specification<Book> AtualizadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.UpdatedAt != value);
+        }
+        public static Specification<Book> AtualizadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.UpdatedAt > value);
+        }
+        public static Specification<Book> AtualizadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.UpdatedAt < value);
+        }
+		
+					public static Specification<Book> DeletadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Book>(p => values.Contains(p.DeletedAt.Value));
+        }
+		public static Specification<Book> DeletadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Book>(p => !values.Contains(p.DeletedAt.Value));
+        }
+		public static Specification<Book> DeletadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Book>(p => values.Contains(p.DeletedAt.Value));
+        }
+        public static Specification<Book> DeletadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.DeletedAt >= value);
+        }
+        public static Specification<Book> DeletadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.DeletedAt <= value);
+        }
+        public static Specification<Book> DeletadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.DeletedAt != value);
+        }
+        public static Specification<Book> DeletadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.DeletedAt > value);
+        }
+        public static Specification<Book> DeletadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Book>(p => p.DeletedAt < value);
+        }
+		
+					public static Specification<Book> DeletadoEqual(bool value) {
+			return new DirectSpecification<Book>(p => p.Deletado == value);
 		}
 		
 	   }

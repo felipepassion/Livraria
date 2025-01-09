@@ -15,7 +15,7 @@ namespace Livraria.Infra.Data.Tests
             AssuntoRepository assuntoRespository = CreateAssuntoRepo();
 
             var randomInt = new Random().Next(1, 1000);
-            assuntoRespository.Add(new Assunto { Descricao = $"Teste {randomInt}" });
+            assuntoRespository.Add(new Subject { Descricao = $"Teste {randomInt}" });
             var result = await assuntoRespository.UnitOfWork.Commit();
 
             Assert.True(result);

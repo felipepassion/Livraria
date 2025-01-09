@@ -12,7 +12,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
     using Queries.Models;
     using Application.DTO.Aggregates.LivrariaAgg.Requests;
 
-    public partial class AutorCommandHandler : BaseLivrariaAggCommandHandler<Autor>,
+    public partial class AutorCommandHandler : BaseLivrariaAggCommandHandler<Author>,
         IRequestHandler<CreateAutorCommand,DomainResponse>,
         IRequestHandler<DeleteAutorCommand,DomainResponse>,
         IRequestHandler<UpdateAutorCommand,DomainResponse>
@@ -21,12 +21,12 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
 
         public AutorCommandHandler(IServiceProvider provider,IMediator mediator,IAutorRepository autorRepository ) : base(provider,mediator) { _autorRepository = autorRepository; }
 
-        partial void OnCreate(Autor entity);
-        partial void OnUpdate(Autor entity);
+        partial void OnCreate(Author entity);
+        partial void OnUpdate(Author entity);
 
         public async Task<DomainResponse> Handle(CreateAutorCommand command,CancellationToken cancellationToken) {
 
-            Autor entity;
+            Author entity;
             if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.IdExterno))
             {
                 var filter = AutorFilters.GetFilters(command.Query ?? new AutorQueryModel { IdExternoEqual = command.Request.IdExterno });
@@ -41,7 +41,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
                         cancellationToken);
                 }
             }
-            entity = command.Request.ProjectedAs<Entities.Autor>();
+            entity = command.Request.ProjectedAs<Entities.Author>();
             entity.AddDomainEvent(new AutorCreatedEvent(command.Context,entity));
 
             var creationResult = await OnCreateAsync(entity);
@@ -59,7 +59,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
 			var entity = await _autorRepository.FindAsync(filter);
 
             if(entity is null) {
-                return AddError($"Entity {nameof(Autor)} not found with the request.");
+                return AddError($"Entity {nameof(Author)} not found with the request.");
             }
             
             if (command.IsLogicalDeletion)
@@ -75,16 +75,16 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
         }
 
         public async Task<DomainResponse> Handle(UpdateAutorCommand command,CancellationToken cancellationToken) {
-            var entities = new List<Autor>();
-            var entity = command.Entity as Autor ?? await _autorRepository.FindAsync(AutorFilters.GetFilters(command.Query));
+            var entities = new List<Author>();
+            var entity = command.Entity as Author ?? await _autorRepository.FindAsync(AutorFilters.GetFilters(command.Query));
                 
             if(entity == null) {
                 if(command.CreateIfNotExists)
                     return await Handle(new CreateAutorCommand(command.Context,command.Request),cancellationToken);
-                return AddError($"Entity {nameof(Autor)} not found with the request.");
+                return AddError($"Entity {nameof(Author)} not found with the request.");
             }
 
-            var entityAfter = command.Request.ProjectedAs<Autor>();
+            var entityAfter = command.Request.ProjectedAs<Author>();
             
             entity.Update(entityAfter,"Id");
             var updateResult = await OnUpdateAsync(entity, entityAfter);

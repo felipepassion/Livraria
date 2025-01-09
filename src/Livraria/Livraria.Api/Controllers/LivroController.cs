@@ -38,7 +38,7 @@ using Domain.Aggregates.LivrariaAgg.Entities;
         }
 		[HttpGet("select")]
 		public async Task<IActionResult> Select([FromQuery] LivroQueryModel request, int? page = null, int? size = null) {
-		    var obj = await _livroAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Livro>());
+		    var obj = await _livroAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Book>());
             return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
         }
 		

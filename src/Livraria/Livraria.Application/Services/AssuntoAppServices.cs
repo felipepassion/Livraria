@@ -23,16 +23,16 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices;
         {
 			_assuntoRepository = null;
         }
-		public async Task<IEnumerable<T>> GetAll<T>(AssuntoQueryModel request, int? page = null, int? size = null, Expression<Func<Assunto, T>> selector = null) {
+		public async Task<IEnumerable<T>> GetAll<T>(AssuntoQueryModel request, int? page = null, int? size = null, Expression<Func<Subject, T>> selector = null) {
 			return await _assuntoRepository.SelectAllAsync(
                 filter: AssuntoFilters.GetFilters(request, isOrSpecification: request.IsOrSpecification),
                 take: size,
                 skip: page * size,
 				ascending: request.OrderByDesc != true,
-                orderBy: request.OrderBy.GetPropertyListSelector<Assunto>(),
+                orderBy: request.OrderBy.GetPropertyListSelector<Subject>(),
                 selector: selector);
 		}
-		public async Task<T> Select<T>(AssuntoQueryModel request, Expression<Func<Assunto, T>> selector = null)
+		public async Task<T> Select<T>(AssuntoQueryModel request, Expression<Func<Subject, T>> selector = null)
         {
             return (await _assuntoRepository.FindAsync(filter: AssuntoFilters.GetFilters(request, isOrSpecification: true), selector: selector));
         }
@@ -42,7 +42,7 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices;
                 take: size,
                 skip: page * size,
 				ascending: request.OrderByDesc != true,
-                orderBy: request.OrderBy.GetPropertyListSelector<Assunto>(),
+                orderBy: request.OrderBy.GetPropertyListSelector<Subject>(),
                 selector: x => x.ProjectedAs<AssuntoDTO>());
         }
 

@@ -10,7 +10,7 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
     {
         public int Id { get; set; }
         public string IdExterno { get; set; }
-        DateTime? CriadoEm { get; set; }
+        DateTime? CreatedAt { get; set; }
     }
 
     public class Entity : IEntity
@@ -21,7 +21,7 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
 
         public Entity()
         {
-            CriadoEm ??= DateTime.UtcNow;
+            CreatedAt ??= DateTime.UtcNow;
             _idExterno ??= Guid.NewGuid().ToString();
         }
 
@@ -32,7 +32,7 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
             {
                 if (string.IsNullOrWhiteSpace(_idExterno))
                 {
-                    CriadoEm ??= DateTime.UtcNow;
+                    CreatedAt ??= DateTime.UtcNow;
                     _idExterno = Guid.NewGuid().ToString();
                 }
                 return _idExterno;
@@ -42,19 +42,19 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
 
         [IgnorePropertyT4OnRequest]
         [DisplayName("Criado em")]
-        public DateTime? CriadoEm { get; set; } = DateTime.UtcNow;
+        public DateTime? CreatedAt { get; set; } = DateTime.UtcNow;
 
         [IgnorePropertyT4OnRequest]
         [DisplayName("Atualizado em")]
-        public DateTime? AtualizadoEm { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         [IgnorePropertyT4OnRequest]
         [DisplayName("Deletado em")]
-        public DateTime? DeletadoEm { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
         public virtual void Updated()
         {
-            this.AtualizadoEm = DateTime.Now;
+            this.UpdatedAt = DateTime.Now;
         }
 
         [Key]
@@ -71,7 +71,7 @@ namespace Niu.Nutri.Core.Domain.Aggregates.CommonAgg.Entities
         public void Delete()
         {
             this.Deletado = true;
-            this.DeletadoEm = DateTime.UtcNow;
+            this.DeletedAt = DateTime.UtcNow;
         }
 
         public void ClearDomainEvents()

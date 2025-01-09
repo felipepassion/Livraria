@@ -7,36 +7,36 @@ using Entities;
 
 public partial class AutorCreatedEvent : BaseEvent
 {
-    public AutorCreatedEvent(ILogRequestContext ctx, Autor data) 
+    public AutorCreatedEvent(ILogRequestContext ctx, Author data) 
         : base(ctx, data) { }
 }
 public partial class AutorDeletedEvent : BaseEvent
 {
-    public AutorDeletedEvent(ILogRequestContext ctx, Autor data) 
+    public AutorDeletedEvent(ILogRequestContext ctx, Author data) 
         : base(ctx, data) { }
 }
 public partial class AutorDeletedRangeEvent : BaseEvent
 {
-    public AutorDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<Autor> data) 
+    public AutorDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<Author> data) 
         : base(ctx, data) { }
 }
 public partial class AutorActivatedEvent : BaseEvent
 {
-    public AutorActivatedEvent(ILogRequestContext ctx, Autor data) 
+    public AutorActivatedEvent(ILogRequestContext ctx, Author data) 
         : base(ctx, data) { }
 }
 public partial class AutorUpdatedEvent : BaseEvent
 {
-    public AutorUpdatedEvent(ILogRequestContext ctx, Autor data) 
+    public AutorUpdatedEvent(ILogRequestContext ctx, Author data) 
         : base(ctx, data) { }
 }
 public partial class AutorUpdatedRangeEvent : BaseEvent
 {
-    public AutorUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<Autor> data) 
+    public AutorUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<Author> data) 
         : base(ctx, data) { }
 }
 public partial class AutorDeactivatedEvent : BaseEvent
 {
-    public AutorDeactivatedEvent(ILogRequestContext ctx, Autor data) 
+    public AutorDeactivatedEvent(ILogRequestContext ctx, Author data) 
         : base(ctx, data) { }
 }

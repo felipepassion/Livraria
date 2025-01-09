@@ -37,7 +37,7 @@ using Domain.Aggregates.LivrariaAgg.Entities;
         }
 		[HttpGet("select")]
 		public async Task<IActionResult> Select([FromQuery] AutorQueryModel request, int? page = null, int? size = null) {
-		    var obj = await _autorAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Autor>());
+		    var obj = await _autorAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Author>());
             return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
         }
 		

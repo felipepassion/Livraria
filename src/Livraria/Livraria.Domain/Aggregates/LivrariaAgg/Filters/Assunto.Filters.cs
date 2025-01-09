@@ -9,13 +9,13 @@ using Queries.Models;
 
 	public static class AssuntoFilters 
 	{
-	    public static Expression<Func<Assunto, bool>> GetFilters(this AssuntoQueryModel request, bool isOrSpecification = false)
+	    public static Expression<Func<Subject, bool>> GetFilters(this AssuntoQueryModel request, bool isOrSpecification = false)
 
 		{ return request.GetFiltersSpecification(isOrSpecification).SatisfiedBy(); }
-		public static Specification<Assunto> GetFiltersSpecification(this AssuntoQueryModel request, bool isOrSpecification = false) 
+		public static Specification<Subject> GetFiltersSpecification(this AssuntoQueryModel request, bool isOrSpecification = false) 
 		{
 			isOrSpecification = request.IsOrSpecification;
-			Specification<Assunto> filter = new DirectSpecification<Assunto>(p => request.IsEmpty() || !isOrSpecification);
+			Specification<Subject> filter = new DirectSpecification<Subject>(p => request.IsEmpty() || !isOrSpecification);
 			if(request is not null)
 			{
 				if (request.IdEqual.HasValue)

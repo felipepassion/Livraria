@@ -9,10 +9,10 @@ public partial class LivrariaAggProfile : Profile
 {
 	public LivrariaAggProfile()
 	{
-		CreateMap<LivroDTO, Livro>().ReverseMap();
-		CreateMap<AutorDTO, Autor>().ReverseMap();
-		CreateMap<AssuntoDTO, Assunto>().ReverseMap();
-		CreateMap<Livro_AutorDTO, Livro_Autor>().ReverseMap();
-		CreateMap<Livro_AssuntoDTO, Livro_Assunto>().ReverseMap();
+		CreateMap<LivroDTO, Book>().ReverseMap();
+		CreateMap<AutorDTO, Author>().ReverseMap();
+		CreateMap<AssuntoDTO, Subject>().ReverseMap();
+		CreateMap<AutorLivroDTO, AutorLivro>().ReverseMap();
+		CreateMap<AssuntoLivroDTO, AssuntoLivro>().ReverseMap();
 	}
 }

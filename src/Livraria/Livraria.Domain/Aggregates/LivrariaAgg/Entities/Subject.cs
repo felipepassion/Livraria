@@ -6,14 +6,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities
 {
     [EndpointsT4(EndpointTypes.HttpAll)]
-    public partial class Autor : Entity
+    public partial class Subject : Entity
     {
-        [Key, Column("CodAu")]
+        [Key]
         public override int Id { get; set; }
 
-        [StringLength(40)]
-        public string Nome { get; set; }
+        [StringLength(20)]
+        public string Descricao { get; set; }
 
-        public List<Livro> Livros { get; set; }
+        public List<Book> Livros { get; set; }
     }
 }

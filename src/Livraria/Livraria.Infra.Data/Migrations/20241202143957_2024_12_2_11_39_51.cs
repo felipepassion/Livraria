@@ -87,7 +87,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Livro_Assunto",
+                name: "AssuntoLivro",
                 columns: table => new
                 {
                     Livro_Codl = table.Column<int>(type: "integer", nullable: false),
@@ -95,15 +95,15 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Livro_Assunto", x => new { x.Assunto_CodAut, x.Livro_Codl });
+                    table.PrimaryKey("PK_AssuntoLivro", x => new { x.Assunto_CodAut, x.Livro_Codl });
                     table.ForeignKey(
-                        name: "FK_Livro_Assunto_Assunto_Assunto_CodAut",
+                        name: "FK_AssuntoLivro_Assunto_Assunto_CodAut",
                         column: x => x.Assunto_CodAut,
                         principalTable: "Assunto",
                         principalColumn: "CodAs",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Livro_Assunto_Livro_Livro_Codl",
+                        name: "FK_AssuntoLivro_Livro_Livro_Codl",
                         column: x => x.Livro_Codl,
                         principalTable: "Livro",
                         principalColumn: "Codl",
@@ -111,7 +111,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Livro_Autor",
+                name: "AutorLivro",
                 columns: table => new
                 {
                     Livro_Codl = table.Column<int>(type: "integer", nullable: false),
@@ -119,15 +119,15 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Livro_Autor", x => new { x.Autor_CodAut, x.Livro_Codl });
+                    table.PrimaryKey("PK_AutorLivro", x => new { x.Autor_CodAut, x.Livro_Codl });
                     table.ForeignKey(
-                        name: "FK_Livro_Autor_Autor_Autor_CodAut",
+                        name: "FK_AutorLivro_Autor_Autor_CodAut",
                         column: x => x.Autor_CodAut,
                         principalTable: "Autor",
                         principalColumn: "CodAu",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Livro_Autor_Livro_Livro_Codl",
+                        name: "FK_AutorLivro_Livro_Livro_Codl",
                         column: x => x.Livro_Codl,
                         principalTable: "Livro",
                         principalColumn: "Codl",
@@ -135,13 +135,13 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Livro_Assunto_Livro_Codl",
-                table: "Livro_Assunto",
+                name: "IX_AssuntoLivro_Livro_Codl",
+                table: "AssuntoLivro",
                 column: "Livro_Codl");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Livro_Autor_Livro_Codl",
-                table: "Livro_Autor",
+                name: "IX_AutorLivro_Livro_Codl",
+                table: "AutorLivro",
                 column: "Livro_Codl");
         }
 
@@ -152,10 +152,10 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                 name: "LivrariaAggSettings");
 
             migrationBuilder.DropTable(
-                name: "Livro_Assunto");
+                name: "AssuntoLivro");
 
             migrationBuilder.DropTable(
-                name: "Livro_Autor");
+                name: "AutorLivro");
 
             migrationBuilder.DropTable(
                 name: "Assunto");

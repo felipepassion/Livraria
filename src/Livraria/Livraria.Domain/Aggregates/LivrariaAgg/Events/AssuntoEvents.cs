@@ -7,36 +7,36 @@ using Entities;
 
 public partial class AssuntoCreatedEvent : BaseEvent
 {
-    public AssuntoCreatedEvent(ILogRequestContext ctx, Assunto data) 
+    public AssuntoCreatedEvent(ILogRequestContext ctx, Subject data) 
         : base(ctx, data) { }
 }
 public partial class AssuntoDeletedEvent : BaseEvent
 {
-    public AssuntoDeletedEvent(ILogRequestContext ctx, Assunto data) 
+    public AssuntoDeletedEvent(ILogRequestContext ctx, Subject data) 
         : base(ctx, data) { }
 }
 public partial class AssuntoDeletedRangeEvent : BaseEvent
 {
-    public AssuntoDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<Assunto> data) 
+    public AssuntoDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<Subject> data) 
         : base(ctx, data) { }
 }
 public partial class AssuntoActivatedEvent : BaseEvent
 {
-    public AssuntoActivatedEvent(ILogRequestContext ctx, Assunto data) 
+    public AssuntoActivatedEvent(ILogRequestContext ctx, Subject data) 
         : base(ctx, data) { }
 }
 public partial class AssuntoUpdatedEvent : BaseEvent
 {
-    public AssuntoUpdatedEvent(ILogRequestContext ctx, Assunto data) 
+    public AssuntoUpdatedEvent(ILogRequestContext ctx, Subject data) 
         : base(ctx, data) { }
 }
 public partial class AssuntoUpdatedRangeEvent : BaseEvent
 {
-    public AssuntoUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<Assunto> data) 
+    public AssuntoUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<Subject> data) 
         : base(ctx, data) { }
 }
 public partial class AssuntoDeactivatedEvent : BaseEvent
 {
-    public AssuntoDeactivatedEvent(ILogRequestContext ctx, Assunto data) 
+    public AssuntoDeactivatedEvent(ILogRequestContext ctx, Subject data) 
         : base(ctx, data) { }
 }

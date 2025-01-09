@@ -7,36 +7,36 @@ using Entities;
 
 public partial class LivroCreatedEvent : BaseEvent
 {
-    public LivroCreatedEvent(ILogRequestContext ctx, Livro data) 
+    public LivroCreatedEvent(ILogRequestContext ctx, Book data) 
         : base(ctx, data) { }
 }
 public partial class LivroDeletedEvent : BaseEvent
 {
-    public LivroDeletedEvent(ILogRequestContext ctx, Livro data) 
+    public LivroDeletedEvent(ILogRequestContext ctx, Book data) 
         : base(ctx, data) { }
 }
 public partial class LivroDeletedRangeEvent : BaseEvent
 {
-    public LivroDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<Livro> data) 
+    public LivroDeletedRangeEvent(ILogRequestContext ctx, IEnumerable<Book> data) 
         : base(ctx, data) { }
 }
 public partial class LivroActivatedEvent : BaseEvent
 {
-    public LivroActivatedEvent(ILogRequestContext ctx, Livro data) 
+    public LivroActivatedEvent(ILogRequestContext ctx, Book data) 
         : base(ctx, data) { }
 }
 public partial class LivroUpdatedEvent : BaseEvent
 {
-    public LivroUpdatedEvent(ILogRequestContext ctx, Livro data) 
+    public LivroUpdatedEvent(ILogRequestContext ctx, Book data) 
         : base(ctx, data) { }
 }
 public partial class LivroUpdatedRangeEvent : BaseEvent
 {
-    public LivroUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<Livro> data) 
+    public LivroUpdatedRangeEvent(ILogRequestContext ctx, IEnumerable<Book> data) 
         : base(ctx, data) { }
 }
 public partial class LivroDeactivatedEvent : BaseEvent
 {
-    public LivroDeactivatedEvent(ILogRequestContext ctx, Livro data) 
+    public LivroDeactivatedEvent(ILogRequestContext ctx, Book data) 
         : base(ctx, data) { }
 }

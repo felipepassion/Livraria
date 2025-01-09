@@ -26,16 +26,16 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices;
         {
 			_livroRepository = null;
         }
-		public async Task<IEnumerable<T>> GetAll<T>(LivroQueryModel request, int? page = null, int? size = null, Expression<Func<Livro, T>> selector = null) {
+		public async Task<IEnumerable<T>> GetAll<T>(LivroQueryModel request, int? page = null, int? size = null, Expression<Func<Book, T>> selector = null) {
 			return await _livroRepository.SelectAllAsync(
                 filter: LivroFilters.GetFilters(request, isOrSpecification: request.IsOrSpecification),
                 take: size,
                 skip: page * size,
 				ascending: request.OrderByDesc != true,
-                orderBy: request.OrderBy.GetPropertyListSelector<Livro>(),
+                orderBy: request.OrderBy.GetPropertyListSelector<Book>(),
                 selector: selector);
 		}
-		public async Task<T> Select<T>(LivroQueryModel request, Expression<Func<Livro, T>> selector = null)
+		public async Task<T> Select<T>(LivroQueryModel request, Expression<Func<Book, T>> selector = null)
         {
             return (await _livroRepository.FindAsync(filter: LivroFilters.GetFilters(request, isOrSpecification: true), selector: selector));
         }
@@ -45,7 +45,7 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices;
                 take: size,
                 skip: page * size,
 				ascending: request.OrderByDesc != true,
-                orderBy: request.OrderBy.GetPropertyListSelector<Livro>(),
+                orderBy: request.OrderBy.GetPropertyListSelector<Book>(),
                 selector: x => x.ProjectedAs<LivroDTO>());
         }
 

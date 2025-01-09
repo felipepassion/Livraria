@@ -189,7 +189,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     b.ToTable("Livro");
                 });
 
-            modelBuilder.Entity("Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities.Livro_Assunto", b =>
+            modelBuilder.Entity("Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities.AssuntoLivro", b =>
                 {
                     b.Property<int>("Assunto_CodAut")
                         .HasColumnType("integer");
@@ -201,10 +201,10 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
 
                     b.HasIndex("Livro_Codl");
 
-                    b.ToTable("Livro_Assunto");
+                    b.ToTable("AssuntoLivro");
                 });
 
-            modelBuilder.Entity("Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities.Livro_Autor", b =>
+            modelBuilder.Entity("Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities.AutorLivro", b =>
                 {
                     b.Property<int>("Autor_CodAut")
                         .HasColumnType("integer");
@@ -216,7 +216,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
 
                     b.HasIndex("Livro_Codl");
 
-                    b.ToTable("Livro_Autor");
+                    b.ToTable("AutorLivro");
                 });
 
             modelBuilder.Entity("Niu.Nutri.Livraria.Domain.Aggregates.UsersAgg.Entities.User", b =>
@@ -251,7 +251,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities.Livro_Assunto", b =>
+            modelBuilder.Entity("Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities.AssuntoLivro", b =>
                 {
                     b.HasOne("Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities.Assunto", "Assunto")
                         .WithMany()
@@ -270,7 +270,7 @@ namespace Niu.Nutri.Livraria.Infra.Data.Migrations
                     b.Navigation("Livro");
                 });
 
-            modelBuilder.Entity("Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities.Livro_Autor", b =>
+            modelBuilder.Entity("Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities.AutorLivro", b =>
                 {
                     b.HasOne("Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Entities.Autor", "Autor")
                         .WithMany()

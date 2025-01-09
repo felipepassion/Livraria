@@ -9,11 +9,11 @@ namespace Niu.Nutri.Livraria.Infra.Data.Context
 {
 	public partial class LivrariaAggContext : BaseContext
 	{
-		public DbSet<Livro_Autor> Livro_Autor { get; set; }
-		public DbSet<Livro> Livro { get; set; }
-		public DbSet<Assunto> Assunto { get; set; }
-		public DbSet<Livro_Assunto> Livro_Assunto { get; set; }
-		public DbSet<Autor> Autor { get; set; }
+		public DbSet<AutorLivro> AutorLivro { get; set; }
+		public DbSet<Book> Livro { get; set; }
+		public DbSet<Subject> Assunto { get; set; }
+		public DbSet<AssuntoLivro> AssuntoLivro { get; set; }
+		public DbSet<Author> Autor { get; set; }
 
 		public LivrariaAggContext (MediatR.IMediator mediator, DbContextOptions<LivrariaAggContext> options, IServiceProvider scope)
             : base(mediator, options, scope)
@@ -22,10 +22,10 @@ namespace Niu.Nutri.Livraria.Infra.Data.Context
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
-			builder.ApplyConfiguration(new Livro_AutorMapping());
+			builder.ApplyConfiguration(new AutorLivroMapping());
 			builder.ApplyConfiguration(new LivroMapping());
 			builder.ApplyConfiguration(new AssuntoMapping());
-			builder.ApplyConfiguration(new Livro_AssuntoMapping());
+			builder.ApplyConfiguration(new AssuntoLivroMapping());
 			builder.ApplyConfiguration(new AutorMapping());
 		
 			ApplyAdditionalMappings(builder);

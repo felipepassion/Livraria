@@ -10,13 +10,13 @@ using Queries.Models;
 
 	public static class LivroFilters 
 	{
-	    public static Expression<Func<Livro, bool>> GetFilters(this LivroQueryModel request, bool isOrSpecification = false)
+	    public static Expression<Func<Book, bool>> GetFilters(this LivroQueryModel request, bool isOrSpecification = false)
 
 		{ return request.GetFiltersSpecification(isOrSpecification).SatisfiedBy(); }
-		public static Specification<Livro> GetFiltersSpecification(this LivroQueryModel request, bool isOrSpecification = false) 
+		public static Specification<Book> GetFiltersSpecification(this LivroQueryModel request, bool isOrSpecification = false) 
 		{
 			isOrSpecification = request.IsOrSpecification;
-			Specification<Livro> filter = new DirectSpecification<Livro>(p => request.IsEmpty() || !isOrSpecification);
+			Specification<Book> filter = new DirectSpecification<Book>(p => request.IsEmpty() || !isOrSpecification);
 			if(request is not null)
 			{
 				if (request.IdEqual.HasValue)

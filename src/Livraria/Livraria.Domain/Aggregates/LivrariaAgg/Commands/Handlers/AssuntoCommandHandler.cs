@@ -12,7 +12,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
     using Queries.Models;
     using Application.DTO.Aggregates.LivrariaAgg.Requests;
 
-    public partial class AssuntoCommandHandler : BaseLivrariaAggCommandHandler<Assunto>,
+    public partial class AssuntoCommandHandler : BaseLivrariaAggCommandHandler<Subject>,
         IRequestHandler<CreateAssuntoCommand,DomainResponse>,
         IRequestHandler<DeleteAssuntoCommand,DomainResponse>,
         IRequestHandler<UpdateAssuntoCommand,DomainResponse>
@@ -21,12 +21,12 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
 
         public AssuntoCommandHandler(IServiceProvider provider,IMediator mediator,IAssuntoRepository assuntoRepository ) : base(provider,mediator) { _assuntoRepository = assuntoRepository; }
 
-        partial void OnCreate(Assunto entity);
-        partial void OnUpdate(Assunto entity);
+        partial void OnCreate(Subject entity);
+        partial void OnUpdate(Subject entity);
 
         public async Task<DomainResponse> Handle(CreateAssuntoCommand command,CancellationToken cancellationToken) {
 
-            Assunto entity;
+            Subject entity;
             if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.IdExterno))
             {
                 var filter = AssuntoFilters.GetFilters(command.Query ?? new AssuntoQueryModel { IdExternoEqual = command.Request.IdExterno });
@@ -41,7 +41,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
                         cancellationToken);
                 }
             }
-            entity = command.Request.ProjectedAs<Entities.Assunto>();
+            entity = command.Request.ProjectedAs<Entities.Subject>();
             entity.AddDomainEvent(new AssuntoCreatedEvent(command.Context,entity));
 
             var creationResult = await OnCreateAsync(entity);
@@ -59,7 +59,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
 			var entity = await _assuntoRepository.FindAsync(filter);
 
             if(entity is null) {
-                return AddError($"Entity {nameof(Assunto)} not found with the request.");
+                return AddError($"Entity {nameof(Subject)} not found with the request.");
             }
             
             if (command.IsLogicalDeletion)
@@ -75,16 +75,16 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
         }
 
         public async Task<DomainResponse> Handle(UpdateAssuntoCommand command,CancellationToken cancellationToken) {
-            var entities = new List<Assunto>();
-            var entity = command.Entity as Assunto ?? await _assuntoRepository.FindAsync(AssuntoFilters.GetFilters(command.Query));
+            var entities = new List<Subject>();
+            var entity = command.Entity as Subject ?? await _assuntoRepository.FindAsync(AssuntoFilters.GetFilters(command.Query));
                 
             if(entity == null) {
                 if(command.CreateIfNotExists)
                     return await Handle(new CreateAssuntoCommand(command.Context,command.Request),cancellationToken);
-                return AddError($"Entity {nameof(Assunto)} not found with the request.");
+                return AddError($"Entity {nameof(Subject)} not found with the request.");
             }
 
-            var entityAfter = command.Request.ProjectedAs<Assunto>();
+            var entityAfter = command.Request.ProjectedAs<Subject>();
             
             entity.Update(entityAfter,"Id");
             var updateResult = await OnUpdateAsync(entity, entityAfter);

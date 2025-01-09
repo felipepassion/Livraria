@@ -13,7 +13,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
     using Queries.Models;
     using Application.DTO.Aggregates.LivrariaAgg.Requests;
 
-    public partial class LivroCommandHandler : BaseLivrariaAggCommandHandler<Livro>,
+    public partial class LivroCommandHandler : BaseLivrariaAggCommandHandler<Book>,
         IRequestHandler<CreateLivroCommand,DomainResponse>,
         IRequestHandler<DeleteLivroCommand,DomainResponse>,
         IRequestHandler<UpdateLivroCommand,DomainResponse>
@@ -22,12 +22,12 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
 
         public LivroCommandHandler(IServiceProvider provider,IMediator mediator,ILivroRepository livroRepository ) : base(provider,mediator) { _livroRepository = livroRepository; }
 
-        partial void OnCreate(Livro entity);
-        partial void OnUpdate(Livro entity);
+        partial void OnCreate(Book entity);
+        partial void OnUpdate(Book entity);
 
         public async Task<DomainResponse> Handle(CreateLivroCommand command,CancellationToken cancellationToken) {
 
-            Livro entity;
+            Book entity;
             if (command.Query != null || !string.IsNullOrWhiteSpace(command.Request.IdExterno))
             {
                 var filter = LivroFilters.GetFilters(command.Query ?? new LivroQueryModel { IdExternoEqual = command.Request.IdExterno });
@@ -42,7 +42,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
                         cancellationToken);
                 }
             }
-            entity = command.Request.ProjectedAs<Entities.Livro>();
+            entity = command.Request.ProjectedAs<Entities.Book>();
             entity.AddDomainEvent(new LivroCreatedEvent(command.Context,entity));
 
             var creationResult = await OnCreateAsync(entity);
@@ -60,7 +60,7 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
 			var entity = await _livroRepository.FindAsync(filter);
 
             if(entity is null) {
-                return AddError($"Entity {nameof(Livro)} not found with the request.");
+                return AddError($"Entity {nameof(Book)} not found with the request.");
             }
             
             if (command.IsLogicalDeletion)
@@ -76,16 +76,16 @@ namespace Niu.Nutri.Livraria.Domain.Aggregates.LivrariaAgg.Commands.Handlers;
         }
 
         public async Task<DomainResponse> Handle(UpdateLivroCommand command,CancellationToken cancellationToken) {
-            var entities = new List<Livro>();
-            var entity = command.Entity as Livro ?? await _livroRepository.FindAsync(LivroFilters.GetFilters(command.Query));
+            var entities = new List<Book>();
+            var entity = command.Entity as Book ?? await _livroRepository.FindAsync(LivroFilters.GetFilters(command.Query));
                 
             if(entity == null) {
                 if(command.CreateIfNotExists)
                     return await Handle(new CreateLivroCommand(command.Context,command.Request),cancellationToken);
-                return AddError($"Entity {nameof(Livro)} not found with the request.");
+                return AddError($"Entity {nameof(Book)} not found with the request.");
             }
 
-            var entityAfter = command.Request.ProjectedAs<Livro>();
+            var entityAfter = command.Request.ProjectedAs<Book>();
             
             entity.Update(entityAfter,"Id");
             var updateResult = await OnUpdateAsync(entity, entityAfter);

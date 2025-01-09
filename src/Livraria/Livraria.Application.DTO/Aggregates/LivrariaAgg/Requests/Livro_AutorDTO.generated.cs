@@ -11,7 +11,7 @@ namespace Niu.Nutri.Livraria.Application.DTO.Aggregates.LivrariaAgg.Requests;
 using Core.Application.DTO.Aggregates.CommonAgg.Models;
 using Core.Application.DTO.Attributes;
 
-public partial class Livro_AutorDTO 
+public partial class AutorLivroDTO 
 	{
 	    public  int? Livro_Codl { get; set; }
 	    public  int? Autor_CodAut { get; set; }

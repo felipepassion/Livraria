@@ -4,9 +4,9 @@ using Domain.Aggregates.LivrariaAgg.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-public partial class Livro_AssuntoMapping : IEntityTypeConfiguration<Livro_Assunto>
+public partial class AssuntoLivroMapping : IEntityTypeConfiguration<AssuntoLivro>
 {
-    public void Configure(EntityTypeBuilder<Livro_Assunto> builder)
+    public void Configure(EntityTypeBuilder<AssuntoLivro> builder)
     {
     }
 }

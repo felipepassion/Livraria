@@ -37,7 +37,7 @@ using Domain.Aggregates.LivrariaAgg.Entities;
         }
 		[HttpGet("select")]
 		public async Task<IActionResult> Select([FromQuery] AssuntoQueryModel request, int? page = null, int? size = null) {
-		    var obj = await _assuntoAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Assunto>());
+		    var obj = await _assuntoAppService.GetAll(request, page, size, request.Selector.GetPropertySelector<Subject>());
             return obj == null? NotFound() : Ok(GetHttpResponseDTO.Ok(obj));
         }
 		

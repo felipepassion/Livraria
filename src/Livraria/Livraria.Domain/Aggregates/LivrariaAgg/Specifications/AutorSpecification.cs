@@ -3,155 +3,155 @@ using Entities;
 using Microsoft.EntityFrameworkCore;
 using Core.Domain.Seedwork.Specification;
 public partial class AutorSpecifications {
-				public static Specification<Autor> IdContains(params int[] values) {
-            return new DirectSpecification<Autor>(p => values.Contains(p.Id));
+				public static Specification<Author> IdContains(params int[] values) {
+            return new DirectSpecification<Author>(p => values.Contains(p.Id));
         }
-		public static Specification<Autor> IdNotContains(params int[] values) {
-            return new DirectSpecification<Autor>(p => !values.Contains(p.Id));
+		public static Specification<Author> IdNotContains(params int[] values) {
+            return new DirectSpecification<Author>(p => !values.Contains(p.Id));
         }
-		public static Specification<Autor> IdEqual(params int[] values) {
-			return new DirectSpecification<Autor>(p => values.Contains(p.Id));
+		public static Specification<Author> IdEqual(params int[] values) {
+			return new DirectSpecification<Author>(p => values.Contains(p.Id));
         }
-        public static Specification<Autor> IdGreaterThanOrEqual(int value) {
-            return new DirectSpecification<Autor>(p => p.Id >= value);
+        public static Specification<Author> IdGreaterThanOrEqual(int value) {
+            return new DirectSpecification<Author>(p => p.Id >= value);
         }
-        public static Specification<Autor> IdLessThanOrEqual(int value) {
-            return new DirectSpecification<Autor>(p => p.Id <= value);
+        public static Specification<Author> IdLessThanOrEqual(int value) {
+            return new DirectSpecification<Author>(p => p.Id <= value);
         }
-        public static Specification<Autor> IdNotEqual(int value) {
-            return new DirectSpecification<Autor>(p => p.Id != value);
+        public static Specification<Author> IdNotEqual(int value) {
+            return new DirectSpecification<Author>(p => p.Id != value);
         }
-        public static Specification<Autor> IdGreaterThan(int value) {
-            return new DirectSpecification<Autor>(p => p.Id > value);
+        public static Specification<Author> IdGreaterThan(int value) {
+            return new DirectSpecification<Author>(p => p.Id > value);
         }
-        public static Specification<Autor> IdLessThan(int value) {
-            return new DirectSpecification<Autor>(p => p.Id < value);
+        public static Specification<Author> IdLessThan(int value) {
+            return new DirectSpecification<Author>(p => p.Id < value);
         }
 		
-					public static Specification<Autor> NomeContains(string value) {
-			return new DirectSpecification<Autor>(p => EF.Functions.Like(p.Nome.ToLower(), $"%{value.ToLower()}%"));
+					public static Specification<Author> NomeContains(string value) {
+			return new DirectSpecification<Author>(p => EF.Functions.Like(p.Nome.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Autor> NomeNotContains(string value) {
-			return new DirectSpecification<Autor>(p => !EF.Functions.Like(p.Nome.ToLower(), $"%{value.ToLower()}%"));
+		public static Specification<Author> NomeNotContains(string value) {
+			return new DirectSpecification<Author>(p => !EF.Functions.Like(p.Nome.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Autor> NomeStartsWith(string value) {
-			return new DirectSpecification<Autor>(p => EF.Functions.Like(p.Nome.ToLower(), $"{value.ToLower()}%"));
+		public static Specification<Author> NomeStartsWith(string value) {
+			return new DirectSpecification<Author>(p => EF.Functions.Like(p.Nome.ToLower(), $"{value.ToLower()}%"));
 		}
 	
-		public static Specification<Autor> NomeEqual(string value) {
-			return new DirectSpecification<Autor>(p => value.ToLower() == (p.Nome.ToLower()));
+		public static Specification<Author> NomeEqual(string value) {
+			return new DirectSpecification<Author>(p => value.ToLower() == (p.Nome.ToLower()));
 		}
-		public static Specification<Autor> NomeNotEqual(string value) {
-			return new DirectSpecification<Autor>(p => p.Nome != value);
+		public static Specification<Author> NomeNotEqual(string value) {
+			return new DirectSpecification<Author>(p => p.Nome != value);
 		}
-		public static Specification<Autor> NomeIsNull() {
-            return new DirectSpecification<Autor>(p => p.Nome == null);
+		public static Specification<Author> NomeIsNull() {
+            return new DirectSpecification<Author>(p => p.Nome == null);
         }
-		public static Specification<Autor> NomeIsNotNull() {
-            return new DirectSpecification<Autor>(p => p.Nome != null);
+		public static Specification<Author> NomeIsNotNull() {
+            return new DirectSpecification<Author>(p => p.Nome != null);
         }
 		
 				
-					public static Specification<Autor> IdExternoContains(string value) {
-			return new DirectSpecification<Autor>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
+					public static Specification<Author> IdExternoContains(string value) {
+			return new DirectSpecification<Author>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Autor> IdExternoNotContains(string value) {
-			return new DirectSpecification<Autor>(p => !EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
+		public static Specification<Author> IdExternoNotContains(string value) {
+			return new DirectSpecification<Author>(p => !EF.Functions.Like(p.IdExterno.ToLower(), $"%{value.ToLower()}%"));
 		}
-		public static Specification<Autor> IdExternoStartsWith(string value) {
-			return new DirectSpecification<Autor>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"{value.ToLower()}%"));
+		public static Specification<Author> IdExternoStartsWith(string value) {
+			return new DirectSpecification<Author>(p => EF.Functions.Like(p.IdExterno.ToLower(), $"{value.ToLower()}%"));
 		}
 	
-		public static Specification<Autor> IdExternoEqual(string value) {
-			return new DirectSpecification<Autor>(p => value.ToLower() == (p.IdExterno.ToLower()));
+		public static Specification<Author> IdExternoEqual(string value) {
+			return new DirectSpecification<Author>(p => value.ToLower() == (p.IdExterno.ToLower()));
 		}
-		public static Specification<Autor> IdExternoNotEqual(string value) {
-			return new DirectSpecification<Autor>(p => p.IdExterno != value);
+		public static Specification<Author> IdExternoNotEqual(string value) {
+			return new DirectSpecification<Author>(p => p.IdExterno != value);
 		}
-		public static Specification<Autor> IdExternoIsNull() {
-            return new DirectSpecification<Autor>(p => p.IdExterno == null);
+		public static Specification<Author> IdExternoIsNull() {
+            return new DirectSpecification<Author>(p => p.IdExterno == null);
         }
-		public static Specification<Autor> IdExternoIsNotNull() {
-            return new DirectSpecification<Autor>(p => p.IdExterno != null);
-        }
-		
-					public static Specification<Autor> CriadoEmContains(params System.DateTime[] values) {
-            return new DirectSpecification<Autor>(p => values.Contains(p.CriadoEm.Value));
-        }
-		public static Specification<Autor> CriadoEmNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Autor>(p => !values.Contains(p.CriadoEm.Value));
-        }
-		public static Specification<Autor> CriadoEmEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Autor>(p => values.Contains(p.CriadoEm.Value));
-        }
-        public static Specification<Autor> CriadoEmGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.CriadoEm >= value);
-        }
-        public static Specification<Autor> CriadoEmLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.CriadoEm <= value);
-        }
-        public static Specification<Autor> CriadoEmNotEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.CriadoEm != value);
-        }
-        public static Specification<Autor> CriadoEmGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.CriadoEm > value);
-        }
-        public static Specification<Autor> CriadoEmLessThan(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.CriadoEm < value);
+		public static Specification<Author> IdExternoIsNotNull() {
+            return new DirectSpecification<Author>(p => p.IdExterno != null);
         }
 		
-					public static Specification<Autor> AtualizadoEmContains(params System.DateTime[] values) {
-            return new DirectSpecification<Autor>(p => values.Contains(p.AtualizadoEm.Value));
+					public static Specification<Author> CriadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Author>(p => values.Contains(p.CreatedAt.Value));
         }
-		public static Specification<Autor> AtualizadoEmNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Autor>(p => !values.Contains(p.AtualizadoEm.Value));
+		public static Specification<Author> CriadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Author>(p => !values.Contains(p.CreatedAt.Value));
         }
-		public static Specification<Autor> AtualizadoEmEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Autor>(p => values.Contains(p.AtualizadoEm.Value));
+		public static Specification<Author> CriadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Author>(p => values.Contains(p.CreatedAt.Value));
         }
-        public static Specification<Autor> AtualizadoEmGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.AtualizadoEm >= value);
+        public static Specification<Author> CriadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.CreatedAt >= value);
         }
-        public static Specification<Autor> AtualizadoEmLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.AtualizadoEm <= value);
+        public static Specification<Author> CriadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.CreatedAt <= value);
         }
-        public static Specification<Autor> AtualizadoEmNotEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.AtualizadoEm != value);
+        public static Specification<Author> CriadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.CreatedAt != value);
         }
-        public static Specification<Autor> AtualizadoEmGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.AtualizadoEm > value);
+        public static Specification<Author> CriadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.CreatedAt > value);
         }
-        public static Specification<Autor> AtualizadoEmLessThan(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.AtualizadoEm < value);
-        }
-		
-					public static Specification<Autor> DeletadoEmContains(params System.DateTime[] values) {
-            return new DirectSpecification<Autor>(p => values.Contains(p.DeletadoEm.Value));
-        }
-		public static Specification<Autor> DeletadoEmNotContains(params System.DateTime[] values) {
-            return new DirectSpecification<Autor>(p => !values.Contains(p.DeletadoEm.Value));
-        }
-		public static Specification<Autor> DeletadoEmEqual(params System.DateTime[] values) {
-			return new DirectSpecification<Autor>(p => values.Contains(p.DeletadoEm.Value));
-        }
-        public static Specification<Autor> DeletadoEmGreaterThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.DeletadoEm >= value);
-        }
-        public static Specification<Autor> DeletadoEmLessThanOrEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.DeletadoEm <= value);
-        }
-        public static Specification<Autor> DeletadoEmNotEqual(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.DeletadoEm != value);
-        }
-        public static Specification<Autor> DeletadoEmGreaterThan(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.DeletadoEm > value);
-        }
-        public static Specification<Autor> DeletadoEmLessThan(System.DateTime value) {
-            return new DirectSpecification<Autor>(p => p.DeletadoEm < value);
+        public static Specification<Author> CriadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.CreatedAt < value);
         }
 		
-					public static Specification<Autor> DeletadoEqual(bool value) {
-			return new DirectSpecification<Autor>(p => p.Deletado == value);
+					public static Specification<Author> AtualizadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Author>(p => values.Contains(p.UpdatedAt.Value));
+        }
+		public static Specification<Author> AtualizadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Author>(p => !values.Contains(p.UpdatedAt.Value));
+        }
+		public static Specification<Author> AtualizadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Author>(p => values.Contains(p.UpdatedAt.Value));
+        }
+        public static Specification<Author> AtualizadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.UpdatedAt >= value);
+        }
+        public static Specification<Author> AtualizadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.UpdatedAt <= value);
+        }
+        public static Specification<Author> AtualizadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.UpdatedAt != value);
+        }
+        public static Specification<Author> AtualizadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.UpdatedAt > value);
+        }
+        public static Specification<Author> AtualizadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.UpdatedAt < value);
+        }
+		
+					public static Specification<Author> DeletadoEmContains(params System.DateTime[] values) {
+            return new DirectSpecification<Author>(p => values.Contains(p.DeletedAt.Value));
+        }
+		public static Specification<Author> DeletadoEmNotContains(params System.DateTime[] values) {
+            return new DirectSpecification<Author>(p => !values.Contains(p.DeletedAt.Value));
+        }
+		public static Specification<Author> DeletadoEmEqual(params System.DateTime[] values) {
+			return new DirectSpecification<Author>(p => values.Contains(p.DeletedAt.Value));
+        }
+        public static Specification<Author> DeletadoEmGreaterThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.DeletedAt >= value);
+        }
+        public static Specification<Author> DeletadoEmLessThanOrEqual(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.DeletedAt <= value);
+        }
+        public static Specification<Author> DeletadoEmNotEqual(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.DeletedAt != value);
+        }
+        public static Specification<Author> DeletadoEmGreaterThan(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.DeletedAt > value);
+        }
+        public static Specification<Author> DeletadoEmLessThan(System.DateTime value) {
+            return new DirectSpecification<Author>(p => p.DeletedAt < value);
+        }
+		
+					public static Specification<Author> DeletadoEqual(bool value) {
+			return new DirectSpecification<Author>(p => p.Deletado == value);
 		}
 		
 	   }

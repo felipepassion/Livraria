@@ -10,8 +10,8 @@ namespace Niu.Nutri.Livraria.Application.Aggregates.LivrariaAgg.AppServices;
 		public Task<AutorDTO> Get(AutorQueryModel request);
 		public Task<int> CountAsync(AutorQueryModel request);
 		public Task<IEnumerable<AutorDTO>> GetAll(AutorQueryModel request, int? page = null, int? size = null);
-		public Task<T> Select<T>(AutorQueryModel request, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Autor, T>> selector = null);
-		public Task<IEnumerable<T>> GetAll<T>(AutorQueryModel request, int? page = null, int? size = null, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Autor, T>> selector = null);
+		public Task<T> Select<T>(AutorQueryModel request, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Author, T>> selector = null);
+		public Task<IEnumerable<T>> GetAll<T>(AutorQueryModel request, int? page = null, int? size = null, Expression<Func<Domain.Aggregates.LivrariaAgg.Entities.Author, T>> selector = null);
 
 		public Task<DomainResponse> Create(AutorDTO request, bool updateIfExists = true, AutorQueryModel searchQuery = null);
 		public Task<DomainResponse> Delete(AutorQueryModel request);
